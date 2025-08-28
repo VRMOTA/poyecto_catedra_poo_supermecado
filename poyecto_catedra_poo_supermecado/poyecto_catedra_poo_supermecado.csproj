@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomCards\card_distribuidores.resx">
+      <DependentUpon>card_distribuidores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomCards\card_producto_carrito.resx">
       <DependentUpon>card_producto_carrito.cs</DependentUpon>
     </EmbeddedResource>

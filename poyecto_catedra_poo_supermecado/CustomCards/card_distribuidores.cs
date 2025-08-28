@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.CustomCards
 {
-    public partial class card_distribuidores : UserControl
+    public partial class card_distribuidores : RoundedControlBase
     {
         public card_distribuidores()
         {

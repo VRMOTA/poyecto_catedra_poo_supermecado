@@ -20,6 +20,11 @@ namespace Catedra.CustomControls
         private Color borderFocusColor = Color.HotPink;
         private bool isFocused = false;
 
+        // Nuevos campos para placeholder
+        private string placeholderText = "";
+        private Color placeholderColor = Color.Gray;
+        private bool isPlaceholderActive = false;
+
         //Eventos
         public event EventHandler TextChanged;
 
@@ -34,6 +39,7 @@ namespace Catedra.CustomControls
                 this.Invalidate();
             }
         }
+
         [Category("Textbox Maxing")]
         public int BorderSize
         {
@@ -108,8 +114,18 @@ namespace Catedra.CustomControls
         [Category("Textbox Maxing")]
         public string Texts
         {
-            get { return textBox1.Text; }
-            set { textBox1.Text = value; }
+            get
+            {
+                if (isPlaceholderActive)
+                    return "";
+                else
+                    return textBox1.Text;
+            }
+            set
+            {
+                textBox1.Text = value;
+                RemovePlaceholder();
+            }
         }
 
         [Category("Textbox Maxing")]
@@ -117,6 +133,31 @@ namespace Catedra.CustomControls
         {
             get { return borderFocusColor; }
             set { borderFocusColor = value; }
+        }
+
+        // Nuevas propiedades para placeholder
+        [Category("Textbox Maxing")]
+        public string PlaceholderText
+        {
+            get { return placeholderText; }
+            set
+            {
+                placeholderText = value;
+                if (string.IsNullOrEmpty(textBox1.Text))
+                    SetPlaceholder();
+            }
+        }
+
+        [Category("Textbox Maxing")]
+        public Color PlaceholderColor
+        {
+            get { return placeholderColor; }
+            set
+            {
+                placeholderColor = value;
+                if (isPlaceholderActive)
+                    textBox1.ForeColor = value;
+            }
         }
 
         //Constructor
@@ -155,6 +196,10 @@ namespace Catedra.CustomControls
         {
             base.OnLoad(e);
             UpdateControlHeight();
+
+            // Inicializar placeholder si es necesario
+            if (!string.IsNullOrEmpty(placeholderText) && string.IsNullOrEmpty(textBox1.Text))
+                SetPlaceholder();
         }
 
         //Metodos privados
@@ -199,12 +244,46 @@ namespace Catedra.CustomControls
         {
             isFocused = true;
             this.Invalidate();
+
+            // Remover placeholder al enfocar
+            if (isPlaceholderActive)
+                RemovePlaceholder();
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
             isFocused = false;
             this.Invalidate();
+
+            // Establecer placeholder si está vacío al perder el foco
+            if (string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(placeholderText))
+                SetPlaceholder();
+        }
+
+        // Métodos para manejar el placeholder
+        private void SetPlaceholder()
+        {
+            if (string.IsNullOrEmpty(placeholderText))
+                return;
+
+            isPlaceholderActive = true;
+            textBox1.Text = placeholderText;
+            textBox1.ForeColor = placeholderColor;
+            textBox1.UseSystemPasswordChar = false;
+        }
+
+        private void RemovePlaceholder()
+        {
+            if (!isPlaceholderActive)
+                return;
+
+            isPlaceholderActive = false;
+            textBox1.Text = "";
+            textBox1.ForeColor = this.ForeColor;
+
+            // Restaurar la propiedad PasswordChar si estaba activa
+            if (PasswordChar)
+                textBox1.UseSystemPasswordChar = true;
         }
     }
 }
