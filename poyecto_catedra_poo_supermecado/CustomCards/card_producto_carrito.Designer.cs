@@ -90,6 +90,7 @@
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.TextColor = System.Drawing.Color.White;
             this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnEliminar
             // 

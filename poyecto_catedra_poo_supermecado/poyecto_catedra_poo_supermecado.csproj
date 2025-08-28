@@ -100,6 +100,12 @@
     <Compile Include="CustomControls\TextboxMaxing.Designer.cs">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomModals\md_actualizar_carrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_actualizar_carrito.Designer.cs">
+      <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomModals\md_agregar_distribuidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_actualizar_carrito.resx">
+      <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomModals\md_agregar_distribuidor.resx">
       <DependentUpon>md_agregar_distribuidor.cs</DependentUpon>
