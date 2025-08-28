@@ -76,7 +76,6 @@
             this.card_producto_menu1.Producto = "Nombre Producto";
             this.card_producto_menu1.Size = new System.Drawing.Size(241, 266);
             this.card_producto_menu1.TabIndex = 0;
-            
             // 
             // roundedControlBase1
             // 
@@ -92,7 +91,7 @@
             // 
             // textboxMaxing1
             // 
-            this.textboxMaxing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.textboxMaxing1.BackColor = System.Drawing.Color.White;
             this.textboxMaxing1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.textboxMaxing1.BorderFocusColor = System.Drawing.Color.Plum;
             this.textboxMaxing1.BorderSize = 7;
@@ -196,7 +195,6 @@
             this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Stock";
-           
             // 
             // lbstock
             // 
