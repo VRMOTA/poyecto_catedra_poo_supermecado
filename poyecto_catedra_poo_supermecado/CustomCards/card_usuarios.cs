@@ -1,4 +1,5 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.CustomModals;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,6 +61,12 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             get => lblCorreoUsuario?.Text ?? string.Empty;
             set { if (lblCorreoUsuario != null) lblCorreoUsuario.Text = value; }
+        }
+
+        private void btnActualizar_Click_1(object sender, EventArgs e)
+        {
+            var modal = new md_agregar_usuario("Actualizar nuevo usuario", "Actualizar");
+            modal.ShowDialog();
         }
     }
 }

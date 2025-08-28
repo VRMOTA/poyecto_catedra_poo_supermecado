@@ -1,4 +1,5 @@
 ﻿using poyecto_catedra_poo_supermecado.CustomCards;
+using poyecto_catedra_poo_supermecado.CustomModals;
 using project_supermercado;
 using System;
 using System.Collections.Generic;
@@ -76,5 +77,12 @@ namespace poyecto_catedra_poo_supermecado
             );
         }
 
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            using (var modal = new md_agregar_distribuidor())
+            {
+                modal.ShowDialog();
+            }
+        }
     }
 }

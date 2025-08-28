@@ -1,4 +1,5 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.CustomModals;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -127,6 +128,12 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public void RefreshDescuentoVisibility()
         {
             ActualizarVisibilidadDescuento();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            var modal = new md_agregar_productos("Actualizar nuevo producto", "Actualizar");
+            modal.ShowDialog();
         }
     }
 }

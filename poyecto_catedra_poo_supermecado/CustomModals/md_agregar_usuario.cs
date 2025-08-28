@@ -20,5 +20,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             FormHelper.DefaultFormValues(this);
             
         }
+        public md_agregar_usuario(string labelText, string buttonText) : this()
+        {
+            label1.Text = labelText;
+            btnActualizar.Text = buttonText;
+        }
     }
 }
