@@ -38,19 +38,19 @@ namespace poyecto_catedra_poo_supermecado
             // Ejemplo: lista de productos con stock y descripción
             var productos = new List<(int id, string nombre, decimal precio, int descuento, int stock, string descripcion,Image imb)>
             {
-                (1, "Manzana", 1.20m, 0, 50, "Fruta fresca y jugosa",Properties.Resources.Rigbyyyy),
-                (2, "Banana", 0.80m, 10, 40, "Rica en potasio", Properties.Resources.Rigbyyyy),
-                (3, "Leche", 2.50m, 5, 30, "Entera, 1 litro", Properties.Resources.Rigbyyyy ),
-                (4, "Pan", 1.00m, 0, 60, "Pan artesanal", Properties.Resources.Rigbyyyy ),
-                (5, "Queso", 3.75m, 15, 20, "Queso fresco", Properties.Resources.Rigbyyyy   ),
-                (6, "Jamon", 2.90m, 0, 25, "Jamón cocido", Properties.Resources.Rigbyyyy),
-                (7, "Cereal", 4.10m, 20, 35, "Cereal integral", Properties.Resources.Rigbyyyy),
-                (8, "Yogur", 1.60m, 0, 45, "Yogur natural", Properties.Resources.Rigbyyyy),
-                (9, "Huevos", 2.20m, 0, 80, "Docena de huevos", Properties.Resources.Rigbyyyy),
-                (10, "Agua", 0.60m, 0, 100, "Botella 500ml", Properties.Resources.Rigbyyyy),
-                (11, "Refresco", 1.50m, 5, 70, "Refresco sabor cola", Properties.Resources.Rigbyyyy ),
-                (12, "Galletas", 2.30m, 0, 55, "Galletas dulces"    , Properties.Resources.Rigbyyyy),
-                (13, "Arroz", 1.10m, 0, 90, "Arroz blanco", Properties.Resources.Rigbyyyy   ),
+                (1, "Manzana", 1.20m, 0, 50, "Fruta fresca y jugosa",Properties.Resources.manzana),
+                (2, "Banana", 0.80m, 10, 40, "Rica en potasio", Properties.Resources.banana),
+                (3, "Leche", 2.50m, 5, 30, "Entera, 1 litro", Properties.Resources.leche ),
+                (4, "Pan", 1.00m, 0, 60, "Pan artesanal", Properties.Resources.pan ),
+                (5, "Queso", 3.75m, 15, 20, "Queso fresco", Properties.Resources.queso   ),
+                (6, "Jamon", 2.90m, 0, 25, "Jamón cocido", Properties.Resources.jamon),
+                (7, "Cereal", 4.10m, 20, 35, "Cereal integral", Properties.Resources.cereal),
+                (8, "Yogur", 1.60m, 0, 45, "Yogur natural", Properties.Resources.yogyur),
+                (9, "Huevos", 2.20m, 0, 80, "Docena de huevos", Properties.Resources.huevo),
+                (10, "Agua", 0.60m, 0, 100, "Botella 500ml", Properties.Resources.agua),
+                (11, "Refresco", 1.50m, 5, 70, "Refresco sabor cola", Properties.Resources.soda ),
+                (12, "Galletas", 2.30m, 0, 55, "Galletas dulces"    , Properties.Resources.cokie),
+                (13, "Arroz", 1.10m, 0, 90, "Arroz blanco", Properties.Resources.rice   ),
                 (14, "Fideos", 1.40m, 0, 85, "Fideos secos", Properties.Resources.Rigbyyyy  ),
                 (15, "Aceite", 3.20m, 10, 15, "Aceite vegetal", Properties.Resources.Rigbyyyy),
                 (16, "Azúcar", 1.80m, 0, 75, "Azúcar refinada", Properties.Resources.Rigbyyyy)
@@ -94,22 +94,19 @@ namespace poyecto_catedra_poo_supermecado
             // Ejemplo: lista de productos (puedes reemplazar por tu fuente de datos real)
             var productos = new List<(int id, string nombre, decimal precio, int descuento, Image img)>
             {
-                (1, "Manzana", 1.20m, 0,Properties.Resources.Rigbyyyy),
-                (2, "Banana", 0.80m, 10, Properties.Resources.Rigbyyyy),
-                (3, "Leche", 2.50m, 5, Properties.Resources.Rigbyyyy),
-                (4, "Pan", 1.00m, 0, Properties.Resources.Rigbyyyy),
-                (5, "Queso", 3.75m, 15, Properties.Resources.Rigbyyyy),
-                (6, "Jamon", 2.90m, 0, Properties.Resources.Rigbyyyy),
-                (7, "Cereal", 4.10m, 20, Properties.Resources.Rigbyyyy),
-                (8, "Yogur", 1.60m, 0, Properties.Resources.Rigbyyyy),
-                (9, "Huevos", 2.20m, 0, Properties.Resources.Rigbyyyy),
-                (10, "Agua", 0.60m, 0, Properties.Resources.Rigbyyyy),
-                (11, "Refresco", 1.50m, 5, Properties.Resources.Rigbyyyy),
-                (12, "Galletas", 2.30m, 0, Properties.Resources.Rigbyyyy),
-                (13, "Arroz", 1.10m, 0, Properties.Resources.Rigbyyyy),
-                (14, "Fideos", 1.40m, 0, Properties.Resources.Rigbyyyy),
-                (15, "Aceite", 3.20m, 10, Properties.Resources.Rigbyyyy),
-                (16, "Azúcar", 1.80m, 0, Properties.Resources.Rigbyyyy)
+                (1, "Manzana", 1.20m, 0,Properties.Resources.manzana),
+                (2, "Banana", 0.80m, 10, Properties.Resources.banana),
+                (3, "Leche", 2.50m, 5, Properties.Resources.leche),
+                (4, "Pan", 1.00m, 0, Properties.Resources.pan),
+                (5, "Queso", 3.75m, 15, Properties.Resources.queso),
+                (6, "Jamon", 2.90m, 0, Properties.Resources.jamon),
+                (7, "Cereal", 4.10m, 20, Properties.Resources.cereal),
+                (8, "Yogur", 1.60m, 0, Properties.Resources.yogyur),
+                (9, "Huevos", 2.20m, 0, Properties.Resources.huevo),
+                (10, "Agua", 0.60m, 0, Properties.Resources.agua),
+                (11, "Refresco", 1.50m, 5, Properties.Resources.soda),
+                (12, "Galletas", 2.30m, 0, Properties.Resources.cokie),
+                (13, "Arroz", 1.10m, 0, Properties.Resources.rice),
             };
 
             panel1.Controls.Clear();

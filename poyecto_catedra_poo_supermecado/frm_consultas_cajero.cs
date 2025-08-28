@@ -32,10 +32,10 @@ namespace poyecto_catedra_poo_supermecado
         {
             consultas = new List<Consulta>
             {
-                new Consulta(1, "Manzana", "Juan Pérez", "juan.perez@email.com", "¿Cuál es el origen de la manzana?", 1.20m, 10, Properties.Resources.Rigbyyyy),
-                new Consulta(2, "Leche", "Ana Gómez", "ana.gomez@email.com", "¿La leche es deslactosada?", 2.50m, 5, Properties.Resources.Rigbyyyy),
-                new Consulta(3, "Yogur", "Carlos Ruiz", "carlos.ruiz@email.com", "¿Caduca pronto el yogur?", 1.60m, 0, Properties.Resources.Rigbyyyy),
-                new Consulta(4, "Pan", "María López", "maria.lopez@email.com", "¿Es sin gluten el pan?", 1.00m, 0, Properties.Resources.Rigbyyyy),
+                new Consulta(1, "Manzana", "Juan Pérez", "juan.perez@email.com", "¿Cuál es el origen de la manzana?", 1.20m, 10, Properties.Resources.manzana),
+                new Consulta(2, "Leche", "Ana Gómez", "ana.gomez@email.com", "¿La leche es deslactosada?", 2.50m, 5, Properties.Resources.leche),
+                new Consulta(3, "Yogur", "Carlos Ruiz", "carlos.ruiz@email.com", "¿Caduca pronto el yogur?", 1.60m, 0, Properties.Resources.yogyur),
+                new Consulta(4, "Pan", "María López", "maria.lopez@email.com", "¿Es sin gluten el pan?", 1.00m, 0, Properties.Resources.pan),
             };
         }
 
