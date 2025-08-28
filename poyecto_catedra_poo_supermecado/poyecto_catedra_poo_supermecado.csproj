@@ -86,6 +86,24 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHelper.cs" />
+    <Compile Include="frm_carrito_cajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_carrito_cajero.Designer.cs">
+      <DependentUpon>frm_carrito_cajero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_catalogo_cajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_catalogo_cajero.Designer.cs">
+      <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_consultas_cajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_consultas_cajero.Designer.cs">
+      <DependentUpon>frm_consultas_cajero.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_dashboard_cajero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +135,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_carrito_cajero.resx">
+      <DependentUpon>frm_carrito_cajero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_catalogo_cajero.resx">
+      <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_consultas_cajero.resx">
+      <DependentUpon>frm_consultas_cajero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_dashboard_cajero.resx">
       <DependentUpon>frm_dashboard_cajero.cs</DependentUpon>
