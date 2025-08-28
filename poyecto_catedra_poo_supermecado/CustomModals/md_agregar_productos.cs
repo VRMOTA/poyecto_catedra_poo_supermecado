@@ -20,6 +20,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
         }
 
-      
+        public md_agregar_productos(string labelText, string buttonText) : this()
+        {
+            label1.Text = labelText;
+            btnActualizar.Text = buttonText;
+        }
     }
 }

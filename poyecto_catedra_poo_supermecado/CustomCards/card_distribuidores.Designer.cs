@@ -54,6 +54,7 @@
             this.buttonMaxing2.Text = "Actualizar";
             this.buttonMaxing2.TextColor = System.Drawing.Color.White;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // lblCategoria
             // 

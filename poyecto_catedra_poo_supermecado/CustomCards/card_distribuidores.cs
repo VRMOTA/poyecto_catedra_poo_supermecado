@@ -1,4 +1,5 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.CustomModals;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -32,5 +33,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => lblCategoria?.Text ?? string.Empty;
             set { if (lblCategoria != null) lblCategoria.Text = value; }
         }
+
+        private void buttonMaxing2_Click(object sender, EventArgs e)
+        {
+            var modal = new md_agregar_distribuidor("Actualizar nuevo distribuidor", "Actualizar");
+            modal.ShowDialog();
+        }
+
+    
     }
 }
