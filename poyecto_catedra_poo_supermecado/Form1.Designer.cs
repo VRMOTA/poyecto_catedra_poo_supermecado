@@ -78,7 +78,7 @@
             this.card.Producto = "Nombre Producto";
             this.card.Size = new System.Drawing.Size(241, 266);
             this.card.TabIndex = 0;
-            this.card.Load += new System.EventHandler(this.card_Load);
+            
             // 
             // rd_fondo
             // 

@@ -76,7 +76,7 @@
             this.card_producto_menu1.Producto = "Nombre Producto";
             this.card_producto_menu1.Size = new System.Drawing.Size(241, 266);
             this.card_producto_menu1.TabIndex = 0;
-            this.card_producto_menu1.Load += new System.EventHandler(this.card_producto_menu1_Load);
+            
             // 
             // roundedControlBase1
             // 
@@ -196,7 +196,7 @@
             this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Stock";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+           
             // 
             // lbstock
             // 
