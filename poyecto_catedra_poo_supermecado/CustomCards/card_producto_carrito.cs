@@ -115,5 +115,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             style = strike ? (style | FontStyle.Strikeout) : (style & ~FontStyle.Strikeout);
             lbl.Font = new Font(family, size, style);
         }
+
+        private void card_producto_carrito_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

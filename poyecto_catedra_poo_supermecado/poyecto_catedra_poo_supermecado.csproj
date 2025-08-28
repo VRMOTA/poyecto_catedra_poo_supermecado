@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCards\card_consultas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_consultas.Designer.cs">
+      <DependentUpon>card_consultas.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomCards\card_distribuidores.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomCards\card_consultas.resx">
+      <DependentUpon>card_consultas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomCards\card_distribuidores.resx">
       <DependentUpon>card_distribuidores.cs</DependentUpon>
     </EmbeddedResource>
