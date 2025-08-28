@@ -45,17 +45,17 @@ namespace poyecto_catedra_poo_supermecado
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_consultas_cajero());
+            abrir_panel(new frm_productos());
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_consultas_cajero());
+            abrir_panel(new frm_usuarios());
         }
 
         private void btnDistribuidores_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_consultas_cajero());
+            abrir_panel(new frm_distribuidores());
         }
 
         private void btnConsultas_Click(object sender, EventArgs e)

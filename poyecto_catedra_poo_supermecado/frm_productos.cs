@@ -12,7 +12,6 @@ namespace poyecto_catedra_poo_supermecado
         public frm_productos()
         {
             InitializeComponent();
-            FormHelper.DefaultFormValues(this);
             CargarProductosAdmin();
         }
 

@@ -19,7 +19,6 @@ namespace poyecto_catedra_poo_supermecado
 
             InitializeComponent();
             CargarDistribuidores();
-            FormHelper.DefaultFormValues(this);
         }
         private void CargarDistribuidores()
         {
