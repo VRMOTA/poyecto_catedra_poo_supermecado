@@ -40,6 +40,7 @@
             this.btn_consultas = new System.Windows.Forms.Button();
             this.pnl_salir = new System.Windows.Forms.Panel();
             this.btn_salir = new System.Windows.Forms.Button();
+            this.panel_control = new System.Windows.Forms.Panel();
             this.navegador.SuspendLayout();
             this.pnl_menu.SuspendLayout();
             this.pnl_catalogo.SuspendLayout();
@@ -73,6 +74,7 @@
             // btn_menu
             // 
             this.btn_menu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_menu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_menu.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_menu.ForeColor = System.Drawing.Color.White;
             this.btn_menu.Image = ((System.Drawing.Image)(resources.GetObject("btn_menu.Image")));
@@ -85,6 +87,7 @@
             this.btn_menu.Text = "        Menú";
             this.btn_menu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_menu.UseVisualStyleBackColor = false;
+            this.btn_menu.Click += new System.EventHandler(this.btn_menu_Click);
             // 
             // pnl_catalogo
             // 
@@ -98,6 +101,7 @@
             // btn_categoria
             // 
             this.btn_categoria.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_categoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_categoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_categoria.ForeColor = System.Drawing.Color.White;
             this.btn_categoria.Image = ((System.Drawing.Image)(resources.GetObject("btn_categoria.Image")));
@@ -110,6 +114,7 @@
             this.btn_categoria.Text = "        Catalogo";
             this.btn_categoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_categoria.UseVisualStyleBackColor = false;
+            this.btn_categoria.Click += new System.EventHandler(this.btn_categoria_Click);
             // 
             // panel1
             // 
@@ -123,6 +128,7 @@
             // btn_carrito
             // 
             this.btn_carrito.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_carrito.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_carrito.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_carrito.ForeColor = System.Drawing.Color.White;
             this.btn_carrito.Image = ((System.Drawing.Image)(resources.GetObject("btn_carrito.Image")));
@@ -135,6 +141,7 @@
             this.btn_carrito.Text = "        Carrito ";
             this.btn_carrito.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_carrito.UseVisualStyleBackColor = false;
+            this.btn_carrito.Click += new System.EventHandler(this.btn_carrito_Click);
             // 
             // pnl_consultas
             // 
@@ -148,6 +155,7 @@
             // btn_consultas
             // 
             this.btn_consultas.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_consultas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_consultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_consultas.ForeColor = System.Drawing.Color.White;
             this.btn_consultas.Image = ((System.Drawing.Image)(resources.GetObject("btn_consultas.Image")));
@@ -160,6 +168,7 @@
             this.btn_consultas.Text = "        Consultas";
             this.btn_consultas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_consultas.UseVisualStyleBackColor = false;
+            this.btn_consultas.Click += new System.EventHandler(this.btn_consultas_Click);
             // 
             // pnl_salir
             // 
@@ -173,6 +182,7 @@
             // btn_salir
             // 
             this.btn_salir.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_salir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_salir.ForeColor = System.Drawing.Color.White;
             this.btn_salir.Image = ((System.Drawing.Image)(resources.GetObject("btn_salir.Image")));
@@ -185,12 +195,22 @@
             this.btn_salir.Text = "        Salir";
             this.btn_salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_salir.UseVisualStyleBackColor = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
+            // panel_control
+            // 
+            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_control.Location = new System.Drawing.Point(288, 0);
+            this.panel_control.Name = "panel_control";
+            this.panel_control.Size = new System.Drawing.Size(1278, 911);
+            this.panel_control.TabIndex = 2;
             // 
             // frm_dashboard_cajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1564, 911);
+            this.Controls.Add(this.panel_control);
             this.Controls.Add(this.navegador);
             this.Name = "frm_dashboard_cajero";
             this.Text = "frm_dashboard_cajero";
@@ -217,5 +237,6 @@
         private System.Windows.Forms.Button btn_consultas;
         private System.Windows.Forms.Panel pnl_salir;
         private System.Windows.Forms.Button btn_salir;
+        private System.Windows.Forms.Panel panel_control;
     }
 }

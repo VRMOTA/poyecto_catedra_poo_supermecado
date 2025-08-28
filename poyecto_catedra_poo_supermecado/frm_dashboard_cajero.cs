@@ -25,5 +25,43 @@ namespace poyecto_catedra_poo_supermecado
             btn_salir.BackColor = Color.FromArgb(204, 0, 0);
             btn_consultas.BackColor = Color.FromArgb(204, 0, 0);
         }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            frm_login login = new frm_login();  
+            this.Hide();
+            login.Show(); 
+        }
+
+        private void btn_menu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_consultas_Click(object sender, EventArgs e)
+        {
+            abrir_panel (new frm_consultas_cajero());
+        }
+
+        private void btn_carrito_Click(object sender, EventArgs e)
+        {
+            abrir_panel(new frm_carrito_cajero());
+        }
+
+        private void btn_categoria_Click(object sender, EventArgs e)
+        {
+            abrir_panel(new frm_catalogo_cajero());
+        }
+        private void abrir_panel(object formularioHijo) // Metodo para abrir formularios dentro del panel
+        {
+            if (this.panel_control.Controls.Count > 0)
+                this.panel_control.Controls.RemoveAt(0); // Pregunta si hay un formulario abierto y lo cierra
+            Form fh = formularioHijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.panel_control.Controls.Add(fh);
+            this.panel_control.Tag = fh;
+            fh.Show();
+        }
     }
 }
