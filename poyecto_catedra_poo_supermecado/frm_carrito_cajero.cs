@@ -37,14 +37,14 @@ namespace poyecto_catedra_poo_supermecado
             // Ejemplo: lista de productos en el carrito (puedes reemplazar por tu fuente de datos real)
             var productosCarrito = new List<(string nombre, decimal precio, int cantidad,Image imb)>
             {
-                ("Manzana", 1.20m, 2,Properties.Resources.Rigbyyyy),
-                ("Leche", 2.50m, 1, Properties.Resources.Rigbyyyy),
-                ("Pan", 1.00m, 3, Properties.Resources.Rigbyyyy),
-                ("Queso", 3.75m, 1, Properties.Resources.Rigbyyyy),
-                ("Cereal", 4.10m, 2, Properties.Resources.Rigbyyyy),
-                ("Yogur", 1.60m, 4, Properties.Resources.Rigbyyyy),
-                ("Huevos", 2.20m, 1, Properties.Resources.Rigbyyyy),
-                ("Agua", 0.60m, 6, Properties.Resources.Rigbyyyy    )
+                ("Manzana", 1.20m, 2,Properties.Resources.manzana),
+                ("Leche", 2.50m, 1, Properties.Resources.leche),
+                ("Pan", 1.00m, 3, Properties.Resources.pan),
+                ("Queso", 3.75m, 1, Properties.Resources.queso),
+                ("Cereal", 4.10m, 2, Properties.Resources.cereal),
+                ("Yogur", 1.60m, 4, Properties.Resources.yogyur),
+                ("Huevos", 2.20m, 1, Properties.Resources.huevo),
+                ("Agua", 0.60m, 6, Properties.Resources.agua    )
             };
 
             panel1.Controls.Clear();

@@ -292,7 +292,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\agua.jpg" />
     <Content Include="Resources\background.png" />
+    <None Include="Resources\yogyur.jpg" />
+    <None Include="Resources\queso.jpg" />
+    <None Include="Resources\pan.jpg" />
+    <None Include="Resources\leche.jpg" />
+    <None Include="Resources\cereal.jpg" />
+    <None Include="Resources\huevo.jpg" />
+    <Content Include="Resources\manzana.png" />
+    <None Include="Resources\manzana1.png" />
     <None Include="Resources\Vector %281%29.png" />
     <None Include="Resources\Vector.png" />
     <None Include="Resources\Rigbyyyy.jpg" />
