@@ -134,6 +134,8 @@
             this.textboxMaxing2.Name = "textboxMaxing2";
             this.textboxMaxing2.Padding = new System.Windows.Forms.Padding(7);
             this.textboxMaxing2.PasswordChar = false;
+            this.textboxMaxing2.PlaceholderColor = System.Drawing.Color.Gray;
+            this.textboxMaxing2.PlaceholderText = "";
             this.textboxMaxing2.Size = new System.Drawing.Size(261, 35);
             this.textboxMaxing2.TabIndex = 1;
             this.textboxMaxing2.Texts = "";
@@ -153,6 +155,8 @@
             this.textboxMaxing1.Name = "textboxMaxing1";
             this.textboxMaxing1.Padding = new System.Windows.Forms.Padding(7);
             this.textboxMaxing1.PasswordChar = false;
+            this.textboxMaxing1.PlaceholderColor = System.Drawing.Color.Gray;
+            this.textboxMaxing1.PlaceholderText = "";
             this.textboxMaxing1.Size = new System.Drawing.Size(261, 35);
             this.textboxMaxing1.TabIndex = 0;
             this.textboxMaxing1.Texts = "";

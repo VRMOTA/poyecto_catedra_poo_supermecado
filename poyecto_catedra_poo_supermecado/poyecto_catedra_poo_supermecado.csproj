@@ -76,6 +76,12 @@
     <Compile Include="CustomCards\card_producto_menu.Designer.cs">
       <DependentUpon>card_producto_menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomCards\card_usuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_usuarios.Designer.cs">
+      <DependentUpon>card_usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomCards\RoundedControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomCards\card_producto_menu.resx">
       <DependentUpon>card_producto_menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomCards\card_usuarios.resx">
+      <DependentUpon>card_usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
