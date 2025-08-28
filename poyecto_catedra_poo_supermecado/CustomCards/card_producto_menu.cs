@@ -13,6 +13,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public card_producto_menu()
         {
             InitializeComponent();
+            // estado inicial seguro si el diseñador aún no creó los controles
+            if (lblPrecioDescuento != null) lblPrecioDescuento.Visible = false;
         }
 
         [Category("Producto"), Description("Nombre del producto")]
