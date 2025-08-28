@@ -46,6 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCards\card_producto_carrito.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_producto_carrito.Designer.cs">
+      <DependentUpon>card_producto_carrito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCards\card_producto_menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_producto_menu.Designer.cs">
+      <DependentUpon>card_producto_menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCards\RoundedControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CustomControls\BorderMaxing.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -85,6 +100,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomCards\card_producto_carrito.resx">
+      <DependentUpon>card_producto_carrito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomCards\card_producto_menu.resx">
+      <DependentUpon>card_producto_menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\background.png" />
+    <None Include="Resources\default.jpg" />
     <None Include="Resources\background1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
