@@ -17,6 +17,7 @@ namespace poyecto_catedra_poo_supermecado
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
+            abrir_panel(new frm_default_dashboard_admin_page());
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace poyecto_catedra_poo_supermecado
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_consultas_cajero());
+            
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -61,6 +62,11 @@ namespace poyecto_catedra_poo_supermecado
         private void btnConsultas_Click(object sender, EventArgs e)
         {
             abrir_panel(new frm_consultas_cajero());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            abrir_panel(new frm_default_dashboard_admin_page());
         }
     }
 }
