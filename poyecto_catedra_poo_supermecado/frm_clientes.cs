@@ -117,6 +117,13 @@ namespace poyecto_catedra_poo_supermecado
                 lblPrecioDescuento.Visible = false;
             }
         }
+
+        private void buttonMaxing2_Click(object sender, EventArgs e)
+        {
+            frm_login frm_Login = new frm_login(); 
+            this.Hide(); 
+            frm_Login .Show();
+        }
     }
 
     public class Producto
