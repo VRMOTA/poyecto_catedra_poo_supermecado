@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCards\card_distribuidores.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_distribuidores.Designer.cs">
+      <DependentUpon>card_distribuidores.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomCards\card_producto_carrito.cs">
       <SubType>UserControl</SubType>
     </Compile>
