@@ -24,6 +24,7 @@ namespace Catedra.CustomControls
         private string placeholderText = "";
         private Color placeholderColor = Color.Gray;
         private bool isPlaceholderActive = false;
+        private bool passwordChar = false; // Nuevo campo para almacenar el estado de PasswordChar
 
         //Eventos
         public event EventHandler TextChanged;
@@ -65,8 +66,14 @@ namespace Catedra.CustomControls
         [Category("Textbox Maxing")]
         public bool PasswordChar
         {
-            get { return textBox1.UseSystemPasswordChar; }
-            set { textBox1.UseSystemPasswordChar = value; }
+            get { return passwordChar; }
+            set
+            {
+                passwordChar = value;
+                // Solo aplicar si no hay placeholder activo
+                if (!isPlaceholderActive)
+                    textBox1.UseSystemPasswordChar = value;
+            }
         }
 
         [Category("Textbox Maxing")]
@@ -123,8 +130,15 @@ namespace Catedra.CustomControls
             }
             set
             {
-                textBox1.Text = value;
-                RemovePlaceholder();
+                if (string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(placeholderText))
+                {
+                    SetPlaceholder();
+                }
+                else
+                {
+                    RemovePlaceholder();
+                    textBox1.Text = value;
+                }
             }
         }
 
@@ -143,8 +157,13 @@ namespace Catedra.CustomControls
             set
             {
                 placeholderText = value;
-                if (string.IsNullOrEmpty(textBox1.Text))
-                    SetPlaceholder();
+                if (string.IsNullOrEmpty(textBox1.Text) || isPlaceholderActive)
+                {
+                    if (!string.IsNullOrEmpty(value))
+                        SetPlaceholder();
+                    else if (isPlaceholderActive)
+                        RemovePlaceholder();
+                }
             }
         }
 
@@ -218,6 +237,12 @@ namespace Catedra.CustomControls
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            // Si hay texto y el placeholder está activo, removerlo
+            if (!string.IsNullOrEmpty(textBox1.Text) && isPlaceholderActive)
+            {
+                RemovePlaceholder();
+            }
+
             if (TextChanged != null)
                 TextChanged.Invoke(sender, e);
         }
@@ -269,7 +294,7 @@ namespace Catedra.CustomControls
             isPlaceholderActive = true;
             textBox1.Text = placeholderText;
             textBox1.ForeColor = placeholderColor;
-            textBox1.UseSystemPasswordChar = false;
+            textBox1.UseSystemPasswordChar = false; // Siempre desactivar password char para placeholder
         }
 
         private void RemovePlaceholder()
@@ -281,9 +306,8 @@ namespace Catedra.CustomControls
             textBox1.Text = "";
             textBox1.ForeColor = this.ForeColor;
 
-            // Restaurar la propiedad PasswordChar si estaba activa
-            if (PasswordChar)
-                textBox1.UseSystemPasswordChar = true;
+            // Restaurar la propiedad PasswordChar según el valor almacenado
+            textBox1.UseSystemPasswordChar = passwordChar;
         }
     }
 }

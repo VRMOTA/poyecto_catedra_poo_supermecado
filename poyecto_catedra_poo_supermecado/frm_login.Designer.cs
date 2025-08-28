@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
+            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.txtClave = new Catedra.CustomControls.TextboxMaxing();
             this.txtCorreo = new Catedra.CustomControls.TextboxMaxing();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
             this.panelRedondeado1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +61,26 @@
             this.panelRedondeado1.Name = "panelRedondeado1";
             this.panelRedondeado1.Size = new System.Drawing.Size(344, 428);
             this.panelRedondeado1.TabIndex = 1;
+            // 
+            // buttonMaxing2
+            // 
+            this.buttonMaxing2.BackColor = System.Drawing.Color.DimGray;
+            this.buttonMaxing2.BackgroundColor = System.Drawing.Color.DimGray;
+            this.buttonMaxing2.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.BorderRadius = 15;
+            this.buttonMaxing2.BorderSize = 0;
+            this.buttonMaxing2.FlatAppearance.BorderSize = 0;
+            this.buttonMaxing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMaxing2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.Location = new System.Drawing.Point(40, 340);
+            this.buttonMaxing2.Name = "buttonMaxing2";
+            this.buttonMaxing2.Size = new System.Drawing.Size(124, 52);
+            this.buttonMaxing2.TabIndex = 7;
+            this.buttonMaxing2.Text = "Regresar";
+            this.buttonMaxing2.TextColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // label4
             // 
@@ -139,7 +159,7 @@
             this.txtClave.Multiline = false;
             this.txtClave.Name = "txtClave";
             this.txtClave.Padding = new System.Windows.Forms.Padding(7);
-            this.txtClave.PasswordChar = false;
+            this.txtClave.PasswordChar = true;
             this.txtClave.PlaceholderColor = System.Drawing.Color.Gray;
             this.txtClave.PlaceholderText = "";
             this.txtClave.Size = new System.Drawing.Size(261, 35);
@@ -178,26 +198,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // buttonMaxing2
-            // 
-            this.buttonMaxing2.BackColor = System.Drawing.Color.DimGray;
-            this.buttonMaxing2.BackgroundColor = System.Drawing.Color.DimGray;
-            this.buttonMaxing2.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing2.BorderRadius = 15;
-            this.buttonMaxing2.BorderSize = 0;
-            this.buttonMaxing2.FlatAppearance.BorderSize = 0;
-            this.buttonMaxing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMaxing2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing2.Location = new System.Drawing.Point(40, 340);
-            this.buttonMaxing2.Name = "buttonMaxing2";
-            this.buttonMaxing2.Size = new System.Drawing.Size(124, 52);
-            this.buttonMaxing2.TabIndex = 7;
-            this.buttonMaxing2.Text = "Regresar";
-            this.buttonMaxing2.TextColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing2.UseVisualStyleBackColor = false;
-            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // frm_login
             // 
