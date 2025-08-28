@@ -17,6 +17,12 @@ namespace project_supermercado.CustomControls
         private Color _colorInicio = Color.LightBlue;
         private Color _colorFin = Color.DarkBlue;
 
+        // Nuevas propiedades para control individual de esquinas
+        private bool _esquinaSuperiorIzquierda = true;
+        private bool _esquinaSuperiorDerecha = true;
+        private bool _esquinaInferiorIzquierda = true;
+        private bool _esquinaInferiorDerecha = true;
+
         [Category("Apariencia")]
         [Description("Radio de los bordes redondeados")]
         [DefaultValue(20)]
@@ -95,13 +101,66 @@ namespace project_supermercado.CustomControls
             }
         }
 
+        // Nuevas propiedades para control individual de esquinas
+        [Category("Apariencia")]
+        [Description("Indica si la esquina superior izquierda es redondeada")]
+        [DefaultValue(true)]
+        public bool EsquinaSuperiorIzquierda
+        {
+            get { return _esquinaSuperiorIzquierda; }
+            set
+            {
+                _esquinaSuperiorIzquierda = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Apariencia")]
+        [Description("Indica si la esquina superior derecha es redondeada")]
+        [DefaultValue(true)]
+        public bool EsquinaSuperiorDerecha
+        {
+            get { return _esquinaSuperiorDerecha; }
+            set
+            {
+                _esquinaSuperiorDerecha = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Apariencia")]
+        [Description("Indica si la esquina inferior izquierda es redondeada")]
+        [DefaultValue(true)]
+        public bool EsquinaInferiorIzquierda
+        {
+            get { return _esquinaInferiorIzquierda; }
+            set
+            {
+                _esquinaInferiorIzquierda = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Apariencia")]
+        [Description("Indica si la esquina inferior derecha es redondeada")]
+        [DefaultValue(true)]
+        public bool EsquinaInferiorDerecha
+        {
+            get { return _esquinaInferiorDerecha; }
+            set
+            {
+                _esquinaInferiorDerecha = value;
+                Invalidate();
+            }
+        }
+
         public PanelRedondeado()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.UserPaint |
                      ControlStyles.DoubleBuffer |
                      ControlStyles.ResizeRedraw, true);
-            
+
             BackColor = Color.Transparent;
             ForeColor = Color.Black;
         }
@@ -161,22 +220,50 @@ namespace project_supermercado.CustomControls
 
             int diameter = radius * 2;
             Size size = new Size(diameter, diameter);
-            Rectangle arc = new Rectangle(rect.Location, size);
 
             // Esquina superior izquierda
-            path.AddArc(arc, 180, 90);
+            if (_esquinaSuperiorIzquierda)
+            {
+                Rectangle arc = new Rectangle(rect.Location, size);
+                path.AddArc(arc, 180, 90);
+            }
+            else
+            {
+                path.AddLine(rect.Left, rect.Top, rect.Left, rect.Top);
+            }
 
             // Esquina superior derecha
-            arc.X = rect.Right - diameter;
-            path.AddArc(arc, 270, 90);
+            if (_esquinaSuperiorDerecha)
+            {
+                Rectangle arc = new Rectangle(rect.Right - diameter, rect.Top, diameter, diameter);
+                path.AddArc(arc, 270, 90);
+            }
+            else
+            {
+                path.AddLine(rect.Right, rect.Top, rect.Right, rect.Top);
+            }
 
             // Esquina inferior derecha
-            arc.Y = rect.Bottom - diameter;
-            path.AddArc(arc, 0, 90);
+            if (_esquinaInferiorDerecha)
+            {
+                Rectangle arc = new Rectangle(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter);
+                path.AddArc(arc, 0, 90);
+            }
+            else
+            {
+                path.AddLine(rect.Right, rect.Bottom, rect.Right, rect.Bottom);
+            }
 
             // Esquina inferior izquierda
-            arc.X = rect.Left;
-            path.AddArc(arc, 90, 90);
+            if (_esquinaInferiorIzquierda)
+            {
+                Rectangle arc = new Rectangle(rect.Left, rect.Bottom - diameter, diameter, diameter);
+                path.AddArc(arc, 90, 90);
+            }
+            else
+            {
+                path.AddLine(rect.Left, rect.Bottom, rect.Left, rect.Bottom);
+            }
 
             path.CloseFigure();
             return path;
