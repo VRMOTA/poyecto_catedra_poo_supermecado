@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +39,21 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             get => lblCliente?.Text ?? string.Empty;
             set { if (lblCliente != null) lblCliente.Text = value; }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+               var resultado = MessageBox.Show(
+                  "¿Está seguro que desea eliminar el registro?",
+                  "Confirmar eliminación",
+                  MessageBoxButtons.YesNo,
+                  MessageBoxIcon.Warning
+              );
+
+            if (resultado == DialogResult.Yes)
+            {
+              
+            }
         }
     }
 }

@@ -123,6 +123,26 @@ namespace poyecto_catedra_poo_supermecado.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap distsal {
+            get {
+                object obj = ResourceManager.GetObject("distsal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap elmago {
+            get {
+                object obj = ResourceManager.GetObject("elmago", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap huevo {
             get {
                 object obj = ResourceManager.GetObject("huevo", resourceCulture);
@@ -133,9 +153,29 @@ namespace poyecto_catedra_poo_supermecado.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jamon {
             get {
                 object obj = ResourceManager.GetObject("jamon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap laconstancia {
+            get {
+                object obj = ResourceManager.GetObject("laconstancia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +236,26 @@ namespace poyecto_catedra_poo_supermecado.Properties {
         internal static System.Drawing.Bitmap Rigbyyyy {
             get {
                 object obj = ResourceManager.GetObject("Rigbyyyy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scoot {
+            get {
+                object obj = ResourceManager.GetObject("scoot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap siman {
+            get {
+                object obj = ResourceManager.GetObject("siman", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

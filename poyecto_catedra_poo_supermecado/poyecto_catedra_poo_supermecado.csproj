@@ -292,6 +292,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\siman.png" />
+    <None Include="Resources\scoot.jpg" />
     <None Include="Resources\rice.jpg" />
     <None Include="Resources\soda.jpg" />
     <None Include="Resources\agua.jpg" />
@@ -305,6 +307,10 @@
     <None Include="Resources\banana.jpg" />
     <None Include="Resources\jamon.jpg" />
     <None Include="Resources\cokie.jpg" />
+    <None Include="Resources\laconstancia.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\elmago.png" />
+    <None Include="Resources\distsal.jpg" />
     <Content Include="Resources\manzana.png" />
     <None Include="Resources\manzana1.png" />
     <None Include="Resources\Vector %281%29.png" />
