@@ -22,5 +22,14 @@ namespace project_supermercado
         {
 
         }
+
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            if(txtClave.Texts=="clave123" && txtCorreo.Texts == "cajero@root.com")
+            {
+                this.Hide();
+                
+            }
+        }
     }
 }

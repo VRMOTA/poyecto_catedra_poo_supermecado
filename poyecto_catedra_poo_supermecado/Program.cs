@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_supermercado;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace poyecto_catedra_poo_supermecado
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_productos());
+            Application.Run(new frm_login());
         }
     }
 }

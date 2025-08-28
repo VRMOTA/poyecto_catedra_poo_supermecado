@@ -34,8 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.textboxMaxing2 = new Catedra.CustomControls.TextboxMaxing();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
+            this.txtClave = new Catedra.CustomControls.TextboxMaxing();
+            this.txtCorreo = new Catedra.CustomControls.TextboxMaxing();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRedondeado1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -52,8 +52,8 @@
             this.panelRedondeado1.Controls.Add(this.label2);
             this.panelRedondeado1.Controls.Add(this.label1);
             this.panelRedondeado1.Controls.Add(this.buttonMaxing1);
-            this.panelRedondeado1.Controls.Add(this.textboxMaxing2);
-            this.panelRedondeado1.Controls.Add(this.textboxMaxing1);
+            this.panelRedondeado1.Controls.Add(this.txtClave);
+            this.panelRedondeado1.Controls.Add(this.txtCorreo);
             this.panelRedondeado1.ForeColor = System.Drawing.Color.Black;
             this.panelRedondeado1.Location = new System.Drawing.Point(306, 109);
             this.panelRedondeado1.Name = "panelRedondeado1";
@@ -119,48 +119,49 @@
             this.buttonMaxing1.Text = "Ingresar";
             this.buttonMaxing1.TextColor = System.Drawing.Color.WhiteSmoke;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
-            // textboxMaxing2
+            // txtClave
             // 
-            this.textboxMaxing2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.textboxMaxing2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing2.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing2.BorderSize = 7;
-            this.textboxMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing2.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing2.Location = new System.Drawing.Point(64, 267);
-            this.textboxMaxing2.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing2.Multiline = false;
-            this.textboxMaxing2.Name = "textboxMaxing2";
-            this.textboxMaxing2.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing2.PasswordChar = false;
-            this.textboxMaxing2.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing2.PlaceholderText = "";
-            this.textboxMaxing2.Size = new System.Drawing.Size(261, 35);
-            this.textboxMaxing2.TabIndex = 1;
-            this.textboxMaxing2.Texts = "";
-            this.textboxMaxing2.UnderlinedStyle = true;
+            this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.txtClave.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtClave.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txtClave.BorderSize = 7;
+            this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClave.ForeColor = System.Drawing.Color.DimGray;
+            this.txtClave.Location = new System.Drawing.Point(64, 267);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(4);
+            this.txtClave.Multiline = false;
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Padding = new System.Windows.Forms.Padding(7);
+            this.txtClave.PasswordChar = false;
+            this.txtClave.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtClave.PlaceholderText = "";
+            this.txtClave.Size = new System.Drawing.Size(261, 35);
+            this.txtClave.TabIndex = 1;
+            this.txtClave.Texts = "";
+            this.txtClave.UnderlinedStyle = true;
             // 
-            // textboxMaxing1
+            // txtCorreo
             // 
-            this.textboxMaxing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.textboxMaxing1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing1.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing1.BorderSize = 7;
-            this.textboxMaxing1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing1.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing1.Location = new System.Drawing.Point(64, 180);
-            this.textboxMaxing1.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing1.Multiline = false;
-            this.textboxMaxing1.Name = "textboxMaxing1";
-            this.textboxMaxing1.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing1.PasswordChar = false;
-            this.textboxMaxing1.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing1.PlaceholderText = "";
-            this.textboxMaxing1.Size = new System.Drawing.Size(261, 35);
-            this.textboxMaxing1.TabIndex = 0;
-            this.textboxMaxing1.Texts = "";
-            this.textboxMaxing1.UnderlinedStyle = true;
+            this.txtCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.txtCorreo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCorreo.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txtCorreo.BorderSize = 7;
+            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCorreo.Location = new System.Drawing.Point(64, 180);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCorreo.Multiline = false;
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Padding = new System.Windows.Forms.Padding(7);
+            this.txtCorreo.PasswordChar = false;
+            this.txtCorreo.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtCorreo.PlaceholderText = "";
+            this.txtCorreo.Size = new System.Drawing.Size(261, 35);
+            this.txtCorreo.TabIndex = 0;
+            this.txtCorreo.Texts = "";
+            this.txtCorreo.UnderlinedStyle = true;
             // 
             // pictureBox1
             // 
@@ -193,8 +194,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private CustomControls.PanelRedondeado panelRedondeado1;
         private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing2;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
+        private Catedra.CustomControls.TextboxMaxing txtClave;
+        private Catedra.CustomControls.TextboxMaxing txtCorreo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
