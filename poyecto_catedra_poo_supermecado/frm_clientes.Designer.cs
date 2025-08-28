@@ -293,8 +293,10 @@
             this.Controls.Add(this.pln_cards);
             this.Controls.Add(this.panelRedondeado1);
             this.Controls.Add(this.rd_fondo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_clientes";
-            this.Text = "Form1";
+            this.Text = "Clientes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_clientes_FormClosed);
             this.Load += new System.EventHandler(this.frm_clientes_Load);
             this.pln_cards.ResumeLayout(false);
             this.panelRedondeado1.ResumeLayout(false);

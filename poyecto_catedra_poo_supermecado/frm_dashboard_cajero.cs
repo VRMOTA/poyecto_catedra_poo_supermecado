@@ -64,5 +64,10 @@ namespace poyecto_catedra_poo_supermecado
             this.panel_control.Tag = fh;
             fh.Show();
         }
+
+        private void frm_dashboard_cajero_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Cierra toda la aplicacion al cerrar el formulario
+        }
     }
 }

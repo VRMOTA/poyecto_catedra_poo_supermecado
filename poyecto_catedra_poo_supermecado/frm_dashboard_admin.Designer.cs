@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dashboard_admin));
             this.navegador = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel_control = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnEmpleados = new System.Windows.Forms.Button();
@@ -39,6 +38,7 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel_control = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -70,14 +70,6 @@
             this.navegador.Name = "navegador";
             this.navegador.Size = new System.Drawing.Size(289, 911);
             this.navegador.TabIndex = 1;
-            // 
-            // panel_control
-            // 
-            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_control.Location = new System.Drawing.Point(288, 0);
-            this.panel_control.Name = "panel_control";
-            this.panel_control.Size = new System.Drawing.Size(1278, 911);
-            this.panel_control.TabIndex = 2;
             // 
             // button1
             // 
@@ -234,6 +226,14 @@
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
             // 
+            // panel_control
+            // 
+            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_control.Location = new System.Drawing.Point(288, 0);
+            this.panel_control.Name = "panel_control";
+            this.panel_control.Size = new System.Drawing.Size(1278, 911);
+            this.panel_control.TabIndex = 2;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
@@ -291,8 +291,10 @@
             this.ClientSize = new System.Drawing.Size(1564, 911);
             this.Controls.Add(this.panel_control);
             this.Controls.Add(this.navegador);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_dashboard_admin";
-            this.Text = "frm_dashboard_admin";
+            this.Text = "Dashboard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_dashboard_admin_FormClosed);
             this.navegador.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

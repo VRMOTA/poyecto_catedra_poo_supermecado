@@ -68,5 +68,10 @@ namespace poyecto_catedra_poo_supermecado
         {
             abrir_panel(new frm_default_dashboard_admin_page());
         }
+
+        private void frm_dashboard_admin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

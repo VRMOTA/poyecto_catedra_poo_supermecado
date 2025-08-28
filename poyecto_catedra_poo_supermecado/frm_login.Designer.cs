@@ -207,8 +207,10 @@
             this.ClientSize = new System.Drawing.Size(1020, 681);
             this.Controls.Add(this.panelRedondeado1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_login";
-            this.Text = "frm_login";
+            this.Text = "Login ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_login_FormClosed);
             this.panelRedondeado1.ResumeLayout(false);
             this.panelRedondeado1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

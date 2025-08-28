@@ -304,8 +304,9 @@
             this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbProducto);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "md_agregar_productos";
-            this.Text = "md_agregar_productos";
+            this.Text = "Modal Productos";
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

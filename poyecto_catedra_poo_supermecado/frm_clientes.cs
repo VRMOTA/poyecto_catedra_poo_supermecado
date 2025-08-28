@@ -121,6 +121,11 @@ namespace poyecto_catedra_poo_supermecado
             this.Hide(); 
             frm_Login .Show();
         }
+
+        private void frm_clientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 
     public class Producto

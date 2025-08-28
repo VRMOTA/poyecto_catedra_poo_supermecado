@@ -212,8 +212,10 @@
             this.ClientSize = new System.Drawing.Size(1564, 911);
             this.Controls.Add(this.panel_control);
             this.Controls.Add(this.navegador);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_dashboard_cajero";
-            this.Text = "frm_dashboard_cajero";
+            this.Text = "Dashboard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_dashboard_cajero_FormClosed);
             this.navegador.ResumeLayout(false);
             this.pnl_menu.ResumeLayout(false);
             this.pnl_catalogo.ResumeLayout(false);

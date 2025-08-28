@@ -67,5 +67,10 @@ namespace project_supermercado
             this.Hide();
             new frm_clientes().ShowDialog();
         }
+
+        private void frm_login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
