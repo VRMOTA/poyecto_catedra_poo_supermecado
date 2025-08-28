@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace project_supermercado
 {
-    public partial class frm_login : Form
+    public partial class frm_signin : Form
     {
-        public frm_login()
+        public frm_signin()
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
