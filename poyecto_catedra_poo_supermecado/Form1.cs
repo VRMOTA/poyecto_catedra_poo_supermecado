@@ -16,5 +16,10 @@ namespace poyecto_catedra_poo_supermecado
         {
             InitializeComponent();
         }
+
+        private void card_producto_carrito1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
