@@ -46,9 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomControls\BorderMaxing.cs" />
-    <Compile Include="CustomControls\ButtonMaxing.cs" />
-    <Compile Include="CustomControls\TextboxMaxing.cs" />
+    <Compile Include="CustomControls\BorderMaxing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ButtonMaxing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\TextboxMaxing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CustomControls\TextboxMaxing.Designer.cs">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </Compile>
@@ -58,6 +64,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
