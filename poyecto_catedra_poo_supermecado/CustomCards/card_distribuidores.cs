@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.CustomCards
@@ -15,6 +10,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public card_distribuidores()
         {
             InitializeComponent();
+        }
+
+        [Category("Distribuidora"), Description("Imagen de la distribuidora")]
+        public Image ImagenDistribuidora
+        {
+            get => pbDistribuidora?.Image;
+            set { if (pbDistribuidora != null) pbDistribuidora.Image = value; }
+        }
+
+        [Category("Distribuidora"), Description("Nombre de la distribuidora")]
+        public string NombreDistribuidora
+        {
+            get => lblDistribuidora?.Text ?? string.Empty;
+            set { if (lblDistribuidora != null) lblDistribuidora.Text = value; }
+        }
+
+        [Category("Distribuidora"), Description("Categoría de productos que distribuyen")]
+        public string Categoria
+        {
+            get => lblCategoria?.Text ?? string.Empty;
+            set { if (lblCategoria != null) lblCategoria.Text = value; }
         }
     }
 }
