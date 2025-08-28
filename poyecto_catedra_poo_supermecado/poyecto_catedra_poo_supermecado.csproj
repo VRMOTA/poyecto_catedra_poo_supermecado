@@ -65,6 +65,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHelper.cs" />
+    <Compile Include="frm_dashboard_cajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_dashboard_cajero.Designer.cs">
+      <DependentUpon>frm_dashboard_cajero.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_dashboard_cajero.resx">
+      <DependentUpon>frm_dashboard_cajero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
