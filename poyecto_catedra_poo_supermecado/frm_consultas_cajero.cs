@@ -15,6 +15,7 @@ namespace poyecto_catedra_poo_supermecado
         public frm_consultas_cajero()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(235, 235, 235);
         }
     }
 }

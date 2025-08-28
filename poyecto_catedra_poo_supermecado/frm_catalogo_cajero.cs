@@ -1,80 +1,130 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.CustomCards;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado
 {
     public partial class frm_catalogo_cajero : Form
     {
-        private TableLayoutPanel tableLayoutPanel;
-        
+        private List<card_producto_menu> productosCards = new List<card_producto_menu>();
 
         public frm_catalogo_cajero()
         {
             InitializeComponent();
             this.BackColor = Color.FromArgb(235, 235, 235);
-
-            // Crear y configurar el TableLayoutPanel
-            tableLayoutPanel = new TableLayoutPanel();
-            tableLayoutPanel.RowCount = 3;
-            tableLayoutPanel.ColumnCount = 3;
-            tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.AutoSize = true;
-            tableLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
-            // Opcional: establecer tamaños proporcionales 
-            for (int i = 0; i < 3; i++)
-            {
-                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33F));
-            }
-
-            this.Controls.Add(tableLayoutPanel);
+            // No crear panel1 aquí, debe estar en el diseñador
         }
 
         private void frm_catalogo_cajero_Load(object sender, EventArgs e)
         {
-          
+            CargarProductos();
+        }
+        private void card_producto_menu1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Este método se ejecutará cuando se presione cualquier botón btnVisualizar
+        private void Card_BotonVisualizarClick(object sender, int idProducto)
+        {
+            // Ejemplo: lista de productos con stock y descripción
+            var productos = new List<(int id, string nombre, decimal precio, int descuento, int stock, string descripcion)>
+            {
+                (1, "Manzana", 1.20m, 0, 50, "Fruta fresca y jugosa"),
+                (2, "Banana", 0.80m, 10, 40, "Rica en potasio"),
+                (3, "Leche", 2.50m, 5, 30, "Entera, 1 litro"),
+                (4, "Pan", 1.00m, 0, 60, "Pan artesanal"),
+                (5, "Queso", 3.75m, 15, 20, "Queso fresco"),
+                (6, "Jamon", 2.90m, 0, 25, "Jamón cocido"),
+                (7, "Cereal", 4.10m, 20, 35, "Cereal integral"),
+                (8, "Yogur", 1.60m, 0, 45, "Yogur natural"),
+                (9, "Huevos", 2.20m, 0, 80, "Docena de huevos"),
+                (10, "Agua", 0.60m, 0, 100, "Botella 500ml"),
+                (11, "Refresco", 1.50m, 5, 70, "Refresco sabor cola"),
+                (12, "Galletas", 2.30m, 0, 55, "Galletas dulces"),
+                (13, "Arroz", 1.10m, 0, 90, "Arroz blanco"),
+                (14, "Fideos", 1.40m, 0, 85, "Fideos secos"),
+                (15, "Aceite", 3.20m, 10, 15, "Aceite vegetal"),
+                (16, "Azúcar", 1.80m, 0, 75, "Azúcar refinada")
+            };
+
+            var producto = productos.FirstOrDefault(p => p.id == idProducto);
+            if (producto.id != 0)
+            {
+                // Asignar valores a los labels del formulario
+                lblProducto.Text = producto.nombre;
+                lblPrecio.Text = producto.precio.ToString("C2");
+                lbstock.Text = producto.stock.ToString();
+                lbdescriccion.Text = producto.descripcion;
+
+                if (producto.descuento > 0)
+                {
+                    decimal precioDescuento = producto.precio * (1 - (producto.descuento / 100m));
+                    lblPrecioDescuento.Text = precioDescuento.ToString("C2");
+                    lblPrecioDescuento.Visible = true;
+                }
+                else
+                {
+                    lblPrecioDescuento.Text = "";
+                    lblPrecioDescuento.Visible = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Producto no encontrado.");
+            }
+        }
+
+        private void CargarProductos()
+        {
             int columnas = 4;
             int anchoCarta = 238; // Ajusta según el tamaño real de card_producto_menu
             int altoCarta = 266;  // Ajusta según el tamaño real de card_producto_menu
             int espacio = 10;     // Espacio entre cartas
 
             // Ejemplo: lista de productos (puedes reemplazar por tu fuente de datos real)
-            var productos = new List<(string nombre, decimal precio, int descuento)>
+            var productos = new List<(int id, string nombre, decimal precio, int descuento)>
             {
-                ("Manzana", 1.20m, 0),
-                ("Banana", 0.80m, 10),
-                ("Leche", 2.50m, 5),
-                ("Pan", 1.00m, 0),
-                ("Queso", 3.75m, 15),
-                ("Jamon", 2.90m, 0),
-                ("Cereal", 4.10m, 20),
-                ("Yogur", 1.60m, 0),
-                ("Huevos", 2.20m, 0),
-                ("Agua", 0.60m, 0),
-                ("Refresco", 1.50m, 5),
-                ("Galletas", 2.30m, 0),
-                ("Galletas", 2.30m, 0),
-                ("Galletas", 2.30m, 0),
-                ("Galletas", 2.30m, 0)
+                (1, "Manzana", 1.20m, 0),
+                (2, "Banana", 0.80m, 10),
+                (3, "Leche", 2.50m, 5),
+                (4, "Pan", 1.00m, 0),
+                (5, "Queso", 3.75m, 15),
+                (6, "Jamon", 2.90m, 0),
+                (7, "Cereal", 4.10m, 20),
+                (8, "Yogur", 1.60m, 0),
+                (9, "Huevos", 2.20m, 0),
+                (10, "Agua", 0.60m, 0),
+                (11, "Refresco", 1.50m, 5),
+                (12, "Galletas", 2.30m, 0),
+                (13, "Arroz", 1.10m, 0),
+                (14, "Fideos", 1.40m, 0),
+                (15, "Aceite", 3.20m, 10),
+                (16, "Azúcar", 1.80m, 0)
             };
 
             panel1.Controls.Clear();
+            productosCards.Clear();
             panel1.AutoScroll = true;
 
             for (int i = 0; i < productos.Count; i++)
             {
-                var card = new CustomCards.card_producto_menu();
+                var card = new card_producto_menu();
+                card.IDProducto = productos[i].id;
                 card.Producto = productos[i].nombre;
                 card.Precio = productos[i].precio;
                 card.Descuento = productos[i].descuento;
+
+                // Suscribirse al evento personalizado
+                card.BotonVisualizarClick += Card_BotonVisualizarClick;
 
                 int fila = i / columnas;
                 int columna = i % columnas;
@@ -85,9 +135,9 @@ namespace poyecto_catedra_poo_supermecado
                 card.Top = fila * (altoCarta + espacio);
 
                 panel1.Controls.Add(card);
+                productosCards.Add(card);
             }
 
-            // Ajusta el tamaño mínimo del panel para el scroll
             int filasNecesarias = (int)Math.Ceiling((double)productos.Count / columnas);
             panel1.AutoScrollMinSize = new Size(
                 columnas * (anchoCarta + espacio),
