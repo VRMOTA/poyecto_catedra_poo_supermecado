@@ -9,12 +9,28 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     {
         private decimal precioBase;
         private int descuento;
+        private int idProducto;
+
+        // Evento personalizado que se disparará cuando se presione el botón
+        public event EventHandler<int> BotonVisualizarClick;
 
         public card_producto_menu()
         {
             InitializeComponent();
-            // estado inicial seguro si el diseñador aún no creó los controles
             if (lblPrecioDescuento != null) lblPrecioDescuento.Visible = false;
+
+            // Suscribir el evento del botón (si existe en el diseñador)
+            if (btnVisualizar != null)
+            {
+                btnVisualizar.Click += BtnVisualizar_Click;
+            }
+        }
+
+        [Category("Producto"), Description("ID único del producto")]
+        public int IDProducto
+        {
+            get => idProducto;
+            set => idProducto = value;
         }
 
         [Category("Producto"), Description("Nombre del producto")]
@@ -51,10 +67,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void ActualizarPrecios()
         {
-            // seguridad si el diseñador no ha inicializado los controles aún
             if (lblPrecio == null || lblPrecioDescuento == null) return;
 
-            // muestra precio con formato de moneda según cultura
             lblPrecio.Text = precioBase.ToString("C2");
 
             if (descuento > 0)
@@ -79,6 +93,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             var style = lbl.Font.Style;
             style = strike ? (style | FontStyle.Strikeout) : (style & ~FontStyle.Strikeout);
             lbl.Font = new Font(family, size, style);
+        }
+
+        // Método que se ejecuta cuando se presiona el botón
+        private void BtnVisualizar_Click(object sender, EventArgs e)
+        {
+            // Disparar el evento pasando el ID del producto
+            BotonVisualizarClick?.Invoke(this, idProducto);
         }
     }
 }
