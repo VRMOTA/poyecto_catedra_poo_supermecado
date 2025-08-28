@@ -30,13 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_clientes));
             this.pln_cards = new System.Windows.Forms.Panel();
-            this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
+            this.card = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
             this.rd_fondo = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
             this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
             this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
             this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.card = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
+            this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
+            this.buttonMaxing3 = new Catedra.CustomControls.ButtonMaxing();
+            this.lbdescriccion = new System.Windows.Forms.Label();
+            this.lbstock = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblPrecioDescuento = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.pbProducto = new System.Windows.Forms.PictureBox();
             this.pln_cards.SuspendLayout();
+            this.panelRedondeado1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // pln_cards
@@ -47,15 +58,27 @@
             this.pln_cards.Size = new System.Drawing.Size(1111, 813);
             this.pln_cards.TabIndex = 11;
             // 
-            // panelRedondeado1
+            // card
             // 
-            this.panelRedondeado1.BackColor = System.Drawing.Color.White;
-            this.panelRedondeado1.ColorBorde = System.Drawing.Color.White;
-            this.panelRedondeado1.ForeColor = System.Drawing.Color.Black;
-            this.panelRedondeado1.Location = new System.Drawing.Point(1165, 72);
-            this.panelRedondeado1.Name = "panelRedondeado1";
-            this.panelRedondeado1.Size = new System.Drawing.Size(376, 813);
-            this.panelRedondeado1.TabIndex = 10;
+            this.card.BackColor = System.Drawing.Color.Transparent;
+            this.card.BorderColor = System.Drawing.Color.Gray;
+            this.card.BorderThickness = 1;
+            this.card.CornerRadius = 12;
+            this.card.Descuento = 0;
+            this.card.FillColor = System.Drawing.Color.White;
+            this.card.IDProducto = 0;
+            this.card.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card.ImagenProducto")));
+            this.card.Location = new System.Drawing.Point(3, 3);
+            this.card.Name = "card";
+            this.card.Precio = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.card.Producto = "Nombre Producto";
+            this.card.Size = new System.Drawing.Size(241, 266);
+            this.card.TabIndex = 0;
+            this.card.Load += new System.EventHandler(this.card_Load);
             // 
             // rd_fondo
             // 
@@ -131,27 +154,133 @@
             this.buttonMaxing2.TextColor = System.Drawing.Color.White;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
             // 
-            // card
+            // panelRedondeado1
             // 
-            this.card.BackColor = System.Drawing.Color.Transparent;
-            this.card.BorderColor = System.Drawing.Color.Gray;
-            this.card.BorderThickness = 1;
-            this.card.CornerRadius = 12;
-            this.card.Descuento = 0;
-            this.card.FillColor = System.Drawing.Color.White;
-            this.card.IDProducto = 0;
-            this.card.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card.ImagenProducto")));
-            this.card.Location = new System.Drawing.Point(3, 3);
-            this.card.Name = "card";
-            this.card.Precio = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.card.Producto = "Nombre Producto";
-            this.card.Size = new System.Drawing.Size(241, 266);
-            this.card.TabIndex = 0;
-            this.card.Load += new System.EventHandler(this.card_Load);
+            this.panelRedondeado1.BackColor = System.Drawing.Color.White;
+            this.panelRedondeado1.ColorBorde = System.Drawing.Color.White;
+            this.panelRedondeado1.Controls.Add(this.buttonMaxing3);
+            this.panelRedondeado1.Controls.Add(this.lbdescriccion);
+            this.panelRedondeado1.Controls.Add(this.lbstock);
+            this.panelRedondeado1.Controls.Add(this.label2);
+            this.panelRedondeado1.Controls.Add(this.lblPrecioDescuento);
+            this.panelRedondeado1.Controls.Add(this.label1);
+            this.panelRedondeado1.Controls.Add(this.lblPrecio);
+            this.panelRedondeado1.Controls.Add(this.lblProducto);
+            this.panelRedondeado1.Controls.Add(this.pbProducto);
+            this.panelRedondeado1.ForeColor = System.Drawing.Color.Black;
+            this.panelRedondeado1.Location = new System.Drawing.Point(1165, 72);
+            this.panelRedondeado1.Name = "panelRedondeado1";
+            this.panelRedondeado1.Size = new System.Drawing.Size(376, 813);
+            this.panelRedondeado1.TabIndex = 10;
+            // 
+            // buttonMaxing3
+            // 
+            this.buttonMaxing3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonMaxing3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonMaxing3.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing3.BorderRadius = 8;
+            this.buttonMaxing3.BorderSize = 0;
+            this.buttonMaxing3.FlatAppearance.BorderSize = 0;
+            this.buttonMaxing3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMaxing3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMaxing3.ForeColor = System.Drawing.Color.White;
+            this.buttonMaxing3.Location = new System.Drawing.Point(25, 769);
+            this.buttonMaxing3.Name = "buttonMaxing3";
+            this.buttonMaxing3.Size = new System.Drawing.Size(337, 31);
+            this.buttonMaxing3.TabIndex = 22;
+            this.buttonMaxing3.Text = "Consultar";
+            this.buttonMaxing3.TextColor = System.Drawing.Color.White;
+            this.buttonMaxing3.UseVisualStyleBackColor = false;
+            // 
+            // lbdescriccion
+            // 
+            this.lbdescriccion.AutoSize = true;
+            this.lbdescriccion.BackColor = System.Drawing.Color.White;
+            this.lbdescriccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbdescriccion.Location = new System.Drawing.Point(21, 378);
+            this.lbdescriccion.Name = "lbdescriccion";
+            this.lbdescriccion.Size = new System.Drawing.Size(110, 24);
+            this.lbdescriccion.TabIndex = 21;
+            this.lbdescriccion.Text = "Descripcion";
+            // 
+            // lbstock
+            // 
+            this.lbstock.AutoSize = true;
+            this.lbstock.BackColor = System.Drawing.Color.White;
+            this.lbstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbstock.Location = new System.Drawing.Point(342, 334);
+            this.lbstock.Name = "lbstock";
+            this.lbstock.Size = new System.Drawing.Size(20, 24);
+            this.lbstock.TabIndex = 20;
+            this.lbstock.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 334);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 24);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Stock";
+            // 
+            // lblPrecioDescuento
+            // 
+            this.lblPrecioDescuento.AccessibleDescription = " ";
+            this.lblPrecioDescuento.AutoSize = true;
+            this.lblPrecioDescuento.BackColor = System.Drawing.Color.White;
+            this.lblPrecioDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioDescuento.ForeColor = System.Drawing.Color.Red;
+            this.lblPrecioDescuento.Location = new System.Drawing.Point(307, 286);
+            this.lblPrecioDescuento.Name = "lblPrecioDescuento";
+            this.lblPrecioDescuento.Size = new System.Drawing.Size(55, 24);
+            this.lblPrecioDescuento.TabIndex = 18;
+            this.lblPrecioDescuento.Text = "$0.00";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(21, 286);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 24);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Descuento:";
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.BackColor = System.Drawing.Color.White;
+            this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecio.Location = new System.Drawing.Point(307, 243);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(55, 24);
+            this.lblPrecio.TabIndex = 16;
+            this.lblPrecio.Text = "$0.00";
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.BackColor = System.Drawing.Color.White;
+            this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto.Location = new System.Drawing.Point(21, 243);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(160, 24);
+            this.lblProducto.TabIndex = 15;
+            this.lblProducto.Text = "Nombre Producto";
+            // 
+            // pbProducto
+            // 
+            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
+            this.pbProducto.Location = new System.Drawing.Point(25, 17);
+            this.pbProducto.Name = "pbProducto";
+            this.pbProducto.Size = new System.Drawing.Size(337, 213);
+            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProducto.TabIndex = 14;
+            this.pbProducto.TabStop = false;
             // 
             // frm_clientes
             // 
@@ -168,6 +297,9 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frm_clientes_Load);
             this.pln_cards.ResumeLayout(false);
+            this.panelRedondeado1.ResumeLayout(false);
+            this.panelRedondeado1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,12 +307,21 @@
         #endregion
 
         private System.Windows.Forms.Panel pln_cards;
-        private project_supermercado.CustomControls.PanelRedondeado panelRedondeado1;
         private CustomCards.RoundedControlBase rd_fondo;
         private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
         private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
         private CustomCards.card_producto_menu card;
+        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
+        private project_supermercado.CustomControls.PanelRedondeado panelRedondeado1;
+        private Catedra.CustomControls.ButtonMaxing buttonMaxing3;
+        private System.Windows.Forms.Label lbdescriccion;
+        private System.Windows.Forms.Label lbstock;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPrecioDescuento;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.PictureBox pbProducto;
     }
 }
 

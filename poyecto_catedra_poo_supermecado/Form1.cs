@@ -33,24 +33,25 @@ namespace poyecto_catedra_poo_supermecado
             int altoCarta = 266;
             int espacio = 10;
 
-            var productos = new List<(string nombre, decimal precio, int cantidad, Image imagen)>
+            
+            var productos = new List<(string nombre, decimal precio, int descuento, Image imagen)>
             {
-                ("Manzana", 1.20m, 2, Properties.Resources.Rigbyyyy),
-                ("Banana", 0.80m, 1, Properties.Resources.Rigbyyyy),
-                ("Leche", 2.50m, 3, Properties.Resources.Rigbyyyy),
-                ("Pan", 1.00m, 1, Properties.Resources.Rigbyyyy),
-                ("Queso", 3.75m, 2, Properties.Resources.Rigbyyyy),
-                ("Jamon", 2.90m, 1, Properties.Resources.Rigbyyyy),
-                ("Cereal", 4.10m, 1, Properties.Resources.Rigbyyyy),
-                ("Yogur", 1.60m, 2, Properties.Resources.Rigbyyyy),
-                ("Huevos", 2.20m, 1, Properties.Resources.Rigbyyyy),
-                ("Agua", 0.60m, 4, Properties.Resources.Rigbyyyy),
-                ("Refresco", 1.50m, 2, Properties.Resources.Rigbyyyy),
-                ("Galletas", 2.30m, 1, Properties.Resources.Rigbyyyy),
-                ("Arroz", 1.10m, 1, Properties.Resources.Rigbyyyy),
-                ("Fideos", 1.40m, 1, Properties.Resources.Rigbyyyy),
-                ("Aceite", 3.20m, 1, Properties.Resources.Rigbyyyy),
-                ("Azúcar", 1.80m, 1, Properties.Resources.Rigbyyyy),
+                ("Manzana", 1.20m, 30, Properties.Resources.Rigbyyyy),    
+                ("Banana", 0.80m, 10, Properties.Resources.Rigbyyyy),
+                ("Leche", 2.50m, 5, Properties.Resources.Rigbyyyy),
+                ("Pan", 1.00m, 0, Properties.Resources.Rigbyyyy),
+                ("Queso", 3.75m, 15, Properties.Resources.Rigbyyyy),
+                ("Jamon", 2.90m, 0, Properties.Resources.Rigbyyyy),
+                ("Cereal", 4.10m, 20, Properties.Resources.Rigbyyyy),
+                ("Yogur", 1.60m, 0, Properties.Resources.Rigbyyyy),
+                ("Huevos", 2.20m, 0, Properties.Resources.Rigbyyyy),
+                ("Agua", 0.60m, 0, Properties.Resources.Rigbyyyy),
+                ("Refresco", 1.50m, 5, Properties.Resources.Rigbyyyy),
+                ("Galletas", 2.30m, 0, Properties.Resources.Rigbyyyy),
+                ("Arroz", 1.10m, 0, Properties.Resources.Rigbyyyy),
+                ("Fideos", 1.40m, 0, Properties.Resources.Rigbyyyy),
+                ("Aceite", 3.20m, 10, Properties.Resources.Rigbyyyy),
+                ("Azúcar", 1.80m, 0, Properties.Resources.Rigbyyyy),
             };
 
             pln_cards.Controls.Clear();
@@ -61,11 +62,9 @@ namespace poyecto_catedra_poo_supermecado
                 var card = new CustomCards.card_producto_menu();    
                 card.Producto = productos[i].nombre;
                 card.Precio = productos[i].precio;
-                card.Descuento = 0; // Puedes cambiar el descuento si lo necesitas
+                card.Descuento = productos[i].descuento; 
                 card.ImagenProducto = productos[i].imagen;
-                // Si tienes una propiedad para cantidad, stock o descripción, asígnala aquí:
-                // card.Stock = productos[i].cantidad;
-                // card.Descripcion = "Tu descripción aquí";
+
 
                 int fila = i / columnas;
                 int columna = i % columnas;
@@ -78,11 +77,11 @@ namespace poyecto_catedra_poo_supermecado
                 pln_cards.Controls.Add(card);
             }
 
-            int filasNecesarias = (int)Math.Ceiling((double)productos.Count / columnas);
-            pln_cards.AutoScrollMinSize = new Size(
-                columnas * (anchoCarta + espacio),
-                filasNecesarias * (altoCarta + espacio)
-            );
+            int filasNecesarias = (int)Math.Ceiling((double)productos.Count / columnas); // Calcular filas necesarias
+            pln_cards.AutoScrollMinSize = new Size( 
+                columnas * (anchoCarta + espacio), // Ancho total
+                filasNecesarias * (altoCarta + espacio) // Alto total
+            ); // Ajustar tamaño mínimo para scroll
         }
 
         private void card_Load(object sender, EventArgs e)
