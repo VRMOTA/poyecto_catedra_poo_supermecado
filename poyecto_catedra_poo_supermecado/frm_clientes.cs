@@ -37,22 +37,19 @@ namespace poyecto_catedra_poo_supermecado
         {
             productos = new List<Producto>
             {
-                new Producto(1, "Manzana", 1.20m, 50, 30, "Fruta fresca y jugosa", Properties.Resources.Rigbyyyy),
-                new Producto(2, "Banana", 0.80m, 40, 10, "Rica en potasio", Properties.Resources.Rigbyyyy),
-                new Producto(3, "Leche", 2.50m, 30, 5, "Entera, 1 litro", Properties.Resources.Rigbyyyy),
-                new Producto(4, "Pan", 1.00m, 60, 0, "Pan artesanal", Properties.Resources.Rigbyyyy),
-                new Producto(5, "Queso", 3.75m, 20, 15, "Queso fresco", Properties.Resources.Rigbyyyy),
-                new Producto(6, "Jamon", 2.90m, 25, 0, "Jamón cocido", Properties.Resources.Rigbyyyy),
-                new Producto(7, "Cereal", 4.10m, 35, 20, "Cereal integral", Properties.Resources.Rigbyyyy),
-                new Producto(8, "Yogur", 1.60m, 45, 0, "Yogur natural", Properties.Resources.Rigbyyyy),
-                new Producto(9, "Huevos", 2.20m, 80, 0, "Docena de huevos", Properties.Resources.Rigbyyyy),
-                new Producto(10, "Agua", 0.60m, 100, 0, "Botella 500ml", Properties.Resources.Rigbyyyy),
-                new Producto(11, "Refresco", 1.50m, 70, 5, "Refresco sabor cola", Properties.Resources.Rigbyyyy),
-                new Producto(12, "Galletas", 2.30m, 55, 0, "Galletas dulces", Properties.Resources.Rigbyyyy),
-                new Producto(13, "Arroz", 1.10m, 90, 0, "Arroz blanco", Properties.Resources.Rigbyyyy),
-                new Producto(14, "Fideos", 1.40m, 85, 0, "Fideos secos", Properties.Resources.Rigbyyyy),
-                new Producto(15, "Aceite", 3.20m, 15, 10, "Aceite vegetal", Properties.Resources.Rigbyyyy),
-                new Producto(16, "Azúcar", 1.80m, 75, 0, "Azúcar refinada", Properties.Resources.Rigbyyyy),
+                new Producto(1, "Manzana", 1.20m, 50, 30, "Fruta fresca y jugosa", Properties.Resources.manzana),
+                new Producto(2, "Banana", 0.80m, 40, 10, "Rica en potasio", Properties.Resources.banana),
+                new Producto(3, "Leche", 2.50m, 30, 5, "Entera, 1 litro", Properties.Resources.leche),
+                new Producto(4, "Pan", 1.00m, 60, 0, "Pan artesanal", Properties.Resources.pan),
+                new Producto(5, "Queso", 3.75m, 20, 15, "Queso fresco", Properties.Resources.queso),
+                new Producto(6, "Jamon", 2.90m, 25, 0, "Jamón cocido", Properties.Resources.jamon),
+                new Producto(7, "Cereal", 4.10m, 35, 20, "Cereal integral", Properties.Resources.cereal),
+                new Producto(8, "Yogur", 1.60m, 45, 0, "Yogur natural", Properties.Resources.yogyur),
+                new Producto(9, "Huevos", 2.20m, 80, 0, "Docena de huevos", Properties.Resources.huevo),
+                new Producto(10, "Agua", 0.60m, 100, 0, "Botella 500ml", Properties.Resources.agua),
+                new Producto(11, "Refresco", 1.50m, 70, 5, "Refresco sabor cola", Properties.Resources.soda),
+                new Producto(12, "Galletas", 2.30m, 55, 0, "Galletas dulces", Properties.Resources.cokie),
+                new Producto(13, "Arroz", 1.10m, 90, 0, "Arroz blanco", Properties.Resources.rice),
             };
         }
 

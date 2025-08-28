@@ -31,19 +31,12 @@ namespace poyecto_catedra_poo_supermecado
             // Ejemplo: lista de distribuidores (puedes reemplazar por tu fuente de datos real)
             var distribuidores = new List<(string nombre, string categoria, Image imagen)>
         {
-            ("Distribuidora 1", "Alimentos", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 2", "Bebidas", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 3", "Limpieza", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 4", "Higiene", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 5", "Electrónica", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 6", "Ropa", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 7", "Juguetes", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 8", "Papelería", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 9", "Mascotas", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 10", "Ferretería", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 11", "Ferretería", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 12", "Ferretería", Properties.Resources.Rigbyyyy),
-            ("Distribuidora 13", "Ferretería", Properties.Resources.Rigbyyyy)
+            ("La Constancia " , "Alimentos", Properties.Resources.laconstancia),
+            ("Scott", "Bebidas", Properties.Resources.scoot),
+            ("Morazan", "Limpieza", Properties.Resources.images),
+            ("El mago", "Higiene", Properties.Resources.elmago),
+            ("Distribuidora Salvadoreña", "Electrónica", Properties.Resources.distsal),
+            ("Siman", "Ropa", Properties.Resources.siman),
         };
 
             panel_cards.Controls.Clear();

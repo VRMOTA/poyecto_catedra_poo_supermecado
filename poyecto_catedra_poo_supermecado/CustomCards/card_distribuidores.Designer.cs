@@ -85,6 +85,7 @@
             this.buttonMaxing1.Text = "Eliminar";
             this.buttonMaxing1.TextColor = System.Drawing.Color.White;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
             // lblDistribuidora
             // 

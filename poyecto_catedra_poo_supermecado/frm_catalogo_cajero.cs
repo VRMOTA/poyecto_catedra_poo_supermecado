@@ -36,24 +36,24 @@ namespace poyecto_catedra_poo_supermecado
         private void Card_BotonVisualizarClick(object sender, int idProducto)
         {
             // Ejemplo: lista de productos con stock y descripción
-            var productos = new List<(int id, string nombre, decimal precio, int descuento, int stock, string descripcion)>
+            var productos = new List<(int id, string nombre, decimal precio, int descuento, int stock, string descripcion,Image imb)>
             {
-                (1, "Manzana", 1.20m, 0, 50, "Fruta fresca y jugosa"),
-                (2, "Banana", 0.80m, 10, 40, "Rica en potasio"),
-                (3, "Leche", 2.50m, 5, 30, "Entera, 1 litro"),
-                (4, "Pan", 1.00m, 0, 60, "Pan artesanal"),
-                (5, "Queso", 3.75m, 15, 20, "Queso fresco"),
-                (6, "Jamon", 2.90m, 0, 25, "Jamón cocido"),
-                (7, "Cereal", 4.10m, 20, 35, "Cereal integral"),
-                (8, "Yogur", 1.60m, 0, 45, "Yogur natural"),
-                (9, "Huevos", 2.20m, 0, 80, "Docena de huevos"),
-                (10, "Agua", 0.60m, 0, 100, "Botella 500ml"),
-                (11, "Refresco", 1.50m, 5, 70, "Refresco sabor cola"),
-                (12, "Galletas", 2.30m, 0, 55, "Galletas dulces"),
-                (13, "Arroz", 1.10m, 0, 90, "Arroz blanco"),
-                (14, "Fideos", 1.40m, 0, 85, "Fideos secos"),
-                (15, "Aceite", 3.20m, 10, 15, "Aceite vegetal"),
-                (16, "Azúcar", 1.80m, 0, 75, "Azúcar refinada")
+                (1, "Manzana", 1.20m, 0, 50, "Fruta fresca y jugosa",Properties.Resources.manzana),
+                (2, "Banana", 0.80m, 10, 40, "Rica en potasio", Properties.Resources.banana),
+                (3, "Leche", 2.50m, 5, 30, "Entera, 1 litro", Properties.Resources.leche ),
+                (4, "Pan", 1.00m, 0, 60, "Pan artesanal", Properties.Resources.pan ),
+                (5, "Queso", 3.75m, 15, 20, "Queso fresco", Properties.Resources.queso   ),
+                (6, "Jamon", 2.90m, 0, 25, "Jamón cocido", Properties.Resources.jamon),
+                (7, "Cereal", 4.10m, 20, 35, "Cereal integral", Properties.Resources.cereal),
+                (8, "Yogur", 1.60m, 0, 45, "Yogur natural", Properties.Resources.yogyur),
+                (9, "Huevos", 2.20m, 0, 80, "Docena de huevos", Properties.Resources.huevo),
+                (10, "Agua", 0.60m, 0, 100, "Botella 500ml", Properties.Resources.agua),
+                (11, "Refresco", 1.50m, 5, 70, "Refresco sabor cola", Properties.Resources.soda ),
+                (12, "Galletas", 2.30m, 0, 55, "Galletas dulces"    , Properties.Resources.cokie),
+                (13, "Arroz", 1.10m, 0, 90, "Arroz blanco", Properties.Resources.rice   ),
+                (14, "Fideos", 1.40m, 0, 85, "Fideos secos", Properties.Resources.Rigbyyyy  ),
+                (15, "Aceite", 3.20m, 10, 15, "Aceite vegetal", Properties.Resources.Rigbyyyy),
+                (16, "Azúcar", 1.80m, 0, 75, "Azúcar refinada", Properties.Resources.Rigbyyyy)
             };
 
             var producto = productos.FirstOrDefault(p => p.id == idProducto);
@@ -64,6 +64,7 @@ namespace poyecto_catedra_poo_supermecado
                 lblPrecio.Text = producto.precio.ToString("C2");
                 lbstock.Text = producto.stock.ToString();
                 lbdescriccion.Text = producto.descripcion;
+                pbProducto.Image = producto.imb;
 
                 if (producto.descuento > 0)
                 {
@@ -91,24 +92,21 @@ namespace poyecto_catedra_poo_supermecado
             int espacio = 10;     // Espacio entre cartas
 
             // Ejemplo: lista de productos (puedes reemplazar por tu fuente de datos real)
-            var productos = new List<(int id, string nombre, decimal precio, int descuento)>
+            var productos = new List<(int id, string nombre, decimal precio, int descuento, Image img)>
             {
-                (1, "Manzana", 1.20m, 0),
-                (2, "Banana", 0.80m, 10),
-                (3, "Leche", 2.50m, 5),
-                (4, "Pan", 1.00m, 0),
-                (5, "Queso", 3.75m, 15),
-                (6, "Jamon", 2.90m, 0),
-                (7, "Cereal", 4.10m, 20),
-                (8, "Yogur", 1.60m, 0),
-                (9, "Huevos", 2.20m, 0),
-                (10, "Agua", 0.60m, 0),
-                (11, "Refresco", 1.50m, 5),
-                (12, "Galletas", 2.30m, 0),
-                (13, "Arroz", 1.10m, 0),
-                (14, "Fideos", 1.40m, 0),
-                (15, "Aceite", 3.20m, 10),
-                (16, "Azúcar", 1.80m, 0)
+                (1, "Manzana", 1.20m, 0,Properties.Resources.manzana),
+                (2, "Banana", 0.80m, 10, Properties.Resources.banana),
+                (3, "Leche", 2.50m, 5, Properties.Resources.leche),
+                (4, "Pan", 1.00m, 0, Properties.Resources.pan),
+                (5, "Queso", 3.75m, 15, Properties.Resources.queso),
+                (6, "Jamon", 2.90m, 0, Properties.Resources.jamon),
+                (7, "Cereal", 4.10m, 20, Properties.Resources.cereal),
+                (8, "Yogur", 1.60m, 0, Properties.Resources.yogyur),
+                (9, "Huevos", 2.20m, 0, Properties.Resources.huevo),
+                (10, "Agua", 0.60m, 0, Properties.Resources.agua),
+                (11, "Refresco", 1.50m, 5, Properties.Resources.soda),
+                (12, "Galletas", 2.30m, 0, Properties.Resources.cokie),
+                (13, "Arroz", 1.10m, 0, Properties.Resources.rice),
             };
 
             panel1.Controls.Clear();
@@ -122,6 +120,7 @@ namespace poyecto_catedra_poo_supermecado
                 card.Producto = productos[i].nombre;
                 card.Precio = productos[i].precio;
                 card.Descuento = productos[i].descuento;
+                card.ImagenProducto = productos[i].img;
 
                 // Suscribirse al evento personalizado
                 card.BotonVisualizarClick += Card_BotonVisualizarClick;

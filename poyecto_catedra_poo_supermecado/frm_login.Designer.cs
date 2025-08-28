@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_login));
             this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
             this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
             this.label4 = new System.Windows.Forms.Label();
@@ -191,7 +192,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.background;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1021, 678);

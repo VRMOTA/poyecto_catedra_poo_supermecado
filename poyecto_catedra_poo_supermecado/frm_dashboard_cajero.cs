@@ -35,7 +35,8 @@ namespace poyecto_catedra_poo_supermecado
 
         private void btn_menu_Click(object sender, EventArgs e)
         {
-
+            // Elimina todos los controles abiertos en el panel
+            this.panel_control.Controls.Clear();
         }
 
         private void btn_consultas_Click(object sender, EventArgs e)

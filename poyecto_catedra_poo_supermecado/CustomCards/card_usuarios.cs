@@ -68,5 +68,20 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             var modal = new md_agregar_usuario("Actualizar nuevo usuario", "Actualizar");
             modal.ShowDialog();
         }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show(
+   "¿Está seguro que desea eliminar el registro?",
+   "Confirmar eliminación",
+   MessageBoxButtons.YesNo,
+   MessageBoxIcon.Warning
+);
+
+            if (resultado == DialogResult.Yes)
+            {
+
+            }
+        }
     }
 }

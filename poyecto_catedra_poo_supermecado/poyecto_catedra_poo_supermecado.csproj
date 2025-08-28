@@ -100,6 +100,12 @@
     <Compile Include="CustomControls\TextboxMaxing.Designer.cs">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomModals\md_actualizar_carrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_actualizar_carrito.Designer.cs">
+      <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomModals\md_agregar_distribuidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_actualizar_carrito.resx">
+      <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomModals\md_agregar_distribuidor.resx">
       <DependentUpon>md_agregar_distribuidor.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,7 +292,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\siman.png" />
+    <None Include="Resources\scoot.jpg" />
+    <None Include="Resources\rice.jpg" />
+    <None Include="Resources\soda.jpg" />
+    <None Include="Resources\agua.jpg" />
     <Content Include="Resources\background.png" />
+    <None Include="Resources\yogyur.jpg" />
+    <None Include="Resources\queso.jpg" />
+    <None Include="Resources\pan.jpg" />
+    <None Include="Resources\leche.jpg" />
+    <None Include="Resources\cereal.jpg" />
+    <None Include="Resources\huevo.jpg" />
+    <None Include="Resources\banana.jpg" />
+    <None Include="Resources\jamon.jpg" />
+    <None Include="Resources\cokie.jpg" />
+    <None Include="Resources\laconstancia.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\elmago.png" />
+    <None Include="Resources\distsal.jpg" />
+    <Content Include="Resources\manzana.png" />
+    <None Include="Resources\manzana1.png" />
     <None Include="Resources\Vector %281%29.png" />
     <None Include="Resources\Vector.png" />
     <None Include="Resources\Rigbyyyy.jpg" />

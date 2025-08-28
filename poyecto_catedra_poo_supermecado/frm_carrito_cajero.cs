@@ -35,16 +35,16 @@ namespace poyecto_catedra_poo_supermecado
             int espacio = 10;     // Espacio entre cartas
 
             // Ejemplo: lista de productos en el carrito (puedes reemplazar por tu fuente de datos real)
-            var productosCarrito = new List<(string nombre, decimal precio, int cantidad)>
+            var productosCarrito = new List<(string nombre, decimal precio, int cantidad,Image imb)>
             {
-                ("Manzana", 1.20m, 2),
-                ("Leche", 2.50m, 1),
-                ("Pan", 1.00m, 3),
-                ("Queso", 3.75m, 1),
-                ("Cereal", 4.10m, 2),
-                ("Yogur", 1.60m, 4),
-                ("Huevos", 2.20m, 1),
-                ("Agua", 0.60m, 6)
+                ("Manzana", 1.20m, 2,Properties.Resources.manzana),
+                ("Leche", 2.50m, 1, Properties.Resources.leche),
+                ("Pan", 1.00m, 3, Properties.Resources.pan),
+                ("Queso", 3.75m, 1, Properties.Resources.queso),
+                ("Cereal", 4.10m, 2, Properties.Resources.cereal),
+                ("Yogur", 1.60m, 4, Properties.Resources.yogyur),
+                ("Huevos", 2.20m, 1, Properties.Resources.huevo),
+                ("Agua", 0.60m, 6, Properties.Resources.agua    )
             };
 
             panel1.Controls.Clear();
@@ -57,6 +57,7 @@ namespace poyecto_catedra_poo_supermecado
                  card.NombreProducto = productosCarrito[i].nombre;
                  card.Precio = productosCarrito[i].precio;
                 card.Cantidad = productosCarrito[i].cantidad;
+                card.ImagenProducto = productosCarrito[i].imb;
 
                 card.Width = anchoCarta;
                 card.Height = altoCarta;

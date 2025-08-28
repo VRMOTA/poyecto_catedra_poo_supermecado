@@ -40,6 +40,19 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             modal.ShowDialog();
         }
 
-    
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show(
+   "¿Está seguro que desea eliminar el registro?",
+   "Confirmar eliminación",
+   MessageBoxButtons.YesNo,
+   MessageBoxIcon.Warning
+);
+
+            if (resultado == DialogResult.Yes)
+            {
+
+            }
+        }
     }
 }
