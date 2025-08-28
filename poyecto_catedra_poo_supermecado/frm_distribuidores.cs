@@ -1,4 +1,5 @@
 ﻿using poyecto_catedra_poo_supermecado.CustomCards;
+using project_supermercado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,10 @@ namespace poyecto_catedra_poo_supermecado
     {
         public frm_distribuidores()
         {
+
             InitializeComponent();
             CargarDistribuidores();
+            FormHelper.DefaultFormValues(this);
         }
         private void CargarDistribuidores()
         {
