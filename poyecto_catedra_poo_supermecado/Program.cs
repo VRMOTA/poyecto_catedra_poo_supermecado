@@ -16,7 +16,7 @@ namespace poyecto_catedra_poo_supermecado
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_clientes());
+            Application.Run(new frm_dashboard_admin());
         }
     }
 }
