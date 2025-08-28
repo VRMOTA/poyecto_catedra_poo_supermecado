@@ -37,6 +37,7 @@
             this.txtClave = new Catedra.CustomControls.TextboxMaxing();
             this.txtCorreo = new Catedra.CustomControls.TextboxMaxing();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
             this.panelRedondeado1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +48,7 @@
             this.panelRedondeado1.ColorBorde = System.Drawing.Color.White;
             this.panelRedondeado1.ColorFin = System.Drawing.Color.White;
             this.panelRedondeado1.ColorInicio = System.Drawing.Color.White;
+            this.panelRedondeado1.Controls.Add(this.buttonMaxing2);
             this.panelRedondeado1.Controls.Add(this.label4);
             this.panelRedondeado1.Controls.Add(this.label3);
             this.panelRedondeado1.Controls.Add(this.label2);
@@ -55,36 +57,38 @@
             this.panelRedondeado1.Controls.Add(this.txtClave);
             this.panelRedondeado1.Controls.Add(this.txtCorreo);
             this.panelRedondeado1.ForeColor = System.Drawing.Color.Black;
-            this.panelRedondeado1.Location = new System.Drawing.Point(306, 109);
+            this.panelRedondeado1.Location = new System.Drawing.Point(350, 109);
             this.panelRedondeado1.Name = "panelRedondeado1";
-            this.panelRedondeado1.Size = new System.Drawing.Size(398, 462);
+            this.panelRedondeado1.Size = new System.Drawing.Size(344, 428);
             this.panelRedondeado1.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(64, 243);
+            this.label4.Location = new System.Drawing.Point(40, 243);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Clave";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 154);
+            this.label3.Location = new System.Drawing.Point(40, 154);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Correo";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(66, 89);
+            this.label2.Location = new System.Drawing.Point(42, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(286, 44);
             this.label2.TabIndex = 4;
@@ -95,11 +99,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(64, 49);
+            this.label1.Location = new System.Drawing.Point(40, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Bienvenido";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonMaxing1
             // 
@@ -112,9 +117,9 @@
             this.buttonMaxing1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMaxing1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMaxing1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing1.Location = new System.Drawing.Point(64, 350);
+            this.buttonMaxing1.Location = new System.Drawing.Point(170, 340);
             this.buttonMaxing1.Name = "buttonMaxing1";
-            this.buttonMaxing1.Size = new System.Drawing.Size(261, 63);
+            this.buttonMaxing1.Size = new System.Drawing.Size(131, 52);
             this.buttonMaxing1.TabIndex = 2;
             this.buttonMaxing1.Text = "Ingresar";
             this.buttonMaxing1.TextColor = System.Drawing.Color.WhiteSmoke;
@@ -129,7 +134,7 @@
             this.txtClave.BorderSize = 7;
             this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.ForeColor = System.Drawing.Color.DimGray;
-            this.txtClave.Location = new System.Drawing.Point(64, 267);
+            this.txtClave.Location = new System.Drawing.Point(40, 267);
             this.txtClave.Margin = new System.Windows.Forms.Padding(4);
             this.txtClave.Multiline = false;
             this.txtClave.Name = "txtClave";
@@ -150,7 +155,7 @@
             this.txtCorreo.BorderSize = 7;
             this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCorreo.Location = new System.Drawing.Point(64, 180);
+            this.txtCorreo.Location = new System.Drawing.Point(40, 180);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Multiline = false;
             this.txtCorreo.Name = "txtCorreo";
@@ -162,6 +167,7 @@
             this.txtCorreo.TabIndex = 0;
             this.txtCorreo.Texts = "";
             this.txtCorreo.UnderlinedStyle = true;
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtCorreo_TextChanged);
             // 
             // pictureBox1
             // 
@@ -172,6 +178,26 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // buttonMaxing2
+            // 
+            this.buttonMaxing2.BackColor = System.Drawing.Color.DimGray;
+            this.buttonMaxing2.BackgroundColor = System.Drawing.Color.DimGray;
+            this.buttonMaxing2.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.BorderRadius = 15;
+            this.buttonMaxing2.BorderSize = 0;
+            this.buttonMaxing2.FlatAppearance.BorderSize = 0;
+            this.buttonMaxing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMaxing2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.Location = new System.Drawing.Point(40, 340);
+            this.buttonMaxing2.Name = "buttonMaxing2";
+            this.buttonMaxing2.Size = new System.Drawing.Size(124, 52);
+            this.buttonMaxing2.TabIndex = 7;
+            this.buttonMaxing2.Text = "Regresar";
+            this.buttonMaxing2.TextColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // frm_login
             // 
@@ -200,5 +226,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
     }
 }
