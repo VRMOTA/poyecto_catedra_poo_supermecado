@@ -106,6 +106,18 @@
     <Compile Include="CustomModals\md_agregar_distribuidor.Designer.cs">
       <DependentUpon>md_agregar_distribuidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomModals\md_agregar_productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_agregar_productos.Designer.cs">
+      <DependentUpon>md_agregar_productos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomModals\md_agregar_usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_agregar_usuario.Designer.cs">
+      <DependentUpon>md_agregar_usuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_clientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +189,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_agregar_distribuidor.resx">
+      <DependentUpon>md_agregar_distribuidor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_agregar_productos.resx">
+      <DependentUpon>md_agregar_productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_agregar_usuario.resx">
+      <DependentUpon>md_agregar_usuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_clientes.resx">
       <DependentUpon>frm_clientes.cs</DependentUpon>

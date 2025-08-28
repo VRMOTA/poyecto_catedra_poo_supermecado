@@ -1,4 +1,5 @@
-﻿using project_supermercado;
+﻿using Catedra.CustomControls;
+using project_supermercado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +12,13 @@ using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.CustomModals
 {
-    public partial class md_agregar_distribuidor : Form
+    public partial class md_agregar_usuario : Form
     {
-        public md_agregar_distribuidor()
+        public md_agregar_usuario()
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
-            buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
-           
+            
         }
     }
 }

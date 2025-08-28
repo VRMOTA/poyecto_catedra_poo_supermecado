@@ -11,14 +11,15 @@ using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.CustomModals
 {
-    public partial class md_agregar_distribuidor : Form
+    public partial class md_agregar_productos : Form
     {
-        public md_agregar_distribuidor()
+        public md_agregar_productos()
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
-           
         }
+
+      
     }
 }
