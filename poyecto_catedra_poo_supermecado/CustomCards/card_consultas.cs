@@ -12,6 +12,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_consultas : RoundedControlBase
     {
+        // Evento personalizado que se disparará cuando se presione el botón
+        public event EventHandler<int> BotonVisualizarClick;
         public card_consultas()
         {
             InitializeComponent();

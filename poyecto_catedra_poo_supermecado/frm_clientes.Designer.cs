@@ -78,7 +78,6 @@
             this.card.Producto = "Nombre Producto";
             this.card.Size = new System.Drawing.Size(241, 266);
             this.card.TabIndex = 0;
-            
             // 
             // rd_fondo
             // 
@@ -153,6 +152,7 @@
             this.buttonMaxing2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonMaxing2.TextColor = System.Drawing.Color.White;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // panelRedondeado1
             // 
