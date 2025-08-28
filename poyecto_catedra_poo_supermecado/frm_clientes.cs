@@ -126,6 +126,14 @@ namespace poyecto_catedra_poo_supermecado
         {
             Application.Exit();
         }
+
+        private void buttonMaxing3_Click(object sender, EventArgs e)
+        {
+            using (var modal = new CustomModals.md_consulta())
+            {
+                modal.ShowDialog();
+            }
+        }
     }
 
     public class Producto

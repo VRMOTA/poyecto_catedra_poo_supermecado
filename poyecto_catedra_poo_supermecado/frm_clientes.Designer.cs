@@ -191,6 +191,7 @@
             this.buttonMaxing3.Text = "Consultar";
             this.buttonMaxing3.TextColor = System.Drawing.Color.White;
             this.buttonMaxing3.UseVisualStyleBackColor = false;
+            this.buttonMaxing3.Click += new System.EventHandler(this.buttonMaxing3_Click);
             // 
             // lbdescriccion
             // 

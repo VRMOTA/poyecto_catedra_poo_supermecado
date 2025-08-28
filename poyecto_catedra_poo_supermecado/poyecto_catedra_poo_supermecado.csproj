@@ -124,6 +124,12 @@
     <Compile Include="CustomModals\md_agregar_usuario.Designer.cs">
       <DependentUpon>md_agregar_usuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomModals\md_consulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_consulta.Designer.cs">
+      <DependentUpon>md_consulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_clientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomModals\md_agregar_usuario.resx">
       <DependentUpon>md_agregar_usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_consulta.resx">
+      <DependentUpon>md_consulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_clientes.resx">
       <DependentUpon>frm_clientes.cs</DependentUpon>
