@@ -131,7 +131,7 @@ namespace poyecto_catedra_poo_supermecado
         {
             using (var modal = new CustomModals.md_consulta())
             {
-                modal.ShowDialog();
+                modal.ShowDialog();// comentario
             }
         }
     }
