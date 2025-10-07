@@ -10,6 +10,7 @@ namespace poyecto_catedra_poo_supermecado
 {
     public partial class frm_clientes : Form
     {
+        // prueba
         private List<Producto> productos = new List<Producto>();
         private List<CustomCards.card_producto_menu> productosCards = new List<CustomCards.card_producto_menu>();
 
