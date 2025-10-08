@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.Conexion; 
 
 namespace poyecto_catedra_poo_supermecado
 {
@@ -133,6 +134,23 @@ namespace poyecto_catedra_poo_supermecado
             using (var modal = new CustomModals.md_consulta())
             {
                 modal.ShowDialog();// comentario
+            }
+        }
+
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (db_supermercadoEntities db = new db_supermercadoEntities())
+                {
+                    // Intenta acceder a una tabla, por ejemplo, la tabla Clientes
+                    int total = db.tb_usario.Count();
+                    MessageBox.Show("Conexión exitosa. Total de clientes: " + total, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de conexión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

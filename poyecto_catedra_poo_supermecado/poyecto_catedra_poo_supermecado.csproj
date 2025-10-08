@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +58,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conexion\conexion.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>conexion.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\conexion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\conexion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>conexion.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_carrito.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_categorias.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_distribuidores.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_producto.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_promociones.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_usario.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion\tb_ventas.cs">
+      <DependentUpon>conexion.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomCards\card_consultas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -287,6 +335,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="Conexion\conexion.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>conexion.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Conexion\conexion.edmx.diagram">
+      <DependentUpon>conexion.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -306,6 +362,16 @@
     <None Include="Resources\rice.jpg" />
     <None Include="Resources\soda.jpg" />
     <None Include="Resources\agua.jpg" />
+    <Content Include="Conexion\conexion.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>conexion.edmx</DependentUpon>
+      <LastGenOutput>conexion.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Conexion\conexion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>conexion.edmx</DependentUpon>
+      <LastGenOutput>conexion.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\background.png" />
     <None Include="Resources\yogyur.jpg" />
     <None Include="Resources\queso.jpg" />
@@ -328,5 +394,16 @@
     <None Include="Resources\default.jpg" />
     <None Include="Resources\background1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
 </Project>
