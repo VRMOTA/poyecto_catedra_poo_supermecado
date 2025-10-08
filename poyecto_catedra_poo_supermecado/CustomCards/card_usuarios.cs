@@ -1,4 +1,5 @@
-﻿using poyecto_catedra_poo_supermecado.CustomModals;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomModals;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,15 +73,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show(
-   "¿Está seguro que desea eliminar el registro?",
-   "Confirmar eliminación",
-   MessageBoxButtons.YesNo,
-   MessageBoxIcon.Warning
-);
+            "¿Está seguro que desea eliminar el registro?",
+            "Confirmar eliminación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning);
 
             if (resultado == DialogResult.Yes)
             {
-
+                using (db_supermercadoEntities db = new db_supermercadoEntities() )
+                {
+                    var usuario = db.tb_usario.Find(idUsuario);
+                    if (usuario != null)
+                    {
+                        db.tb_usario.Remove(usuario);
+                        db.SaveChanges();
+                        MessageBox.Show("Usuario eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

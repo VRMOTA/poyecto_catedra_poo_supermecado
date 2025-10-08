@@ -1,9 +1,12 @@
-﻿using poyecto_catedra_poo_supermecado.CustomCards;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomCards;
 using poyecto_catedra_poo_supermecado.CustomModals;
 using project_supermercado;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado
@@ -21,41 +24,40 @@ namespace poyecto_catedra_poo_supermecado
             int columnas = 2;
             int espacio = 10; // Espacio entre cartas
 
-            var usuarios = new List<(string nombre, string correo)>
-            {
-                ("Juan Pérez", "juan.perez@email.com"),
-                ("Ana Gómez", "ana.gomez@email.com"),
-                ("Carlos Ruiz", "carlos.ruiz@email.com"),
-                ("María López", "maria.lopez@email.com"),
-                ("Pedro Sánchez", "pedro.sanchez@email.com"),
-                ("Lucía Torres", "lucia.torres@email.com"),
-                ("Miguel Castro", "miguel.castro@email.com"),
-                ("Sofía Ramos", "sofia.ramos@email.com"),
-                ("Diego Fernández", "diego.fernandez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com"),
-                ("Laura Martínez", "laura.martinez@email.com")
-            };
+            // Declaramos la lista fuera del using para poder usarla después
+            List<dynamic> listaUsuarios;
 
+            using (db_supermercadoEntities db = new db_supermercadoEntities())
+            {
+                // Seleccionar datos con Entity Framework
+                listaUsuarios = db.tb_usario
+                    .Select(u => new
+                    {
+                        u.id_usuario,
+                        u.nombre,
+                        u.correo,
+                        u.nivel_usario
+                    }).ToList<dynamic>(); // Convertimos a lista dinámica
+            }
+
+            // Limpiar y preparar el panel
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
 
-            Size cardSize = new Size(495, 107); // Tamaño predeterminado de las tarjetas
+            Size cardSize = new Size(495, 107); // Tamaño de las tarjetas
 
-            for (int i = 0; i < usuarios.Count; i++)
+            // Crear y posicionar las tarjetas
+            for (int i = 0; i < listaUsuarios.Count; i++)
             {
+                var usuario = listaUsuarios[i]; // Obtenemos el usuario actual
+
                 var card = new card_usuarios
                 {
-                    NombreUsuario = usuarios[i].nombre,
-                    CorreoUsuario = usuarios[i].correo,
+                    IDUsuario = usuario.id_usuario,
+                    NombreUsuario = usuario.nombre,
+                    CorreoUsuario = usuario.correo,
                     Margin = new Padding(espacio),
-                    Size = cardSize // Asignar tamaño predeterminado
+                    Size = cardSize
                 };
 
                 int fila = i / columnas;
@@ -67,12 +69,14 @@ namespace poyecto_catedra_poo_supermecado
                 panel_cards.Controls.Add(card);
             }
 
-            int filasNecesarias = (int)Math.Ceiling((double)usuarios.Count / columnas);
+            // Ajustar el área de scroll
+            int filasNecesarias = (int)Math.Ceiling((double)listaUsuarios.Count / columnas);
             panel_cards.AutoScrollMinSize = new Size(
                 columnas * (cardSize.Width + espacio),
                 filasNecesarias * (cardSize.Height + espacio)
             );
         }
+
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
