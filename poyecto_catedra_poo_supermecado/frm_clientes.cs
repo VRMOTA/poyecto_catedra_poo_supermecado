@@ -141,7 +141,7 @@ namespace poyecto_catedra_poo_supermecado
         {
             try
             {
-                using (db_supermercadoEntities db = new db_supermercadoEntities())
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     // Intenta acceder a una tabla, por ejemplo, la tabla Clientes
                     int total = db.tb_usario.Count();

@@ -24,7 +24,7 @@ namespace poyecto_catedra_poo_supermecado.Conexion
         public string nombre { get; set; }
         public string correo { get; set; }
         public string clave { get; set; }
-        public bool nivel_usario { get; set; }
+        public Nullable<bool> nivel_usario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_ventas> tb_ventas { get; set; }

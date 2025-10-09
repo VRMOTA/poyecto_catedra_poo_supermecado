@@ -62,7 +62,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities db = new db_supermercadoEntities())
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     var categoria = db.tb_categorias.Find(id_categoria);
                     if (categoria != null)
@@ -82,7 +82,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         //Recarga los datos actualizados del distribuidor
         public void CargarDatosCategoria()
         {
-            using (db_supermercadoEntities db = new db_supermercadoEntities())
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 var categoria = db.tb_categorias.Find(id_categoria);
                 if (categoria != null)

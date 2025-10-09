@@ -31,7 +31,7 @@ namespace poyecto_catedra_poo_supermecado
             // Declaramos la lista fuera del using para poder usarla después
             List<dynamic> listaCat;
 
-            using (db_supermercadoEntities db = new db_supermercadoEntities())
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Seleccionar datos con Entity Framework
                 listaCat = db.tb_categorias

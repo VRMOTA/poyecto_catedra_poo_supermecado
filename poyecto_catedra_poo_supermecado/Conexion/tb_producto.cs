@@ -22,8 +22,8 @@ namespace poyecto_catedra_poo_supermecado.Conexion
     
         public int id_prod { get; set; }
         public string nombre { get; set; }
-        public decimal precio { get; set; }
-        public int stock { get; set; }
+        public Nullable<decimal> precio { get; set; }
+        public Nullable<int> stock { get; set; }
         public byte[] imangen { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> id_distriubidores { get; set; }

@@ -58,41 +58,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion\conexion.Context.cs">
+    <Compile Include="Conexion\Conexio.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexion.Context.tt</DependentUpon>
+      <DependentUpon>Conexio.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Conexion\conexion.cs">
+    <Compile Include="Conexion\Conexio.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
-    <Compile Include="Conexion\conexion.Designer.cs">
+    <Compile Include="Conexion\Conexio.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexion.edmx</DependentUpon>
+      <DependentUpon>Conexio.edmx</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_carrito.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_categorias.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_distribuidores.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_producto.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_promociones.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_usario.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_ventas.cs">
-      <DependentUpon>conexion.tt</DependentUpon>
+      <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomCards\card_categories.cs">
       <SubType>UserControl</SubType>
@@ -344,12 +344,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="Conexion\conexion.edmx">
+    <EntityDeploy Include="Conexion\Conexio.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>conexion.Designer.cs</LastGenOutput>
+      <LastGenOutput>Conexio.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Conexion\conexion.edmx.diagram">
-      <DependentUpon>conexion.edmx</DependentUpon>
+    <None Include="Conexion\Conexio.edmx.diagram">
+      <DependentUpon>Conexio.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -371,15 +371,15 @@
     <None Include="Resources\rice.jpg" />
     <None Include="Resources\soda.jpg" />
     <None Include="Resources\agua.jpg" />
-    <Content Include="Conexion\conexion.Context.tt">
+    <Content Include="Conexion\Conexio.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>conexion.edmx</DependentUpon>
-      <LastGenOutput>conexion.Context.cs</LastGenOutput>
+      <DependentUpon>Conexio.edmx</DependentUpon>
+      <LastGenOutput>Conexio.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Conexion\conexion.tt">
+    <Content Include="Conexion\Conexio.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>conexion.edmx</DependentUpon>
-      <LastGenOutput>conexion.cs</LastGenOutput>
+      <DependentUpon>Conexio.edmx</DependentUpon>
+      <LastGenOutput>Conexio.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\background.png" />
     <None Include="Resources\yogyur.jpg" />

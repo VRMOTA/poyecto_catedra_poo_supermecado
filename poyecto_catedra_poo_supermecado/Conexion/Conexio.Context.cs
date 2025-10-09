@@ -13,10 +13,10 @@ namespace poyecto_catedra_poo_supermecado.Conexion
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_supermercadoEntities : DbContext
+    public partial class db_supermercadoEntities1 : DbContext
     {
-        public db_supermercadoEntities()
-            : base("name=db_supermercadoEntities")
+        public db_supermercadoEntities1()
+            : base("name=db_supermercadoEntities1")
         {
         }
     

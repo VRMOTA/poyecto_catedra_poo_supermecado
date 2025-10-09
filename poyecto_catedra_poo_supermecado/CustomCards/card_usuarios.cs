@@ -80,7 +80,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities db = new db_supermercadoEntities() )
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1() )
                 {
                     var usuario = db.tb_usario.Find(idUsuario);
                     if (usuario != null)

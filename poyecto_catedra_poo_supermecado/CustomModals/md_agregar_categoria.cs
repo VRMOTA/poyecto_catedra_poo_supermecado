@@ -44,7 +44,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 return;
             }
 
-            using (db_supermercadoEntities db = new db_supermercadoEntities())
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Si es un registro nuevo
                 if (ID_Categories == 0)
