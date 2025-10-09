@@ -36,16 +36,14 @@
             this.btn_categoria = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_carrito = new System.Windows.Forms.Button();
-            this.pnl_consultas = new System.Windows.Forms.Panel();
-            this.btn_consultas = new System.Windows.Forms.Button();
             this.pnl_salir = new System.Windows.Forms.Panel();
             this.btn_salir = new System.Windows.Forms.Button();
             this.panel_control = new System.Windows.Forms.Panel();
+            this.pnl_consultas = new System.Windows.Forms.Panel();
             this.navegador.SuspendLayout();
             this.pnl_menu.SuspendLayout();
             this.pnl_catalogo.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.pnl_consultas.SuspendLayout();
             this.pnl_salir.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,33 +141,6 @@
             this.btn_carrito.UseVisualStyleBackColor = false;
             this.btn_carrito.Click += new System.EventHandler(this.btn_carrito_Click);
             // 
-            // pnl_consultas
-            // 
-            this.pnl_consultas.Controls.Add(this.btn_consultas);
-            this.pnl_consultas.Location = new System.Drawing.Point(3, 309);
-            this.pnl_consultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.pnl_consultas.Name = "pnl_consultas";
-            this.pnl_consultas.Size = new System.Drawing.Size(286, 60);
-            this.pnl_consultas.TabIndex = 1;
-            // 
-            // btn_consultas
-            // 
-            this.btn_consultas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_consultas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_consultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_consultas.ForeColor = System.Drawing.Color.White;
-            this.btn_consultas.Image = ((System.Drawing.Image)(resources.GetObject("btn_consultas.Image")));
-            this.btn_consultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_consultas.Location = new System.Drawing.Point(-5, -19);
-            this.btn_consultas.Name = "btn_consultas";
-            this.btn_consultas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btn_consultas.Size = new System.Drawing.Size(331, 101);
-            this.btn_consultas.TabIndex = 5;
-            this.btn_consultas.Text = "        Consultas";
-            this.btn_consultas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_consultas.UseVisualStyleBackColor = false;
-            this.btn_consultas.Click += new System.EventHandler(this.btn_consultas_Click);
-            // 
             // pnl_salir
             // 
             this.pnl_salir.Controls.Add(this.btn_salir);
@@ -205,6 +176,14 @@
             this.panel_control.Size = new System.Drawing.Size(1278, 911);
             this.panel_control.TabIndex = 2;
             // 
+            // pnl_consultas
+            // 
+            this.pnl_consultas.Location = new System.Drawing.Point(3, 309);
+            this.pnl_consultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.pnl_consultas.Name = "pnl_consultas";
+            this.pnl_consultas.Size = new System.Drawing.Size(286, 60);
+            this.pnl_consultas.TabIndex = 1;
+            // 
             // frm_dashboard_cajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,7 +199,6 @@
             this.pnl_menu.ResumeLayout(false);
             this.pnl_catalogo.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.pnl_consultas.ResumeLayout(false);
             this.pnl_salir.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -235,10 +213,9 @@
         protected System.Windows.Forms.Button btn_categoria;
         protected System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_carrito;
-        protected System.Windows.Forms.Panel pnl_consultas;
-        private System.Windows.Forms.Button btn_consultas;
         private System.Windows.Forms.Panel pnl_salir;
         private System.Windows.Forms.Button btn_salir;
         private System.Windows.Forms.Panel panel_control;
+        protected System.Windows.Forms.Panel pnl_consultas;
     }
 }

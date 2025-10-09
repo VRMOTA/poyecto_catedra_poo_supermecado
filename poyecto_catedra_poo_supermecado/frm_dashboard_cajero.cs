@@ -23,7 +23,6 @@ namespace poyecto_catedra_poo_supermecado
             btn_categoria.BackColor = Color.FromArgb(204, 0, 0);
             btn_menu.FlatAppearance.BorderColor = Color.FromArgb(204, 0, 0);
             btn_salir.BackColor = Color.FromArgb(204, 0, 0);
-            btn_consultas.BackColor = Color.FromArgb(204, 0, 0);
         }
 
         private void btn_salir_Click(object sender, EventArgs e)

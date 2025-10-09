@@ -36,7 +36,6 @@
             this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
             this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
             this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
-            this.buttonMaxing3 = new Catedra.CustomControls.ButtonMaxing();
             this.lbdescriccion = new System.Windows.Forms.Label();
             this.lbstock = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -107,7 +106,7 @@
             this.textboxMaxing1.PasswordChar = false;
             this.textboxMaxing1.PlaceholderColor = System.Drawing.Color.Gray;
             this.textboxMaxing1.PlaceholderText = "Buscar";
-            this.textboxMaxing1.Size = new System.Drawing.Size(1079, 35);
+            this.textboxMaxing1.Size = new System.Drawing.Size(1079, 40);
             this.textboxMaxing1.TabIndex = 13;
             this.textboxMaxing1.Texts = "";
             this.textboxMaxing1.UnderlinedStyle = true;
@@ -159,7 +158,6 @@
             // 
             this.panelRedondeado1.BackColor = System.Drawing.Color.White;
             this.panelRedondeado1.ColorBorde = System.Drawing.Color.White;
-            this.panelRedondeado1.Controls.Add(this.buttonMaxing3);
             this.panelRedondeado1.Controls.Add(this.lbdescriccion);
             this.panelRedondeado1.Controls.Add(this.lbstock);
             this.panelRedondeado1.Controls.Add(this.label2);
@@ -174,26 +172,6 @@
             this.panelRedondeado1.Size = new System.Drawing.Size(376, 813);
             this.panelRedondeado1.TabIndex = 10;
             // 
-            // buttonMaxing3
-            // 
-            this.buttonMaxing3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing3.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing3.BorderRadius = 8;
-            this.buttonMaxing3.BorderSize = 0;
-            this.buttonMaxing3.FlatAppearance.BorderSize = 0;
-            this.buttonMaxing3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMaxing3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMaxing3.ForeColor = System.Drawing.Color.White;
-            this.buttonMaxing3.Location = new System.Drawing.Point(25, 769);
-            this.buttonMaxing3.Name = "buttonMaxing3";
-            this.buttonMaxing3.Size = new System.Drawing.Size(337, 31);
-            this.buttonMaxing3.TabIndex = 22;
-            this.buttonMaxing3.Text = "Consultar";
-            this.buttonMaxing3.TextColor = System.Drawing.Color.White;
-            this.buttonMaxing3.UseVisualStyleBackColor = false;
-            this.buttonMaxing3.Click += new System.EventHandler(this.buttonMaxing3_Click);
-            // 
             // lbdescriccion
             // 
             this.lbdescriccion.AutoSize = true;
@@ -201,7 +179,7 @@
             this.lbdescriccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbdescriccion.Location = new System.Drawing.Point(21, 378);
             this.lbdescriccion.Name = "lbdescriccion";
-            this.lbdescriccion.Size = new System.Drawing.Size(110, 24);
+            this.lbdescriccion.Size = new System.Drawing.Size(141, 29);
             this.lbdescriccion.TabIndex = 21;
             this.lbdescriccion.Text = "Descripcion";
             // 
@@ -212,7 +190,7 @@
             this.lbstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbstock.Location = new System.Drawing.Point(342, 334);
             this.lbstock.Name = "lbstock";
-            this.lbstock.Size = new System.Drawing.Size(20, 24);
+            this.lbstock.Size = new System.Drawing.Size(26, 29);
             this.lbstock.TabIndex = 20;
             this.lbstock.Text = "0";
             // 
@@ -223,7 +201,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 334);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 24);
+            this.label2.Size = new System.Drawing.Size(73, 29);
             this.label2.TabIndex = 19;
             this.label2.Text = "Stock";
             // 
@@ -236,7 +214,7 @@
             this.lblPrecioDescuento.ForeColor = System.Drawing.Color.Red;
             this.lblPrecioDescuento.Location = new System.Drawing.Point(307, 286);
             this.lblPrecioDescuento.Name = "lblPrecioDescuento";
-            this.lblPrecioDescuento.Size = new System.Drawing.Size(55, 24);
+            this.lblPrecioDescuento.Size = new System.Drawing.Size(71, 29);
             this.lblPrecioDescuento.TabIndex = 18;
             this.lblPrecioDescuento.Text = "$0.00";
             // 
@@ -248,7 +226,7 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(21, 286);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 24);
+            this.label1.Size = new System.Drawing.Size(134, 29);
             this.label1.TabIndex = 17;
             this.label1.Text = "Descuento:";
             // 
@@ -259,7 +237,7 @@
             this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecio.Location = new System.Drawing.Point(307, 243);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(55, 24);
+            this.lblPrecio.Size = new System.Drawing.Size(71, 29);
             this.lblPrecio.TabIndex = 16;
             this.lblPrecio.Text = "$0.00";
             // 
@@ -270,7 +248,7 @@
             this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.Location = new System.Drawing.Point(21, 243);
             this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(160, 24);
+            this.lblProducto.Size = new System.Drawing.Size(204, 29);
             this.lblProducto.TabIndex = 15;
             this.lblProducto.Text = "Nombre Producto";
             // 
@@ -317,7 +295,6 @@
         private CustomCards.card_producto_menu card;
         private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
         private project_supermercado.CustomControls.PanelRedondeado panelRedondeado1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing3;
         private System.Windows.Forms.Label lbdescriccion;
         private System.Windows.Forms.Label lbstock;
         private System.Windows.Forms.Label label2;
