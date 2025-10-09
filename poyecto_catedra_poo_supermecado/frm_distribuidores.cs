@@ -1,4 +1,5 @@
-﻿using poyecto_catedra_poo_supermecado.CustomCards;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomCards;
 using poyecto_catedra_poo_supermecado.CustomModals;
 using project_supermercado;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,27 +30,42 @@ namespace poyecto_catedra_poo_supermecado
             int altoCarta = 204;  // Ajusta según el tamaño real de card_distribuidores
             int espacio = 10;     // Espacio entre cartas
 
-            // Ejemplo: lista de distribuidores (puedes reemplazar por tu fuente de datos real)
-            var distribuidores = new List<(string nombre, string categoria, Image imagen)>
-        {
-            ("La Constancia " , "Alimentos", Properties.Resources.laconstancia),
-            ("Scott", "Bebidas", Properties.Resources.scoot),
-            ("Morazan", "Limpieza", Properties.Resources.images),
-            ("El mago", "Higiene", Properties.Resources.elmago),
-            ("Distribuidora Salvadoreña", "Electrónica", Properties.Resources.distsal),
-            ("Siman", "Ropa", Properties.Resources.siman),
-        };
+            List<dynamic> lista_distribuidores;
+
+            using (db_supermercadoEntities db = new db_supermercadoEntities())
+            {
+                // Seleccionar datos con Entity Framework
+                lista_distribuidores = db.tb_distribuidores
+                    .Select(d => new
+                    {
+                        d.id_distriubidores,
+                        d.nombre,
+                        d.logo
+                    }).ToList<dynamic>(); // Convertimos a lista dinámica
+            }
 
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
 
-            for (int i = 0; i < distribuidores.Count; i++)
+            for (int i = 0; i < lista_distribuidores.Count; i++)
             {
+                var distribuidor = lista_distribuidores[i]; // Obtenemos el distribuidor actual
+
+                // Convertir byte[] a Image
+                Image imagenDistribuidor = null;
+                if (distribuidor.logo != null)
+                {
+                    using (MemoryStream ms = new MemoryStream(distribuidor.logo))
+                    {
+                        imagenDistribuidor = Image.FromStream(ms);
+                    }
+                }
+
                 var card = new card_distribuidores
                 {
-                    NombreDistribuidora = distribuidores[i].nombre,
-                    Categoria = distribuidores[i].categoria,
-                    ImagenDistribuidora = distribuidores[i].imagen,
+                    IDDistribuidor = distribuidor.id_distriubidores,
+                    NombreDistribuidora = distribuidor.nombre,
+                    ImagenDistribuidora = imagenDistribuidor,
                     Width = anchoCarta,
                     Height = altoCarta,
                     Margin = new Padding(espacio)
@@ -63,7 +80,7 @@ namespace poyecto_catedra_poo_supermecado
                 panel_cards.Controls.Add(card);
             }
 
-            int filasNecesarias = (int)Math.Ceiling((double)distribuidores.Count / columnas);
+            int filasNecesarias = (int)Math.Ceiling((double)lista_distribuidores.Count / columnas);
             panel_cards.AutoScrollMinSize = new Size(
                 columnas * (anchoCarta + espacio),
                 filasNecesarias * (altoCarta + espacio)

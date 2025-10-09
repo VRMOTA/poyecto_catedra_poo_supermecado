@@ -26,12 +26,12 @@ namespace project_supermercado
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            if(txtClave.Texts=="clave123" && txtCorreo.Texts == "cajero@root.com")
+            if(txtClave.Texts=="123" && txtCorreo.Texts == "123")
             {
                 this.Hide();
                 new frm_dashboard_cajero().ShowDialog();
             }
-            else if (txtClave.Texts == "clave123" && txtCorreo.Texts == "admin@root.com")
+            else if (txtClave.Texts == "456" && txtCorreo.Texts == "456")
             {
                 this.Hide();
                 new frm_dashboard_admin().ShowDialog();

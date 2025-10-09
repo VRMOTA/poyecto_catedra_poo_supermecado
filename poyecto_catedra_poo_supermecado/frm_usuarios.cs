@@ -1,5 +1,4 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
-using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomCards;
 using poyecto_catedra_poo_supermecado.CustomModals;
 using project_supermercado;

@@ -31,13 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_agregar_distribuidor));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pbProducto = new System.Windows.Forms.PictureBox();
             this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
             this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.textboxMaxing2 = new Catedra.CustomControls.TextboxMaxing();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_nombre = new Catedra.CustomControls.TextboxMaxing();
             this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.pbProducto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,21 +53,21 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(409, 77);
+            this.label2.Location = new System.Drawing.Point(409, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(294, 29);
             this.label2.TabIndex = 34;
             this.label2.Text = "Nombre del Distruibidor";
             // 
-            // label3
+            // pbProducto
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(409, 182);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(289, 29);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Categoria de Productos";
+            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
+            this.pbProducto.Location = new System.Drawing.Point(30, 77);
+            this.pbProducto.Name = "pbProducto";
+            this.pbProducto.Size = new System.Drawing.Size(352, 240);
+            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProducto.TabIndex = 31;
+            this.pbProducto.TabStop = false;
             // 
             // btn_cancelar
             // 
@@ -82,7 +80,7 @@
             this.btn_cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancelar.ForeColor = System.Drawing.Color.White;
-            this.btn_cancelar.Location = new System.Drawing.Point(646, 336);
+            this.btn_cancelar.Location = new System.Drawing.Point(646, 282);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(157, 35);
             this.btn_cancelar.TabIndex = 39;
@@ -101,55 +99,35 @@
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(483, 336);
+            this.btnActualizar.Location = new System.Drawing.Point(483, 282);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(157, 35);
             this.btnActualizar.TabIndex = 38;
             this.btnActualizar.Text = "Crear";
             this.btnActualizar.TextColor = System.Drawing.Color.White;
             this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
-            // textboxMaxing2
+            // txt_nombre
             // 
-            this.textboxMaxing2.BackColor = System.Drawing.Color.White;
-            this.textboxMaxing2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing2.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing2.BorderSize = 7;
-            this.textboxMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing2.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing2.Location = new System.Drawing.Point(414, 215);
-            this.textboxMaxing2.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing2.Multiline = false;
-            this.textboxMaxing2.Name = "textboxMaxing2";
-            this.textboxMaxing2.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing2.PasswordChar = false;
-            this.textboxMaxing2.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing2.PlaceholderText = "";
-            this.textboxMaxing2.Size = new System.Drawing.Size(389, 35);
-            this.textboxMaxing2.TabIndex = 36;
-            this.textboxMaxing2.Texts = "";
-            this.textboxMaxing2.UnderlinedStyle = true;
-            // 
-            // textboxMaxing1
-            // 
-            this.textboxMaxing1.BackColor = System.Drawing.Color.White;
-            this.textboxMaxing1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing1.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing1.BorderSize = 7;
-            this.textboxMaxing1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing1.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing1.Location = new System.Drawing.Point(414, 110);
-            this.textboxMaxing1.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing1.Multiline = false;
-            this.textboxMaxing1.Name = "textboxMaxing1";
-            this.textboxMaxing1.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing1.PasswordChar = false;
-            this.textboxMaxing1.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing1.PlaceholderText = "";
-            this.textboxMaxing1.Size = new System.Drawing.Size(389, 35);
-            this.textboxMaxing1.TabIndex = 35;
-            this.textboxMaxing1.Texts = "";
-            this.textboxMaxing1.UnderlinedStyle = true;
+            this.txt_nombre.BackColor = System.Drawing.Color.White;
+            this.txt_nombre.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txt_nombre.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txt_nombre.BorderSize = 7;
+            this.txt_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nombre.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_nombre.Location = new System.Drawing.Point(414, 114);
+            this.txt_nombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_nombre.Multiline = false;
+            this.txt_nombre.Name = "txt_nombre";
+            this.txt_nombre.Padding = new System.Windows.Forms.Padding(7);
+            this.txt_nombre.PasswordChar = false;
+            this.txt_nombre.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txt_nombre.PlaceholderText = "";
+            this.txt_nombre.Size = new System.Drawing.Size(389, 35);
+            this.txt_nombre.TabIndex = 35;
+            this.txt_nombre.Texts = "";
+            this.txt_nombre.UnderlinedStyle = true;
             // 
             // buttonMaxing1
             // 
@@ -173,16 +151,7 @@
             this.buttonMaxing1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonMaxing1.TextColor = System.Drawing.Color.White;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
-            // 
-            // pbProducto
-            // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
-            this.pbProducto.Location = new System.Drawing.Point(30, 77);
-            this.pbProducto.Name = "pbProducto";
-            this.pbProducto.Size = new System.Drawing.Size(352, 240);
-            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProducto.TabIndex = 31;
-            this.pbProducto.TabStop = false;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
             // md_agregar_distribuidor
             // 
@@ -191,9 +160,7 @@
             this.ClientSize = new System.Drawing.Size(848, 411);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btnActualizar);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textboxMaxing2);
-            this.Controls.Add(this.textboxMaxing1);
+            this.Controls.Add(this.txt_nombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.label1);
@@ -213,9 +180,7 @@
         private System.Windows.Forms.Label label1;
         private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
         private System.Windows.Forms.Label label2;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing2;
-        private System.Windows.Forms.Label label3;
+        private Catedra.CustomControls.TextboxMaxing txt_nombre;
         private Catedra.CustomControls.ButtonMaxing btnActualizar;
         private Catedra.CustomControls.ButtonMaxing btn_cancelar;
     }

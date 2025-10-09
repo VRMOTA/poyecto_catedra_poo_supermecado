@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.lblCategoria = new System.Windows.Forms.Label();
             this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
             this.lblDistribuidora = new System.Windows.Forms.Label();
             this.pbDistribuidora = new System.Windows.Forms.PictureBox();
@@ -55,17 +54,6 @@
             this.buttonMaxing2.TextColor = System.Drawing.Color.White;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
             this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
-            // 
-            // lblCategoria
-            // 
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblCategoria.Location = new System.Drawing.Point(239, 62);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(66, 16);
-            this.lblCategoria.TabIndex = 23;
-            this.lblCategoria.Text = "Categoria";
             // 
             // buttonMaxing1
             // 
@@ -112,7 +100,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonMaxing2);
-            this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.lblDistribuidora);
             this.Controls.Add(this.pbDistribuidora);
@@ -127,7 +114,6 @@
         #endregion
 
         private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
-        private System.Windows.Forms.Label lblCategoria;
         private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
         private System.Windows.Forms.Label lblDistribuidora;
         private System.Windows.Forms.PictureBox pbDistribuidora;
