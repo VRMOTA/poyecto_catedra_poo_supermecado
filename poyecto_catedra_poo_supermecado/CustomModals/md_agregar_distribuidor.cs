@@ -130,6 +130,11 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void md_agregar_distribuidor_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

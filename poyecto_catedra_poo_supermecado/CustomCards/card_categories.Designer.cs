@@ -1,6 +1,6 @@
 ﻿namespace poyecto_catedra_poo_supermecado.CustomCards
 {
-    partial class card_consultas
+    partial class card_categories
     {
         /// <summary> 
         /// Required designer variable.

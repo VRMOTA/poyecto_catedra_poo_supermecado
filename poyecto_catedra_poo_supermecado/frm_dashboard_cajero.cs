@@ -41,7 +41,7 @@ namespace poyecto_catedra_poo_supermecado
 
         private void btn_consultas_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_consultas_cajero());
+            abrir_panel(new frm_categories());
         }
 
         private void btn_carrito_Click(object sender, EventArgs e)

@@ -182,7 +182,7 @@
             this.btnConsultas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnConsultas.Size = new System.Drawing.Size(286, 60);
             this.btnConsultas.TabIndex = 10;
-            this.btnConsultas.Text = "   Consultas";
+            this.btnConsultas.Text = "   Categorias";
             this.btnConsultas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultas.UseVisualStyleBackColor = false;
             this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);

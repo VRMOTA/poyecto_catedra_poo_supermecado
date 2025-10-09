@@ -94,11 +94,11 @@
     <Compile Include="Conexion\tb_ventas.cs">
       <DependentUpon>conexion.tt</DependentUpon>
     </Compile>
-    <Compile Include="CustomCards\card_consultas.cs">
+    <Compile Include="CustomCards\card_categories.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomCards\card_consultas.Designer.cs">
-      <DependentUpon>card_consultas.cs</DependentUpon>
+    <Compile Include="CustomCards\card_categories.Designer.cs">
+      <DependentUpon>card_categories.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomCards\card_distribuidores.cs">
       <SubType>UserControl</SubType>
@@ -154,6 +154,12 @@
     <Compile Include="CustomModals\md_actualizar_carrito.Designer.cs">
       <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomModals\md_agregar_categoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomModals\md_agregar_categoria.Designer.cs">
+      <DependentUpon>md_agregar_categoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomModals\md_agregar_distribuidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,11 +203,11 @@
     <Compile Include="frm_catalogo_cajero.Designer.cs">
       <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_consultas_cajero.cs">
+    <Compile Include="frm_categories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_consultas_cajero.Designer.cs">
-      <DependentUpon>frm_consultas_cajero.cs</DependentUpon>
+    <Compile Include="frm_categories.Designer.cs">
+      <DependentUpon>frm_categories.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_dashboard_admin.cs">
       <SubType>Form</SubType>
@@ -253,8 +259,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomCards\card_consultas.resx">
-      <DependentUpon>card_consultas.cs</DependentUpon>
+    <EmbeddedResource Include="CustomCards\card_categories.resx">
+      <DependentUpon>card_categories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomCards\card_distribuidores.resx">
       <DependentUpon>card_distribuidores.cs</DependentUpon>
@@ -277,6 +283,9 @@
     <EmbeddedResource Include="CustomModals\md_actualizar_carrito.resx">
       <DependentUpon>md_actualizar_carrito.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomModals\md_agregar_categoria.resx">
+      <DependentUpon>md_agregar_categoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomModals\md_agregar_distribuidor.resx">
       <DependentUpon>md_agregar_distribuidor.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,8 +307,8 @@
     <EmbeddedResource Include="frm_catalogo_cajero.resx">
       <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_consultas_cajero.resx">
-      <DependentUpon>frm_consultas_cajero.cs</DependentUpon>
+    <EmbeddedResource Include="frm_categories.resx">
+      <DependentUpon>frm_categories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_dashboard_admin.resx">
       <DependentUpon>frm_dashboard_admin.cs</DependentUpon>
