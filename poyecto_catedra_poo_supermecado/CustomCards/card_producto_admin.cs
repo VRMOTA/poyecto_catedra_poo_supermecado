@@ -90,12 +90,12 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             bool mostrarDescuento = _descuento.HasValue && _descuento > 0;
 
-            if (lblDescuento != null)
+            if (lb_stock != null)
             {
-                lblDescuento.Visible = mostrarDescuento;
+                lb_stock.Visible = mostrarDescuento;
                 if (mostrarDescuento)
                 {
-                    lblDescuento.Text = $"{_descuento.Value}%";
+                    lb_stock.Text = $"{_descuento.Value}%";
                 }
             }
 

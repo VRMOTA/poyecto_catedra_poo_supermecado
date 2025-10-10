@@ -25,5 +25,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             label1.Text = labelText;
             btnActualizar.Text = buttonText;
         }
+
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
