@@ -20,7 +20,7 @@ namespace poyecto_catedra_poo_supermecado.Conexion
             this.tb_producto = new HashSet<tb_producto>();
         }
     
-        public int id_cat { get; set; }
+        public int id_categoria { get; set; }
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

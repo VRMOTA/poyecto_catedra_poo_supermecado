@@ -14,12 +14,22 @@ namespace poyecto_catedra_poo_supermecado.Conexion
     
     public partial class tb_ventas
     {
-        public int id_ventas { get; set; }
-        public string nombre_cliente { get; set; }
-        public Nullable<int> id_carrito { get; set; }
-        public Nullable<int> id_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_ventas()
+        {
+            this.tb_detalle_venta = new HashSet<tb_detalle_venta>();
+        }
     
-        public virtual tb_carrito tb_carrito { get; set; }
-        public virtual tb_usario tb_usario { get; set; }
+        public int id_venta { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> id_usuario { get; set; }
+        public string nombre_cliente { get; set; }
+        public Nullable<decimal> total_venta { get; set; }
+        public Nullable<decimal> total_descuento { get; set; }
+        public string estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_detalle_venta> tb_detalle_venta { get; set; }
+        public virtual tb_usuario tb_usuario { get; set; }
     }
 }

@@ -29,13 +29,13 @@ namespace poyecto_catedra_poo_supermecado
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Seleccionar datos con Entity Framework
-                listaUsuarios = db.tb_usario
+                listaUsuarios = db.tb_usuario
                     .Select(u => new
                     {
                         u.id_usuario,
                         u.nombre,
                         u.correo,
-                        u.nivel_usario
+                        // COMBO BOX CAMBIAR NIVEL
                     }).ToList<dynamic>(); // Convertimos a lista dinámica
             }
 

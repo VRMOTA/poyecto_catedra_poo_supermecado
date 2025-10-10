@@ -73,10 +73,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Conexio.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Conexion\tb_carrito.cs">
+    <Compile Include="Conexion\tb_categorias.cs">
       <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
-    <Compile Include="Conexion\tb_categorias.cs">
+    <Compile Include="Conexion\tb_detalle_venta.cs">
       <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_distribuidores.cs">
@@ -88,7 +88,7 @@
     <Compile Include="Conexion\tb_promociones.cs">
       <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
-    <Compile Include="Conexion\tb_usario.cs">
+    <Compile Include="Conexion\tb_usuario.cs">
       <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
     <Compile Include="Conexion\tb_ventas.cs">
@@ -132,6 +132,12 @@
     </Compile>
     <Compile Include="CustomCards\RoundedControlBase.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_prom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomCards\card_prom.Designer.cs">
+      <DependentUpon>card_prom.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\BorderMaxing.cs">
       <SubType>Component</SubType>
@@ -245,6 +251,12 @@
     <Compile Include="frm_productos.Designer.cs">
       <DependentUpon>frm_productos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_promociones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_promociones.Designer.cs">
+      <DependentUpon>frm_promociones.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_signin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomCards\card_usuarios.resx">
       <DependentUpon>card_usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomCards\card_prom.resx">
+      <DependentUpon>card_prom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
@@ -327,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_productos.resx">
       <DependentUpon>frm_productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_promociones.resx">
+      <DependentUpon>frm_promociones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_signin.resx">
       <DependentUpon>frm_signin.cs</DependentUpon>

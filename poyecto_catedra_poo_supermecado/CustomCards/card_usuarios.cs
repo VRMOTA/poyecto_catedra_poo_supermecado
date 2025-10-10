@@ -82,10 +82,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1() )
                 {
-                    var usuario = db.tb_usario.Find(idUsuario);
+                    var usuario = db.tb_usuario.Find(idUsuario);
                     if (usuario != null)
                     {
-                        db.tb_usario.Remove(usuario);
+                        db.tb_usuario.Remove(usuario);
                         db.SaveChanges();
                         MessageBox.Show("Usuario eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

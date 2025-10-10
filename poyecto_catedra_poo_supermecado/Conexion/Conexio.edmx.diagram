@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4154df97d0744182ab1075d8290d96a7" Name="Diagram1">
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_carrito" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_categorias" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_distribuidores" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_producto" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_promociones" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_usario" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_supermercadoModel.tb_ventas" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="db_supermercadoModel.FK_carrito" ManuallyRouted="false" />
-        <AssociationConnector Association="db_supermercadoModel.FK_prod" ManuallyRouted="false" />
-        <AssociationConnector Association="db_supermercadoModel.FK_cat" ManuallyRouted="false" />
-        <AssociationConnector Association="db_supermercadoModel.FK_distr" ManuallyRouted="false" />
-        <AssociationConnector Association="db_supermercadoModel.FK_prom" ManuallyRouted="false" />
-        <AssociationConnector Association="db_supermercadoModel.FK_usuario" ManuallyRouted="false" />
+      <Diagram DiagramId="4154df97d0744182ab1075d8290d96a7" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_categorias" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_detalle_venta" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_distribuidores" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_producto" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_promociones" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_usuario" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="db_supermercadoModel.tb_ventas" Width="1.5" PointX="3" PointY="7.125" />
+        <AssociationConnector Association="db_supermercadoModel.FK_categoria" />
+        <AssociationConnector Association="db_supermercadoModel.FK_producto_detalle" />
+        <AssociationConnector Association="db_supermercadoModel.FK_venta" />
+        <AssociationConnector Association="db_supermercadoModel.FK_distribuidor" />
+        <AssociationConnector Association="db_supermercadoModel.FK_producto_promo" />
+        <AssociationConnector Association="db_supermercadoModel.FK_usuario_venta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

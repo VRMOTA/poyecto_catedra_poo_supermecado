@@ -73,5 +73,10 @@ namespace poyecto_catedra_poo_supermecado
         {
             Application.Exit();
         }
+
+        private void btnPropiedades_Click(object sender, EventArgs e)
+        {
+            abrir_panel(new frm_promociones());
+        }
     }
 }

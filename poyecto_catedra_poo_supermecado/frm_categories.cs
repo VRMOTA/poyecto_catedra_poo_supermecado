@@ -37,7 +37,7 @@ namespace poyecto_catedra_poo_supermecado
                 listaCat = db.tb_categorias
                     .Select(u => new
                     {
-                        u.id_cat,
+                        u.id_categoria,
                         u.nombre,
                     }).ToList<dynamic>(); // Convertimos a lista dinámica
             }

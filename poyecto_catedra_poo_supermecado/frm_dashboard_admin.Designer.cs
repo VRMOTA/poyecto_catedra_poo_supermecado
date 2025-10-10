@@ -30,23 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dashboard_admin));
             this.navegador = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
-            this.btnEmpleados = new System.Windows.Forms.Button();
-            this.btnDistribuidores = new System.Windows.Forms.Button();
-            this.btnConsultas = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel_control = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPropiedades = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnConsultas = new System.Windows.Forms.Button();
+            this.btnDistribuidores = new System.Windows.Forms.Button();
+            this.btnEmpleados = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.navegador.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -57,43 +56,57 @@
             // navegador
             // 
             this.navegador.BackColor = System.Drawing.Color.DarkRed;
-            this.navegador.Controls.Add(this.button1);
-            this.navegador.Controls.Add(this.btnProductos);
-            this.navegador.Controls.Add(this.btnEmpleados);
-            this.navegador.Controls.Add(this.btnDistribuidores);
-            this.navegador.Controls.Add(this.btnConsultas);
-            this.navegador.Controls.Add(this.btnSalir);
-            this.navegador.Controls.Add(this.pictureBox5);
-            this.navegador.Controls.Add(this.pictureBox7);
+            this.navegador.Controls.Add(this.panel1);
             this.navegador.Dock = System.Windows.Forms.DockStyle.Left;
             this.navegador.Location = new System.Drawing.Point(0, 0);
             this.navegador.Name = "navegador";
             this.navegador.Size = new System.Drawing.Size(289, 911);
             this.navegador.TabIndex = 1;
             // 
-            // button1
+            // panel_control
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkRed;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 30);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 30, 3, 30);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(286, 60);
-            this.button1.TabIndex = 8;
-            this.button1.Text = " Menu";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_control.Location = new System.Drawing.Point(288, 0);
+            this.panel_control.Name = "panel_control";
+            this.panel_control.Size = new System.Drawing.Size(1278, 911);
+            this.panel_control.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnPropiedades);
+            this.panel1.Controls.Add(this.btnProductos);
+            this.panel1.Controls.Add(this.btnSalir);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnConsultas);
+            this.panel1.Controls.Add(this.btnDistribuidores);
+            this.panel1.Controls.Add(this.btnEmpleados);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(286, 908);
+            this.panel1.TabIndex = 12;
+            // 
+            // btnPropiedades
+            // 
+            this.btnPropiedades.BackColor = System.Drawing.Color.DarkRed;
+            this.btnPropiedades.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPropiedades.FlatAppearance.BorderSize = 0;
+            this.btnPropiedades.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnPropiedades.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.btnPropiedades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPropiedades.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.btnPropiedades.ForeColor = System.Drawing.Color.White;
+            this.btnPropiedades.Image = ((System.Drawing.Image)(resources.GetObject("btnPropiedades.Image")));
+            this.btnPropiedades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPropiedades.Location = new System.Drawing.Point(-3, 372);
+            this.btnPropiedades.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnPropiedades.Name = "btnPropiedades";
+            this.btnPropiedades.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnPropiedades.Size = new System.Drawing.Size(286, 60);
+            this.btnPropiedades.TabIndex = 12;
+            this.btnPropiedades.Text = "   Promociones";
+            this.btnPropiedades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPropiedades.UseVisualStyleBackColor = false;
+            this.btnPropiedades.Click += new System.EventHandler(this.btnPropiedades_Click);
             // 
             // btnProductos
             // 
@@ -107,7 +120,7 @@
             this.btnProductos.ForeColor = System.Drawing.Color.White;
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.Location = new System.Drawing.Point(3, 120);
+            this.btnProductos.Location = new System.Drawing.Point(0, 458);
             this.btnProductos.Margin = new System.Windows.Forms.Padding(3, 0, 3, 30);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
@@ -117,75 +130,6 @@
             this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.UseVisualStyleBackColor = false;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
-            // 
-            // btnEmpleados
-            // 
-            this.btnEmpleados.BackColor = System.Drawing.Color.DarkRed;
-            this.btnEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEmpleados.FlatAppearance.BorderSize = 0;
-            this.btnEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-            this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            this.btnEmpleados.ForeColor = System.Drawing.Color.White;
-            this.btnEmpleados.Image = ((System.Drawing.Image)(resources.GetObject("btnEmpleados.Image")));
-            this.btnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmpleados.Location = new System.Drawing.Point(3, 213);
-            this.btnEmpleados.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.btnEmpleados.Name = "btnEmpleados";
-            this.btnEmpleados.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnEmpleados.Size = new System.Drawing.Size(286, 60);
-            this.btnEmpleados.TabIndex = 8;
-            this.btnEmpleados.Text = "   Usuarios";
-            this.btnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmpleados.UseVisualStyleBackColor = false;
-            this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
-            // 
-            // btnDistribuidores
-            // 
-            this.btnDistribuidores.BackColor = System.Drawing.Color.DarkRed;
-            this.btnDistribuidores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDistribuidores.FlatAppearance.BorderSize = 0;
-            this.btnDistribuidores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDistribuidores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-            this.btnDistribuidores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDistribuidores.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            this.btnDistribuidores.ForeColor = System.Drawing.Color.White;
-            this.btnDistribuidores.Image = ((System.Drawing.Image)(resources.GetObject("btnDistribuidores.Image")));
-            this.btnDistribuidores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDistribuidores.Location = new System.Drawing.Point(3, 306);
-            this.btnDistribuidores.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.btnDistribuidores.Name = "btnDistribuidores";
-            this.btnDistribuidores.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnDistribuidores.Size = new System.Drawing.Size(286, 60);
-            this.btnDistribuidores.TabIndex = 9;
-            this.btnDistribuidores.Text = "   Distribuidores";
-            this.btnDistribuidores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDistribuidores.UseVisualStyleBackColor = false;
-            this.btnDistribuidores.Click += new System.EventHandler(this.btnDistribuidores_Click);
-            // 
-            // btnConsultas
-            // 
-            this.btnConsultas.BackColor = System.Drawing.Color.DarkRed;
-            this.btnConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConsultas.FlatAppearance.BorderSize = 0;
-            this.btnConsultas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnConsultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-            this.btnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            this.btnConsultas.ForeColor = System.Drawing.Color.White;
-            this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
-            this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultas.Location = new System.Drawing.Point(3, 399);
-            this.btnConsultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.btnConsultas.Name = "btnConsultas";
-            this.btnConsultas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnConsultas.Size = new System.Drawing.Size(286, 60);
-            this.btnConsultas.TabIndex = 10;
-            this.btnConsultas.Text = "   Categorias";
-            this.btnConsultas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultas.UseVisualStyleBackColor = false;
-            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
             // btnSalir
             // 
@@ -199,7 +143,7 @@
             this.btnSalir.ForeColor = System.Drawing.Color.White;
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalir.Location = new System.Drawing.Point(3, 849);
+            this.btnSalir.Location = new System.Drawing.Point(0, 818);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 360, 3, 0);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
@@ -210,29 +154,98 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // pictureBox5
+            // button1
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(3, 912);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox5.TabIndex = 12;
-            this.pictureBox5.TabStop = false;
+            this.button1.BackColor = System.Drawing.Color.DarkRed;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 30, 3, 30);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(286, 60);
+            this.button1.TabIndex = 8;
+            this.button1.Text = " Menu";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox7
+            // btnConsultas
             // 
-            this.pictureBox7.Location = new System.Drawing.Point(109, 912);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox7.TabIndex = 13;
-            this.pictureBox7.TabStop = false;
+            this.btnConsultas.BackColor = System.Drawing.Color.DarkRed;
+            this.btnConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConsultas.FlatAppearance.BorderSize = 0;
+            this.btnConsultas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnConsultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.btnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.btnConsultas.ForeColor = System.Drawing.Color.White;
+            this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
+            this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultas.Location = new System.Drawing.Point(0, 279);
+            this.btnConsultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnConsultas.Name = "btnConsultas";
+            this.btnConsultas.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnConsultas.Size = new System.Drawing.Size(286, 60);
+            this.btnConsultas.TabIndex = 10;
+            this.btnConsultas.Text = "   Categorias";
+            this.btnConsultas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultas.UseVisualStyleBackColor = false;
+            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
-            // panel_control
+            // btnDistribuidores
             // 
-            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_control.Location = new System.Drawing.Point(288, 0);
-            this.panel_control.Name = "panel_control";
-            this.panel_control.Size = new System.Drawing.Size(1278, 911);
-            this.panel_control.TabIndex = 2;
+            this.btnDistribuidores.BackColor = System.Drawing.Color.DarkRed;
+            this.btnDistribuidores.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDistribuidores.FlatAppearance.BorderSize = 0;
+            this.btnDistribuidores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDistribuidores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.btnDistribuidores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDistribuidores.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.btnDistribuidores.ForeColor = System.Drawing.Color.White;
+            this.btnDistribuidores.Image = ((System.Drawing.Image)(resources.GetObject("btnDistribuidores.Image")));
+            this.btnDistribuidores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDistribuidores.Location = new System.Drawing.Point(0, 186);
+            this.btnDistribuidores.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnDistribuidores.Name = "btnDistribuidores";
+            this.btnDistribuidores.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnDistribuidores.Size = new System.Drawing.Size(286, 60);
+            this.btnDistribuidores.TabIndex = 9;
+            this.btnDistribuidores.Text = "   Distribuidores";
+            this.btnDistribuidores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDistribuidores.UseVisualStyleBackColor = false;
+            this.btnDistribuidores.Click += new System.EventHandler(this.btnDistribuidores_Click);
+            // 
+            // btnEmpleados
+            // 
+            this.btnEmpleados.BackColor = System.Drawing.Color.DarkRed;
+            this.btnEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmpleados.FlatAppearance.BorderSize = 0;
+            this.btnEmpleados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.btnEmpleados.ForeColor = System.Drawing.Color.White;
+            this.btnEmpleados.Image = ((System.Drawing.Image)(resources.GetObject("btnEmpleados.Image")));
+            this.btnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEmpleados.Location = new System.Drawing.Point(-3, 93);
+            this.btnEmpleados.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnEmpleados.Size = new System.Drawing.Size(286, 60);
+            this.btnEmpleados.TabIndex = 8;
+            this.btnEmpleados.Text = "   Usuarios";
+            this.btnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEmpleados.UseVisualStyleBackColor = false;
+            this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
             // 
             // pictureBox4
             // 
@@ -296,8 +309,7 @@
             this.Text = "Dashboard";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_dashboard_admin_FormClosed);
             this.navegador.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -322,7 +334,7 @@
         private System.Windows.Forms.Button btnConsultas;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnPropiedades;
     }
 }

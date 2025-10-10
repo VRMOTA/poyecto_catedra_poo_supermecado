@@ -52,15 +52,15 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                tb_usario usuario = new tb_usario
+                tb_usuario usuario = new tb_usuario
                 {
                     nombre = nombre,
                     correo = correo,
                     clave = clave,
-                    nivel_usario = true
+                    // AGREGAR COMBO CON EL NIVEL
                 };
 
-                db.tb_usario.Add(usuario);
+                db.tb_usuario.Add(usuario);
                 db.SaveChanges();
 
                 MessageBox.Show("Usuario agregado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

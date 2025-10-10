@@ -144,7 +144,7 @@ namespace poyecto_catedra_poo_supermecado
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     // Intenta acceder a una tabla, por ejemplo, la tabla Clientes
-                    int total = db.tb_usario.Count();
+                    int total = db.tb_usuario.Count();
                     MessageBox.Show("Conexión exitosa. Total de clientes: " + total, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

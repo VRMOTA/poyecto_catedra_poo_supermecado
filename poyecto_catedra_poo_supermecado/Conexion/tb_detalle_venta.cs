@@ -12,17 +12,17 @@ namespace poyecto_catedra_poo_supermecado.Conexion
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_promociones
+    public partial class tb_detalle_venta
     {
-        public int id_promocion { get; set; }
+        public int id_detalle { get; set; }
+        public Nullable<int> id_venta { get; set; }
         public Nullable<int> id_producto { get; set; }
-        public Nullable<int> cantidad_minima { get; set; }
-        public Nullable<decimal> precio_promocional { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<System.DateTime> fecha_inicio { get; set; }
-        public Nullable<System.DateTime> fecha_fin { get; set; }
-        public Nullable<bool> activa { get; set; }
+        public Nullable<int> cantidad { get; set; }
+        public Nullable<decimal> precio_unitario { get; set; }
+        public Nullable<decimal> descuento_aplicado { get; set; }
+        public Nullable<decimal> subtotal { get; set; }
     
         public virtual tb_producto tb_producto { get; set; }
+        public virtual tb_ventas tb_ventas { get; set; }
     }
 }

@@ -12,10 +12,10 @@ namespace poyecto_catedra_poo_supermecado.Conexion
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_usario
+    public partial class tb_usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_usario()
+        public tb_usuario()
         {
             this.tb_ventas = new HashSet<tb_ventas>();
         }
@@ -24,7 +24,8 @@ namespace poyecto_catedra_poo_supermecado.Conexion
         public string nombre { get; set; }
         public string correo { get; set; }
         public string clave { get; set; }
-        public Nullable<bool> nivel_usario { get; set; }
+        public string tipo_usuario { get; set; }
+        public Nullable<bool> activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_ventas> tb_ventas { get; set; }

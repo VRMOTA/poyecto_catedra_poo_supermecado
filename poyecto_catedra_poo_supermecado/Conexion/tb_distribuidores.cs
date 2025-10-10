@@ -20,7 +20,7 @@ namespace poyecto_catedra_poo_supermecado.Conexion
             this.tb_producto = new HashSet<tb_producto>();
         }
     
-        public int id_distriubidores { get; set; }
+        public int id_distribuidor { get; set; }
         public byte[] logo { get; set; }
         public string nombre { get; set; }
     

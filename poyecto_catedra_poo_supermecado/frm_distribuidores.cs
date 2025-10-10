@@ -38,7 +38,7 @@ namespace poyecto_catedra_poo_supermecado
                 lista_distribuidores = db.tb_distribuidores
                     .Select(d => new
                     {
-                        d.id_distriubidores,
+                        d.id_distribuidor,
                         d.nombre,
                         d.logo
                     }).ToList<dynamic>(); // Convertimos a lista dinámica

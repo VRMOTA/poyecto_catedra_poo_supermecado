@@ -17,23 +17,25 @@ namespace poyecto_catedra_poo_supermecado.Conexion
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_producto()
         {
-            this.tb_carrito = new HashSet<tb_carrito>();
+            this.tb_detalle_venta = new HashSet<tb_detalle_venta>();
+            this.tb_promociones = new HashSet<tb_promociones>();
         }
     
-        public int id_prod { get; set; }
+        public int id_producto { get; set; }
         public string nombre { get; set; }
         public Nullable<decimal> precio { get; set; }
         public Nullable<int> stock { get; set; }
-        public byte[] imangen { get; set; }
+        public byte[] imagen { get; set; }
         public string descripcion { get; set; }
-        public Nullable<int> id_distriubidores { get; set; }
+        public Nullable<int> id_distribuidor { get; set; }
         public Nullable<int> id_categoria { get; set; }
-        public Nullable<int> id_prom { get; set; }
+        public Nullable<bool> activo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_carrito> tb_carrito { get; set; }
         public virtual tb_categorias tb_categorias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_detalle_venta> tb_detalle_venta { get; set; }
         public virtual tb_distribuidores tb_distribuidores { get; set; }
-        public virtual tb_promociones tb_promociones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_promociones> tb_promociones { get; set; }
     }
 }
