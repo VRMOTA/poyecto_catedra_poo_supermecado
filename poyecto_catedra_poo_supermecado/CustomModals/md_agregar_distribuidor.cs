@@ -90,7 +90,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
                         tb_distribuidores nuevo = new tb_distribuidores
                         {
-                            nombre = nombre,
+                            nombre = nombre, // Asignar el nombre
                             logo = imagenBytes // Asignar la imagen como byte array 
                         };
 
