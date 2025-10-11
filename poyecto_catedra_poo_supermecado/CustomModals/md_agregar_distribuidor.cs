@@ -91,7 +91,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                         tb_distribuidores nuevo = new tb_distribuidores
                         {
                             nombre = nombre,
-                            logo = imagenBytes
+                            logo = imagenBytes // Asignar la imagen como byte array 
                         };
 
                         db.tb_distribuidores.Add(nuevo);
