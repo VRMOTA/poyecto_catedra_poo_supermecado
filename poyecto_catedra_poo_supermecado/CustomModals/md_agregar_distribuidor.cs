@@ -118,7 +118,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
                         db.SaveChanges();
                         MessageBox.Show("Distribuidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    }   
                     else
                     {
                         MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

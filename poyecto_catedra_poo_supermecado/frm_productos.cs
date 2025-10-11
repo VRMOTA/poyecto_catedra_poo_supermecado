@@ -13,6 +13,7 @@ namespace poyecto_catedra_poo_supermecado
 {
     public partial class frm_productos : Form
     {
+
         public frm_productos()
         {
             InitializeComponent();
@@ -56,19 +57,21 @@ namespace poyecto_catedra_poo_supermecado
                 Image imageProducto = null;
                 if (producto.imagen != null)
                 {
-                    using (MemoryStream ms = new MemoryStream(producto.logo))
+                    using (MemoryStream ms = new MemoryStream(producto.imagen))
                     {
                         imageProducto = Image.FromStream(ms);
                     }
                 }
                 var card = new card_producto_admin
                 {
-                    //NombreProducto = productos[i].nombre,
-                    //NombreDistribuidor = productos[i].distribuidor,
-                    //ImagenProducto = productos[i].imagen,
-                    //Descripcion = productos[i].descripcion,
-                    //Precio = productos[i].precio,
-                    //Descuento = productos[i].descuento,
+                    ID_Producto = producto.id_producto,
+                    NombreProducto = producto.nombre, 
+                    NombreDistribuidor = producto.id_distribuidor.ToString(), 
+                    Descripcion = producto.descripcion,
+                    Cateogoria = producto.id_categoria.ToString(), 
+                    Stock = producto.stock.ToString(), 
+                    Precio = producto.precio, 
+                    ImagenProducto = imageProducto,
                     Margin = new Padding(espacio)
                 };
 

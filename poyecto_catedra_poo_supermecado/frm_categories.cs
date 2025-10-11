@@ -55,7 +55,7 @@ namespace poyecto_catedra_poo_supermecado
 
                 var card = new card_categories
                 {
-                    ID_Categoria = cat.id_cat,
+                    ID_Categoria = cat.id_categoria,
                     NombreCategoria = cat.nombre,
                     Margin = new Padding(espacio),
                     Size = cardSize

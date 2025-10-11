@@ -10,11 +10,16 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     {
         private decimal _precio;
         private int? _descuento;
-
+        private int id_producto;
         public card_producto_admin()
         {
             InitializeComponent();
             ActualizarPrecioDescuento();
+        }
+        public int ID_Producto
+        {
+            get => id_producto;
+            set => id_producto = value;
         }
 
         [Category("Producto"), Description("Imagen del producto")]
@@ -44,6 +49,18 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => lblDescripcion?.Text ?? string.Empty;
             set { if (lblDescripcion != null) lblDescripcion.Text = value; }
         }
+        [Category("Producto"), Description("Categoria del producto")]
+        public string Cateogoria
+        {
+            get => lbl_categoria?.Text ?? string.Empty;
+            set { if (lbl_categoria != null) lbl_categoria.Text = value; }
+        }
+        [Category("Producto"), Description("Stock del producto")]
+        public string Stock 
+        {
+            get => lb_stock?.Text ?? string.Empty;
+            set { if (lb_stock != null) lb_stock.Text = value; }
+        }
 
         [Category("Producto"), Description("Precio del producto")]
         public decimal Precio
@@ -56,72 +73,15 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("Descuento del producto (0-100)")]
-        public int? Descuento
-        {
-            get => _descuento;
-            set
-            {
-                _descuento = value;
-                ActualizarPrecioDescuento();
-                ActualizarVisibilidadDescuento();
-            }
-        }
 
         private void ActualizarPrecioDescuento()
         {
-            if (lblPrecio != null)
-            {
-                lblPrecio.Text = _precio.ToString("C");
-            }
 
-            if (lblPrecioDescuento != null && _descuento.HasValue && _descuento > 0)
-            {
-                decimal precioConDescuento = _precio * (1 - (_descuento.Value / 100m));
-                lblPrecioDescuento.Text = precioConDescuento.ToString("C");
-            }
-            else if (lblPrecioDescuento != null)
-            {
-                lblPrecioDescuento.Text = string.Empty;
-            }
         }
 
         private void ActualizarVisibilidadDescuento()
         {
-            bool mostrarDescuento = _descuento.HasValue && _descuento > 0;
 
-            if (lb_stock != null)
-            {
-                lb_stock.Visible = mostrarDescuento;
-                if (mostrarDescuento)
-                {
-                    lb_stock.Text = $"{_descuento.Value}%";
-                }
-            }
-
-            if (lblPrecioDescuento != null)
-                lblPrecioDescuento.Visible = mostrarDescuento;
-
-            if (pbDescuentoContainer != null)
-                pbDescuentoContainer.Visible = mostrarDescuento;
-
-            if (pbPrecioDecoration != null)
-                pbPrecioDecoration.Visible = mostrarDescuento;
-
-            // Opcional: tachar el precio original cuando hay descuento
-            if (lblPrecio != null)
-            {
-                if (mostrarDescuento)
-                {
-                    lblPrecio.Font = new Font(lblPrecio.Font, FontStyle.Strikeout);
-                    lblPrecio.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    lblPrecio.Font = new Font(lblPrecio.Font, FontStyle.Regular);
-                    lblPrecio.ForeColor = SystemColors.ControlText;
-                }
-            }
         }
 
         // Método para forzar la actualización de la visibilidad si es necesario
@@ -139,11 +99,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show(
-   "¿Está seguro que desea eliminar el registro?",
-   "Confirmar eliminación",
-   MessageBoxButtons.YesNo,
-   MessageBoxIcon.Warning
-);
+            "¿Está seguro que desea eliminar el registro?",
+            "Confirmar eliminación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+        );
 
             if (resultado == DialogResult.Yes)
             {

@@ -63,7 +63,7 @@ namespace poyecto_catedra_poo_supermecado
 
                 var card = new card_distribuidores
                 {
-                    IDDistribuidor = distribuidor.id_distriubidores,
+                    IDDistribuidor = distribuidor.id_distribuidor,
                     NombreDistribuidora = distribuidor.nombre,
                     ImagenDistribuidora = imagenDistribuidor,
                     Width = anchoCarta,
