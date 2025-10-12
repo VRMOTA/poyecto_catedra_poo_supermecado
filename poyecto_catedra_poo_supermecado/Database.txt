@@ -1,0 +1,259 @@
+﻿USE MASTER
+GO
+
+-- Eliminar la base de datos si existe
+IF EXISTS(SELECT name FROM sys.databases WHERE name = 'db_supermercado')
+BEGIN
+    ALTER DATABASE db_supermercado SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE db_supermercado;
+END
+GO
+
+-- Crear la base de datos
+CREATE DATABASE db_supermercado
+GO
+
+USE db_supermercado
+GO
+
+-- Tabla de Usuarios (Administradores y Cajeros)
+CREATE TABLE tb_usuario (
+    id_usuario INT PRIMARY KEY IDENTITY(1,1), 
+    nombre NVARCHAR(75) NOT NULL, 
+    correo NVARCHAR(75) NOT NULL, 
+    clave NVARCHAR(100) NOT NULL, 
+    tipo_usuario NVARCHAR(20) NOT NULL,  -- 'Administrador', 'Cajero'
+    activo BIT DEFAULT 1,
+    fecha_creacion DATETIME DEFAULT GETDATE()
+); 
+
+-- Tabla de Distribuidores/Proveedores
+CREATE TABLE tb_distribuidores (
+    id_distribuidor INT PRIMARY KEY IDENTITY(1,1),  
+    logo VARBINARY(MAX), 
+    nombre NVARCHAR(75) NOT NULL,
+    telefono NVARCHAR(20),
+    direccion NVARCHAR(200),
+    activo BIT DEFAULT 1
+);
+
+-- Tabla de Categorías
+CREATE TABLE tb_categorias (
+    id_categoria INT PRIMARY KEY IDENTITY(1,1), 
+    nombre NVARCHAR(50) NOT NULL,
+    descripcion NVARCHAR(200)
+); 
+
+-- Tabla de Productos
+CREATE TABLE tb_producto (
+    id_producto INT PRIMARY KEY IDENTITY(1,1),  
+    nombre NVARCHAR(50) NOT NULL, 
+    precio MONEY NOT NULL, 
+    stock INT NOT NULL DEFAULT 0, 
+    imagen VARBINARY(MAX), 
+    descripcion NVARCHAR(100), 
+    id_distribuidor INT,
+    id_categoria INT,
+    activo BIT DEFAULT 1,
+    fecha_creacion DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_distribuidor FOREIGN KEY (id_distribuidor) REFERENCES tb_distribuidores(id_distribuidor), 
+    CONSTRAINT FK_categoria FOREIGN KEY (id_categoria) REFERENCES tb_categorias(id_categoria)
+);
+
+-- Tabla de Promociones (vinculada a productos)
+CREATE TABLE tb_promociones (
+    id_promocion INT PRIMARY KEY IDENTITY(1,1),  
+    id_producto INT,
+    cantidad_minima INT,  -- ej: 2 para "2x$4"
+    precio_promocional MONEY,  -- ej: $4.00
+    descripcion NVARCHAR(100),
+    fecha_inicio DATETIME DEFAULT GETDATE(),
+    fecha_fin DATETIME,
+    activa BIT DEFAULT 1,
+    CONSTRAINT FK_producto_promo FOREIGN KEY (id_producto) REFERENCES tb_producto(id_producto)
+); 
+
+-- Tabla de Ventas (Cabecera)
+CREATE TABLE tb_ventas (
+    id_venta INT PRIMARY KEY IDENTITY(1,1), 
+    fecha DATETIME DEFAULT GETDATE(),
+    id_usuario INT,  -- Cajero que hizo la venta
+    nombre_cliente NVARCHAR(75),
+    total_venta MONEY,
+    total_descuento MONEY DEFAULT 0,
+    estado NVARCHAR(20) DEFAULT 'Completada',  -- 'Completada', 'Cancelada'
+    CONSTRAINT FK_usuario_venta FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
+);
+
+-- Tabla de Detalle de Ventas (Productos de cada venta)
+CREATE TABLE tb_detalle_venta (
+    id_detalle INT PRIMARY KEY IDENTITY(1,1),
+    id_venta INT,
+    id_producto INT,
+    cantidad INT,
+    precio_unitario MONEY,
+    descuento_aplicado MONEY DEFAULT 0,
+    subtotal MONEY,
+    CONSTRAINT FK_venta FOREIGN KEY (id_venta) REFERENCES tb_ventas(id_venta) ON DELETE CASCADE,
+    CONSTRAINT FK_producto_detalle FOREIGN KEY (id_producto) REFERENCES tb_producto(id_producto)
+);
+GO
+
+-- =============================================
+-- INSERTAR DATOS DE PRUEBA
+-- =============================================
+
+-- Insertar categorías
+INSERT INTO tb_categorias (nombre, descripcion) VALUES 
+('Alimentos', 'Productos alimenticios y comestibles'),
+('Limpieza', 'Productos de limpieza del hogar'),
+('Eléctricos', 'Electrodomésticos y dispositivos electrónicos'),
+('Cárnicos', 'Carnes y embutidos'),
+('Lácteos', 'Leche, queso, yogurt y derivados'),
+('Bebidas', 'Refrescos, jugos y aguas'),
+('Frutas y Verduras', 'Productos frescos'),
+('Panadería', 'Pan, pasteles y repostería'),
+('Cuidado Personal', 'Productos de higiene personal'),
+('Mascotas', 'Alimentos y accesorios para mascotas');
+GO
+
+-- Insertar usuarios
+INSERT INTO tb_usuario (nombre, correo, clave, tipo_usuario) VALUES 
+('Administrador Principal', 'admin@root.com', 'admin123', 'Administrador'),
+('Juan Pérez', 'cajero@root.com', 'cajero123', 'Cajero'),
+('María García', 'maria.garcia@supermercado.com', 'cajero456', 'Cajero'),
+('Carlos López', 'carlos.lopez@supermercado.com', 'admin456', 'Administrador'),
+('Ana Rodríguez', 'ana.rodriguez@supermercado.com', 'cajero789', 'Cajero');
+GO
+
+-- Insertar distribuidores
+INSERT INTO tb_distribuidores (nombre, telefono, direccion) VALUES 
+('Distribuidora Alimenticia S.A.', '555-1001', 'Av. Principal #123, Ciudad'),
+('Limpieza Total Corp', '555-1002', 'Calle Industrial #456, Zona Franca'),
+('ElectroMundo', '555-1003', 'Blvd. Tecnológico #789, Parque Industrial'),
+('Carnes Premium', '555-1004', 'Carretera Nacional Km 5, Mercado Central'),
+('Lácteos Frescos S.A.', '555-1005', 'Vía Láctea #321, Campo Verde'),
+('Bebidas del Valle', '555-1006', 'Valle Dulce #654, Zona Agrícola'),
+('Frutas y Verduras Natural', '555-1007', 'Mercado de Abastos Local 15'),
+('Panadería La Espiga', '555-1008', 'Calle del Pan #987, Centro'),
+('Higiene Personal Plus', '555-1009', 'Av. Saludable #147, Polígono Industrial'),
+('Mascotas Felices', '555-1010', 'Plaza Mascotas #258, Urbanización Las Flores');
+GO
+
+-- Insertar productos
+INSERT INTO tb_producto (nombre, precio, stock, descripcion, id_distribuidor, id_categoria) VALUES 
+-- Alimentos
+('Arroz Extra', 2.50, 100, 'Arroz de grano largo 1kg', 1, 1),
+('Frijoles Negros', 3.20, 80, 'Frijoles negros 1kg', 1, 1),
+('Aceite Vegetal', 4.50, 60, 'Aceite de girasol 1 litro', 1, 1),
+('Salsa de Tomate', 1.80, 120, 'Salsa de tomate natural 500g', 1, 1),
+
+-- Limpieza
+('Jabón Líquido', 3.75, 50, 'Jabón líquido para manos 500ml', 2, 2),
+('Detergente Líquido', 5.20, 40, 'Detergente para ropa 2 litros', 2, 2),
+('Cloro', 2.30, 70, 'Cloro concentrado 1 litro', 2, 2),
+('Desinfectante', 4.10, 45, 'Desinfectante multiusos 750ml', 2, 2),
+
+-- Eléctricos
+('Licuadora Profesional', 45.99, 15, 'Licuadora de 5 velocidades', 3, 3),
+('Tostadora', 25.50, 20, 'Tostadora de 2 ranuras', 3, 3),
+('Ventilador', 35.75, 12, 'Ventilador de pedestal 16"', 3, 3),
+('Cafetera', 32.00, 18, 'Cafetera programable 12 tazas', 3, 3),
+
+-- Cárnicos
+('Pechuga de Pollo', 8.99, 30, 'Pechuga de pollo fresca 1kg', 4, 4),
+('Carne Molida', 7.50, 25, 'Carne molida de res 85/15 1kg', 4, 4),
+('Salchichas', 4.25, 40, 'Salchichas de pavo paquete 500g', 4, 4),
+('Tocino', 6.80, 22, 'Tocino ahumado 500g', 4, 4),
+
+-- Lácteos
+('Leche Entera', 1.20, 90, 'Leche entera 1 litro', 5, 5),
+('Queso Mozzarella', 5.75, 35, 'Queso mozzarella rallado 400g', 5, 5),
+('Yogurt Natural', 0.90, 110, 'Yogurt natural 150g', 5, 5),
+('Mantequilla', 3.40, 45, 'Mantequilla sin sal 200g', 5, 5),
+
+-- Bebidas
+('Refresco Cola', 1.50, 80, 'Refresco de cola 2 litros', 6, 6),
+('Jugo de Naranja', 2.25, 60, 'Jugo de naranja 100% natural 1L', 6, 6),
+('Agua Mineral', 0.80, 150, 'Agua mineral sin gas 500ml', 6, 6),
+('Cerveza Nacional', 1.10, 95, 'Cerveza lager botella 355ml', 6, 6),
+
+-- Frutas y Verduras
+('Manzanas', 3.00, 50, 'Manzanas rojas 1kg', 7, 7),
+('Plátanos', 1.80, 65, 'Plátanos maduros 1kg', 7, 7),
+('Tomates', 2.50, 40, 'Tomates frescos 1kg', 7, 7),
+('Cebollas', 1.60, 55, 'Cebollas blancas 1kg', 7, 7),
+
+-- Panadería
+('Pan Blanco', 2.00, 40, 'Pan blanco fresco 500g', 8, 8),
+('Croissants', 3.50, 30, 'Croissants de mantequilla 6 unidades', 8, 8),
+('Pastel de Chocolate', 12.00, 8, 'Pastel de chocolate 1kg', 8, 8),
+('Galletas María', 1.80, 75, 'Galletas María paquete 400g', 8, 8),
+
+-- Cuidado Personal
+('Shampoo', 4.80, 45, 'Shampoo para cabello normal 400ml', 9, 9),
+('Pasta Dental', 2.30, 60, 'Pasta dental con flúor 100ml', 9, 9),
+('Jabón de Baño', 1.20, 85, 'Jabón de baño 3 unidades', 9, 9),
+('Desodorante', 3.60, 50, 'Desodorante roll-on 50ml', 9, 9),
+
+-- Mascotas
+('Comida para Perro', 15.00, 25, 'Comida para perro adulto 5kg', 10, 10),
+('Comida para Gato', 12.50, 20, 'Comida para gato adulto 3kg', 10, 10),
+('Arena Sanitaria', 8.00, 18, 'Arena sanitaria aglomerante 4kg', 10, 10),
+('Juguete para Mascota', 5.50, 30, 'Juguete interactivo para gatos', 10, 10);
+GO
+
+-- Insertar promociones
+INSERT INTO tb_promociones (id_producto, cantidad_minima, precio_promocional, descripcion, fecha_inicio, fecha_fin, activa) VALUES 
+(1, 2, 4.50, 'Lleva 2 arroces por precio especial', GETDATE(), DATEADD(DAY, 30, GETDATE()), 1),
+(5, 3, 10.00, '3 jabones líquidos al precio de 2', GETDATE(), DATEADD(DAY, 15, GETDATE()), 1),
+(9, 1, 39.99, 'Oferta especial en licuadoras', GETDATE(), DATEADD(DAY, 7, GETDATE()), 1),
+(13, 2, 16.00, '2 pechugas de pollo a precio reducido', GETDATE(), DATEADD(DAY, 10, GETDATE()), 1),
+(17, 4, 4.00, 'Pack de 4 leches con descuento', GETDATE(), DATEADD(DAY, 20, GETDATE()), 1),
+(21, 2, 2.50, '2 refrescos por precio especial', GETDATE(), DATEADD(DAY, 14, GETDATE()), 1),
+(25, 3, 2.00, '3 panes blancos con descuento', GETDATE(), DATEADD(DAY, 5, GETDATE()), 1),
+(29, 2, 8.00, '2 shampoos con precio promocional', GETDATE(), DATEADD(DAY, 30, GETDATE()), 1);
+GO
+
+-- Insertar ventas de ejemplo
+INSERT INTO tb_ventas (fecha, id_usuario, nombre_cliente, total_venta, total_descuento) VALUES 
+(DATEADD(DAY, -2, GETDATE()), 2, 'Cliente Ocasional', 45.75, 2.50),
+(DATEADD(DAY, -1, GETDATE()), 3, 'María González', 28.40, 1.20),
+(GETDATE(), 2, 'Roberto Sánchez', 67.80, 5.00),
+(DATEADD(HOUR, -3, GETDATE()), 5, 'Ana Martínez', 22.15, 0.00),
+(DATEADD(HOUR, -1, GETDATE()), 3, 'Cliente Frecuente', 89.45, 7.30);
+GO
+
+-- Insertar detalles de ventas
+INSERT INTO tb_detalle_venta (id_venta, id_producto, cantidad, precio_unitario, descuento_aplicado, subtotal) VALUES 
+-- Venta 1
+(1, 1, 2, 2.50, 0.50, 4.50),
+(1, 5, 1, 3.75, 0.00, 3.75),
+(1, 17, 3, 1.20, 2.00, 3.60),
+(1, 21, 2, 1.50, 0.00, 3.00),
+
+-- Venta 2
+(2, 13, 1, 8.99, 0.00, 8.99),
+(2, 25, 2, 2.00, 1.20, 2.80),
+(2, 29, 1, 4.80, 0.00, 4.80),
+
+-- Venta 3
+(3, 9, 1, 39.99, 5.00, 39.99),
+(3, 10, 1, 25.50, 0.00, 25.50),
+(3, 33, 1, 15.00, 0.00, 15.00),
+
+-- Venta 4
+(4, 2, 1, 3.20, 0.00, 3.20),
+(4, 6, 1, 5.20, 0.00, 5.20),
+(4, 18, 1, 5.75, 0.00, 5.75),
+(4, 22, 1, 2.25, 0.00, 2.25),
+(4, 26, 1, 1.80, 0.00, 1.80),
+
+-- Venta 5
+(5, 1, 4, 2.50, 2.00, 8.00),
+(5, 5, 2, 3.75, 3.75, 3.75),
+(5, 13, 2, 8.99, 1.50, 17.48),
+(5, 17, 6, 1.20, 0.00, 7.20),
+(5, 21, 3, 1.50, 0.00, 4.50),
+(5, 29, 2, 4.80, 0.00, 9.60);
+GO

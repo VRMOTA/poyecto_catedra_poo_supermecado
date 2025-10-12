@@ -33,12 +33,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
-            this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lblPrecioTotal = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblPrecioDescuento = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
+            this.pbProducto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,15 +112,6 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // pbProducto
-            // 
-            this.pbProducto.Location = new System.Drawing.Point(17, 20);
-            this.pbProducto.Name = "pbProducto";
-            this.pbProducto.Size = new System.Drawing.Size(218, 154);
-            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProducto.TabIndex = 6;
-            this.pbProducto.TabStop = false;
-            // 
             // lblPrecioTotal
             // 
             this.lblPrecioTotal.AutoSize = true;
@@ -176,6 +167,16 @@
             this.lblPrecio.TabIndex = 10;
             this.lblPrecio.Text = "$0.00";
             this.lblPrecio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pbProducto
+            // 
+            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
+            this.pbProducto.Location = new System.Drawing.Point(17, 20);
+            this.pbProducto.Name = "pbProducto";
+            this.pbProducto.Size = new System.Drawing.Size(218, 154);
+            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProducto.TabIndex = 6;
+            this.pbProducto.TabStop = false;
             // 
             // card_producto_carrito
             // 

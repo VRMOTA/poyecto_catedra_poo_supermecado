@@ -30,14 +30,14 @@
         {
             this.lblDistribuidor = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
-            this.pbDescuentoContainer = new System.Windows.Forms.PictureBox();
-            this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lb_stock = new System.Windows.Forms.Label();
             this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lbl_categoria = new System.Windows.Forms.Label();
+            this.pbDescuentoContainer = new System.Windows.Forms.PictureBox();
+            this.pbProducto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbDescuentoContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
@@ -47,8 +47,7 @@
             this.lblDistribuidor.AutoSize = true;
             this.lblDistribuidor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistribuidor.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblDistribuidor.Location = new System.Drawing.Point(375, 62);
-            this.lblDistribuidor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDistribuidor.Location = new System.Drawing.Point(281, 50);
             this.lblDistribuidor.Name = "lblDistribuidor";
             this.lblDistribuidor.Size = new System.Drawing.Size(95, 18);
             this.lblDistribuidor.TabIndex = 32;
@@ -58,32 +57,11 @@
             // 
             this.lblProducto.AutoSize = true;
             this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProducto.Location = new System.Drawing.Point(375, 31);
-            this.lblProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProducto.Location = new System.Drawing.Point(281, 25);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(142, 18);
             this.lblProducto.TabIndex = 31;
             this.lblProducto.Text = "Nombre Producto";
-            // 
-            // pbDescuentoContainer
-            // 
-            this.pbDescuentoContainer.Location = new System.Drawing.Point(861, 14);
-            this.pbDescuentoContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pbDescuentoContainer.Name = "pbDescuentoContainer";
-            this.pbDescuentoContainer.Size = new System.Drawing.Size(124, 81);
-            this.pbDescuentoContainer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbDescuentoContainer.TabIndex = 36;
-            this.pbDescuentoContainer.TabStop = false;
-            // 
-            // pbProducto
-            // 
-            this.pbProducto.Location = new System.Drawing.Point(33, 31);
-            this.pbProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pbProducto.Name = "pbProducto";
-            this.pbProducto.Size = new System.Drawing.Size(304, 239);
-            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProducto.TabIndex = 30;
-            this.pbProducto.TabStop = false;
             // 
             // lb_stock
             // 
@@ -91,7 +69,7 @@
             this.lb_stock.BackColor = System.Drawing.Color.Red;
             this.lb_stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_stock.ForeColor = System.Drawing.Color.White;
-            this.lb_stock.Location = new System.Drawing.Point(909, 45);
+            this.lb_stock.Location = new System.Drawing.Point(680, 35);
             this.lb_stock.Margin = new System.Windows.Forms.Padding(0);
             this.lb_stock.Name = "lb_stock";
             this.lb_stock.Size = new System.Drawing.Size(32, 24);
@@ -110,10 +88,9 @@
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(649, 239);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActualizar.Location = new System.Drawing.Point(487, 194);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(164, 37);
+            this.btnActualizar.Size = new System.Drawing.Size(123, 30);
             this.btnActualizar.TabIndex = 35;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.TextColor = System.Drawing.Color.White;
@@ -131,10 +108,9 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(821, 239);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Location = new System.Drawing.Point(616, 194);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(164, 37);
+            this.btnEliminar.Size = new System.Drawing.Size(123, 30);
             this.btnEliminar.TabIndex = 34;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextColor = System.Drawing.Color.White;
@@ -145,8 +121,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(373, 245);
-            this.lblPrecio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrecio.Location = new System.Drawing.Point(280, 199);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(44, 20);
             this.lblPrecio.TabIndex = 38;
@@ -155,10 +130,9 @@
             // lblDescripcion
             // 
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(375, 145);
-            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescripcion.Location = new System.Drawing.Point(281, 118);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(611, 69);
+            this.lblDescripcion.Size = new System.Drawing.Size(458, 56);
             this.lblDescripcion.TabIndex = 33;
             this.lblDescripcion.Text = "Descripcion";
             // 
@@ -167,16 +141,35 @@
             this.lbl_categoria.AutoSize = true;
             this.lbl_categoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_categoria.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbl_categoria.Location = new System.Drawing.Point(375, 101);
-            this.lbl_categoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_categoria.Location = new System.Drawing.Point(281, 82);
             this.lbl_categoria.Name = "lbl_categoria";
             this.lbl_categoria.Size = new System.Drawing.Size(81, 18);
             this.lbl_categoria.TabIndex = 39;
             this.lbl_categoria.Text = "Categoria";
             // 
+            // pbDescuentoContainer
+            // 
+            this.pbDescuentoContainer.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.Vector;
+            this.pbDescuentoContainer.Location = new System.Drawing.Point(650, 13);
+            this.pbDescuentoContainer.Name = "pbDescuentoContainer";
+            this.pbDescuentoContainer.Size = new System.Drawing.Size(93, 68);
+            this.pbDescuentoContainer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbDescuentoContainer.TabIndex = 36;
+            this.pbDescuentoContainer.TabStop = false;
+            // 
+            // pbProducto
+            // 
+            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
+            this.pbProducto.Location = new System.Drawing.Point(25, 25);
+            this.pbProducto.Name = "pbProducto";
+            this.pbProducto.Size = new System.Drawing.Size(228, 194);
+            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProducto.TabIndex = 30;
+            this.pbProducto.TabStop = false;
+            // 
             // card_producto_admin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbl_categoria);
             this.Controls.Add(this.lblPrecio);
@@ -188,9 +181,8 @@
             this.Controls.Add(this.lblDistribuidor);
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.pbProducto);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "card_producto_admin";
-            this.Size = new System.Drawing.Size(1033, 295);
+            this.Size = new System.Drawing.Size(775, 240);
             ((System.ComponentModel.ISupportInitialize)(this.pbDescuentoContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).EndInit();
             this.ResumeLayout(false);

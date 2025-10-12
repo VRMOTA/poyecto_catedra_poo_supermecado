@@ -63,16 +63,6 @@ namespace poyecto_catedra_poo_supermecado.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _default {
-            get {
-                object obj = ResourceManager.GetObject("default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap agua {
             get {
                 object obj = ResourceManager.GetObject("agua", resourceCulture);
@@ -146,6 +136,16 @@ namespace poyecto_catedra_poo_supermecado.Properties {
         internal static System.Drawing.Bitmap huevo {
             get {
                 object obj = ResourceManager.GetObject("huevo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImageDef {
+            get {
+                object obj = ResourceManager.GetObject("ImageDef", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

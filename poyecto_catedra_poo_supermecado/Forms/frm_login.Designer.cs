@@ -92,7 +92,6 @@
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Clave";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -103,7 +102,6 @@
             this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Correo";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -114,7 +112,6 @@
             this.label2.Size = new System.Drawing.Size(286, 44);
             this.label2.TabIndex = 4;
             this.label2.Text = "Ingresa tus credenciales para poder entrar al sistema";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -125,7 +122,6 @@
             this.label1.Size = new System.Drawing.Size(158, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Bienvenido";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonMaxing1
             // 
@@ -188,7 +184,6 @@
             this.txtCorreo.TabIndex = 0;
             this.txtCorreo.Texts = "";
             this.txtCorreo.UnderlinedStyle = true;
-            this.txtCorreo.TextChanged += new System.EventHandler(this.txtCorreo_TextChanged);
             // 
             // pictureBox1
             // 

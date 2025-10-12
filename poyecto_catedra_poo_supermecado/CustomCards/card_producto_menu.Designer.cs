@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbProducto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPrecioDescuento = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.btnVisualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.pbProducto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pbProducto
-            // 
-            this.pbProducto.Location = new System.Drawing.Point(25, 18);
-            this.pbProducto.Name = "pbProducto";
-            this.pbProducto.Size = new System.Drawing.Size(188, 119);
-            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProducto.TabIndex = 0;
-            this.pbProducto.TabStop = false;
             // 
             // label1
             // 
@@ -107,6 +98,16 @@
             this.btnVisualizar.Text = "Visualizar";
             this.btnVisualizar.TextColor = System.Drawing.Color.White;
             this.btnVisualizar.UseVisualStyleBackColor = false;
+            // 
+            // pbProducto
+            // 
+            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
+            this.pbProducto.Location = new System.Drawing.Point(25, 18);
+            this.pbProducto.Name = "pbProducto";
+            this.pbProducto.Size = new System.Drawing.Size(188, 119);
+            this.pbProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProducto.TabIndex = 0;
+            this.pbProducto.TabStop = false;
             // 
             // card_producto_menu
             // 

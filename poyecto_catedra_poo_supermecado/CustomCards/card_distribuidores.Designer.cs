@@ -87,6 +87,7 @@
             // 
             // pbDistribuidora
             // 
+            this.pbDistribuidora.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
             this.pbDistribuidora.Location = new System.Drawing.Point(24, 25);
             this.pbDistribuidora.Name = "pbDistribuidora";
             this.pbDistribuidora.Size = new System.Drawing.Size(197, 154);
