@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace project_supermercado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
-    public partial class frm_signin : Form
+    public partial class frm_promociones : Form
     {
-        public frm_signin()
+        public frm_promociones()
         {
             InitializeComponent();
-            FormHelper.DefaultFormValues(this);
         }
     }
 }

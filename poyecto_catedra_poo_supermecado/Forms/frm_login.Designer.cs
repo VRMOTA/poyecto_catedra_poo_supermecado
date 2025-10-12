@@ -1,4 +1,4 @@
-﻿namespace project_supermercado
+﻿namespace poyecto_catedra_poo_supermecado.Forms
 {
     partial class frm_login
     {

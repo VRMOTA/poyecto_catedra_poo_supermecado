@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_categories : Form
     {

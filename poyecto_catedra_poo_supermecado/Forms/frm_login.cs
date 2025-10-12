@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.Utilities;
 
-namespace project_supermercado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_login : Form
     {

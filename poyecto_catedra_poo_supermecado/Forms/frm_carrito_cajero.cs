@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.CustomControls;
+using poyecto_catedra_poo_supermecado.CustomCards;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_carrito_cajero : Form
     {

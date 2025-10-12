@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_default_dashboard_admin_page : Form
     {

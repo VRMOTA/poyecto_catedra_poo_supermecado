@@ -192,83 +192,83 @@
     <Compile Include="CustomModals\md_consulta.Designer.cs">
       <DependentUpon>md_consulta.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_clientes.cs">
+    <Compile Include="Forms\frm_clientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_clientes.Designer.cs">
+    <Compile Include="Forms\frm_clientes.Designer.cs">
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHelper.cs" />
-    <Compile Include="frm_carrito_cajero.cs">
+    <Compile Include="Utilities\FormHelper.cs" />
+    <Compile Include="Forms\frm_carrito_cajero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_carrito_cajero.Designer.cs">
+    <Compile Include="Forms\frm_carrito_cajero.Designer.cs">
       <DependentUpon>frm_carrito_cajero.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_catalogo_cajero.cs">
+    <Compile Include="Forms\frm_catalogo_cajero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_catalogo_cajero.Designer.cs">
+    <Compile Include="Forms\frm_catalogo_cajero.Designer.cs">
       <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_categories.cs">
+    <Compile Include="Forms\frm_categories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_categories.Designer.cs">
+    <Compile Include="Forms\frm_categories.Designer.cs">
       <DependentUpon>frm_categories.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_dashboard_admin.cs">
+    <Compile Include="Forms\frm_dashboard_admin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_dashboard_admin.Designer.cs">
+    <Compile Include="Forms\frm_dashboard_admin.Designer.cs">
       <DependentUpon>frm_dashboard_admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_dashboard_cajero.cs">
+    <Compile Include="Forms\frm_dashboard_cajero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_dashboard_cajero.Designer.cs">
+    <Compile Include="Forms\frm_dashboard_cajero.Designer.cs">
       <DependentUpon>frm_dashboard_cajero.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_default_dashboard_admin_page.cs">
+    <Compile Include="Forms\frm_default_dashboard_admin_page.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_default_dashboard_admin_page.Designer.cs">
+    <Compile Include="Forms\frm_default_dashboard_admin_page.Designer.cs">
       <DependentUpon>frm_default_dashboard_admin_page.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_distribuidores.cs">
+    <Compile Include="Forms\frm_distribuidores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_distribuidores.Designer.cs">
+    <Compile Include="Forms\frm_distribuidores.Designer.cs">
       <DependentUpon>frm_distribuidores.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_login.cs">
+    <Compile Include="Forms\frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_login.Designer.cs">
+    <Compile Include="Forms\frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_productos.cs">
+    <Compile Include="Forms\frm_productos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_productos.Designer.cs">
+    <Compile Include="Forms\frm_productos.Designer.cs">
       <DependentUpon>frm_productos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_promociones.cs">
+    <Compile Include="Forms\frm_promociones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_promociones.Designer.cs">
+    <Compile Include="Forms\frm_promociones.Designer.cs">
       <DependentUpon>frm_promociones.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_signin.cs">
+    <Compile Include="Forms\frm_signin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_signin.Designer.cs">
+    <Compile Include="Forms\frm_signin.Designer.cs">
       <DependentUpon>frm_signin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_usuarios.cs">
+    <Compile Include="Forms\frm_usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_usuarios.Designer.cs">
+    <Compile Include="Forms\frm_usuarios.Designer.cs">
       <DependentUpon>frm_usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -315,43 +315,43 @@
     <EmbeddedResource Include="CustomModals\md_consulta.resx">
       <DependentUpon>md_consulta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_clientes.resx">
+    <EmbeddedResource Include="Forms\frm_clientes.resx">
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_carrito_cajero.resx">
+    <EmbeddedResource Include="Forms\frm_carrito_cajero.resx">
       <DependentUpon>frm_carrito_cajero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_catalogo_cajero.resx">
+    <EmbeddedResource Include="Forms\frm_catalogo_cajero.resx">
       <DependentUpon>frm_catalogo_cajero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_categories.resx">
+    <EmbeddedResource Include="Forms\frm_categories.resx">
       <DependentUpon>frm_categories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_dashboard_admin.resx">
+    <EmbeddedResource Include="Forms\frm_dashboard_admin.resx">
       <DependentUpon>frm_dashboard_admin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_dashboard_cajero.resx">
+    <EmbeddedResource Include="Forms\frm_dashboard_cajero.resx">
       <DependentUpon>frm_dashboard_cajero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_default_dashboard_admin_page.resx">
+    <EmbeddedResource Include="Forms\frm_default_dashboard_admin_page.resx">
       <DependentUpon>frm_default_dashboard_admin_page.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_distribuidores.resx">
+    <EmbeddedResource Include="Forms\frm_distribuidores.resx">
       <DependentUpon>frm_distribuidores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_login.resx">
+    <EmbeddedResource Include="Forms\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_productos.resx">
+    <EmbeddedResource Include="Forms\frm_productos.resx">
       <DependentUpon>frm_productos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_promociones.resx">
+    <EmbeddedResource Include="Forms\frm_promociones.resx">
       <DependentUpon>frm_promociones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_signin.resx">
+    <EmbeddedResource Include="Forms\frm_signin.resx">
       <DependentUpon>frm_signin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_usuarios.resx">
+    <EmbeddedResource Include="Forms\frm_usuarios.resx">
       <DependentUpon>frm_usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

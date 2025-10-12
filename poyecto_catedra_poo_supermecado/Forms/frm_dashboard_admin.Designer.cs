@@ -1,4 +1,4 @@
-﻿namespace poyecto_catedra_poo_supermecado
+﻿namespace poyecto_catedra_poo_supermecado.Forms
 {
     partial class frm_dashboard_admin
     {

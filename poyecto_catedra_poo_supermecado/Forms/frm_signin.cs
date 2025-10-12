@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.Utilities;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
-    public partial class frm_promociones : Form
+    public partial class frm_signin : Form
     {
-        public frm_promociones()
+        public frm_signin()
         {
             InitializeComponent();
+            FormHelper.DefaultFormValues(this);
         }
     }
 }

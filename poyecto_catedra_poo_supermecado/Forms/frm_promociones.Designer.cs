@@ -1,6 +1,6 @@
-﻿namespace poyecto_catedra_poo_supermecado
+﻿namespace poyecto_catedra_poo_supermecado.Forms
 {
-    partial class frm_distribuidores
+    partial class frm_promociones
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_distribuidores));
-            this.panel_cards = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_promociones));
             this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.panel_cards = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // panel_cards
-            // 
-            this.panel_cards.Location = new System.Drawing.Point(12, 78);
-            this.panel_cards.Name = "panel_cards";
-            this.panel_cards.Size = new System.Drawing.Size(1220, 821);
-            this.panel_cards.TabIndex = 39;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(152, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 39);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "Distriubidor";
             // 
             // textboxMaxing2
             // 
@@ -60,7 +43,7 @@
             this.textboxMaxing2.BorderSize = 7;
             this.textboxMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textboxMaxing2.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing2.Location = new System.Drawing.Point(711, 23);
+            this.textboxMaxing2.Location = new System.Drawing.Point(713, 30);
             this.textboxMaxing2.Margin = new System.Windows.Forms.Padding(4);
             this.textboxMaxing2.Multiline = false;
             this.textboxMaxing2.Name = "textboxMaxing2";
@@ -68,10 +51,20 @@
             this.textboxMaxing2.PasswordChar = false;
             this.textboxMaxing2.PlaceholderColor = System.Drawing.Color.Gray;
             this.textboxMaxing2.PlaceholderText = "Buscar";
-            this.textboxMaxing2.Size = new System.Drawing.Size(490, 35);
-            this.textboxMaxing2.TabIndex = 38;
+            this.textboxMaxing2.Size = new System.Drawing.Size(490, 40);
+            this.textboxMaxing2.TabIndex = 41;
             this.textboxMaxing2.Texts = "";
             this.textboxMaxing2.UnderlinedStyle = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(154, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(360, 65);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Promociones";
             // 
             // buttonMaxing1
             // 
@@ -84,26 +77,32 @@
             this.buttonMaxing1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMaxing1.ForeColor = System.Drawing.Color.White;
             this.buttonMaxing1.Image = ((System.Drawing.Image)(resources.GetObject("buttonMaxing1.Image")));
-            this.buttonMaxing1.Location = new System.Drawing.Point(12, 12);
+            this.buttonMaxing1.Location = new System.Drawing.Point(14, 19);
             this.buttonMaxing1.Name = "buttonMaxing1";
             this.buttonMaxing1.Size = new System.Drawing.Size(122, 46);
-            this.buttonMaxing1.TabIndex = 36;
+            this.buttonMaxing1.TabIndex = 39;
             this.buttonMaxing1.TextColor = System.Drawing.Color.White;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
-            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
-            // frm_distribuidores
+            // panel_cards
+            // 
+            this.panel_cards.Location = new System.Drawing.Point(14, 78);
+            this.panel_cards.Name = "panel_cards";
+            this.panel_cards.Size = new System.Drawing.Size(1220, 821);
+            this.panel_cards.TabIndex = 42;
+            // 
+            // frm_promociones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 911);
+            this.ClientSize = new System.Drawing.Size(1279, 911);
             this.Controls.Add(this.panel_cards);
             this.Controls.Add(this.textboxMaxing2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonMaxing1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frm_distribuidores";
-            this.Text = "frm_distribuidores";
+            this.Name = "frm_promociones";
+            this.Text = "frm_promociones";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,9 +110,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel_cards;
         private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
         private System.Windows.Forms.Label label1;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
+        private System.Windows.Forms.Panel panel_cards;
     }
 }

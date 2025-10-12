@@ -1,4 +1,4 @@
-﻿namespace project_supermercado
+﻿namespace poyecto_catedra_poo_supermecado.Forms
 {
     partial class frm_signin
     {
@@ -46,7 +46,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.background;
             this.pictureBox1.Location = new System.Drawing.Point(0, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1021, 678);

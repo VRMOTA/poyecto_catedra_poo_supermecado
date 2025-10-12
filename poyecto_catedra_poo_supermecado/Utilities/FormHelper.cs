@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace project_supermercado
+namespace poyecto_catedra_poo_supermecado.Utilities
 {
     public static class FormHelper
     {

@@ -1,13 +1,13 @@
-﻿using project_supermercado;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using poyecto_catedra_poo_supermecado.Conexion; 
+using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.Utilities;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_clientes : Form
     {

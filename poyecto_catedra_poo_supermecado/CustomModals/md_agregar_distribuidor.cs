@@ -1,5 +1,4 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
-using project_supermercado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.Utilities;
 
 namespace poyecto_catedra_poo_supermecado.CustomModals
 {

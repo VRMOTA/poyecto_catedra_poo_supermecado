@@ -1,7 +1,6 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomCards;
 using poyecto_catedra_poo_supermecado.CustomModals;
-using project_supermercado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace poyecto_catedra_poo_supermecado
+namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_distribuidores : Form
     {
