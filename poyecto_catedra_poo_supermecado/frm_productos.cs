@@ -22,36 +22,36 @@ namespace poyecto_catedra_poo_supermecado
 
         private void CargarProductosAdmin()
         {
-            int espacio = 10; // Espacio entre cartas
-            
-            
+            int espacio = 10;
+
             List<dynamic> lista_productos;
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // Seleccionar datos con Entity Framework
-                lista_productos = db.tb_producto
-                    .Select(d => new
-                    {
-                       d.id_producto,
-                       d.nombre, 
-                       d.precio,
-                       d.stock,
-                       d.imagen,
-                       d.descripcion,
-                       d.id_distribuidor, 
-                       d.id_categoria, 
-                       d.activo
-                    }).ToList<dynamic>(); // Convertimos a lista dinámica
+                // SELECT con JOINs para obtener los nombres
+                lista_productos = (from p in db.tb_producto
+                                   join d in db.tb_distribuidores on p.id_distribuidor equals d.id_distribuidor
+                                   join c in db.tb_categorias on p.id_categoria equals c.id_categoria
+                                   select new
+                                   {
+                                       p.id_producto,
+                                       p.nombre,
+                                       p.precio,
+                                       p.stock,
+                                       p.imagen,
+                                       p.descripcion,
+                                       nombre_distribuidor = d.nombre,
+                                       nombre_categoria = c.nombre,
+                                       p.activo
+                                   }).ToList<dynamic>();
             }
-
 
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
-
             int posicionY = 0;
+
             for (int i = 0; i < lista_productos.Count; i++)
             {
-                var producto = lista_productos[i]; // Obtenemos el distribuidor actual
+                var producto = lista_productos[i];
 
                 // Convertir byte[] a Image
                 Image imageProducto = null;
@@ -62,24 +62,23 @@ namespace poyecto_catedra_poo_supermecado
                         imageProducto = Image.FromStream(ms);
                     }
                 }
+
                 var card = new card_producto_admin
                 {
                     ID_Producto = producto.id_producto,
-                    NombreProducto = producto.nombre, 
-                    NombreDistribuidor = producto.id_distribuidor.ToString(), 
+                    NombreProducto = producto.nombre,
+                    NombreDistribuidor = producto.nombre_distribuidor, // Ahora muestra el nombre real
                     Descripcion = producto.descripcion,
-                    Cateogoria = producto.id_categoria.ToString(), 
-                    Stock = producto.stock.ToString(), 
-                    Precio = producto.precio, 
+                    Cateogoria = producto.nombre_categoria, // Ahora muestra el nombre real
+                    Stock = producto.stock.ToString(),
+                    Precio = producto.precio,
                     ImagenProducto = imageProducto,
                     Margin = new Padding(espacio)
                 };
 
                 card.Left = 0;
                 card.Top = posicionY;
-
                 panel_cards.Controls.Add(card);
-
                 posicionY += card.Height + espacio;
             }
 
@@ -88,7 +87,6 @@ namespace poyecto_catedra_poo_supermecado
                 posicionY
             );
         }
-
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
             using (var modal = new md_agregar_productos())

@@ -1,20 +1,21 @@
-﻿using poyecto_catedra_poo_supermecado.CustomModals;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomModals;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_producto_admin : RoundedControlBase
     {
-        private decimal _precio;
         private int? _descuento;
         private int id_producto;
         public card_producto_admin()
         {
             InitializeComponent();
-            ActualizarPrecioDescuento();
+
         }
         public int ID_Producto
         {
@@ -65,35 +66,30 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         [Category("Producto"), Description("Precio del producto")]
         public decimal Precio
         {
-            get => _precio;
-            set
-            {
-                _precio = value;
-                ActualizarPrecioDescuento();
-            }
-        }
-
-
-        private void ActualizarPrecioDescuento()
-        {
-
-        }
-
-        private void ActualizarVisibilidadDescuento()
-        {
-
-        }
-
-        // Método para forzar la actualización de la visibilidad si es necesario
-        public void RefreshDescuentoVisibility()
-        {
-            ActualizarVisibilidadDescuento();
+            get => decimal.TryParse(lblPrecio?.Text, out var precio) ? precio : 0m;
+            set { if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             var modal = new md_agregar_productos("Actualizar nuevo producto", "Actualizar");
-            modal.ShowDialog();
+
+            // Pasar datos actuales
+            modal.IDProducto = id_producto;
+            modal.NombreProducto = NombreProducto;
+            modal.ImagenProducto = ImagenProducto;
+            modal.PrecioProducto = Precio.ToString(); 
+            modal.StockProducto = Stock.ToString();
+            modal.CategoriaProducto = Cateogoria;
+            modal.DistribuidorProducto = NombreDistribuidor;
+            modal.DescripcionProducto = Descripcion;
+            // Evaluar como hacer lo de actiov y inactivo 
+
+            // Mostrar modal y refrescar si se actualizó
+            if (modal.ShowDialog() == DialogResult.OK)
+            {
+                CargarDatosPROD();
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -107,7 +103,45 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                {
+                    var producto = db.tb_producto.Find(ID_Producto);
+                    if (producto != null)
+                    {
+                        db.tb_producto.Remove(producto);
+                        db.SaveChanges();
+                        MessageBox.Show("Producto eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        public void CargarDatosPROD()
+        {
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var producto = db.tb_producto.Find(ID_Producto);
+                if (producto != null)
+                {
+                    NombreProducto = producto.nombre;
+                    Precio = producto.precio ?? 0m;
+                    Stock = producto.stock.ToString();
+                    Descripcion = producto.descripcion;
+                    Cateogoria = producto.id_categoria.ToString();
+                    NombreDistribuidor = producto.id_distribuidor.ToString();
+                    // Convertir byte[] a Image
 
+                    if (producto.imagen != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream(producto.imagen))
+                        {
+                            ImagenProducto = Image.FromStream(ms);
+                        }
+                    }
+                }
             }
         }
     }

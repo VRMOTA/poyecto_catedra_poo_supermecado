@@ -28,6 +28,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
+        public Image ImagenProducto         {
+            get => pbProducto.Image;
+            set => pbProducto.Image = value;
+        }
         public string PrecioProducto // cambiar luego a int  
         {
             get => txt_precio.Texts;
