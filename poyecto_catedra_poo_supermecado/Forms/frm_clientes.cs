@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,7 +10,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_clientes : Form
     {
-        // prueba
         private List<Producto> productos = new List<Producto>();
         private List<CustomCards.card_producto_menu> productosCards = new List<CustomCards.card_producto_menu>();
 
@@ -28,39 +26,47 @@ namespace poyecto_catedra_poo_supermecado.Forms
             rd_fondo.FillColor = Color.FromArgb(235, 235, 235);
             pln_cards.BackColor = Color.FromArgb(235, 235, 235);
 
+            // Verifica si la base de datos existe y es accesible
             if (!Helpers.DatabaseExists())
             {
-                MessageBox.Show("La base de datos no ha sido creada o no se puede conectar.");
+                MessageBox.Show("La base de datos no está disponible o no se puede conectar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pln_cards.Enabled = false;
             }
         }
 
         private void frm_clientes_Load(object sender, EventArgs e)
         {
-            InicializarProductos();
-            CargarProductos();
+            CargarProductosDesdeBD();
+            MostrarProductosEnUI();
         }
 
-        private void InicializarProductos()
+        private void CargarProductosDesdeBD()
         {
-            productos = new List<Producto>
+            try
             {
-                new Producto(1, "Manzana", 1.20m, 50, 30, "Fruta fresca y jugosa", Properties.Resources.manzana),
-                new Producto(2, "Banana", 0.80m, 40, 10, "Rica en potasio", Properties.Resources.banana),
-                new Producto(3, "Leche", 2.50m, 30, 5, "Entera, 1 litro", Properties.Resources.leche),
-                new Producto(4, "Pan", 1.00m, 60, 0, "Pan artesanal", Properties.Resources.pan),
-                new Producto(5, "Queso", 3.75m, 20, 15, "Queso fresco", Properties.Resources.queso),
-                new Producto(6, "Jamon", 2.90m, 25, 0, "Jamón cocido", Properties.Resources.jamon),
-                new Producto(7, "Cereal", 4.10m, 35, 20, "Cereal integral", Properties.Resources.cereal),
-                new Producto(8, "Yogur", 1.60m, 45, 0, "Yogur natural", Properties.Resources.yogyur),
-                new Producto(9, "Huevos", 2.20m, 80, 0, "Docena de huevos", Properties.Resources.huevo),
-                new Producto(10, "Agua", 0.60m, 100, 0, "Botella 500ml", Properties.Resources.agua),
-                new Producto(11, "Refresco", 1.50m, 70, 5, "Refresco sabor cola", Properties.Resources.soda),
-                new Producto(12, "Galletas", 2.30m, 55, 0, "Galletas dulces", Properties.Resources.cokie),
-                new Producto(13, "Arroz", 1.10m, 90, 0, "Arroz blanco", Properties.Resources.rice),
-            };
+                using (var db = new db_supermercadoEntities1())
+                {
+                    // Carga todos los productos desde la BD
+                    productos = db.tb_producto
+                        .Select(p => new Producto
+                        {
+                            Id = p.id_producto,
+                            Nombre = p.nombre,
+                            Precio = p.precio ?? 0m,
+                            Stock = p.stock ?? 0,
+                            Descripcion = p.descripcion
+                        })
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar productos desde la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                productos = new List<Producto>();
+            }
         }
 
-        private void CargarProductos()
+        private void MostrarProductosEnUI()
         {
             pln_cards.Controls.Clear();
             productosCards.Clear();
@@ -100,7 +106,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var producto = productos.FirstOrDefault(p => p.Id == idProducto);
             if (producto == null)
             {
-                MessageBox.Show("Producto no encontrado.");
+                MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -122,11 +128,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
+        private Image ImagenDesdeBytes(byte[] bytes)
+        {
+            using (var ms = new System.IO.MemoryStream(bytes))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
         private void buttonMaxing2_Click(object sender, EventArgs e)
         {
-            frm_login frm_Login = new frm_login(); 
-            this.Hide(); 
-            frm_Login .Show();
+            var frmLogin = new frm_login();
+            this.Hide();
+            frmLogin.Show();
         }
 
         private void frm_clientes_FormClosed(object sender, FormClosedEventArgs e)
@@ -138,19 +152,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             using (var modal = new CustomModals.md_consulta())
             {
-                modal.ShowDialog();// comentario
+                modal.ShowDialog();
             }
         }
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
+            // Prueba de conexión a BD
             try
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                using (var db = new db_supermercadoEntities1())
                 {
-                    // Intenta acceder a una tabla, por ejemplo, la tabla Clientes
-                    int total = db.tb_usuario.Count();
-                    MessageBox.Show("Conexión exitosa. Total de clientes: " + total, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int total = db.tb_producto.Count();
+                    MessageBox.Show("Conexión exitosa. Total de productos: " + total, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -162,23 +176,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
     public class Producto
     {
-        public int Id { get; }
-        public string Nombre { get; }
-        public decimal Precio { get; }
-        public int Stock { get; }
-        public int Descuento { get; }
-        public string Descripcion { get; }
-        public Image Imagen { get; }
-
-        public Producto(int id, string nombre, decimal precio, int stock, int descuento, string descripcion, Image imagen)
-        {
-            Id = id;
-            Nombre = nombre;
-            Precio = precio;
-            Stock = stock;
-            Descuento = descuento;
-            Descripcion = descripcion;
-            Imagen = imagen;
-        }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public decimal Precio { get; set; }
+        public int Stock { get; set; }
+        public int Descuento { get; set; }
+        public string Descripcion { get; set; }
+        public Image Imagen { get; set; }
     }
 }
