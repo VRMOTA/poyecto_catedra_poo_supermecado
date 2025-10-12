@@ -1,4 +1,5 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,23 @@ namespace poyecto_catedra_poo_supermecado.Utilities
                     dataGrid.DataSource = null;
                 else if (ctrl.HasChildren)
                     LimpiarControles(ctrl);
+            }
+        }
+
+        public static bool DatabaseExists()
+        {
+            try
+            {
+                using (var db = new db_supermercadoEntities1())
+                {
+                    // EF4/5: Database.Exists() verifica si la BD existe y se puede conectar
+                    return db.Database.Exists();
+                }
+            }
+            catch
+            {
+                // Si ocurre cualquier error al conectar, asumimos que no existe
+                return false;
             }
         }
     }

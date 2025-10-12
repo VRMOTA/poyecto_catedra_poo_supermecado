@@ -27,6 +27,11 @@ namespace poyecto_catedra_poo_supermecado.Forms
             FormHelper.DefaultFormValues(this);
             rd_fondo.FillColor = Color.FromArgb(235, 235, 235);
             pln_cards.BackColor = Color.FromArgb(235, 235, 235);
+
+            if (!Helpers.DatabaseExists())
+            {
+                MessageBox.Show("La base de datos no ha sido creada o no se puede conectar.");
+            }
         }
 
         private void frm_clientes_Load(object sender, EventArgs e)
