@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.txt_nombre = new Catedra.CustomControls.TextboxMaxing();
+            this.btn_cancelar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.txt_nombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -134,9 +134,9 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing btn_cancelar;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.TextboxMaxing txt_nombre;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_cancelar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_nombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }

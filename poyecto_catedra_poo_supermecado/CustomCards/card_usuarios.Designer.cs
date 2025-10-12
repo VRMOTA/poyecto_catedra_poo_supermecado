@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnEliminar = new Catedra.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.lblCorreoUsuario = new System.Windows.Forms.Label();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -112,8 +112,8 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.ButtonMaxing btnEliminar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnEliminar;
         private System.Windows.Forms.Label lblCorreoUsuario;
         private System.Windows.Forms.Label lblNombreUsuario;
     }

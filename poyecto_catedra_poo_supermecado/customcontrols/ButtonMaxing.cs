@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
 
-namespace Catedra.CustomControls
+namespace poyecto_catedra_poo_supermecado.CustomControls
 {
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(Button))]

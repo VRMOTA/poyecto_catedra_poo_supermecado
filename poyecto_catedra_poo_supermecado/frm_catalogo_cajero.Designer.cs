@@ -32,8 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.card_producto_menu1 = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
             this.roundedControlBase1 = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.textboxMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lblProducto = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
@@ -42,8 +42,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbstock = new System.Windows.Forms.Label();
             this.lbdescriccion = new System.Windows.Forms.Label();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.textboxMaxing2 = new Catedra.CustomControls.TextboxMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
@@ -130,7 +130,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(1024, 89);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(205, 125);
@@ -290,8 +289,8 @@
         }
 
         #endregion
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing1;
         private CustomCards.RoundedControlBase roundedControlBase1;
         private System.Windows.Forms.Panel panel1;
         private CustomCards.card_producto_menu card_producto_menu1;
@@ -303,7 +302,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbstock;
         private System.Windows.Forms.Label lbdescriccion;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
     }
 }

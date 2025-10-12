@@ -32,10 +32,10 @@
             this.pln_cards = new System.Windows.Forms.Panel();
             this.card = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
             this.rd_fondo = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
+            this.textboxMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.panelRedondeado1 = new poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado();
             this.lbdescriccion = new System.Windows.Forms.Label();
             this.lbstock = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -254,7 +254,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(25, 17);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(337, 213);
@@ -290,11 +289,11 @@
 
         private System.Windows.Forms.Panel pln_cards;
         private CustomCards.RoundedControlBase rd_fondo;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private CustomCards.card_producto_menu card;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
-        private project_supermercado.CustomControls.PanelRedondeado panelRedondeado1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado panelRedondeado1;
         private System.Windows.Forms.Label lbdescriccion;
         private System.Windows.Forms.Label lbstock;
         private System.Windows.Forms.Label label2;

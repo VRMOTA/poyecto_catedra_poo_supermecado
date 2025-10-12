@@ -31,8 +31,8 @@
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnEliminar = new Catedra.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lblPrecioTotal = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -114,7 +114,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(17, 20);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(218, 154);
@@ -207,8 +206,8 @@
         private System.Windows.Forms.PictureBox pbProducto;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.ButtonMaxing btnEliminar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnEliminar;
         private System.Windows.Forms.Label lblPrecioTotal;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPrecioDescuento;

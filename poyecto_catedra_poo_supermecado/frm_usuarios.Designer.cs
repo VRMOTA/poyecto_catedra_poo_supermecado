@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_usuarios));
             this.panel_cards = new System.Windows.Forms.Panel();
-            this.textboxMaxing2 = new Catedra.CustomControls.TextboxMaxing();
+            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
             // 
             // panel_cards
@@ -112,8 +112,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_cards;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
     }
 }

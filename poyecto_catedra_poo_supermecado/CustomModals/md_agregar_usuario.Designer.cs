@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_agregar_usuario));
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_nombre = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_nombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_correo = new Catedra.CustomControls.TextboxMaxing();
-            this.txt_clave = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_correo = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.txt_clave = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
-            this.btn_crear = new Catedra.CustomControls.ButtonMaxing();
+            this.btn_cancelar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btn_crear = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.label5 = new System.Windows.Forms.Label();
-            this.txt_confirma_clave = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_confirma_clave = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label6 = new System.Windows.Forms.Label();
             this.cmb_rol = new CustomControls.RJComboBox();
             this.SuspendLayout();
@@ -275,16 +275,16 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.TextboxMaxing txt_nombre;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_nombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private Catedra.CustomControls.TextboxMaxing txt_correo;
-        private Catedra.CustomControls.TextboxMaxing txt_clave;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_correo;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_clave;
         private System.Windows.Forms.Label label4;
-        private Catedra.CustomControls.ButtonMaxing btn_cancelar;
-        private Catedra.CustomControls.ButtonMaxing btn_crear;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_cancelar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_crear;
         private System.Windows.Forms.Label label5;
-        private Catedra.CustomControls.TextboxMaxing txt_confirma_clave;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_confirma_clave;
         private CustomControls.RJComboBox cmb_rol;
         private System.Windows.Forms.Label label6;
     }

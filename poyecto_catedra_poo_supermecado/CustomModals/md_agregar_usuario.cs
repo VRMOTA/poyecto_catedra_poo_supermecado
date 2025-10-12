@@ -1,4 +1,4 @@
-﻿using Catedra.CustomControls;
+﻿using poyecto_catedra_poo_supermecado.CustomControls;
 using poyecto_catedra_poo_supermecado.Conexion;
 using project_supermercado;
 using System;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using poyecto_catedra_poo_supermecado.Conexion;
 using System.Data.Entity;
-using Catedra.CustomControls;
+using poyecto_catedra_poo_supermecado.CustomControls;
 
 namespace poyecto_catedra_poo_supermecado.CustomModals
 {

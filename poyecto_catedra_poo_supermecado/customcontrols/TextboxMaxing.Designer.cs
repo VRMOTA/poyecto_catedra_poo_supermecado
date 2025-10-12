@@ -1,4 +1,4 @@
-﻿namespace Catedra.CustomControls
+﻿namespace poyecto_catedra_poo_supermecado.CustomControls
 {
     partial class TextboxMaxing
     {

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.lblNombre_categoria = new System.Windows.Forms.Label();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnEliminar = new Catedra.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
             // 
             // lblNombre_categoria
@@ -100,7 +100,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblNombre_categoria;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.ButtonMaxing btnEliminar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnEliminar;
     }
 }

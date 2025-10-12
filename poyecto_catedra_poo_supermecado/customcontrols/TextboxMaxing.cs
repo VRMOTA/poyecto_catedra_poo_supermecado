@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Catedra.CustomControls
+namespace poyecto_catedra_poo_supermecado.CustomControls
 {
     [DefaultEvent("TextChanged")]
     public partial class TextboxMaxing : UserControl

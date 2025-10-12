@@ -33,13 +33,12 @@
             this.lblPrecioDescuento = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
-            this.btnVisualizar = new Catedra.CustomControls.ButtonMaxing();
+            this.btnVisualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(25, 18);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(188, 119);
@@ -134,6 +133,6 @@
         private System.Windows.Forms.Label lblPrecioDescuento;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblProducto;
-        private Catedra.CustomControls.ButtonMaxing btnVisualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnVisualizar;
     }
 }

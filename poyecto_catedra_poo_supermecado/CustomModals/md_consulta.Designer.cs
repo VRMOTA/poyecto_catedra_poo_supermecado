@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_consulta));
             this.label1 = new System.Windows.Forms.Label();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
-            this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
+            this.textboxMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.btn_cancelar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
             // 
             // label1
@@ -124,8 +124,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
-        private Catedra.CustomControls.ButtonMaxing btn_cancelar;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_cancelar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
     }
 }

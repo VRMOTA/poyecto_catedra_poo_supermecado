@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelRedondeado1 = new project_supermercado.CustomControls.PanelRedondeado();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
+            this.panelRedondeado1 = new poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.label5 = new System.Windows.Forms.Label();
-            this.textboxMaxing3 = new Catedra.CustomControls.TextboxMaxing();
+            this.textboxMaxing3 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label4 = new System.Windows.Forms.Label();
-            this.textboxMaxing2 = new Catedra.CustomControls.TextboxMaxing();
+            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.textboxMaxing1 = new Catedra.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.textboxMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRedondeado1.SuspendLayout();
             this.SuspendLayout();
@@ -240,16 +240,16 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private CustomControls.PanelRedondeado panelRedondeado1;
+        private poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado panelRedondeado1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing1;
         private System.Windows.Forms.Label label5;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing3;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing3;
         private System.Windows.Forms.Label label4;
-        private Catedra.CustomControls.TextboxMaxing textboxMaxing2;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
     }
 }

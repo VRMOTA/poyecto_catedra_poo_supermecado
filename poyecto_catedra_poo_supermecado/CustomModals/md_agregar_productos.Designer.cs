@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_agregar_productos));
-            this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
+            this.btn_cancelar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_nombre = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_nombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.cmb_distruhibidora = new CustomControls.RJComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_precio = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_precio = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label7 = new System.Windows.Forms.Label();
-            this.txt_stock = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_stock = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_descripcion = new Catedra.CustomControls.TextboxMaxing();
+            this.txt_descripcion = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.cmb_categoria = new CustomControls.RJComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmb_activo = new CustomControls.RJComboBox();
@@ -173,7 +173,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(645, 117);
             this.pbProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbProducto.Name = "pbProducto";
@@ -409,22 +408,22 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing btn_cancelar;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_cancelar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
         private System.Windows.Forms.Label label3;
-        private Catedra.CustomControls.TextboxMaxing txt_nombre;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_nombre;
         private System.Windows.Forms.Label label2;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pbProducto;
         private CustomControls.RJComboBox cmb_distruhibidora;
         private System.Windows.Forms.Label label4;
-        private Catedra.CustomControls.TextboxMaxing txt_precio;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_precio;
         private System.Windows.Forms.Label label7;
-        private Catedra.CustomControls.TextboxMaxing txt_stock;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_stock;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private Catedra.CustomControls.TextboxMaxing txt_descripcion;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_descripcion;
         private CustomControls.RJComboBox cmb_categoria;
         private System.Windows.Forms.Label label8;
         private CustomControls.RJComboBox cmb_activo;

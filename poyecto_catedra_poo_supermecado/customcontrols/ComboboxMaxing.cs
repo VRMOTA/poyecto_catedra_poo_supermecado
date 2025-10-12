@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Design;
 using System.Windows.Forms;
 
-namespace CustomControls
+namespace poyecto_catedra_poo_supermecado.CustomControls
 {
     [DefaultEvent("OnSelectedIndexChanged")]
     public class RJComboBox : UserControl

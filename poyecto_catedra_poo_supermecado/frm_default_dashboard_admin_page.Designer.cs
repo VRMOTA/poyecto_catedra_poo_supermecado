@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_default_dashboard_admin_page));
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing3 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing4 = new Catedra.CustomControls.ButtonMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing3 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing4 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
             // 
             // buttonMaxing1
@@ -137,9 +137,9 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing3;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing4;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing3;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing4;
     }
 }

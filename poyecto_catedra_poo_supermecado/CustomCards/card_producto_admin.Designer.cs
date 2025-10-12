@@ -33,8 +33,8 @@
             this.pbDescuentoContainer = new System.Windows.Forms.PictureBox();
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lb_stock = new System.Windows.Forms.Label();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnEliminar = new Catedra.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lbl_categoria = new System.Windows.Forms.Label();
@@ -67,7 +67,6 @@
             // 
             // pbDescuentoContainer
             // 
-            this.pbDescuentoContainer.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.Vector;
             this.pbDescuentoContainer.Location = new System.Drawing.Point(861, 14);
             this.pbDescuentoContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbDescuentoContainer.Name = "pbDescuentoContainer";
@@ -78,7 +77,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(33, 31);
             this.pbProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbProducto.Name = "pbProducto";
@@ -202,8 +200,8 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.ButtonMaxing btnEliminar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnEliminar;
         private System.Windows.Forms.Label lblDistribuidor;
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.PictureBox pbProducto;

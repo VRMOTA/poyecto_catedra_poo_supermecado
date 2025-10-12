@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace project_supermercado.CustomControls
+namespace poyecto_catedra_poo_supermecado.CustomControls
 {
     [ToolboxBitmap(typeof(Panel))]
     [Description("Panel decorativo con bordes redondeados personalizables")]

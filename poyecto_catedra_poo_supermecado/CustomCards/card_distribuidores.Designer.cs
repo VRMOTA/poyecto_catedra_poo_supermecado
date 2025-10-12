@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.lblDistribuidora = new System.Windows.Forms.Label();
             this.pbDistribuidora = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbDistribuidora)).BeginInit();
@@ -87,7 +87,6 @@
             // 
             // pbDistribuidora
             // 
-            this.pbDistribuidora.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbDistribuidora.Location = new System.Drawing.Point(24, 25);
             this.pbDistribuidora.Name = "pbDistribuidora";
             this.pbDistribuidora.Size = new System.Drawing.Size(197, 154);
@@ -113,8 +112,8 @@
 
         #endregion
 
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private System.Windows.Forms.Label lblDistribuidora;
         private System.Windows.Forms.PictureBox pbDistribuidora;
     }

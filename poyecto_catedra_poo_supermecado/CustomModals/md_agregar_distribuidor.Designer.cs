@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pbProducto = new System.Windows.Forms.PictureBox();
-            this.btn_cancelar = new Catedra.CustomControls.ButtonMaxing();
-            this.btnActualizar = new Catedra.CustomControls.ButtonMaxing();
-            this.txt_nombre = new Catedra.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.btn_cancelar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.txt_nombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +61,6 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources._default;
             this.pbProducto.Location = new System.Drawing.Point(30, 77);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(352, 240);
@@ -179,10 +178,10 @@
 
         private System.Windows.Forms.PictureBox pbProducto;
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private System.Windows.Forms.Label label2;
-        private Catedra.CustomControls.TextboxMaxing txt_nombre;
-        private Catedra.CustomControls.ButtonMaxing btnActualizar;
-        private Catedra.CustomControls.ButtonMaxing btn_cancelar;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_nombre;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnActualizar;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btn_cancelar;
     }
 }

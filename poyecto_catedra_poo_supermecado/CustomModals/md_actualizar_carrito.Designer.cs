@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_actualizar_carrito));
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonMaxing2 = new Catedra.CustomControls.ButtonMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
-            this.txtCorreo = new Catedra.CustomControls.TextboxMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.txtCorreo = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.SuspendLayout();
             // 
             // label1
@@ -124,9 +124,9 @@
 
         #endregion
 
-        private Catedra.CustomControls.TextboxMaxing txtCorreo;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtCorreo;
         private System.Windows.Forms.Label label1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
     }
 }

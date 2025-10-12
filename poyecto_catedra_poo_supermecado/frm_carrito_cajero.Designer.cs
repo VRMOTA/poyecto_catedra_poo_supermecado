@@ -37,8 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCorreo = new Catedra.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new Catedra.CustomControls.ButtonMaxing();
+            this.txtCorreo = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -219,7 +219,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private Catedra.CustomControls.TextboxMaxing txtCorreo;
-        private Catedra.CustomControls.ButtonMaxing buttonMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtCorreo;
+        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
     }
 }

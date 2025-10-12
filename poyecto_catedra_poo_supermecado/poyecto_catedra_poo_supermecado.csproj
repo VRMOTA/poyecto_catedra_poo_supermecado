@@ -42,7 +42,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -139,7 +141,7 @@
     <Compile Include="CustomCards\card_prom.Designer.cs">
       <DependentUpon>card_prom.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\BorderMaxing.cs">
+    <Compile Include="CustomControls\PanelRedondeado.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomControls\ButtonMaxing.cs">
@@ -413,6 +415,7 @@
     <None Include="Resources\images.png" />
     <None Include="Resources\elmago.png" />
     <None Include="Resources\distsal.jpg" />
+    <Content Include="Resources\Bitmap1.bmp" />
     <Content Include="Resources\manzana.png" />
     <None Include="Resources\manzana1.png" />
     <None Include="Resources\Vector %281%29.png" />
