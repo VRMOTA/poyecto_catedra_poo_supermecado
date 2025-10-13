@@ -299,6 +299,9 @@
     <EmbeddedResource Include="CustomCards\card_prom.resx">
       <DependentUpon>card_prom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomCards\RoundedControlBase.resx">
+      <DependentUpon>RoundedControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\TextboxMaxing.resx">
       <DependentUpon>TextboxMaxing.cs</DependentUpon>
     </EmbeddedResource>
