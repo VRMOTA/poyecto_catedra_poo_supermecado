@@ -107,6 +107,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "10";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 

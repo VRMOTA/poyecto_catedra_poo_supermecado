@@ -165,5 +165,57 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 filasNecesarias * (altoCarta + espacio)
             );
         }
+
+        private void buttonMaxing2_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0)
+            {
+                MessageBox.Show("Seleccione un producto primero.");
+                return;
+            }
+
+            int cantidad = 1;
+            if (!int.TryParse(textboxMaxing2.Texts, out cantidad) || cantidad <= 0)
+            {
+                MessageBox.Show("Ingrese una cantidad válida.");
+                return;
+            }
+
+            using (var db = new db_supermercadoEntities1())
+            {
+                var prod = db.tb_producto.FirstOrDefault(p => p.id_producto == idSeleccionado);
+                if (prod != null)
+                {
+                    int stockDisponible = prod.stock ?? 0;
+
+                    if (cantidad > stockDisponible)
+                    {
+                        MessageBox.Show($"La cantidad ingresada ({cantidad}) supera el stock disponible ({stockDisponible}).");
+                        return;
+                    }
+                    Image imagen = null;
+                    if (prod.imagen != null)
+                    {
+                        using (var ms = new MemoryStream(prod.imagen))
+                        {
+                            imagen = Image.FromStream(ms);
+                        }
+                    }
+
+                    var seleccionado = new Utilities.ProductoSeleccionado
+                    {
+                        Id = prod.id_producto,
+                        Nombre = prod.nombre,
+                        Precio = prod.precio ?? 0m,
+                        Cantidad = cantidad,
+                        Imagen = imagen,
+                        Stock = prod.stock ?? 0
+                    };
+
+                    Utilities.Carrito.AgregarProducto(seleccionado);
+                    MessageBox.Show($"✅ {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
+                }
+            }
+        }
     }
 }

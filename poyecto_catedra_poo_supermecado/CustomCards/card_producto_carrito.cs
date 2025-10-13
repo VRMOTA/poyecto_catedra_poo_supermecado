@@ -11,6 +11,12 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private int descuento;
         private int cantidad;
 
+        [Category("Producto"), Description("Stock disponible del producto")]
+        public int StockDisponible { get; set; }
+        [Category("Acciones"), Description("Evento cuando se actualiza la cantidad")]
+        public event EventHandler<int> CantidadActualizada;
+        [Category("Producto"), Description("ID del producto")]
+        public int IDProducto { get; set; }
         public card_producto_carrito()
         {
             InitializeComponent();
@@ -123,9 +129,15 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            using (var modal = new CustomModals.md_actualizar_carrito())
+            using (var modal = new CustomModals.md_actualizar_carrito(this.Cantidad, this.StockDisponible))
             {
-                modal.ShowDialog();
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    int nuevaCantidad = modal.NuevaCantidad;
+                    this.Cantidad = nuevaCantidad;
+                    //MessageBox.Show(nuevaCantidad.ToString());
+                    CantidadActualizada?.Invoke(this, nuevaCantidad);
+                }
             }
         }
 
