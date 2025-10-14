@@ -29,11 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_promociones));
-            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.panel_cards = new System.Windows.Forms.Panel();
+            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(205, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(232, 39);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Promociones";
+            // 
+            // panel_cards
+            // 
+            this.panel_cards.Location = new System.Drawing.Point(19, 96);
+            this.panel_cards.Margin = new System.Windows.Forms.Padding(4);
+            this.panel_cards.Name = "panel_cards";
+            this.panel_cards.Size = new System.Drawing.Size(1627, 1010);
+            this.panel_cards.TabIndex = 42;
             // 
             // textboxMaxing2
             // 
@@ -56,17 +75,6 @@
             this.textboxMaxing2.Texts = "";
             this.textboxMaxing2.UnderlinedStyle = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(205, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 39);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Promociones";
-            // 
             // buttonMaxing1
             // 
             this.buttonMaxing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -85,14 +93,7 @@
             this.buttonMaxing1.TabIndex = 39;
             this.buttonMaxing1.TextColor = System.Drawing.Color.White;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
-            // 
-            // panel_cards
-            // 
-            this.panel_cards.Location = new System.Drawing.Point(19, 96);
-            this.panel_cards.Margin = new System.Windows.Forms.Padding(4);
-            this.panel_cards.Name = "panel_cards";
-            this.panel_cards.Size = new System.Drawing.Size(1627, 1010);
-            this.panel_cards.TabIndex = 42;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
             // frm_promociones
             // 

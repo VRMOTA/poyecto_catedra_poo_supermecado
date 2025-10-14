@@ -1,4 +1,5 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.CustomModals;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace poyecto_catedra_poo_supermecado.Forms
         public frm_promociones()
         {
             InitializeComponent();
+        }
+
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            using (var modal = new md_agregar_promociones())
+            {
+                modal.ShowDialog();
+            }
         }
     }
 }
