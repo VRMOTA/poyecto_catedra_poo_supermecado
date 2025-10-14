@@ -53,30 +53,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                      }).ToList<dynamic>();
             }
 
-            MessageBox.Show("Promociones encontradas: " + lista_promociones.Count);
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-            {
-                var promos = db.tb_promociones.ToList();
-                MessageBox.Show("Total promociones en tabla: " + promos.Count);
-            }
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-            {
-                var promos = (from pr in db.tb_promociones
-                              join p in db.tb_producto on pr.id_producto equals p.id_producto into joined
-                              from p in joined.DefaultIfEmpty()
-                              select new
-                              {
-                                  pr.id_promocion,
-                                  pr.id_producto,
-                                  nombre_producto = p != null ? p.nombre : "(sin producto)"
-                              }).ToList();
-
-                var sinProducto = promos.Where(x => x.nombre_producto == "(sin producto)").ToList();
-                MessageBox.Show("Promos sin producto: " + sinProducto.Count);
-            }
-
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
 

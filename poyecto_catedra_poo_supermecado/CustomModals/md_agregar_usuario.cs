@@ -40,6 +40,9 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string nombre = txt_nombre.Texts.Trim();
             string correo = txt_correo.Texts.Trim();
             string clave = txt_clave.Texts.Trim();
+            string rol = cmb_rol.SelectedItem?.ToString() ?? "";
+            string nivelTexto = cmb_activo.SelectedItem?.ToString()?? "";
+            byte nivel = (nivelTexto == "Activo") ? (byte)1 : (byte)0;
             string confirmaClave = txt_confirma_clave.Texts.Trim();
 
             if (clave != confirmaClave)
@@ -55,6 +58,8 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     nombre = nombre,
                     correo = correo,
                     clave = clave,
+                    tipo_usuario = rol, // AGREGAR COMBO CON EL ROL (ADMIN, USUARIO) 
+                    activo = (nivel == 1),
                     // AGREGAR COMBO CON EL NIVEL
                 };
 

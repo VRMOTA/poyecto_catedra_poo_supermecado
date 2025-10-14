@@ -56,13 +56,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public DateTime Fecha_Inicio
         {
             get => DateTime.TryParse(lb_fecha_inicio?.Text, out DateTime result) ? result : DateTime.Now;
-            set { if (lb_fecha_inicio != null) lb_fecha_inicio.Text = value.ToString("yyyy-MM-dd"); }
+            set { if (lb_fecha_inicio != null) lb_fecha_inicio.Text = value.ToString("dd-MM-yyyy"); }
         }
         [Category("Promocion"), Description("Fecha de finalizacion de la promocion ")]
         public DateTime Fecha_Fin
         {
             get => DateTime.TryParse(lb_fecha_fin?.Text, out DateTime result) ? result : DateTime.Now;
-            set { if (lb_fecha_fin != null) lb_fecha_fin.Text = value.ToString("yyyy-MM-dd"); }
+            set { if (lb_fecha_fin != null) lb_fecha_fin.Text = value.ToString("dd-MM-yyyy"); }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -100,6 +100,34 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                     Descripcion_Promocion = producto.descripcion;
                     Fecha_Inicio = producto.fecha_inicio ?? DateTime.Now;
                     Fecha_Fin = producto.fecha_fin ?? DateTime.Now;
+                }
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show(
+          "¿Está seguro que desea eliminar el registro?",
+          "Confirmar eliminación",
+          MessageBoxButtons.YesNo,
+          MessageBoxIcon.Warning
+          );
+
+            if (resultado == DialogResult.Yes)
+            {
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                {
+                    var promociones = db.tb_promociones.Find(ID_Promocion);
+                    if (promociones != null)
+                    {
+                        db.tb_promociones.Remove(promociones);
+                        db.SaveChanges();
+                        MessageBox.Show("Prohebedor eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Prohebedor no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

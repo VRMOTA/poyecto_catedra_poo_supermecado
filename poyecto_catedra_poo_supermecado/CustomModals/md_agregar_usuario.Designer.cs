@@ -41,7 +41,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txt_confirma_clave = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmb_rol = new CustomControls.RJComboBox();
+            this.cmb_rol = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmb_activo = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -236,6 +238,9 @@
             this.cmb_rol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_rol.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_rol.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_rol.Items.AddRange(new object[] {
+            "Administrador",
+            "Cajero"});
             this.cmb_rol.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cmb_rol.ListTextColor = System.Drawing.Color.DimGray;
             this.cmb_rol.Location = new System.Drawing.Point(434, 115);
@@ -246,11 +251,45 @@
             this.cmb_rol.TabIndex = 55;
             this.cmb_rol.Texts = "";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(429, 178);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 29);
+            this.label7.TabIndex = 57;
+            this.label7.Text = "Activo ";
+            // 
+            // cmb_activo
+            // 
+            this.cmb_activo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmb_activo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_activo.BorderSize = 2;
+            this.cmb_activo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cmb_activo.ForeColor = System.Drawing.Color.DimGray;
+            this.cmb_activo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_activo.Items.AddRange(new object[] {
+            "Activo",
+            "Desactivo"});
+            this.cmb_activo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cmb_activo.ListTextColor = System.Drawing.Color.DimGray;
+            this.cmb_activo.Location = new System.Drawing.Point(434, 211);
+            this.cmb_activo.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cmb_activo.Name = "cmb_activo";
+            this.cmb_activo.Padding = new System.Windows.Forms.Padding(2);
+            this.cmb_activo.Size = new System.Drawing.Size(270, 36);
+            this.cmb_activo.TabIndex = 58;
+            this.cmb_activo.Texts = "";
+            // 
             // md_agregar_usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 506);
+            this.Controls.Add(this.cmb_activo);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmb_rol);
             this.Controls.Add(this.txt_confirma_clave);
@@ -287,5 +326,7 @@
         private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_confirma_clave;
         private CustomControls.RJComboBox cmb_rol;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private CustomControls.RJComboBox cmb_activo;
     }
 }
