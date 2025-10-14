@@ -1,9 +1,14 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomModals;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +63,45 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             get => DateTime.TryParse(lb_fecha_fin?.Text, out DateTime result) ? result : DateTime.Now;
             set { if (lb_fecha_fin != null) lb_fecha_fin.Text = value.ToString("yyyy-MM-dd"); }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            var modal = new md_promocion("Actualizar nuevo producto", "Actualizar");
+
+            // Pasar datos actuales
+            modal.ID_Promocion = ID_Promocion; 
+            modal.Cantidad_minima = Cantidad_Minima; 
+            modal.Precio_promocional = Precio_Promocion.ToString("F2"); 
+            modal.Descripcion = Descripcion_Promocion; 
+            modal.Fecha_inicio = Fecha_Inicio;
+            modal.Fecha_final = Fecha_Fin;
+
+
+
+            // Evaluar como hacer lo de actiov y inactivo 
+
+            // Mostrar modal y refrescar si se actualizó
+            if (modal.ShowDialog() == DialogResult.OK)
+            {
+                CargarDatosPROD();
+            }
+        }
+        public void CargarDatosPROD()
+        {
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var producto = db.tb_promociones.Find(ID_Promocion);
+                if (producto != null)
+                {
+                   
+                    Cantidad_Minima = producto.cantidad_minima ?? 0;
+                    Precio_Promocion = producto.precio_promocional ?? 0;
+                    Descripcion_Promocion = producto.descripcion;
+                    Fecha_Inicio = producto.fecha_inicio ?? DateTime.Now;
+                    Fecha_Fin = producto.fecha_fin ?? DateTime.Now;
+                }
+            }
         }
     }
 }
