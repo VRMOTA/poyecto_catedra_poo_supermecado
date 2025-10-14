@@ -14,6 +14,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private List<CustomCards.card_producto_menu> productosCards = new List<CustomCards.card_producto_menu>();
 
         // Constantes para layout
+        // Cambio para arreglar cosos
         private const int Columnas = 4;
         private const int AnchoCarta = 241;
         private const int AltoCarta = 266;
