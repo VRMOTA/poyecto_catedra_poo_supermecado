@@ -22,46 +22,60 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
         }
         // Propiedades para editar 
-        public int IDProducto { get; set; } = 0; 
+        public int IDProducto { get; set; } = 0;
+
         public string NombreProducto
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
-        public Image ImagenProducto         {
+
+        public Image ImagenProducto
+        {
             get => pbProducto.Image;
             set => pbProducto.Image = value;
         }
+
         public string PrecioProducto // cambiar luego a int  
         {
             get => txt_precio.Texts;
             set => txt_precio.Texts = value;
-        } 
+        }
+
         public string StockProducto // cambiar luego a int 
         {
             get => txt_stock.Texts;
             set => txt_stock.Texts = value;
         }
+
+        // Nuevas propiedades para manejar IDs
+        public int? IDCategoriaProducto { get; set; }
+        public int? IDDistribuidorProducto { get; set; }
+
         public string CategoriaProducto
         {
             get => cmb_categoria.Texts;
             set => cmb_categoria.Texts = value;
         }
+
         public string DistribuidorProducto
         {
             get => cmb_distruhibidora.Texts;
             set => cmb_distruhibidora.Texts = value;
         }
+
         public string DescripcionProducto
         {
             get => txt_descripcion.Texts;
             set => txt_descripcion.Texts = value;
         }
+
         public string ActivoProducto
         {
             get => cmb_activo.Texts;
             set => cmb_activo.Texts = value;
         }
+
         public md_agregar_productos(string labelText, string buttonText) : this()
         {
             label1.Text = labelText;
@@ -94,7 +108,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string precioText = txt_precio.Texts.Trim();
             string stockText = txt_stock.Texts.Trim();
 
-            // Ahora SÍ funcionará SelectedValue
+
             int? idCategoria = null;
             int? idDistribuidor = null;
 
@@ -199,6 +213,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
         private void cargar_combox_categoria()
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
@@ -210,6 +225,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 cmb_categoria.SelectedIndex = -1; // No seleccionar nada por defecto
             }
         }
+
         private void cargar_combox_distribuidor()
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
@@ -221,10 +237,22 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 cmb_distruhibidora.SelectedIndex = -1; // No seleccionar nada por defecto
             }
         }
+
         private void md_agregar_productos_Load(object sender, EventArgs e)
         {
             cargar_combox_categoria();
             cargar_combox_distribuidor();
+
+            // Seleccionar valores si se están editando
+            if (IDCategoriaProducto.HasValue)
+            {
+                cmb_categoria.SelectedValue = IDCategoriaProducto.Value;
+            }
+
+            if (IDDistribuidorProducto.HasValue)
+            {
+                cmb_distruhibidora.SelectedValue = IDDistribuidorProducto.Value;
+            }
         }
     }
 }

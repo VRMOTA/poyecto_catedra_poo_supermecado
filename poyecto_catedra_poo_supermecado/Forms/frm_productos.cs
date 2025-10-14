@@ -22,7 +22,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void CargarProductosAdmin()
         {
             int espacio = 10;
-
             List<dynamic> lista_productos;
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
@@ -43,15 +42,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                        p.activo
                                    }).ToList<dynamic>();
             }
-
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
             int posicionY = 0;
-
             for (int i = 0; i < lista_productos.Count; i++)
             {
                 var producto = lista_productos[i];
-
                 // Convertir byte[] a Image
                 Image imageProducto = null;
                 if (producto.imagen != null)
@@ -61,26 +57,24 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         imageProducto = Image.FromStream(ms);
                     }
                 }
-
                 var card = new card_producto_admin
                 {
                     ID_Producto = producto.id_producto,
                     NombreProducto = producto.nombre,
-                    NombreDistribuidor = producto.nombre_distribuidor, // Ahora muestra el nombre real
+                    NombreDistribuidor = producto.nombre_distribuidor,
                     Descripcion = producto.descripcion,
-                    Cateogoria = producto.nombre_categoria, // Ahora muestra el nombre real
+                    Cateogoria = producto.nombre_categoria,
                     Stock = producto.stock.ToString(),
                     Precio = producto.precio,
                     ImagenProducto = imageProducto,
+                    Activo = producto.activo ? "Activo" : "Desactivado", // Conversión a texto
                     Margin = new Padding(espacio)
                 };
-
                 card.Left = 0;
                 card.Top = posicionY;
                 panel_cards.Controls.Add(card);
                 posicionY += card.Height + espacio;
             }
-
             panel_cards.AutoScrollMinSize = new Size(
                 panel_cards.Width,
                 posicionY

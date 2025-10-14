@@ -57,7 +57,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             set { if (lbl_categoria != null) lbl_categoria.Text = value; }
         }
         [Category("Producto"), Description("Stock del producto")]
-        public string Stock 
+        public string Stock
         {
             get => lb_stock?.Text ?? string.Empty;
             set { if (lb_stock != null) lb_stock.Text = value; }
@@ -69,21 +69,45 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => decimal.TryParse(lblPrecio?.Text, out var precio) ? precio : 0m;
             set { if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); }
         }
-
+        [Category("Producto"), Description("Activo del producto")]
+        public string Activo
+        {
+            get => lb_activo?.Text ?? string.Empty;
+            set { if (lb_activo != null) lb_activo.Text = value; }
+        }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             var modal = new md_agregar_productos("Actualizar nuevo producto", "Actualizar");
 
-            // Pasar datos actuales
-            modal.IDProducto = id_producto;
-            modal.NombreProducto = NombreProducto;
-            modal.ImagenProducto = ImagenProducto;
-            modal.PrecioProducto = Precio.ToString(); 
-            modal.StockProducto = Stock.ToString();
-            modal.CategoriaProducto = Cateogoria;
-            modal.DistribuidorProducto = NombreDistribuidor;
-            modal.DescripcionProducto = Descripcion;
-            // Evaluar como hacer lo de actiov y inactivo 
+            // Obtener los datos completos del producto desde la base de datos
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var producto = db.tb_producto.Find(id_producto);
+                if (producto != null)
+                {
+                    // Pasar datos actuales
+                    modal.IDProducto = id_producto;
+                    modal.NombreProducto = producto.nombre;
+                    modal.PrecioProducto = producto.precio?.ToString();
+                    modal.StockProducto = producto.stock?.ToString();
+
+                    // Pasar los IDs en lugar de los nombres
+                    modal.IDCategoriaProducto = producto.id_categoria;
+                    modal.IDDistribuidorProducto = producto.id_distribuidor;
+
+                    modal.DescripcionProducto = producto.descripcion;
+                    modal.ActivoProducto = producto.activo == true ? "Activo" : "Inactivo";
+
+                    // Cargar imagen
+                    if (producto.imagen != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream(producto.imagen))
+                        {
+                            modal.ImagenProducto = Image.FromStream(ms);
+                        }
+                    }
+                }
+            }
 
             // Mostrar modal y refrescar si se actualizó
             if (modal.ShowDialog() == DialogResult.OK)

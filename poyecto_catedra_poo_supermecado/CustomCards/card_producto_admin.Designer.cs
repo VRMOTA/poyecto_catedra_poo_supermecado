@@ -38,6 +38,7 @@
             this.lbl_categoria = new System.Windows.Forms.Label();
             this.pbDescuentoContainer = new System.Windows.Forms.PictureBox();
             this.pbProducto = new System.Windows.Forms.PictureBox();
+            this.lb_activo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbDescuentoContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
@@ -167,10 +168,22 @@
             this.pbProducto.TabIndex = 30;
             this.pbProducto.TabStop = false;
             // 
+            // lb_activo
+            // 
+            this.lb_activo.AutoSize = true;
+            this.lb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_activo.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lb_activo.Location = new System.Drawing.Point(515, 25);
+            this.lb_activo.Name = "lb_activo";
+            this.lb_activo.Size = new System.Drawing.Size(95, 18);
+            this.lb_activo.TabIndex = 40;
+            this.lb_activo.Text = "Distribuidor";
+            // 
             // card_producto_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lb_activo);
             this.Controls.Add(this.lbl_categoria);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lb_stock);
@@ -202,5 +215,6 @@
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lbl_categoria;
+        private System.Windows.Forms.Label lb_activo;
     }
 }
