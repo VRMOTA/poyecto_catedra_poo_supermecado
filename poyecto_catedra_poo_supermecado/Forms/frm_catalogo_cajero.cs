@@ -213,7 +213,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     };
 
                     Utilities.Carrito.AgregarProducto(seleccionado);
-                    MessageBox.Show($"✅ {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
+                    MessageBox.Show($" {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
                 }
             }
         }

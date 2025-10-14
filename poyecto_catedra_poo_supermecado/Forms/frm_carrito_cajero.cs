@@ -1,4 +1,8 @@
-﻿using System;
+﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.CustomCards;
+using poyecto_catedra_poo_supermecado.CustomControls;
+using poyecto_catedra_poo_supermecado.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using poyecto_catedra_poo_supermecado.CustomControls;
-using poyecto_catedra_poo_supermecado.CustomCards;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
@@ -33,11 +35,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void frm_carrito_cajero_Load_1(object sender, EventArgs e)
         {
             CargarCarrito();
-            //int anchoCarta = 775; // Ajusta según el tamaño real de card_producto_carrito
-            //int altoCarta = 204;   // Ajusta según el tamaño real de card_producto_carrito
-            //int espacio = 10;     // Espacio entre cartas
+            //int anchoCarta = 775;
+            //int altoCarta = 204;
+            //int espacio = 10;
 
-            //// Ejemplo: lista de productos en el carrito (puedes reemplazar por tu fuente de datos real)
             ////var productosCarrito = new List<(string nombre, decimal precio, int cantidad,Image imb)>
             ////{
             ////    ("Manzana", 1.20m, 2,Properties.Resources.manzana),
@@ -83,7 +84,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
             //}
 
-            //// Ajusta el tamaño mínimo del panel para el scroll
             //panel1.AutoScrollMinSize = new Size(
             //    anchoCarta,
             //    productosCarrito.Count * (altoCarta + espacio)
@@ -118,21 +118,21 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var producto = Utilities.Carrito.Productos.FirstOrDefault(p => p.Id == idProducto);
             if (producto == null) return;
 
-            // Actualizar cantidad en la lista global, prueba
+            // actualiza cantidad en la lista global, prueba
             producto.Cantidad = nuevaCantidad;
 
-            // Buscar la card correspondiente y actualizar solo esa
+            // busca la card correspondiente y actualiza solo esa
             foreach (Control ctrl in panel1.Controls)
             {
                 if (ctrl is CustomCards.card_producto_carrito card && card.IDProducto == idProducto)
                 {
-                    card.Cantidad = nuevaCantidad; // esto ya actualiza los labels internamente
+                    card.Cantidad = nuevaCantidad; // esto ya actualiza los labels 
                     //MessageBox.Show(producto.Cantidad.ToString());
                     break;
                 }
             }
 
-            // Actualizar totales del carrito
+            // actualiza totales del carrito
             ActualizarTotales();
         }
         private void ActualizarTotales()
@@ -204,6 +204,80 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonMaxing1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var productosCarrito = Utilities.Carrito.Productos;
+
+                if (productosCarrito == null || productosCarrito.Count == 0)
+                {
+                    MessageBox.Show("No hay productos en el carrito.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                {
+                    tb_ventas nuevaVenta = new tb_ventas
+                    {
+                        fecha = DateTime.Now,
+                        id_usuario = SesionActual.IdUsuario,
+                        nombre_cliente = txtNombre.Texts.ToString(),
+                        total_venta = productosCarrito.Sum(p => p.Precio * p.Cantidad),
+                        total_descuento = 0,
+                        estado = "Completada"
+                    };
+
+                    db.tb_ventas.Add(nuevaVenta);
+                    db.SaveChanges();
+
+                    int idVentaGenerada = nuevaVenta.id_venta;
+
+                    foreach (var producto in productosCarrito)
+                    {
+                        tb_detalle_venta detalle = new tb_detalle_venta
+                        {
+                            id_venta = idVentaGenerada,
+                            id_producto = producto.Id,
+                            cantidad = producto.Cantidad,
+                            precio_unitario = producto.Precio,
+                            descuento_aplicado = 0,
+                            subtotal = producto.Precio * producto.Cantidad
+                        };
+
+                        db.tb_detalle_venta.Add(detalle);
+
+                        // resta stock en la base de datos
+                        var productoDB = db.tb_producto.FirstOrDefault(p => p.id_producto == producto.Id);
+                        if (productoDB != null)
+                        {
+                            if (productoDB.stock >= producto.Cantidad)
+                            {
+                                productoDB.stock -= producto.Cantidad;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Stock insuficiente para el producto: {productoDB.nombre}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
+
+                    db.SaveChanges();
+
+                    // Limpia carrito
+                    Utilities.Carrito.Productos.Clear();
+                    RecargarCarrito();
+
+                    MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -37,7 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCorreo = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.txtNombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,7 @@
             this.card_producto_carrito1.CornerRadius = 12;
             this.card_producto_carrito1.Descuento = 0;
             this.card_producto_carrito1.FillColor = System.Drawing.Color.White;
+            this.card_producto_carrito1.IDProducto = 0;
             this.card_producto_carrito1.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card_producto_carrito1.ImagenProducto")));
             this.card_producto_carrito1.Location = new System.Drawing.Point(28, 12);
             this.card_producto_carrito1.Name = "card_producto_carrito1";
@@ -69,6 +70,7 @@
             0,
             0});
             this.card_producto_carrito1.Size = new System.Drawing.Size(775, 204);
+            this.card_producto_carrito1.StockDisponible = 0;
             this.card_producto_carrito1.TabIndex = 0;
             // 
             // roundedControlBase1
@@ -145,26 +147,26 @@
             this.label5.Text = "Nombre del Cliente";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtCorreo
+            // txtNombre
             // 
-            this.txtCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.txtCorreo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtCorreo.BorderFocusColor = System.Drawing.Color.Plum;
-            this.txtCorreo.BorderSize = 7;
-            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCorreo.Location = new System.Drawing.Point(902, 193);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCorreo.Multiline = false;
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Padding = new System.Windows.Forms.Padding(7);
-            this.txtCorreo.PasswordChar = false;
-            this.txtCorreo.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtCorreo.PlaceholderText = "";
-            this.txtCorreo.Size = new System.Drawing.Size(308, 35);
-            this.txtCorreo.TabIndex = 8;
-            this.txtCorreo.Texts = "";
-            this.txtCorreo.UnderlinedStyle = true;
+            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.txtNombre.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtNombre.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txtNombre.BorderSize = 7;
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNombre.Location = new System.Drawing.Point(902, 193);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombre.Multiline = false;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Padding = new System.Windows.Forms.Padding(7);
+            this.txtNombre.PasswordChar = false;
+            this.txtNombre.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtNombre.PlaceholderText = "";
+            this.txtNombre.Size = new System.Drawing.Size(308, 35);
+            this.txtNombre.TabIndex = 8;
+            this.txtNombre.Texts = "";
+            this.txtNombre.UnderlinedStyle = true;
             // 
             // buttonMaxing1
             // 
@@ -184,6 +186,7 @@
             this.buttonMaxing1.Text = "Finalizar Pedido";
             this.buttonMaxing1.TextColor = System.Drawing.Color.WhiteSmoke;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
             // frm_carrito_cajero
             // 
@@ -192,7 +195,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1278, 911);
             this.Controls.Add(this.buttonMaxing1);
-            this.Controls.Add(this.txtCorreo);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -220,7 +223,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtCorreo;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtNombre;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
     }
 }
