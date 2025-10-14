@@ -60,7 +60,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     clave = clave,
                     tipo_usuario = rol, // AGREGAR COMBO CON EL ROL (ADMIN, USUARIO) 
                     activo = (nivel == 1),
-                    // AGREGAR COMBO CON EL NIVEL
+                   
                 };
 
                 db.tb_usuario.Add(usuario);

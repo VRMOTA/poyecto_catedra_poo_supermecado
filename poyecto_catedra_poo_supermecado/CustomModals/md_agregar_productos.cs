@@ -93,21 +93,46 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string nombre = txt_nombre.Texts.Trim();
             string precioText = txt_precio.Texts.Trim();
             string stockText = txt_stock.Texts.Trim();
-            string categoriaText = cmb_categoria.Texts.Trim();
-            string distribuidorText = cmb_distruhibidora.Texts.Trim();
+
+            // Ahora SÍ funcionará SelectedValue
+            int? idCategoria = null;
+            int? idDistribuidor = null;
+
+            if (cmb_categoria.SelectedIndex >= 0 && cmb_categoria.SelectedValue != null)
+            {
+                idCategoria = Convert.ToInt32(cmb_categoria.SelectedValue);
+            }
+
+            if (cmb_distruhibidora.SelectedIndex >= 0 && cmb_distruhibidora.SelectedValue != null)
+            {
+                idDistribuidor = Convert.ToInt32(cmb_distruhibidora.SelectedValue);
+            }
+
             string activoText = cmb_activo.Texts.Trim();
+            byte nivel = (activoText == "Activo") ? (byte)1 : (byte)0;
             string descripcion = txt_descripcion.Texts.Trim();
             Image image = pbProducto.Image;
 
             if (string.IsNullOrEmpty(nombre))
             {
-                MessageBox.Show("Debe ingresar el nombre del distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe ingresar el nombre del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (idCategoria == null || idCategoria == 0)
+            {
+                MessageBox.Show("Debe seleccionar una categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (idDistribuidor == null || idDistribuidor == 0)
+            {
+                MessageBox.Show("Debe seleccionar un distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // Si es un registro nuevo
                 if (IDProducto == 0)
                 {
                     if (image == null)
@@ -123,22 +148,21 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
                         tb_producto nuevo = new tb_producto
                         {
-                            nombre = nombre, 
+                            nombre = nombre,
                             precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null,
-                            stock = int.TryParse(stockText, out int stock) ? stock : (int?)null, 
-                            id_categoria = int.TryParse(categoriaText, out int categoria) ? categoria : (int?)null, 
-                            id_distribuidor = int.TryParse(distribuidorText, out int distribuidor) ? distribuidor : (int?)null, 
-                            activo = activoText.ToLower() == "si" ? true : activoText.ToLower() == "no" ? false : (bool?)null,
-                            descripcion = descripcion, 
+                            stock = int.TryParse(stockText, out int stock) ? stock : (int?)null,
+                            id_categoria = idCategoria,
+                            id_distribuidor = idDistribuidor,
+                            activo = (nivel == 1),
+                            descripcion = descripcion,
                             imagen = imagenBytes
                         };
 
                         db.tb_producto.Add(nuevo);
                         db.SaveChanges();
-                        MessageBox.Show("Distribuidor agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Producto agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                // Si es una edición
                 else
                 {
                     var producto = db.tb_producto.Find(IDProducto);
@@ -147,9 +171,9 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                         producto.nombre = nombre;
                         producto.precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null;
                         producto.stock = int.TryParse(stockText, out int stock) ? stock : (int?)null;
-                        producto.id_categoria = int.TryParse(categoriaText, out int categoria) ? categoria : (int?)null;
-                        producto.id_distribuidor = int.TryParse(distribuidorText, out int distribuidor) ? distribuidor : (int?)null;
-                        producto.activo = activoText.ToLower() == "si" ? true : activoText.ToLower() == "no" ? false : (bool?)null;
+                        producto.id_categoria = idCategoria;
+                        producto.id_distribuidor = idDistribuidor;
+                        producto.activo = (nivel == 1);
                         producto.descripcion = descripcion;
 
                         if (image != null)
@@ -162,11 +186,11 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                         }
 
                         db.SaveChanges();
-                        MessageBox.Show("Distribuidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -174,6 +198,33 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+        private void cargar_combox_categoria()
+        {
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var categorias = db.tb_categorias.ToList();
+                cmb_categoria.DataSource = categorias;
+                cmb_categoria.DisplayMember = "nombre";
+                cmb_categoria.ValueMember = "id_categoria";
+                cmb_categoria.SelectedIndex = -1; // No seleccionar nada por defecto
+            }
+        }
+        private void cargar_combox_distribuidor()
+        {
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var distribuidores = db.tb_distribuidores.ToList();
+                cmb_distruhibidora.DataSource = distribuidores;
+                cmb_distruhibidora.DisplayMember = "nombre";
+                cmb_distruhibidora.ValueMember = "id_distribuidor";
+                cmb_distruhibidora.SelectedIndex = -1; // No seleccionar nada por defecto
+            }
+        }
+        private void md_agregar_productos_Load(object sender, EventArgs e)
+        {
+            cargar_combox_categoria();
+            cargar_combox_distribuidor();
         }
     }
 }

@@ -356,6 +356,15 @@ namespace poyecto_catedra_poo_supermecado.CustomControls
             set { cmbList.ValueMember = value; }
         }
 
+        [Category("RJ Code - Data")]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public object SelectedValue
+        {
+            get { return cmbList.SelectedValue; }
+            set { cmbList.SelectedValue = value; }
+        }
+
         //Overridden methods
         protected override void OnResize(EventArgs e)
         {

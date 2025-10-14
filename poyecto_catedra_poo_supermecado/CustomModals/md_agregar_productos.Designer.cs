@@ -109,10 +109,10 @@
             this.txt_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nombre.ForeColor = System.Drawing.Color.DimGray;
             this.txt_nombre.Location = new System.Drawing.Point(41, 109);
-            this.txt_nombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_nombre.Margin = new System.Windows.Forms.Padding(4);
             this.txt_nombre.Multiline = false;
             this.txt_nombre.Name = "txt_nombre";
-            this.txt_nombre.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_nombre.Padding = new System.Windows.Forms.Padding(7);
             this.txt_nombre.PasswordChar = false;
             this.txt_nombre.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_nombre.PlaceholderText = "";
@@ -191,7 +191,7 @@
             this.cmb_distruhibidora.Location = new System.Drawing.Point(41, 262);
             this.cmb_distruhibidora.MinimumSize = new System.Drawing.Size(200, 30);
             this.cmb_distruhibidora.Name = "cmb_distruhibidora";
-            this.cmb_distruhibidora.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_distruhibidora.Padding = new System.Windows.Forms.Padding(2);
             this.cmb_distruhibidora.Size = new System.Drawing.Size(390, 36);
             this.cmb_distruhibidora.TabIndex = 49;
             this.cmb_distruhibidora.Texts = "";
@@ -216,10 +216,10 @@
             this.txt_precio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_precio.ForeColor = System.Drawing.Color.DimGray;
             this.txt_precio.Location = new System.Drawing.Point(41, 191);
-            this.txt_precio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_precio.Margin = new System.Windows.Forms.Padding(4);
             this.txt_precio.Multiline = false;
             this.txt_precio.Name = "txt_precio";
-            this.txt_precio.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_precio.Padding = new System.Windows.Forms.Padding(7);
             this.txt_precio.PasswordChar = false;
             this.txt_precio.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_precio.PlaceholderText = "";
@@ -248,10 +248,10 @@
             this.txt_stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_stock.ForeColor = System.Drawing.Color.DimGray;
             this.txt_stock.Location = new System.Drawing.Point(240, 191);
-            this.txt_stock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_stock.Margin = new System.Windows.Forms.Padding(4);
             this.txt_stock.Multiline = false;
             this.txt_stock.Name = "txt_stock";
-            this.txt_stock.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_stock.Padding = new System.Windows.Forms.Padding(7);
             this.txt_stock.PasswordChar = false;
             this.txt_stock.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_stock.PlaceholderText = "";
@@ -290,10 +290,10 @@
             this.txt_descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_descripcion.ForeColor = System.Drawing.Color.DimGray;
             this.txt_descripcion.Location = new System.Drawing.Point(40, 486);
-            this.txt_descripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_descripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txt_descripcion.Multiline = true;
             this.txt_descripcion.Name = "txt_descripcion";
-            this.txt_descripcion.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_descripcion.Padding = new System.Windows.Forms.Padding(7);
             this.txt_descripcion.PasswordChar = false;
             this.txt_descripcion.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_descripcion.PlaceholderText = "";
@@ -321,7 +321,7 @@
             this.cmb_categoria.Location = new System.Drawing.Point(41, 333);
             this.cmb_categoria.MinimumSize = new System.Drawing.Size(200, 30);
             this.cmb_categoria.Name = "cmb_categoria";
-            this.cmb_categoria.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_categoria.Padding = new System.Windows.Forms.Padding(2);
             this.cmb_categoria.Size = new System.Drawing.Size(390, 36);
             this.cmb_categoria.TabIndex = 59;
             this.cmb_categoria.Texts = "";
@@ -346,14 +346,14 @@
             this.cmb_activo.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_activo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_activo.Items.AddRange(new object[] {
-            "0",
-            "1"});
+            "Activo ",
+            "Desactivo"});
             this.cmb_activo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cmb_activo.ListTextColor = System.Drawing.Color.DimGray;
             this.cmb_activo.Location = new System.Drawing.Point(41, 405);
             this.cmb_activo.MinimumSize = new System.Drawing.Size(200, 30);
             this.cmb_activo.Name = "cmb_activo";
-            this.cmb_activo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_activo.Padding = new System.Windows.Forms.Padding(2);
             this.cmb_activo.Size = new System.Drawing.Size(390, 36);
             this.cmb_activo.TabIndex = 61;
             this.cmb_activo.Texts = "";
@@ -385,6 +385,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "md_agregar_productos";
             this.Text = "Modal Productos";
+            this.Load += new System.EventHandler(this.md_agregar_productos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
