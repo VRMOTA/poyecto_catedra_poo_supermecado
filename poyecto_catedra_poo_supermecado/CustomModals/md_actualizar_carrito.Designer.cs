@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
-            this.txtCorreo = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.txtCantidad = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +63,7 @@
             this.buttonMaxing2.Text = "Cancelar";
             this.buttonMaxing2.TextColor = System.Drawing.Color.WhiteSmoke;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // buttonMaxing1
             // 
@@ -82,27 +83,28 @@
             this.buttonMaxing1.Text = "Actualizar";
             this.buttonMaxing1.TextColor = System.Drawing.Color.WhiteSmoke;
             this.buttonMaxing1.UseVisualStyleBackColor = false;
+            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
-            // txtCorreo
+            // txtCantidad
             // 
-            this.txtCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.txtCorreo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtCorreo.BorderFocusColor = System.Drawing.Color.Plum;
-            this.txtCorreo.BorderSize = 7;
-            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCorreo.Location = new System.Drawing.Point(13, 59);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCorreo.Multiline = false;
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Padding = new System.Windows.Forms.Padding(7);
-            this.txtCorreo.PasswordChar = false;
-            this.txtCorreo.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtCorreo.PlaceholderText = "";
-            this.txtCorreo.Size = new System.Drawing.Size(541, 35);
-            this.txtCorreo.TabIndex = 1;
-            this.txtCorreo.Texts = "";
-            this.txtCorreo.UnderlinedStyle = true;
+            this.txtCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.txtCantidad.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCantidad.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txtCantidad.BorderSize = 7;
+            this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCantidad.Location = new System.Drawing.Point(13, 59);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidad.Multiline = false;
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Padding = new System.Windows.Forms.Padding(7);
+            this.txtCantidad.PasswordChar = false;
+            this.txtCantidad.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtCantidad.PlaceholderText = "";
+            this.txtCantidad.Size = new System.Drawing.Size(541, 35);
+            this.txtCantidad.TabIndex = 1;
+            this.txtCantidad.Texts = "";
+            this.txtCantidad.UnderlinedStyle = true;
             // 
             // md_actualizar_carrito
             // 
@@ -113,7 +115,7 @@
             this.Controls.Add(this.buttonMaxing2);
             this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCorreo);
+            this.Controls.Add(this.txtCantidad);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "md_actualizar_carrito";
             this.Text = "Modal Cantidad";
@@ -124,7 +126,7 @@
 
         #endregion
 
-        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtCorreo;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txtCantidad;
         private System.Windows.Forms.Label label1;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;

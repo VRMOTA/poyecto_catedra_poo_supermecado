@@ -61,6 +61,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     }
 
                     // Login exitoso: abrir interfaz correspondiente
+                    SesionActual.IdUsuario = usuario.id_usuario;
+                    SesionActual.NombreUsuario = usuario.nombre;
+                    SesionActual.TipoUsuario = usuario.tipo_usuario;
                     if (usuario.tipo_usuario == "Administrador")
                     {
                         Helpers.LimpiarControles(this);

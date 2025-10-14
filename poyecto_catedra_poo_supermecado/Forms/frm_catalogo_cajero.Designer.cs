@@ -235,6 +235,7 @@
             this.buttonMaxing2.Text = "Agregar";
             this.buttonMaxing2.TextColor = System.Drawing.Color.White;
             this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
             // 
             // textboxMaxing2
             // 

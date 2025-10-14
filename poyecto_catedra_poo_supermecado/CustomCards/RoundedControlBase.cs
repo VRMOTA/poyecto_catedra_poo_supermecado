@@ -95,5 +95,16 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 }
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // RoundedControlBase
+            // 
+            this.Name = "RoundedControlBase";
+            this.ResumeLayout(false);
+
+        }
     }
 }
