@@ -32,6 +32,7 @@
             this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.lblCorreoUsuario = new System.Windows.Forms.Label();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.lb_activo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnActualizar
@@ -95,10 +96,22 @@
             this.lblNombreUsuario.TabIndex = 30;
             this.lblNombreUsuario.Text = "Nombre Usuario";
             // 
+            // lb_activo
+            // 
+            this.lb_activo.AutoSize = true;
+            this.lb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_activo.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lb_activo.Location = new System.Drawing.Point(234, 22);
+            this.lb_activo.Name = "lb_activo";
+            this.lb_activo.Size = new System.Drawing.Size(98, 16);
+            this.lb_activo.TabIndex = 34;
+            this.lb_activo.Text = "Correo Usuario";
+            // 
             // card_usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lb_activo);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblCorreoUsuario);
@@ -116,5 +129,6 @@
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing btnEliminar;
         private System.Windows.Forms.Label lblCorreoUsuario;
         private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.Label lb_activo;
     }
 }

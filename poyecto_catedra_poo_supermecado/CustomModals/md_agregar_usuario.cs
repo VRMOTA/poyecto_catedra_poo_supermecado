@@ -20,20 +20,50 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
-            
         }
+
         public md_agregar_usuario(string labelText, string buttonText) : this()
         {
             label1.Text = labelText;
             btn_crear.Text = buttonText;
         }
 
+        public int id_Usuario { get; set; } = 0;
+
+        public string nombre_usuario
+        {
+            get => txt_nombre.Texts;
+            set => txt_nombre.Texts = value;
+        }
+
+        public string correo_usuario
+        {
+            get => txt_correo.Texts;
+            set => txt_correo.Texts = value;
+        }
+        public string tipo_usuario
+        {
+            get => cmb_rol.SelectedItem?.ToString() ?? "";
+            set => cmb_rol.SelectedItem = value;
+        }
+
+        public bool activo_usuario
+        {
+            get => cmb_activo.Texts.ToLower() == "activo";
+            set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
+        }
 
         private void btn_crear_Click(object sender, EventArgs e)
         {
-            Agregar();
+            if (id_Usuario > 0)
+            {
+                Actualizar();
+            }
+            else
+            {
+                Agregar();
+            }
         }
-
 
         void Agregar()
         {
@@ -41,7 +71,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string correo = txt_correo.Texts.Trim();
             string clave = txt_clave.Texts.Trim();
             string rol = cmb_rol.SelectedItem?.ToString() ?? "";
-            string nivelTexto = cmb_activo.SelectedItem?.ToString()?? "";
+            string nivelTexto = cmb_activo.SelectedItem?.ToString() ?? "";
             byte nivel = (nivelTexto == "Activo") ? (byte)1 : (byte)0;
             string confirmaClave = txt_confirma_clave.Texts.Trim();
 
@@ -58,16 +88,57 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     nombre = nombre,
                     correo = correo,
                     clave = clave,
-                    tipo_usuario = rol, // AGREGAR COMBO CON EL ROL (ADMIN, USUARIO) 
+                    tipo_usuario = rol,
                     activo = (nivel == 1),
-                   
                 };
 
                 db.tb_usuario.Add(usuario);
                 db.SaveChanges();
-
                 MessageBox.Show("Usuario agregado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+        }
+
+        void Actualizar()
+        {
+            string nombre = txt_nombre.Texts.Trim();
+            string correo = txt_correo.Texts.Trim();
+            string clave = txt_clave.Texts.Trim();
+            string rol = cmb_rol.SelectedItem?.ToString() ?? "";
+            string nivelTexto = cmb_activo.SelectedItem?.ToString() ?? "";
+            byte nivel = (nivelTexto == "Activo") ? (byte)1 : (byte)0;
+            string confirmaClave = txt_confirma_clave.Texts.Trim();
+
+            if (!string.IsNullOrEmpty(clave) && clave != confirmaClave)
+            {
+                MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            {
+                var usuario = db.tb_usuario.Find(id_Usuario);
+                if (usuario != null)
+                {
+                    usuario.nombre = nombre;
+                    usuario.correo = correo;
+                    if (!string.IsNullOrEmpty(clave))
+                    {
+                        usuario.clave = clave;
+                    }
+                    usuario.tipo_usuario = rol;
+                    usuario.activo = (nivel == 1);
+
+                    db.SaveChanges();
+                    MessageBox.Show("Usuario actualizado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
