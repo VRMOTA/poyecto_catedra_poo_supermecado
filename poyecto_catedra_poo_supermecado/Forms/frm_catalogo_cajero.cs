@@ -134,11 +134,11 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 var card = new card_producto_menu
                 {
-                    IDProducto = prod.id_producto,        
-                    Producto = prod.nombre,               
-                    Precio = prod.precio ?? 0m,           
+                    IDProducto = prod.id_producto,
+                    Producto = prod.nombre,
+                    Precio = prod.precio ?? 0m,
                     ImagenProducto = imgProd,
-                    Descuento = 0,                        
+                    Descuento = 0,
                     Width = anchoCarta,
                     Height = altoCarta,
                     Margin = new Padding(espacio)
@@ -216,6 +216,50 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     MessageBox.Show($" {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
                 }
             }
+        }
+
+        private void Buscador()
+        {
+            string busqueda = txt_buscar.Texts.ToLower();
+            int columnas = 4;
+            int anchoCarta = 238;
+            int altoCarta = 266;
+            int espacio = 10;
+
+            // Obtener todas las cartas
+            var todasLasCartas = panel1.Controls.OfType<card_producto_menu>().ToList();
+
+            // Separar en filtradas y no filtradas
+            var cartasFiltradas = todasLasCartas
+                .Where(c => c.Producto.ToLower().Contains(busqueda))
+                .ToList();
+
+            var cartasNoFiltradas = todasLasCartas
+                .Where(c => !cartasFiltradas.Contains(c))
+                .ToList();
+
+            // Reposicionar: primero las filtradas, luego las no filtradas
+            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+
+            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            {
+                var card = cartasOrdenadas[i];
+
+                int fila = i / columnas;
+                int columna = i % columnas;
+
+                card.Left = columna * (anchoCarta + espacio);
+                card.Top = fila * (altoCarta + espacio);
+                card.Visible = cartasFiltradas.Contains(card);
+            }
+
+            // Scroll al inicio cuando se busca
+            panel1.AutoScrollPosition = new Point(0, 0);
+        }
+
+        private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Buscador();
         }
     }
 }
