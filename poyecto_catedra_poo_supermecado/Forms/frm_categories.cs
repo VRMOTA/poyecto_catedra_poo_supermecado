@@ -11,8 +11,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_categories : Form
     {
-
-
         public frm_categories()
         {
             InitializeComponent();
@@ -23,36 +21,31 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             CargarCategorias();
         }
+
         private void CargarCategorias()
         {
             int columnas = 2;
-            int espacio = 10; // Espacio entre cartas
+            int espacio = 10;
 
-            // Declaramos la lista fuera del using para poder usarla después
             List<dynamic> listaCat;
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // Seleccionar datos con Entity Framework
                 listaCat = db.tb_categorias
                     .Select(u => new
                     {
                         u.id_categoria,
                         u.nombre,
-                    }).ToList<dynamic>(); // Convertimos a lista dinámica
+                    }).ToList<dynamic>();
             }
 
-            // Limpiar y preparar el panel
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
+            Size cardSize = new Size(495, 107);
 
-            Size cardSize = new Size(495, 107); // Tamaño de las tarjetas
-
-            // Crear y posicionar las tarjetas
-            for (int i = 0; i < listaCat.Count; i++)
+            int indice = 0;
+            foreach (var cat in listaCat)
             {
-                var cat = listaCat[i]; // Obtenemos el usuario actual
-
                 var card = new card_categories
                 {
                     ID_Categoria = cat.id_categoria,
@@ -61,32 +54,34 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Size = cardSize
                 };
 
-                int fila = i / columnas;
-                int columna = i % columnas;
+                // Suscribirse al evento de recarga
+                card.RecargaRequerida += (s, e) => CargarCategorias();
+
+                int fila = indice / columnas;
+                int columna = indice % columnas;
 
                 card.Left = columna * (card.Width + espacio);
                 card.Top = fila * (card.Height + espacio);
 
                 panel_cards.Controls.Add(card);
+                indice++;
             }
 
-            // Ajustar el área de scroll
             int filasNecesarias = (int)Math.Ceiling((double)listaCat.Count / columnas);
             panel_cards.AutoScrollMinSize = new Size(
                 columnas * (cardSize.Width + espacio),
                 filasNecesarias * (cardSize.Height + espacio)
             );
         }
+
         private void Buscador()
         {
             string busqueda = txt_buscar.Texts.ToLower();
             int columnas = 2;
             int espacio = 10;
 
-            // Obtener todas las cartas
             var todasLasCartas = panel_cards.Controls.OfType<card_categories>().ToList();
 
-            // Separar en filtradas y no filtradas
             var cartasFiltradas = todasLasCartas
                 .Where(c => c.NombreCategoria.ToLower().Contains(busqueda))
                 .ToList();
@@ -95,29 +90,31 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 .Where(c => !cartasFiltradas.Contains(c))
                 .ToList();
 
-            // Reposicionar: primero las filtradas, luego las no filtradas
             var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
 
-            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            int indice = 0;
+            foreach (var card in cartasOrdenadas)
             {
-                var card = cartasOrdenadas[i];
-
-                int fila = i / columnas;
-                int columna = i % columnas;
+                int fila = indice / columnas;
+                int columna = indice % columnas;
 
                 card.Left = columna * (card.Width + espacio);
                 card.Top = fila * (card.Height + espacio);
                 card.Visible = cartasFiltradas.Contains(card);
+                indice++;
             }
 
-            // Scroll al inicio cuando se busca
             panel_cards.AutoScrollPosition = new Point(0, 0);
         }
+
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
             using (var modal = new md_agregar_categoria())
             {
-                modal.ShowDialog();
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarCategorias();
+                }
             }
         }
 

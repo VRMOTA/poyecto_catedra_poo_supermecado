@@ -17,17 +17,20 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     public partial class card_categories : RoundedControlBase
     {
         private int id_categoria;
-        // Evento personalizado que se disparará cuando se presione el botón
         public event EventHandler<int> BotonVisualizarClick;
+        public event EventHandler RecargaRequerida; // Nuevo evento para recargar
+
         public card_categories()
         {
             InitializeComponent();
         }
+
         public int ID_Categoria
         {
             get => id_categoria;
             set => id_categoria = value;
         }
+
         [Category("Categoria"), Description("Nombre de la categoria")]
         public string NombreCategoria
         {
@@ -39,25 +42,22 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             var modal = new md_agregar_categoria("Editar Categoria", "Guardar cambios");
 
-            // Pasar datos actuales
             modal.ID_Categories = id_categoria;
             modal.NombreCategoria = NombreCategoria;
- 
 
-            // Mostrar modal y refrescar si se actualizó
             if (modal.ShowDialog() == DialogResult.OK)
             {
-                CargarDatosCategoria();
+                RecargaRequerida?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show(
-            "¿Está seguro que desea eliminar el registro?",
-            "Confirmar eliminación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning
+                "¿Está seguro que desea eliminar el registro?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
             );
 
             if (resultado == DialogResult.Yes)
@@ -69,17 +69,17 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                     {
                         db.tb_categorias.Remove(categoria);
                         db.SaveChanges();
-                        MessageBox.Show("Prohebedor eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Categoría eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
                     }
                     else
                     {
-                        MessageBox.Show("Prohebedor no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Categoría no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
             }
         }
-        //Recarga los datos actualizados del distribuidor
+
         public void CargarDatosCategoria()
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
