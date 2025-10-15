@@ -42,6 +42,8 @@
             this.btnActualizar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.btnEliminar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.roundedControlBase1 = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lb_activo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblProducto
@@ -225,10 +227,36 @@
             this.roundedControlBase1.Size = new System.Drawing.Size(479, 244);
             this.roundedControlBase1.TabIndex = 0;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(236, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 18);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Activo: ";
+            // 
+            // lb_activo
+            // 
+            this.lb_activo.AutoSize = true;
+            this.lb_activo.BackColor = System.Drawing.Color.White;
+            this.lb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_activo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_activo.Location = new System.Drawing.Point(302, 98);
+            this.lb_activo.Name = "lb_activo";
+            this.lb_activo.Size = new System.Drawing.Size(16, 18);
+            this.lb_activo.TabIndex = 48;
+            this.lb_activo.Text = "0";
+            // 
             // card_prom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lb_activo);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lb_fecha_fin);
@@ -266,5 +294,7 @@
         private System.Windows.Forms.Label lb_fecha_fin;
         private CustomControls.ButtonMaxing btnActualizar;
         private CustomControls.ButtonMaxing btnEliminar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lb_activo;
     }
 }

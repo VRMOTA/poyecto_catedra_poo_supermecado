@@ -19,16 +19,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
         public frm_promociones()
         {
             InitializeComponent();
-           
         }
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            using (var modal = new md_promocion())
+            using (var modal = new md_promocion("Agregar nueva promoción", "Agregar"))
             {
-                modal.ShowDialog();
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarProm();
+                }
             }
         }
+
         private void CargarProm()
         {
             int espacio = 10;
@@ -39,7 +42,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 // SELECT con JOIN para obtener el nombre del producto
                 lista_promociones = (from pr in db.tb_promociones
                                      join p in db.tb_producto on pr.id_producto equals p.id_producto
-                                     /* where pr.activa == true */
                                      select new
                                      {
                                          pr.id_promocion,
@@ -55,27 +57,31 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
-
             int posicionY = 0;
+
             for (int i = 0; i < lista_promociones.Count; i++)
             {
                 var promocion = lista_promociones[i];
+
+                // Convertir explícitamente los valores dinámicos
+                bool activaValor = promocion.activa != null ? (bool)promocion.activa : false;
+
                 var card = new card_prom
                 {
-                    ID_Promocion = promocion.id_promocion,
-                    Nombre_Producto = promocion.nombre_producto,
+                    ID_Promocion = (int)promocion.id_promocion,
+                    Nombre_Producto = promocion.nombre_producto?.ToString() ?? "",
                     Cantidad_Minima = promocion.cantidad_minima ?? 0,
-                    Precio_Promocion = promocion.precio_promocional ?? 0,
-                    Descripcion_Promocion = promocion.descripcion,
+                    Precio_Promocion = promocion.precio_promocional ?? 0m,
+                    Descripcion_Promocion = promocion.descripcion?.ToString() ?? "",
                     Fecha_Inicio = promocion.fecha_inicio ?? DateTime.Now,
                     Fecha_Fin = promocion.fecha_fin ?? DateTime.Now,
+                    Activa = activaValor ? "Activo" : "Desactivo",
                     Margin = new Padding(espacio)
                 };
 
                 card.Left = 0;
                 card.Top = posicionY;
                 panel_cards.Controls.Add(card);
-
                 posicionY += card.Height + espacio;
             }
 
