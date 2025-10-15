@@ -32,7 +32,7 @@
             this.pln_cards = new System.Windows.Forms.Panel();
             this.card = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
             this.rd_fondo = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
-            this.textboxMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.txt_buscar = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.panelRedondeado1 = new poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado();
@@ -90,26 +90,27 @@
             this.rd_fondo.Size = new System.Drawing.Size(1540, 887);
             this.rd_fondo.TabIndex = 9;
             // 
-            // textboxMaxing1
+            // txt_buscar
             // 
-            this.textboxMaxing1.BackColor = System.Drawing.Color.White;
-            this.textboxMaxing1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing1.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing1.BorderSize = 7;
-            this.textboxMaxing1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing1.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing1.Location = new System.Drawing.Point(28, 30);
-            this.textboxMaxing1.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing1.Multiline = false;
-            this.textboxMaxing1.Name = "textboxMaxing1";
-            this.textboxMaxing1.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing1.PasswordChar = false;
-            this.textboxMaxing1.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing1.PlaceholderText = "Buscar";
-            this.textboxMaxing1.Size = new System.Drawing.Size(1079, 40);
-            this.textboxMaxing1.TabIndex = 13;
-            this.textboxMaxing1.Texts = "";
-            this.textboxMaxing1.UnderlinedStyle = true;
+            this.txt_buscar.BackColor = System.Drawing.Color.White;
+            this.txt_buscar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txt_buscar.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txt_buscar.BorderSize = 7;
+            this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_buscar.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_buscar.Location = new System.Drawing.Point(28, 30);
+            this.txt_buscar.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_buscar.Multiline = false;
+            this.txt_buscar.Name = "txt_buscar";
+            this.txt_buscar.Padding = new System.Windows.Forms.Padding(7);
+            this.txt_buscar.PasswordChar = false;
+            this.txt_buscar.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txt_buscar.PlaceholderText = "Buscar";
+            this.txt_buscar.Size = new System.Drawing.Size(1079, 35);
+            this.txt_buscar.TabIndex = 13;
+            this.txt_buscar.Texts = "";
+            this.txt_buscar.UnderlinedStyle = true;
+            this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
             // 
             // buttonMaxing1
             // 
@@ -179,7 +180,7 @@
             this.lbdescriccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbdescriccion.Location = new System.Drawing.Point(21, 378);
             this.lbdescriccion.Name = "lbdescriccion";
-            this.lbdescriccion.Size = new System.Drawing.Size(141, 29);
+            this.lbdescriccion.Size = new System.Drawing.Size(110, 24);
             this.lbdescriccion.TabIndex = 21;
             this.lbdescriccion.Text = "Descripcion";
             // 
@@ -190,7 +191,7 @@
             this.lbstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbstock.Location = new System.Drawing.Point(342, 334);
             this.lbstock.Name = "lbstock";
-            this.lbstock.Size = new System.Drawing.Size(26, 29);
+            this.lbstock.Size = new System.Drawing.Size(20, 24);
             this.lbstock.TabIndex = 20;
             this.lbstock.Text = "0";
             // 
@@ -201,7 +202,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 334);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 29);
+            this.label2.Size = new System.Drawing.Size(56, 24);
             this.label2.TabIndex = 19;
             this.label2.Text = "Stock";
             // 
@@ -214,7 +215,7 @@
             this.lblPrecioDescuento.ForeColor = System.Drawing.Color.Red;
             this.lblPrecioDescuento.Location = new System.Drawing.Point(307, 286);
             this.lblPrecioDescuento.Name = "lblPrecioDescuento";
-            this.lblPrecioDescuento.Size = new System.Drawing.Size(71, 29);
+            this.lblPrecioDescuento.Size = new System.Drawing.Size(55, 24);
             this.lblPrecioDescuento.TabIndex = 18;
             this.lblPrecioDescuento.Text = "$0.00";
             // 
@@ -226,7 +227,7 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(21, 286);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 29);
+            this.label1.Size = new System.Drawing.Size(106, 24);
             this.label1.TabIndex = 17;
             this.label1.Text = "Descuento:";
             // 
@@ -237,7 +238,7 @@
             this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecio.Location = new System.Drawing.Point(307, 243);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(71, 29);
+            this.lblPrecio.Size = new System.Drawing.Size(55, 24);
             this.lblPrecio.TabIndex = 16;
             this.lblPrecio.Text = "$0.00";
             // 
@@ -248,7 +249,7 @@
             this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.Location = new System.Drawing.Point(21, 243);
             this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(204, 29);
+            this.lblProducto.Size = new System.Drawing.Size(160, 24);
             this.lblProducto.TabIndex = 15;
             this.lblProducto.Text = "Nombre Producto";
             // 
@@ -267,7 +268,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1564, 911);
             this.Controls.Add(this.buttonMaxing2);
-            this.Controls.Add(this.textboxMaxing1);
+            this.Controls.Add(this.txt_buscar);
             this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.pln_cards);
             this.Controls.Add(this.panelRedondeado1);
@@ -289,7 +290,7 @@
 
         private System.Windows.Forms.Panel pln_cards;
         private CustomCards.RoundedControlBase rd_fondo;
-        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing1;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_buscar;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private CustomCards.card_producto_menu card;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;

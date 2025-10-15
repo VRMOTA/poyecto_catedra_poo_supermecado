@@ -18,10 +18,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
     {
         public frm_distribuidores()
         {
-
             InitializeComponent();
             CargarDistribuidores();
         }
+
         private void CargarDistribuidores()
         {
             int columnas = 3;
@@ -92,6 +92,50 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 modal.ShowDialog();
             }
+        }
+
+        private void Buscador()
+        {
+            string busqueda = txt_buscar.Texts.ToLower();
+            int columnas = 3;
+            int anchoCarta = 385;
+            int altoCarta = 204;
+            int espacio = 10;
+
+            // Obtener todas las cartas
+            var todasLasCartas = panel_cards.Controls.OfType<card_distribuidores>().ToList();
+
+            // Separar en filtradas y no filtradas
+            var cartasFiltradas = todasLasCartas
+                .Where(c => c.NombreDistribuidora.ToLower().Contains(busqueda))
+                .ToList();
+
+            var cartasNoFiltradas = todasLasCartas
+                .Where(c => !cartasFiltradas.Contains(c))
+                .ToList();
+
+            // Reposicionar: primero las filtradas, luego las no filtradas
+            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+
+            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            {
+                var card = cartasOrdenadas[i];
+
+                int fila = i / columnas;
+                int columna = i % columnas;
+
+                card.Left = columna * (anchoCarta + espacio);
+                card.Top = fila * (altoCarta + espacio);
+                card.Visible = cartasFiltradas.Contains(card);
+            }
+
+            // Scroll al inicio cuando se busca
+            panel_cards.AutoScrollPosition = new Point(0, 0);
+        }
+
+        private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Buscador();
         }
     }
 }

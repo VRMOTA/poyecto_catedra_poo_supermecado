@@ -41,7 +41,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
             // Limpiar y preparar el panel
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
-
             Size cardSize = new Size(495, 107); // Tamaño de las tarjetas
 
             // Crear y posicionar las tarjetas
@@ -75,6 +74,43 @@ namespace poyecto_catedra_poo_supermecado.Forms
             );
         }
 
+        private void Buscador()
+        {
+            string busqueda = txt_buscar.Texts.ToLower();
+            int columnas = 2;
+            int espacio = 10;
+
+            // Obtener todas las cartas
+            var todasLasCartas = panel_cards.Controls.OfType<card_usuarios>().ToList();
+
+            // Separar en filtradas y no filtradas
+            var cartasFiltradas = todasLasCartas
+                .Where(c => c.NombreUsuario.ToLower().Contains(busqueda) ||
+                           c.CorreoUsuario.ToLower().Contains(busqueda))
+                .ToList();
+
+            var cartasNoFiltradas = todasLasCartas
+                .Where(c => !cartasFiltradas.Contains(c))
+                .ToList();
+
+            // Reposicionar: primero las filtradas, luego las no filtradas
+            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+
+            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            {
+                var card = cartasOrdenadas[i];
+
+                int fila = i / columnas;
+                int columna = i % columnas;
+
+                card.Left = columna * (card.Width + espacio);
+                card.Top = fila * (card.Height + espacio);
+                card.Visible = cartasFiltradas.Contains(card);
+            }
+
+            // Scroll al inicio cuando se busca
+            panel_cards.AutoScrollPosition = new Point(0, 0);
+        }
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
@@ -82,6 +118,11 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 modal.ShowDialog();
             }
+        }
+
+        private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Buscador();
         }
     }
 }

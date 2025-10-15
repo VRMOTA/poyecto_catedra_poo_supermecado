@@ -95,5 +95,50 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             CargarProm();
         }
+
+        private void Buscador()
+        {
+            string busqueda = txt_buscar.Texts.ToLower();
+            int espacio = 10;
+
+            // Obtener todas las cartas de promociones
+            var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
+
+            // Separar en filtradas y no filtradas
+            var cartasFiltradas = todasLasCartas
+                .Where(c => c.Nombre_Producto.ToLower().Contains(busqueda) ||
+                           c.Descripcion_Promocion.ToLower().Contains(busqueda))
+                .ToList();
+
+            var cartasNoFiltradas = todasLasCartas
+                .Where(c => !cartasFiltradas.Contains(c))
+                .ToList();
+
+            // Reposicionar: primero las filtradas, luego las no filtradas
+            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+            int posicionY = 0;
+
+            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            {
+                var card = cartasOrdenadas[i];
+
+                card.Left = 0;
+                card.Top = posicionY;
+                card.Visible = cartasFiltradas.Contains(card);
+
+                if (card.Visible)
+                {
+                    posicionY += card.Height + espacio;
+                }
+            }
+
+            // Scroll al inicio cuando se busca
+            panel_cards.AutoScrollPosition = new Point(0, 0);
+        }
+
+        private void textboxMaxing2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Buscador();
+        }
     }
 }

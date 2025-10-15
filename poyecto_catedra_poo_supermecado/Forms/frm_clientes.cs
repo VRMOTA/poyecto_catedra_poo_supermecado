@@ -47,17 +47,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 using (var db = new db_supermercadoEntities1())
                 {
-                    // Carga todos los productos desde la BD
-                    productos = db.tb_producto
-                        .Select(p => new Producto
-                        {
-                            Id = p.id_producto,
-                            Nombre = p.nombre,
-                            Precio = p.precio ?? 0m,
-                            Stock = p.stock ?? 0,
-                            Descripcion = p.descripcion
-                        })
-                        .ToList();
+                    
+                    productos = (from p in db.tb_producto
+                                 join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
+                                 from c in catJoin.DefaultIfEmpty()
+                                 select new Producto
+                                 {
+                                     Id = p.id_producto,
+                                     Nombre = p.nombre,
+                                     Precio = p.precio ?? 0m,
+                                     Stock = p.stock ?? 0,
+                                     Descripcion = p.descripcion,
+                                     Categoria = c != null ? c.nombre : ""
+                                 }).ToList();
                 }
             }
             catch (Exception ex)
@@ -173,6 +175,57 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 MessageBox.Show("Error de conexión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Buscar()
+        {
+            string busqueda = txt_buscar.Texts.ToLower();
+
+            // Obtener todas las cartas con sus productos asociados
+            var cartasConProductos = pln_cards.Controls.OfType<CustomCards.card_producto_menu>()
+                .Select(c => new
+                {
+                    Card = c,
+                    Producto = productos.FirstOrDefault(p => p.Id == c.IDProducto)
+                })
+                .Where(x => x.Producto != null)
+                .ToList();
+
+            // Separar en filtradas y no filtradas
+            var cartasFiltradas = cartasConProductos
+                .Where(x => x.Producto.Nombre.ToLower().Contains(busqueda) ||
+                           (!string.IsNullOrEmpty(x.Producto.Categoria) && 
+                            x.Producto.Categoria.ToLower().Contains(busqueda)))
+                .Select(x => x.Card)
+                .ToList();
+
+            var cartasNoFiltradas = cartasConProductos
+                .Select(x => x.Card)
+                .Where(c => !cartasFiltradas.Contains(c))
+                .ToList();
+
+            // Reposicionar: primero las filtradas, luego las no filtradas
+            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+
+            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            {
+                var card = cartasOrdenadas[i];
+
+                int fila = i / Columnas;
+                int columna = i % Columnas;
+
+                card.Left = columna * (AnchoCarta + Espacio);
+                card.Top = fila * (AltoCarta + Espacio);
+                card.Visible = cartasFiltradas.Contains(card);
+            }
+
+            // Scroll al inicio cuando se busca
+            pln_cards.AutoScrollPosition = new Point(0, 0);
+        }
+
+        private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Buscar();
+        }
     }
 
     public class Producto
@@ -184,5 +237,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
         public int Descuento { get; set; }
         public string Descripcion { get; set; }
         public Image Imagen { get; set; }
+        public string Categoria { get; set; }
     }
 }

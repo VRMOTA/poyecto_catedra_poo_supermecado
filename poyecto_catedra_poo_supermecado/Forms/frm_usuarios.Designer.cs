@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_usuarios));
             this.panel_cards = new System.Windows.Forms.Panel();
-            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_buscar = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.SuspendLayout();
             // 
@@ -42,27 +42,6 @@
             this.panel_cards.Size = new System.Drawing.Size(1220, 821);
             this.panel_cards.TabIndex = 43;
             // 
-            // textboxMaxing2
-            // 
-            this.textboxMaxing2.BackColor = System.Drawing.Color.White;
-            this.textboxMaxing2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textboxMaxing2.BorderFocusColor = System.Drawing.Color.Plum;
-            this.textboxMaxing2.BorderSize = 7;
-            this.textboxMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxMaxing2.ForeColor = System.Drawing.Color.DimGray;
-            this.textboxMaxing2.Location = new System.Drawing.Point(728, 23);
-            this.textboxMaxing2.Margin = new System.Windows.Forms.Padding(4);
-            this.textboxMaxing2.Multiline = false;
-            this.textboxMaxing2.Name = "textboxMaxing2";
-            this.textboxMaxing2.Padding = new System.Windows.Forms.Padding(7);
-            this.textboxMaxing2.PasswordChar = false;
-            this.textboxMaxing2.PlaceholderColor = System.Drawing.Color.Gray;
-            this.textboxMaxing2.PlaceholderText = "Buscar";
-            this.textboxMaxing2.Size = new System.Drawing.Size(490, 35);
-            this.textboxMaxing2.TabIndex = 42;
-            this.textboxMaxing2.Texts = "";
-            this.textboxMaxing2.UnderlinedStyle = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -72,6 +51,28 @@
             this.label1.Size = new System.Drawing.Size(163, 39);
             this.label1.TabIndex = 41;
             this.label1.Text = "Usuarios";
+            // 
+            // txt_buscar
+            // 
+            this.txt_buscar.BackColor = System.Drawing.Color.White;
+            this.txt_buscar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txt_buscar.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txt_buscar.BorderSize = 7;
+            this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_buscar.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_buscar.Location = new System.Drawing.Point(728, 23);
+            this.txt_buscar.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_buscar.Multiline = false;
+            this.txt_buscar.Name = "txt_buscar";
+            this.txt_buscar.Padding = new System.Windows.Forms.Padding(7);
+            this.txt_buscar.PasswordChar = false;
+            this.txt_buscar.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txt_buscar.PlaceholderText = "Buscar";
+            this.txt_buscar.Size = new System.Drawing.Size(490, 35);
+            this.txt_buscar.TabIndex = 42;
+            this.txt_buscar.Texts = "";
+            this.txt_buscar.UnderlinedStyle = true;
+            this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
             // 
             // buttonMaxing1
             // 
@@ -98,7 +99,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 911);
             this.Controls.Add(this.panel_cards);
-            this.Controls.Add(this.textboxMaxing2);
+            this.Controls.Add(this.txt_buscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonMaxing1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -112,7 +113,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_cards;
-        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
+        private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_buscar;
         private System.Windows.Forms.Label label1;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
     }
