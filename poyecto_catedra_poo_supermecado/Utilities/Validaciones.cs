@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.Utilities
 {
+    /// <summary>
+    /// Clase estática para validaciones académicas
+    /// Las clases estáticas no se pueden instanciar y agrupan métodos utilitarios
+    /// Todos los métodos deben ser static y no puede tener atributos de instancia
+    /// </summary>
     public static class Validaciones
     {
         public static bool ValidarTextoNoVacio(string texto, string nombreCampo)
