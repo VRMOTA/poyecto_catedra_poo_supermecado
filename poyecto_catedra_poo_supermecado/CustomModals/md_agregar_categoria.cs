@@ -21,9 +21,9 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             FormHelper.DefaultFormValues(this);
         }
         //Propiedades para editar
-        public int ID_Categories { get; set; } = 0;
+        public int ID_Categories_vista { get; set; } = 0;
 
-        public string NombreCategoria
+        public string NombreCategoria_vista
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
@@ -47,7 +47,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Si es un registro nuevo
-                if (ID_Categories == 0)
+                if (ID_Categories_vista == 0)
                 {
                         tb_categorias nuevo = new tb_categorias
                         {
@@ -61,7 +61,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 // Si es una edición
                 else
                 {
-                    var categorias = db.tb_categorias.Find(ID_Categories);
+                    var categorias = db.tb_categorias.Find(ID_Categories_vista);
                     if (categorias != null)
                     {
                         categorias.nombre = nombre;

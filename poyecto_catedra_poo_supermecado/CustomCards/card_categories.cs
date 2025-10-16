@@ -1,5 +1,6 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomModals;
+using poyecto_catedra_poo_supermecado.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,34 +17,39 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_categories : RoundedControlBase
     {
-        private int id_categoria;
+        private model_categoria categoria_modelo;
         public event EventHandler<int> BotonVisualizarClick;
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_categories()
         {
             InitializeComponent();
+            categoria_modelo = new model_categoria();
         }
 
-        public int ID_Categoria
+        public int ID_Categoria_Card
         {
-            get => id_categoria;
-            set => id_categoria = value;
+            get => categoria_modelo.ID_Categoria_Modelo;
+            set => categoria_modelo.ID_Categoria_Modelo = value;
         }
 
         [Category("Categoria"), Description("Nombre de la categoria")]
-        public string NombreCategoria
+        public string NombreCategoria_Card
         {
-            get => lblNombre_categoria?.Text ?? string.Empty;
-            set { if (lblNombre_categoria != null) lblNombre_categoria.Text = value; }
+            get => categoria_modelo.NombreCategoria_Modelo;
+            set 
+            { 
+                categoria_modelo.NombreCategoria_Modelo = value;
+                if (lblNombre_categoria != null) lblNombre_categoria.Text = value;
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             var modal = new md_agregar_categoria("Editar Categoria", "Guardar cambios");
 
-            modal.ID_Categories = id_categoria;
-            modal.NombreCategoria = NombreCategoria;
+            modal.ID_Categories_vista = ID_Categoria_Card;
+            modal.NombreCategoria_vista = NombreCategoria_Card;
 
             if (modal.ShowDialog() == DialogResult.OK)
             {
@@ -64,7 +70,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var categoria = db.tb_categorias.Find(id_categoria);
+                    var categoria = db.tb_categorias.Find(ID_Categoria_Card);
                     if (categoria != null)
                     {
                         db.tb_categorias.Remove(categoria);
@@ -84,10 +90,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var categoria = db.tb_categorias.Find(id_categoria);
+                var categoria = db.tb_categorias.Find(ID_Categoria_Card);
                 if (categoria != null)
                 {
-                    NombreCategoria = categoria.nombre;
+                    NombreCategoria_Card = categoria.nombre;
                 }
             }
         }

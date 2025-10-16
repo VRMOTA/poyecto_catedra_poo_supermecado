@@ -48,8 +48,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 var card = new card_categories
                 {
-                    ID_Categoria = cat.id_categoria,
-                    NombreCategoria = cat.nombre,
+                    ID_Categoria_Card = cat.id_categoria,
+                    NombreCategoria_Card = cat.nombre,
                     Margin = new Padding(espacio),
                     Size = cardSize
                 };
@@ -83,7 +83,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var todasLasCartas = panel_cards.Controls.OfType<card_categories>().ToList();
 
             var cartasFiltradas = todasLasCartas
-                .Where(c => c.NombreCategoria.ToLower().Contains(busqueda))
+                .Where(c => c.NombreCategoria_Card.ToLower().Contains(busqueda))
                 .ToList();
 
             var cartasNoFiltradas = todasLasCartas
