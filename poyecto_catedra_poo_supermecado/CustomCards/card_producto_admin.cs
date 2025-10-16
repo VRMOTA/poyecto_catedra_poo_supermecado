@@ -11,7 +11,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_producto_admin : RoundedControlBase
     {
-        private int id_producto;
         private model_productos model_productos;
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
@@ -105,13 +104,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
         [Category("Producto"), Description("Activo del producto")]
-        public string Activo_card
+        public bool Activo_card
         {
             get => model_productos.Activo_model;
-            set 
+            set
             {
                 model_productos.Activo_model = value;
-                if (lb_activo != null) lb_activo.Text = value; 
+                if (lb_activo != null) lb_activo.Text = value ? "Activo" : "Inactivo";
             }
         }
 

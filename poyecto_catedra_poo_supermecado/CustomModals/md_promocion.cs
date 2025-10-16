@@ -24,48 +24,42 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             btnActualizar.Text = buttonText;
         }
 
-        public int ID_Promocion { get; set; } = 0;
+        public int ID_Promocion_vista { get; set; } = 0;
 
         // Nueva propiedad para manejar el ID del producto
-        public int? IDProducto { get; set; }
+        public int? IDProducto_vista { get; set; }
 
-        public string Producto_combox
-        {
-            get => cmb_prod.Texts;
-            set => cmb_prod.Texts = value;
-        }
-
-        public int Cantidad_minima
+        public int Cantidad_minima_vista
         {
             get => int.TryParse(txt_cantidad_min.Texts, out int result) ? result : 0;
             set => txt_cantidad_min.Texts = value.ToString();
         }
 
-        public string Precio_promocional
+        public string Precio_promocional_vista
         {
             get => txt_precio_prom.Texts;
             set => txt_precio_prom.Texts = value;
         }
 
-        public string Descripcion
+        public string Descripcion_vista
         {
             get => txt_descripcion.Texts;
             set => txt_descripcion.Texts = value;
         }
 
-        public DateTime Fecha_inicio
+        public DateTime Fecha_inicio_vista
         {
             get => dtp_fecha_inicio.Value;
             set => dtp_fecha_inicio.Value = value;
         }
 
-        public DateTime Fecha_final
+        public DateTime Fecha_final_vista
         {
             get => dtp_fecha_final.Value;
             set => dtp_fecha_final.Value = value;
         }
 
-        public bool Activa
+        public bool Activa_vista
         {
             get => cmb_activo.Texts.ToLower() == "activo";
             set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
@@ -117,7 +111,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                if (ID_Promocion == 0)
+                if (ID_Promocion_vista == 0)
                 {
                     // Crear nueva promoción
                     tb_promociones nuevo = new tb_promociones
@@ -137,7 +131,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 else
                 {
                     // Editar promoción existente
-                    var promociones = db.tb_promociones.Find(ID_Promocion);
+                    var promociones = db.tb_promociones.Find(ID_Promocion_vista);
                     if (promociones != null)
                     {
                         promociones.id_producto = idProducto;
@@ -184,9 +178,9 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             cargar_productos();
 
             // Seleccionar el producto si se está editando
-            if (IDProducto.HasValue && IDProducto.Value > 0)
+            if (IDProducto_vista.HasValue && IDProducto_vista.Value > 0)
             {
-                cmb_prod.SelectedValue = IDProducto.Value;
+                cmb_prod.SelectedValue = IDProducto_vista.Value;
             }
         }
     }

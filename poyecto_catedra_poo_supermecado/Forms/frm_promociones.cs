@@ -64,14 +64,14 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 var card = new card_prom
                 {
-                    ID_Promocion = (int)promocion.id_promocion,
-                    Nombre_Producto = promocion.nombre_producto?.ToString() ?? "",
-                    Cantidad_Minima = promocion.cantidad_minima ?? 0,
-                    Precio_Promocion = promocion.precio_promocional ?? 0m,
-                    Descripcion_Promocion = promocion.descripcion?.ToString() ?? "",
-                    Fecha_Inicio = promocion.fecha_inicio ?? DateTime.Now,
-                    Fecha_Fin = promocion.fecha_fin ?? DateTime.Now,
-                    Activa = activaValor ? "Activo" : "Desactivo",
+                    ID_Promocion_card = (int)promocion.id_promocion,
+                    Nombre_Producto_card = promocion.nombre_producto?.ToString() ?? "",
+                    Cantidad_Minima_card = promocion.cantidad_minima ?? 0,
+                    Precio_Promocion_card = promocion.precio_promocional ?? 0m,
+                    Descripcion_Promocion_card = promocion.descripcion?.ToString() ?? "",
+                    Fecha_Inicio_card = promocion.fecha_inicio ?? DateTime.Now,
+                    Fecha_Fin_card = promocion.fecha_fin ?? DateTime.Now,
+                    Activa_card = activaValor,
                     Margin = new Padding(espacio)
                 };
 
@@ -103,8 +103,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
 
             var cartasFiltradas = todasLasCartas
-                .Where(c => c.Nombre_Producto.ToLower().Contains(busqueda) ||
-                           c.Descripcion_Promocion.ToLower().Contains(busqueda))
+                .Where(c => c.Nombre_Producto_card.ToLower().Contains(busqueda) ||
+                           c.Descripcion_Promocion_card.ToLower().Contains(busqueda))
                 .ToList();
 
             var cartasNoFiltradas = todasLasCartas

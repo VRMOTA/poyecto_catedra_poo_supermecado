@@ -1,5 +1,6 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomModals;
+using poyecto_catedra_poo_supermecado.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,67 +19,97 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_prom : UserControl
     {
-        private int id_promocion;
+        private model_promociones model_Promociones; 
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_prom()
         {
             InitializeComponent();
+            model_Promociones = new model_promociones();
         }
 
-        public int ID_Promocion
+        public int ID_Promocion_card
         {
-            get => id_promocion;
-            set => id_promocion = value;
+            get => model_Promociones.ID_Promocion_model;
+            set => model_Promociones.ID_Promocion_model = value;
         }
 
         [Category("Promocion"), Description("Nombre del Producto")]
-        public string Nombre_Producto
+        public string Nombre_Producto_card
         {
-            get => lblProducto?.Text ?? string.Empty;
-            set { if (lblProducto != null) lblProducto.Text = value; }
+            get => model_Promociones.Nombre_Producto_model;
+            set
+            {
+                model_Promociones.Nombre_Producto_model = value;
+                if (lblProducto != null) lblProducto.Text = value;
+            }
         }
 
         [Category("Promocion"), Description("Cantidad minima de la promocion")]
-        public int Cantidad_Minima
-        {
-            get => int.TryParse(lb_cantidad_min?.Text, out int result) ? result : 0;
-            set { if (lb_cantidad_min != null) lb_cantidad_min.Text = value.ToString(); }
+        public int Cantidad_Minima_card
+        {   get => model_Promociones.Cantidad_Minima_model;
+            set
+            {
+                model_Promociones.Cantidad_Minima_model = value;
+                if (lb_cantidad_min != null) lb_cantidad_min.Text = value.ToString();
+            }
         }
+
 
         [Category("Promocion"), Description("Precio de la promocion")]
-        public decimal Precio_Promocion
-        {
-            get => decimal.TryParse(lb_precio_prom?.Text, out decimal result) ? result : 0;
-            set { if (lb_precio_prom != null) lb_precio_prom.Text = value.ToString("F2"); }
+        public decimal Precio_Promocion_card
+        {             
+            get => model_Promociones.Precio_Promocion_model;
+            set
+            {
+                model_Promociones.Precio_Promocion_model = value;
+                if (lb_precio_prom != null) lb_precio_prom.Text = value.ToString("F2");
+            }
         }
 
+
         [Category("Promocion"), Description("Descripcion de la promocion")]
-        public string Descripcion_Promocion
+        public string Descripcion_Promocion_card
         {
-            get => lblDescripcion?.Text ?? string.Empty;
-            set { if (lblDescripcion != null) lblDescripcion.Text = value; }
+            get => model_Promociones.Descripcion_model;
+            set
+            {
+                model_Promociones.Descripcion_model = value;
+                if (lblDescripcion != null) lblDescripcion.Text = value;
+            }
         }
 
         [Category("Promocion"), Description("Fecha de inicio de la promocion")]
-        public DateTime Fecha_Inicio
+        public DateTime Fecha_Inicio_card
         {
-            get => DateTime.TryParse(lb_fecha_inicio?.Text, out DateTime result) ? result : DateTime.Now;
-            set { if (lb_fecha_inicio != null) lb_fecha_inicio.Text = value.ToString("dd-MM-yyyy"); }
-        }
-
+            get => model_Promociones.Fecha_Inicio_model;
+            set
+            {
+                model_Promociones.Fecha_Inicio_model = value;
+                if (lb_fecha_inicio != null) lb_fecha_inicio.Text = value.ToString("dd-MM-yyyy");
+            }
+        }      
+ 
         [Category("Promocion"), Description("Fecha de finalizacion de la promocion")]
-        public DateTime Fecha_Fin
-        {
-            get => DateTime.TryParse(lb_fecha_fin?.Text, out DateTime result) ? result : DateTime.Now;
-            set { if (lb_fecha_fin != null) lb_fecha_fin.Text = value.ToString("dd-MM-yyyy"); }
+        public DateTime Fecha_Fin_card
+        {             
+            get => model_Promociones.Fecha_Fin_model;
+            set
+            {
+                model_Promociones.Fecha_Fin_model = value;
+                if (lb_fecha_fin != null) lb_fecha_fin.Text = value.ToString("dd-MM-yyyy");
+            }
         }
 
         [Category("Promocion"), Description("Estado de la promocion")]
-        public string Activa
+        public bool Activa_card
         {
-            get => lb_activo?.Text ?? string.Empty;
-            set { if (lb_activo != null) lb_activo.Text = value; }
+            get => model_Promociones.Activa_model;
+            set
+            {
+                model_Promociones.Activa_model = value;
+                if (lb_activo != null) lb_activo.Text = value ? "Sí" : "No";
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -87,17 +118,17 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var promocion = db.tb_promociones.Find(ID_Promocion);
+                var promocion = db.tb_promociones.Find(ID_Promocion_card);
                 if (promocion != null)
                 {
-                    modal.ID_Promocion = ID_Promocion;
-                    modal.IDProducto = promocion.id_producto;
-                    modal.Cantidad_minima = promocion.cantidad_minima ?? 0;
-                    modal.Precio_promocional = promocion.precio_promocional?.ToString("F2");
-                    modal.Descripcion = promocion.descripcion;
-                    modal.Fecha_inicio = promocion.fecha_inicio ?? DateTime.Now;
-                    modal.Fecha_final = promocion.fecha_fin ?? DateTime.Now;
-                    modal.Activa = promocion.activa ?? false;
+                    modal.ID_Promocion_vista = ID_Promocion_card;
+                    modal.IDProducto_vista = promocion.id_producto;
+                    modal.Cantidad_minima_vista = promocion.cantidad_minima ?? 0;
+                    modal.Precio_promocional_vista = promocion.precio_promocional?.ToString("F2");
+                    modal.Descripcion_vista = promocion.descripcion;
+                    modal.Fecha_inicio_vista = promocion.fecha_inicio ?? DateTime.Now;
+                    modal.Fecha_final_vista = promocion.fecha_fin ?? DateTime.Now;
+                    modal.Activa_vista = promocion.activa ?? false;
                 }
             }
 
@@ -106,39 +137,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 RecargaRequerida?.Invoke(this, EventArgs.Empty);
             }
         }
-
-        public void CargarDatosPROD()
-        {
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-            {
-                var promocion = (from pr in db.tb_promociones
-                                 join p in db.tb_producto on pr.id_producto equals p.id_producto
-                                 where pr.id_promocion == ID_Promocion
-                                 select new
-                                 {
-                                     pr.id_promocion,
-                                     nombre_producto = p.nombre,
-                                     pr.cantidad_minima,
-                                     pr.precio_promocional,
-                                     pr.descripcion,
-                                     pr.fecha_inicio,
-                                     pr.fecha_fin,
-                                     pr.activa
-                                 }).FirstOrDefault();
-
-                if (promocion != null)
-                {
-                    Nombre_Producto = promocion.nombre_producto;
-                    Cantidad_Minima = promocion.cantidad_minima ?? 0;
-                    Precio_Promocion = promocion.precio_promocional ?? 0;
-                    Descripcion_Promocion = promocion.descripcion;
-                    Fecha_Inicio = promocion.fecha_inicio ?? DateTime.Now;
-                    Fecha_Fin = promocion.fecha_fin ?? DateTime.Now;
-                    Activa = (promocion.activa ?? false) ? "Sí" : "No";
-                }
-            }
-        }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show(
@@ -152,7 +150,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var promocion = db.tb_promociones.Find(ID_Promocion);
+                    var promocion = db.tb_promociones.Find(ID_Promocion_card);
                     if (promocion != null)
                     {
                         db.tb_promociones.Remove(promocion);

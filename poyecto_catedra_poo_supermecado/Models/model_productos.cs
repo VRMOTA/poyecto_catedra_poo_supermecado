@@ -18,7 +18,7 @@ namespace poyecto_catedra_poo_supermecado.Models
         private string categoria; 
         private int stock; 
         private decimal precio; 
-        private string activo; 
+        private bool activo; 
 
         public int ID_Producto_model
         {
@@ -60,7 +60,7 @@ namespace poyecto_catedra_poo_supermecado.Models
             get => precio;
             set => precio = value;
         }
-        public string Activo_model
+        public bool Activo_model
         {
             get => activo;
             set => activo = value;
@@ -73,7 +73,7 @@ namespace poyecto_catedra_poo_supermecado.Models
             categoria = string.Empty;
             stock = 0;
             precio = 0m;
-            activo = "Si";
+            activo = true;
         }
     }
 }

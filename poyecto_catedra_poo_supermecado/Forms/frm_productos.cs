@@ -68,7 +68,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Stock_card = producto.stock,
                     Precio_card = producto.precio,
                     ImagenProducto_card = imageProducto,
-                    Activo_card = producto.activo ? "Activo" : "Desactivado",
+                    Activo_card = producto.activo,
                     Margin = new Padding(espacio)
                 };
 
