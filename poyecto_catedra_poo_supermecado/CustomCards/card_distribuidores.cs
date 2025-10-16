@@ -93,24 +93,5 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 }
             }
         }
-
-        public void CargarDatosDistribuidor()
-        {
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-            {
-                var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_card);
-                if (distribuidor != null)
-                {
-                    NombreDistribuidora_card = distribuidor.nombre;
-                    if (distribuidor.logo != null)
-                    {
-                        using (MemoryStream ms = new MemoryStream(distribuidor.logo))
-                        {
-                            ImagenDistribuidora_card = Image.FromStream(ms);
-                        }
-                    }
-                }
-            }
-        }
     }
 }

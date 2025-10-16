@@ -11,7 +11,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_producto_admin : RoundedControlBase
     {
-        private int? _descuento;
         private int id_producto;
         private model_productos model_productos;
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
@@ -122,21 +121,16 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var producto = db.tb_producto.Find(id_producto);
+                var producto = db.tb_producto.Find(ID_Producto_card);
                 if (producto != null)
                 {
-                    modal.IDProducto_vista = id_producto;
+                    modal.IDProducto_vista = producto.id_producto;
                     modal.NombreProducto_vista = producto.nombre;
-
                     modal.PrecioProducto_vista = (double)(producto.precio ?? 0m);
-
                     modal.StockProducto_vista = producto.stock ?? 0;
-
                     modal.IDCategoriaProducto_vista = producto.id_categoria;
                     modal.IDDistribuidorProducto_vista = producto.id_distribuidor;
                     modal.DescripcionProducto_vista = producto.descripcion;
-
-                    // CORRECCIÓN 3: ActivoProducto_vista es bool, no string
                     modal.ActivoProducto_vista = producto.activo == true;
 
                     if (producto.imagen != null)
@@ -147,6 +141,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             if (modal.ShowDialog() == DialogResult.OK)
@@ -154,6 +153,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 RecargaRequerida?.Invoke(this, EventArgs.Empty);
             }
         }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -179,31 +179,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                     else
                     {
                         MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-
-        public void CargarDatosPROD()
-        {
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-            {
-                var producto = db.tb_producto.Find(ID_Producto_card);
-                if (producto != null)
-                {
-                    NombreProducto_card = producto.nombre;
-                    Precio_card = producto.precio ?? 0m;
-                    Stock_card = producto.stock ?? 0;
-                    Descripcion_card = producto.descripcion;
-                    Cateogoria_card = producto.id_categoria.ToString();
-                    NombreDistribuidor_card = producto.id_distribuidor.ToString();
-
-                    if (producto.imagen != null)
-                    {
-                        using (MemoryStream ms = new MemoryStream(producto.imagen))
-                        {
-                            ImagenProducto_card = Image.FromStream(ms);
-                        }
                     }
                 }
             }
