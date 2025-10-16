@@ -232,18 +232,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                                Cantidad = g.Count()
                                            }).ToList();
 
-                    // Mostrar estadísticas usando clase estática FormateadorDatos
-                    string mensaje = "ESTADÍSTICAS DE USUARIOS:\n\n";
-                    foreach (var stat in estadisticasTipos)
-                    {
-                        mensaje += $"{stat.TipoUsuario}: {FormateadorDatos.FormatearCantidad(stat.Cantidad)} usuarios\n";
-                    }
-
-                    // Consulta total de usuarios activos
-                    int totalUsuarios = db.Usuarios.Count(u => u.activo == true);
-                    mensaje += $"\nTotal usuarios activos: {FormateadorDatos.FormatearCantidad(totalUsuarios)}";
-
-                    MessageBox.Show(mensaje, "Estadísticas Académicas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
                 }
             }
             catch (Exception ex)

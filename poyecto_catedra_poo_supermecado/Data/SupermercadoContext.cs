@@ -245,18 +245,18 @@ namespace poyecto_catedra_poo_supermecado.Data
         /// <summary>
         /// OPERACIONES AGREGADAS - Ejemplo académico con funciones de agregación
         /// </summary>
-        public static decimal ObtenerTotalVentasDelDia(DateTime fecha)
-        {
-            using (var db = new SupermercadoContext())
-            {
-                // LINQ con función de agregación Sum()
-                var totalVentas = (from v in db.Ventas
-                                 where v.fecha.Value.Date == fecha.Date
-                                 select v.total).Sum() ?? 0;
+        //public static decimal ObtenerTotalVentasDelDia(DateTime fecha)
+        //{
+        //    using (var db = new SupermercadoContext())
+        //    {
+        //        // LINQ con función de agregación Sum()
+        //        var totalVentas = (from v in db.Ventas
+        //                         where v.fecha.Value.Date == fecha.Date
+        //                         select v.total).Sum() ?? 0;
                 
-                return totalVentas;
-            }
-        }
+        //        return totalVentas;
+        //    }
+        //}
 
         /// <summary>
         /// CONTEO DE REGISTROS - Ejemplo académico con Count()
