@@ -65,7 +65,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     NombreDistribuidor_card = producto.nombre_distribuidor,
                     Descripcion_card = producto.descripcion,
                     Cateogoria_card = producto.nombre_categoria,
-                    Stock_card = producto.stock.ToString(),
+                    Stock_card = producto.stock,
                     Precio_card = producto.precio,
                     ImagenProducto_card = imageProducto,
                     Activo_card = producto.activo ? "Activo" : "Desactivado",
