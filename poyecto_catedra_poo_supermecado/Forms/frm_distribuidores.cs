@@ -25,31 +25,29 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void CargarDistribuidores()
         {
             int columnas = 3;
-            int anchoCarta = 385; // Ajusta según el tamaño real de card_distribuidores
-            int altoCarta = 204;  // Ajusta según el tamaño real de card_distribuidores
-            int espacio = 10;     // Espacio entre cartas
+            int anchoCarta = 385;
+            int altoCarta = 204;
+            int espacio = 10;
 
             List<dynamic> lista_distribuidores;
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // Seleccionar datos con Entity Framework
                 lista_distribuidores = db.tb_distribuidores
                     .Select(d => new
                     {
                         d.id_distribuidor,
                         d.nombre,
                         d.logo
-                    }).ToList<dynamic>(); // Convertimos a lista dinámica
+                    }).ToList<dynamic>();
             }
 
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
 
-            for (int i = 0; i < lista_distribuidores.Count; i++)
+            int indice = 0;
+            foreach (var distribuidor in lista_distribuidores)
             {
-                var distribuidor = lista_distribuidores[i]; // Obtenemos el distribuidor actual
-
                 // Convertir byte[] a Image
                 Image imagenDistribuidor = null;
                 if (distribuidor.logo != null)
@@ -70,13 +68,17 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Margin = new Padding(espacio)
                 };
 
-                int fila = i / columnas;
-                int columna = i % columnas;
+                // Suscribirse al evento de recarga
+                card.RecargaRequerida += (s, e) => CargarDistribuidores();
+
+                int fila = indice / columnas;
+                int columna = indice % columnas;
 
                 card.Left = columna * (anchoCarta + espacio);
                 card.Top = fila * (altoCarta + espacio);
 
                 panel_cards.Controls.Add(card);
+                indice++;
             }
 
             int filasNecesarias = (int)Math.Ceiling((double)lista_distribuidores.Count / columnas);
@@ -90,7 +92,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             using (var modal = new md_agregar_distribuidor())
             {
-                modal.ShowDialog();
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarDistribuidores();
+                }
             }
         }
 
@@ -102,10 +107,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
             int altoCarta = 204;
             int espacio = 10;
 
-            // Obtener todas las cartas
             var todasLasCartas = panel_cards.Controls.OfType<card_distribuidores>().ToList();
 
-            // Separar en filtradas y no filtradas
             var cartasFiltradas = todasLasCartas
                 .Where(c => c.NombreDistribuidora.ToLower().Contains(busqueda))
                 .ToList();
@@ -114,22 +117,20 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 .Where(c => !cartasFiltradas.Contains(c))
                 .ToList();
 
-            // Reposicionar: primero las filtradas, luego las no filtradas
             var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
 
-            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            int indice = 0;
+            foreach (var card in cartasOrdenadas)
             {
-                var card = cartasOrdenadas[i];
-
-                int fila = i / columnas;
-                int columna = i % columnas;
+                int fila = indice / columnas;
+                int columna = indice % columnas;
 
                 card.Left = columna * (anchoCarta + espacio);
                 card.Top = fila * (altoCarta + espacio);
                 card.Visible = cartasFiltradas.Contains(card);
+                indice++;
             }
 
-            // Scroll al inicio cuando se busca
             panel_cards.AutoScrollPosition = new Point(0, 0);
         }
 
