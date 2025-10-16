@@ -12,7 +12,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_productos : Form
     {
-
         public frm_productos()
         {
             InitializeComponent();
@@ -23,9 +22,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             int espacio = 10;
             List<dynamic> lista_productos;
+
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // SELECT con JOINs para obtener los nombres
                 lista_productos = (from p in db.tb_producto
                                    join d in db.tb_distribuidores on p.id_distribuidor equals d.id_distribuidor
                                    join c in db.tb_categorias on p.id_categoria equals c.id_categoria
@@ -42,12 +41,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                        p.activo
                                    }).ToList<dynamic>();
             }
+
             panel_cards.Controls.Clear();
             panel_cards.AutoScroll = true;
             int posicionY = 0;
-            for (int i = 0; i < lista_productos.Count; i++)
+
+            foreach (var producto in lista_productos)
             {
-                var producto = lista_productos[i];
                 // Convertir byte[] a Image
                 Image imageProducto = null;
                 if (producto.imagen != null)
@@ -57,6 +57,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         imageProducto = Image.FromStream(ms);
                     }
                 }
+
                 var card = new card_producto_admin
                 {
                     ID_Producto = producto.id_producto,
@@ -67,24 +68,33 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Stock = producto.stock.ToString(),
                     Precio = producto.precio,
                     ImagenProducto = imageProducto,
-                    Activo = producto.activo ? "Activo" : "Desactivado", // Conversión a texto
+                    Activo = producto.activo ? "Activo" : "Desactivado",
                     Margin = new Padding(espacio)
                 };
+
+                // Suscribirse al evento de recarga
+                card.RecargaRequerida += (s, e) => CargarProductosAdmin();
+
                 card.Left = 0;
                 card.Top = posicionY;
                 panel_cards.Controls.Add(card);
                 posicionY += card.Height + espacio;
             }
+
             panel_cards.AutoScrollMinSize = new Size(
                 panel_cards.Width,
                 posicionY
             );
         }
+
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
             using (var modal = new md_agregar_productos())
             {
-                modal.ShowDialog();
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    CargarProductosAdmin();
+                }
             }
         }
     }

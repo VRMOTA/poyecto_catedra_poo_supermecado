@@ -12,11 +12,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     {
         private int? _descuento;
         private int id_producto;
+        public event EventHandler RecargaRequerida; // Nuevo evento para recargar
+
         public card_producto_admin()
         {
             InitializeComponent();
-
         }
+
         public int ID_Producto
         {
             get => id_producto;
@@ -50,12 +52,14 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => lblDescripcion?.Text ?? string.Empty;
             set { if (lblDescripcion != null) lblDescripcion.Text = value; }
         }
+
         [Category("Producto"), Description("Categoria del producto")]
         public string Cateogoria
         {
             get => lbl_categoria?.Text ?? string.Empty;
             set { if (lbl_categoria != null) lbl_categoria.Text = value; }
         }
+
         [Category("Producto"), Description("Stock del producto")]
         public string Stock
         {
@@ -69,36 +73,32 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => decimal.TryParse(lblPrecio?.Text, out var precio) ? precio : 0m;
             set { if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); }
         }
+
         [Category("Producto"), Description("Activo del producto")]
         public string Activo
         {
             get => lb_activo?.Text ?? string.Empty;
             set { if (lb_activo != null) lb_activo.Text = value; }
         }
+
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            var modal = new md_agregar_productos("Actualizar nuevo producto", "Actualizar");
+            var modal = new md_agregar_productos("Actualizar producto", "Actualizar");
 
-            // Obtener los datos completos del producto desde la base de datos
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 var producto = db.tb_producto.Find(id_producto);
                 if (producto != null)
                 {
-                    // Pasar datos actuales
                     modal.IDProducto = id_producto;
                     modal.NombreProducto = producto.nombre;
                     modal.PrecioProducto = producto.precio?.ToString();
                     modal.StockProducto = producto.stock?.ToString();
-
-                    // Pasar los IDs en lugar de los nombres
                     modal.IDCategoriaProducto = producto.id_categoria;
                     modal.IDDistribuidorProducto = producto.id_distribuidor;
-
                     modal.DescripcionProducto = producto.descripcion;
                     modal.ActivoProducto = producto.activo == true ? "Activo" : "Inactivo";
 
-                    // Cargar imagen
                     if (producto.imagen != null)
                     {
                         using (MemoryStream ms = new MemoryStream(producto.imagen))
@@ -109,21 +109,20 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 }
             }
 
-            // Mostrar modal y refrescar si se actualizó
             if (modal.ShowDialog() == DialogResult.OK)
             {
-                CargarDatosPROD();
+                RecargaRequerida?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show(
-            "¿Está seguro que desea eliminar el registro?",
-            "Confirmar eliminación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning
-        );
+                "¿Está seguro que desea eliminar el registro?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
 
             if (resultado == DialogResult.Yes)
             {
@@ -135,6 +134,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                         db.tb_producto.Remove(producto);
                         db.SaveChanges();
                         MessageBox.Show("Producto eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
                     }
                     else
                     {
@@ -143,6 +143,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 }
             }
         }
+
         public void CargarDatosPROD()
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
@@ -156,7 +157,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                     Descripcion = producto.descripcion;
                     Cateogoria = producto.id_categoria.ToString();
                     NombreDistribuidor = producto.id_distribuidor.ToString();
-                    // Convertir byte[] a Image
 
                     if (producto.imagen != null)
                     {
