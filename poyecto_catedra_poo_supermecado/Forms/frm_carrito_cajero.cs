@@ -402,6 +402,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     RecargarCarrito();
 
                     MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNombre.Texts = "";
                 }
             }
             catch (Exception ex)
