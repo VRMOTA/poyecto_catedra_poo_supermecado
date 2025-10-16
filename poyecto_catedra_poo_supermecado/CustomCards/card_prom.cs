@@ -19,6 +19,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     public partial class card_prom : UserControl
     {
         private int id_promocion;
+        public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_prom()
         {
@@ -74,7 +75,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
         [Category("Promocion"), Description("Estado de la promocion")]
-        public string Activa 
+        public string Activa
         {
             get => lb_activo?.Text ?? string.Empty;
             set { if (lb_activo != null) lb_activo.Text = value; }
@@ -84,18 +85,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             var modal = new md_promocion("Actualizar promoción", "Actualizar");
 
-            // Obtener los datos completos de la promoción desde la base de datos
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 var promocion = db.tb_promociones.Find(ID_Promocion);
                 if (promocion != null)
                 {
-                    // Pasar datos actuales
                     modal.ID_Promocion = ID_Promocion;
-
-                    // Pasar el ID del producto para que se seleccione en el ComboBox
                     modal.IDProducto = promocion.id_producto;
-
                     modal.Cantidad_minima = promocion.cantidad_minima ?? 0;
                     modal.Precio_promocional = promocion.precio_promocional?.ToString("F2");
                     modal.Descripcion = promocion.descripcion;
@@ -105,10 +101,9 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 }
             }
 
-            // Mostrar modal y refrescar si se actualizó
             if (modal.ShowDialog() == DialogResult.OK)
             {
-                CargarDatosPROD();
+                RecargaRequerida?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -157,15 +152,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var promociones = db.tb_promociones.Find(ID_Promocion);
-                    if (promociones != null)
+                    var promocion = db.tb_promociones.Find(ID_Promocion);
+                    if (promocion != null)
                     {
-                        db.tb_promociones.Remove(promociones);
+                        db.tb_promociones.Remove(promocion);
                         db.SaveChanges();
                         MessageBox.Show("Promoción eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Notificar al padre que debe refrescar
-                        this.Parent?.Controls.Remove(this);
+                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
                     }
                     else
                     {

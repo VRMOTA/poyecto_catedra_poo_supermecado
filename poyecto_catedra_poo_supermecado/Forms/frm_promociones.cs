@@ -39,7 +39,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                // SELECT con JOIN para obtener el nombre del producto
                 lista_promociones = (from pr in db.tb_promociones
                                      join p in db.tb_producto on pr.id_producto equals p.id_producto
                                      select new
@@ -59,11 +58,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
             panel_cards.AutoScroll = true;
             int posicionY = 0;
 
-            for (int i = 0; i < lista_promociones.Count; i++)
+            foreach (var promocion in lista_promociones)
             {
-                var promocion = lista_promociones[i];
-
-                // Convertir explícitamente los valores dinámicos
                 bool activaValor = promocion.activa != null ? (bool)promocion.activa : false;
 
                 var card = new card_prom
@@ -78,6 +74,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Activa = activaValor ? "Activo" : "Desactivo",
                     Margin = new Padding(espacio)
                 };
+
+                // Suscribirse al evento de recarga
+                card.RecargaRequerida += (s, e) => CargarProm();
 
                 card.Left = 0;
                 card.Top = posicionY;
@@ -101,10 +100,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
             string busqueda = txt_buscar.Texts.ToLower();
             int espacio = 10;
 
-            // Obtener todas las cartas de promociones
             var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
 
-            // Separar en filtradas y no filtradas
             var cartasFiltradas = todasLasCartas
                 .Where(c => c.Nombre_Producto.ToLower().Contains(busqueda) ||
                            c.Descripcion_Promocion.ToLower().Contains(busqueda))
@@ -114,14 +111,11 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 .Where(c => !cartasFiltradas.Contains(c))
                 .ToList();
 
-            // Reposicionar: primero las filtradas, luego las no filtradas
             var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
             int posicionY = 0;
 
-            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            foreach (var card in cartasOrdenadas)
             {
-                var card = cartasOrdenadas[i];
-
                 card.Left = 0;
                 card.Top = posicionY;
                 card.Visible = cartasFiltradas.Contains(card);
@@ -132,7 +126,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 }
             }
 
-            // Scroll al inicio cuando se busca
             panel_cards.AutoScrollPosition = new Point(0, 0);
         }
 
