@@ -62,6 +62,26 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     lbstock.Text = (producto.stock ?? 0).ToString();
                     lbdescriccion.Text = producto.descripcion ?? "";
 
+                    // pa la promo
+                    var promo = db.tb_promociones
+                        .Where(pr => pr.id_producto == idProducto
+                                     && pr.activa == true
+                                     && pr.fecha_inicio <= DateTime.Now
+                                     && pr.fecha_fin >= DateTime.Now)
+                        .FirstOrDefault();
+
+                    if (promo != null)
+                    {
+                        lbPromo.Text = $"Promoción: {promo.descripcion}\nPrecio Promo: {promo.precio_promocional:C2}";
+                        lbPromo.ForeColor = Color.DarkGreen;
+                    }
+                    else
+                    {
+                        lbPromo.Text = "Sin promoción activa.";
+                        lbPromo.ForeColor = Color.Gray;
+                    }
+
+
                     if (producto.imagen != null)
                     {
                         using (MemoryStream ms = new MemoryStream(producto.imagen))
@@ -260,6 +280,26 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Buscador();
+        }
+
+        private void lblProducto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roundedControlBase1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbPromo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

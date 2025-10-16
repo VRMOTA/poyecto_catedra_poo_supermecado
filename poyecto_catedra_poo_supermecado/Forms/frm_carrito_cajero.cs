@@ -121,14 +121,45 @@ namespace poyecto_catedra_poo_supermecado.Forms
             // actualiza cantidad en la lista global, prueba
             producto.Cantidad = nuevaCantidad;
 
-            // busca la card correspondiente y actualiza solo esa
-            foreach (Control ctrl in panel1.Controls)
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                if (ctrl is CustomCards.card_producto_carrito card && card.IDProducto == idProducto)
+                DateTime hoy = DateTime.Now;
+
+                // Buscar promoción activa
+                var promo = db.tb_promociones.FirstOrDefault(p =>
+                    p.id_producto == producto.Id &&
+                    p.activa == true &&
+                    p.fecha_inicio <= hoy &&
+                    p.fecha_fin >= hoy &&
+                    nuevaCantidad >= p.cantidad_minima);
+
+                decimal totalProducto = 0m;
+
+                if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
                 {
-                    card.Cantidad = nuevaCantidad; // esto ya actualiza los labels 
-                    //MessageBox.Show(producto.Cantidad.ToString());
-                    break;
+                    int cantidadPromo = promo.cantidad_minima.Value;
+                    decimal precioPromo = promo.precio_promocional.Value;
+
+                    int bloquesCompletos = nuevaCantidad / cantidadPromo;
+                    int resto = nuevaCantidad % cantidadPromo;
+
+                    totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
+                }
+                else
+                {
+                    totalProducto = nuevaCantidad * producto.Precio;
+                }
+
+                decimal ahorro = producto.Cantidad * producto.Precio - totalProducto;
+                // Buscar la card correspondiente y actualizar su total
+                foreach (Control ctrl in panel1.Controls)
+                {
+                    if (ctrl is CustomCards.card_producto_carrito card && card.IDProducto == idProducto)
+                    {
+                        card.TotalProducto = totalProducto;
+                        card.AhorroProducto = ahorro;
+                        break;
+                    }
                 }
             }
 
@@ -140,10 +171,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
             decimal totalPagar = 0m;
             int totalCantidad = 0;
 
-            foreach (var producto in Utilities.Carrito.Productos)
+            foreach (Control ctrl in panel1.Controls)
             {
-                totalCantidad += producto.Cantidad;
-                totalPagar += producto.Precio * producto.Cantidad;
+                if (ctrl is CustomCards.card_producto_carrito card)
+                {
+                    totalCantidad += card.Cantidad;
+                    totalPagar += card.TotalProducto;
+                }
             }
 
             label2.Text = totalCantidad.ToString();
@@ -170,36 +204,81 @@ namespace poyecto_catedra_poo_supermecado.Forms
             decimal totalPagar = 0m;
             int totalCantidad = 0;
 
-            for (int i = 0; i < productosCarrito.Count; i++)
+            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var producto = productosCarrito[i];
-                var card = new CustomCards.card_producto_carrito
+                DateTime hoy = DateTime.Now;
+
+                for (int i = 0; i < productosCarrito.Count; i++)
                 {
-                    IDProducto = producto.Id,
-                    NombreProducto = producto.Nombre,
-                    Precio = producto.Precio,
-                    Cantidad = producto.Cantidad,
-                    ImagenProducto = producto.Imagen,
-                    StockDisponible = producto.Stock,
-                    Width = anchoCarta,
-                    Height = altoCarta,
-                    Left = 0,
-                    Top = i * (altoCarta + espacio)
-                };
+                    var producto = productosCarrito[i];
 
-                card.EliminarClick += (s, ev) => EliminarProducto(producto.Id);
-                card.CantidadActualizada += (s, nuevaCantidad) => ActualizarProducto(producto.Id, nuevaCantidad);
-                
+                    // Buscar promoción activa
+                    var promo = db.tb_promociones.FirstOrDefault(p =>
+                        p.id_producto == producto.Id &&
+                        p.activa == true &&
+                        p.fecha_inicio <= hoy &&
+                        p.fecha_fin >= hoy &&
+                        producto.Cantidad >= p.cantidad_minima);
 
-                panel1.Controls.Add(card);
+                    decimal totalProducto = 0m;
+                    int descuentoPorcentaje = 0;
+                    decimal ahorro = 0m;
 
-                totalCantidad += producto.Cantidad;
-                totalPagar += producto.Precio * producto.Cantidad;
+                    if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                    {
+                        int cantidadPromo = promo.cantidad_minima.Value;
+                        decimal precioPromo = promo.precio_promocional.Value;
+
+                        int bloquesCompletos = producto.Cantidad / cantidadPromo;
+                        int resto = producto.Cantidad % cantidadPromo;
+
+                        totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
+                        ahorro = producto.Cantidad * producto.Precio - totalProducto;
+                        descuentoPorcentaje = (int)Math.Round((1 - ((decimal)(bloquesCompletos * precioPromo + resto * producto.Precio) / (producto.Precio * producto.Cantidad))) * 100);
+
+                        // Ajuste para mostrar solo promo en nombre si aplica
+                        if (bloquesCompletos > 0)
+                            producto.Nombre += " (Promo)";
+                    }
+                    else
+                    {
+                        totalProducto = producto.Cantidad * producto.Precio;
+                        ahorro = 0;
+                    }
+
+                    var card = new CustomCards.card_producto_carrito
+                    {
+                        IDProducto = producto.Id,
+                        NombreProducto = producto.Nombre + (promo != null ? " (Promo)" : ""),
+                        Precio = producto.Precio,
+                        Descuento = descuentoPorcentaje,
+                        Cantidad = producto.Cantidad,
+                        ImagenProducto = producto.Imagen,
+                        StockDisponible = producto.Stock,
+                        TotalProducto = totalProducto,
+                        AhorroProducto = ahorro,
+                        Width = anchoCarta,
+                        Height = altoCarta,
+                        Left = 0,
+                        Top = i * (altoCarta + espacio)
+
+                    };
+                    
+                    card.EliminarClick += (s, ev) => EliminarProducto(producto.Id);
+                    card.CantidadActualizada += (s, nuevaCantidad) => ActualizarProducto(producto.Id, nuevaCantidad);
+
+                    panel1.Controls.Add(card);
+
+                    // Total con descuento aplicado
+                    totalPagar += totalProducto;
+                    totalCantidad += producto.Cantidad;
+                }
             }
 
             label2.Text = totalCantidad.ToString();
             label4.Text = totalPagar.ToString("C2");
         }
+
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -220,13 +299,43 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
+                    DateTime hoy = DateTime.Now;
+                    decimal totalVenta = 0m;
+                    decimal totalDescuento = 0m;
+
+                    // Calcular totales con descuento
+                    foreach (var producto in productosCarrito)
+                    {
+                        var promo = db.tb_promociones.FirstOrDefault(p =>
+                            p.id_producto == producto.Id &&
+                            p.activa == true &&
+                            p.fecha_inicio <= hoy &&
+                            p.fecha_fin >= hoy &&
+                            producto.Cantidad >= p.cantidad_minima);
+
+                        decimal totalProducto = producto.Cantidad * producto.Precio;
+                        decimal descuentoProducto = 0m;
+
+                        if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                        {
+                            int multiples = producto.Cantidad / promo.cantidad_minima.Value;
+                            int resto = producto.Cantidad % promo.cantidad_minima.Value;
+
+                            totalProducto = multiples * promo.precio_promocional.Value + resto * producto.Precio;
+                            descuentoProducto = producto.Cantidad * producto.Precio - totalProducto;
+                        }
+
+                        totalVenta += totalProducto;
+                        totalDescuento += descuentoProducto;
+                    }
+
                     tb_ventas nuevaVenta = new tb_ventas
                     {
                         fecha = DateTime.Now,
                         id_usuario = SesionActual.IdUsuario,
                         nombre_cliente = txtNombre.Texts.ToString(),
-                        total_venta = productosCarrito.Sum(p => p.Precio * p.Cantidad),
-                        total_descuento = 0,
+                        total_venta = totalVenta,
+                        total_descuento = totalDescuento,
                         estado = "Completada"
                     };
 
@@ -237,14 +346,35 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                     foreach (var producto in productosCarrito)
                     {
+                        var promo = db.tb_promociones.FirstOrDefault(p =>
+                            p.id_producto == producto.Id &&
+                            p.activa == true &&
+                            p.fecha_inicio <= hoy &&
+                            p.fecha_fin >= hoy &&
+                            producto.Cantidad >= p.cantidad_minima);
+
+                        decimal totalProducto = producto.Cantidad * producto.Precio;
+                        decimal precioUnitarioAplicado = producto.Precio;
+                        decimal descuentoProducto = 0m;
+
+                        if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                        {
+                            int multiples = producto.Cantidad / promo.cantidad_minima.Value;
+                            int resto = producto.Cantidad % promo.cantidad_minima.Value;
+
+                            totalProducto = multiples * promo.precio_promocional.Value + resto * producto.Precio;
+                            precioUnitarioAplicado = totalProducto / producto.Cantidad;
+                            descuentoProducto = producto.Cantidad * producto.Precio - totalProducto;
+                        }
+
                         tb_detalle_venta detalle = new tb_detalle_venta
                         {
                             id_venta = idVentaGenerada,
                             id_producto = producto.Id,
                             cantidad = producto.Cantidad,
-                            precio_unitario = producto.Precio,
-                            descuento_aplicado = 0,
-                            subtotal = producto.Precio * producto.Cantidad
+                            precio_unitario = precioUnitarioAplicado,
+                            descuento_aplicado = descuentoProducto,
+                            subtotal = totalProducto
                         };
 
                         db.tb_detalle_venta.Add(detalle);

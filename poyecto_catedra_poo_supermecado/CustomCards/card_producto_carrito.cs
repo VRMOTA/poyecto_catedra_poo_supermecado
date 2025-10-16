@@ -11,6 +11,36 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private int descuento;
         private int cantidad;
 
+        private decimal totalProducto;
+        public decimal TotalProducto
+        {
+            get => totalProducto;
+            set
+            {
+                totalProducto = value;
+                lblPrecioTotal.Text = totalProducto.ToString("C2");
+            }
+        }
+
+        private decimal ahorroProducto;
+        public decimal AhorroProducto
+        {
+            get => ahorroProducto;
+            set
+            {
+                ahorroProducto = value;
+                if (ahorroProducto > 0)
+                {
+                    lblPrecioDescuento.Visible = true;
+                    lblPrecioDescuento.Text = $"{ahorroProducto.ToString("C2")}";
+                }
+                else
+                {
+                    lblPrecioDescuento.Visible = false;
+                }
+            }
+        }
+
         [Category("Producto"), Description("Stock disponible del producto")]
         public int StockDisponible { get; set; }
         [Category("Acciones"), Description("Evento cuando se actualiza la cantidad")]
@@ -48,6 +78,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 ActualizarPrecios();
             }
         }
+
 
         [Category("Cantidad"), Description("Cantidad del producto")]
         public int Cantidad
@@ -90,26 +121,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             lblPrecio.Text = precioBase.ToString("C2");
             lblCantidad.Text = cantidad.ToString();
 
-            if (descuento > 0)
-            {
-                decimal precioConDescuento = precioBase * (1 - (descuento / 100m));
-                lblPrecioDescuento.Text = precioConDescuento.ToString("C2");
-                lblPrecioDescuento.Visible = true;
-                SetStrikeout(lblPrecio, true);
-
-                // Calcular precio total con descuento
-                decimal precioTotal = precioConDescuento * cantidad;
-                lblPrecioTotal.Text = precioTotal.ToString("C2");
-            }
-            else
-            {
-                lblPrecioDescuento.Visible = false;
-                SetStrikeout(lblPrecio, false);
-
-                // Calcular precio total sin descuento
-                decimal precioTotal = precioBase * cantidad;
-                lblPrecioTotal.Text = precioTotal.ToString("C2");
-            }
+            lblPrecioTotal.Text = totalProducto.ToString("C2");
         }
 
         private void SetStrikeout(Label lbl, bool strike)
@@ -143,17 +155,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var resultado = MessageBox.Show(
-   "¿Está seguro que desea eliminar el registro?",
-   "Confirmar eliminación",
-   MessageBoxButtons.YesNo,
-   MessageBoxIcon.Warning
-);
 
-            if (resultado == DialogResult.Yes)
-            {
-
-            }
         }
     }
 }

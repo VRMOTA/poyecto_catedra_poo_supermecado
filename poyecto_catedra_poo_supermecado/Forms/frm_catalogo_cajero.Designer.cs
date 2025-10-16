@@ -37,13 +37,12 @@
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lblProducto = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblPrecioDescuento = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbstock = new System.Windows.Forms.Label();
             this.lbdescriccion = new System.Windows.Forms.Label();
             this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.lbPromo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
@@ -88,6 +87,7 @@
             this.roundedControlBase1.Name = "roundedControlBase1";
             this.roundedControlBase1.Size = new System.Drawing.Size(266, 844);
             this.roundedControlBase1.TabIndex = 3;
+            this.roundedControlBase1.Load += new System.EventHandler(this.roundedControlBase1_Load);
             // 
             // txt_buscar
             // 
@@ -148,6 +148,7 @@
             this.lblProducto.Size = new System.Drawing.Size(113, 16);
             this.lblProducto.TabIndex = 6;
             this.lblProducto.Text = "Nombre Producto";
+            this.lblProducto.Click += new System.EventHandler(this.lblProducto_Click);
             // 
             // lblPrecio
             // 
@@ -160,48 +161,24 @@
             this.lblPrecio.TabIndex = 7;
             this.lblPrecio.Text = "$0.00";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(1021, 284);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 16);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Descuento:";
-            // 
-            // lblPrecioDescuento
-            // 
-            this.lblPrecioDescuento.AccessibleDescription = " ";
-            this.lblPrecioDescuento.AutoSize = true;
-            this.lblPrecioDescuento.BackColor = System.Drawing.Color.White;
-            this.lblPrecioDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioDescuento.ForeColor = System.Drawing.Color.Red;
-            this.lblPrecioDescuento.Location = new System.Drawing.Point(1191, 284);
-            this.lblPrecioDescuento.Name = "lblPrecioDescuento";
-            this.lblPrecioDescuento.Size = new System.Drawing.Size(38, 16);
-            this.lblPrecioDescuento.TabIndex = 9;
-            this.lblPrecioDescuento.Text = "$0.00";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1021, 332);
+            this.label2.Location = new System.Drawing.Point(1021, 308);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Stock";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // lbstock
             // 
             this.lbstock.AutoSize = true;
             this.lbstock.BackColor = System.Drawing.Color.White;
             this.lbstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbstock.Location = new System.Drawing.Point(1215, 332);
+            this.lbstock.Location = new System.Drawing.Point(1215, 308);
             this.lbstock.Name = "lbstock";
             this.lbstock.Size = new System.Drawing.Size(14, 16);
             this.lbstock.TabIndex = 11;
@@ -213,6 +190,7 @@
             this.lbdescriccion.BackColor = System.Drawing.Color.White;
             this.lbdescriccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbdescriccion.Location = new System.Drawing.Point(1021, 377);
+            this.lbdescriccion.MaximumSize = new System.Drawing.Size(250, 250);
             this.lbdescriccion.Name = "lbdescriccion";
             this.lbdescriccion.Size = new System.Drawing.Size(79, 16);
             this.lbdescriccion.TabIndex = 12;
@@ -259,19 +237,30 @@
             this.textboxMaxing2.Texts = "";
             this.textboxMaxing2.UnderlinedStyle = true;
             // 
+            // lbPromo
+            // 
+            this.lbPromo.AutoSize = true;
+            this.lbPromo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbPromo.Location = new System.Drawing.Point(1021, 681);
+            this.lbPromo.MaximumSize = new System.Drawing.Size(250, 250);
+            this.lbPromo.Name = "lbPromo";
+            this.lbPromo.Size = new System.Drawing.Size(13, 13);
+            this.lbPromo.TabIndex = 15;
+            this.lbPromo.Text = "--";
+            this.lbPromo.Click += new System.EventHandler(this.lbPromo_Click);
+            // 
             // frm_catalogo_cajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1278, 911);
+            this.Controls.Add(this.lbPromo);
             this.Controls.Add(this.textboxMaxing2);
             this.Controls.Add(this.buttonMaxing2);
             this.Controls.Add(this.lbdescriccion);
             this.Controls.Add(this.lbstock);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblPrecioDescuento);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.pbProducto);
@@ -299,12 +288,11 @@
         private System.Windows.Forms.PictureBox pbProducto;
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblPrecioDescuento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbstock;
         private System.Windows.Forms.Label lbdescriccion;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
         private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing textboxMaxing2;
+        private System.Windows.Forms.Label lbPromo;
     }
 }
