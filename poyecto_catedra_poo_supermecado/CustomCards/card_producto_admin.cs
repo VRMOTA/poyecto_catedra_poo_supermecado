@@ -1,5 +1,6 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomModals;
+using poyecto_catedra_poo_supermecado.Models;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,73 +13,107 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
     {
         private int? _descuento;
         private int id_producto;
+        private model_productos model_productos;
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_producto_admin()
         {
             InitializeComponent();
+            model_productos = new model_productos();
         }
 
-        public int ID_Producto
+        public int ID_Producto_card
         {
-            get => id_producto;
-            set => id_producto = value;
+            get => model_productos.ID_Producto_model;
+            set => model_productos.ID_Producto_model = value;
         }
 
         [Category("Producto"), Description("Imagen del producto")]
-        public Image ImagenProducto
+        public Image ImagenProducto_card
         {
-            get => pbProducto?.Image;
-            set { if (pbProducto != null) pbProducto.Image = value; }
+            get => model_productos.ImagenProducto_model?? pbProducto.Image;
+            set 
+            {
+                model_productos.ImagenProducto_model = value;
+                if (pbProducto != null) pbProducto.Image = value; 
+            }
         }
 
         [Category("Producto"), Description("Nombre del producto")]
-        public string NombreProducto
+        public string NombreProducto_card
         {
-            get => lblProducto?.Text ?? string.Empty;
-            set { if (lblProducto != null) lblProducto.Text = value; }
+            get => model_productos.NombreProducto_model;
+            set 
+            {
+                model_productos.NombreProducto_model = value;
+                if (lblProducto != null) lblProducto.Text = value; 
+            }
         }
 
         [Category("Producto"), Description("Nombre del distribuidor")]
-        public string NombreDistribuidor
+        public string NombreDistribuidor_card
         {
-            get => lblDistribuidor?.Text ?? string.Empty;
-            set { if (lblDistribuidor != null) lblDistribuidor.Text = value; }
+            get => model_productos.NombreDistribuidor_model;
+            set 
+            {
+                model_productos.NombreDistribuidor_model = value;
+                if (lblDistribuidor != null) lblDistribuidor.Text = value; 
+            }
         }
 
         [Category("Producto"), Description("Descripción del producto")]
-        public string Descripcion
+        public string Descripcion_card
         {
-            get => lblDescripcion?.Text ?? string.Empty;
-            set { if (lblDescripcion != null) lblDescripcion.Text = value; }
+            get => model_productos.Descripcion_model;
+            set 
+            { 
+                model_productos.Descripcion_model = value;
+                if (lblDescripcion != null) lblDescripcion.Text = value; 
+            }
         }
 
         [Category("Producto"), Description("Categoria del producto")]
-        public string Cateogoria
+        public string Cateogoria_card
         {
-            get => lbl_categoria?.Text ?? string.Empty;
-            set { if (lbl_categoria != null) lbl_categoria.Text = value; }
+            get => model_productos.Categoria_model;
+            set 
+            { 
+                model_productos.Categoria_model = value;
+                if (lbl_categoria != null) lbl_categoria.Text = value; 
+            }
         }
 
         [Category("Producto"), Description("Stock del producto")]
-        public string Stock
+        public int Stock_card
         {
-            get => lb_stock?.Text ?? string.Empty;
-            set { if (lb_stock != null) lb_stock.Text = value; }
+            get => model_productos.Stock;
+            set 
+            { 
+                model_productos.Stock = value;
+                if (lb_stock != null) lb_stock.Text = value.ToString(); // Conversión de int a string
+            }
         }
 
         [Category("Producto"), Description("Precio del producto")]
-        public decimal Precio
+        public decimal Precio_card 
         {
-            get => decimal.TryParse(lblPrecio?.Text, out var precio) ? precio : 0m;
-            set { if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); }
+            get => model_productos.Precio_model;
+            set 
+            {
+                model_productos.Precio_model = value;
+                if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); 
+            }
         }
 
         [Category("Producto"), Description("Activo del producto")]
-        public string Activo
+        public string Activo_card
         {
-            get => lb_activo?.Text ?? string.Empty;
-            set { if (lb_activo != null) lb_activo.Text = value; }
+            get => model_productos.Activo_model;
+            set 
+            {
+                model_productos.Activo_model = value;
+                if (lb_activo != null) lb_activo.Text = value; 
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -90,20 +125,25 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 var producto = db.tb_producto.Find(id_producto);
                 if (producto != null)
                 {
-                    modal.IDProducto = id_producto;
-                    modal.NombreProducto = producto.nombre;
-                    modal.PrecioProducto = producto.precio?.ToString();
-                    modal.StockProducto = producto.stock?.ToString();
-                    modal.IDCategoriaProducto = producto.id_categoria;
-                    modal.IDDistribuidorProducto = producto.id_distribuidor;
-                    modal.DescripcionProducto = producto.descripcion;
-                    modal.ActivoProducto = producto.activo == true ? "Activo" : "Inactivo";
+                    modal.IDProducto_vista = id_producto;
+                    modal.NombreProducto_vista = producto.nombre;
+
+                    modal.PrecioProducto_vista = (double)(producto.precio ?? 0m);
+
+                    modal.StockProducto_vista = producto.stock ?? 0;
+
+                    modal.IDCategoriaProducto_vista = producto.id_categoria;
+                    modal.IDDistribuidorProducto_vista = producto.id_distribuidor;
+                    modal.DescripcionProducto_vista = producto.descripcion;
+
+                    // CORRECCIÓN 3: ActivoProducto_vista es bool, no string
+                    modal.ActivoProducto_vista = producto.activo == true;
 
                     if (producto.imagen != null)
                     {
                         using (MemoryStream ms = new MemoryStream(producto.imagen))
                         {
-                            modal.ImagenProducto = Image.FromStream(ms);
+                            modal.ImagenProducto_vista = Image.FromStream(ms);
                         }
                     }
                 }
@@ -128,7 +168,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var producto = db.tb_producto.Find(ID_Producto);
+                    var producto = db.tb_producto.Find(ID_Producto_card);
                     if (producto != null)
                     {
                         db.tb_producto.Remove(producto);
@@ -148,21 +188,21 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var producto = db.tb_producto.Find(ID_Producto);
+                var producto = db.tb_producto.Find(ID_Producto_card);
                 if (producto != null)
                 {
-                    NombreProducto = producto.nombre;
-                    Precio = producto.precio ?? 0m;
-                    Stock = producto.stock.ToString();
-                    Descripcion = producto.descripcion;
-                    Cateogoria = producto.id_categoria.ToString();
-                    NombreDistribuidor = producto.id_distribuidor.ToString();
+                    NombreProducto_card = producto.nombre;
+                    Precio_card = producto.precio ?? 0m;
+                    Stock_card = producto.stock ?? 0;
+                    Descripcion_card = producto.descripcion;
+                    Cateogoria_card = producto.id_categoria.ToString();
+                    NombreDistribuidor_card = producto.id_distribuidor.ToString();
 
                     if (producto.imagen != null)
                     {
                         using (MemoryStream ms = new MemoryStream(producto.imagen))
                         {
-                            ImagenProducto = Image.FromStream(ms);
+                            ImagenProducto_card = Image.FromStream(ms);
                         }
                     }
                 }

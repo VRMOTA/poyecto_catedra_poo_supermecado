@@ -60,15 +60,15 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 var card = new card_producto_admin
                 {
-                    ID_Producto = producto.id_producto,
-                    NombreProducto = producto.nombre,
-                    NombreDistribuidor = producto.nombre_distribuidor,
-                    Descripcion = producto.descripcion,
-                    Cateogoria = producto.nombre_categoria,
-                    Stock = producto.stock.ToString(),
-                    Precio = producto.precio,
-                    ImagenProducto = imageProducto,
-                    Activo = producto.activo ? "Activo" : "Desactivado",
+                    ID_Producto_card = producto.id_producto,
+                    NombreProducto_card = producto.nombre,
+                    NombreDistribuidor_card = producto.nombre_distribuidor,
+                    Descripcion_card = producto.descripcion,
+                    Cateogoria_card = producto.nombre_categoria,
+                    Stock_card = producto.stock.ToString(),
+                    Precio_card = producto.precio,
+                    ImagenProducto_card = imageProducto,
+                    Activo_card = producto.activo ? "Activo" : "Desactivado",
                     Margin = new Padding(espacio)
                 };
 

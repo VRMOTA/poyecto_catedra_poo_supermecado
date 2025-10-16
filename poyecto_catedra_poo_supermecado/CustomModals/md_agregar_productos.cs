@@ -22,58 +22,58 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
         }
         // Propiedades para editar 
-        public int IDProducto { get; set; } = 0;
+        public int IDProducto_vista { get; set; } = 0;
 
-        public string NombreProducto
+        public string NombreProducto_vista
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public Image ImagenProducto
+        public Image ImagenProducto_vista
         {
             get => pbProducto.Image;
             set => pbProducto.Image = value;
         }
 
-        public string PrecioProducto // cambiar luego a int  
+        public double PrecioProducto_vista 
         {
-            get => txt_precio.Texts;
-            set => txt_precio.Texts = value;
+            get => double.TryParse(txt_precio.Texts, out double precio) ? precio : 0.0;
+            set => txt_precio.Texts = value.ToString();
         }
 
-        public string StockProducto // cambiar luego a int 
+        public int StockProducto_vista 
         {
-            get => txt_stock.Texts;
-            set => txt_stock.Texts = value;
+            get => int.TryParse(txt_stock.Texts, out int stock) ? stock : 0;
+            set => txt_stock.Texts = value.ToString();
         }
 
         // Nuevas propiedades para manejar IDs
-        public int? IDCategoriaProducto { get; set; }
-        public int? IDDistribuidorProducto { get; set; }
+        public int? IDCategoriaProducto_vista { get; set; }
+        public int? IDDistribuidorProducto_vista { get; set; }
 
-        public string CategoriaProducto
+        public string CategoriaProducto_vista
         {
             get => cmb_categoria.Texts;
             set => cmb_categoria.Texts = value;
         }
 
-        public string DistribuidorProducto
+        public string DistribuidorProducto_vista
         {
             get => cmb_distruhibidora.Texts;
             set => cmb_distruhibidora.Texts = value;
         }
 
-        public string DescripcionProducto
+        public string DescripcionProducto_vista
         {
             get => txt_descripcion.Texts;
             set => txt_descripcion.Texts = value;
         }
 
-        public string ActivoProducto
+        public bool ActivoProducto_vista
         {
-            get => cmb_activo.Texts;
-            set => cmb_activo.Texts = value;
+            get => cmb_activo.Texts == "Activo";
+            set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
         }
 
         public md_agregar_productos(string labelText, string buttonText) : this()
@@ -147,7 +147,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                if (IDProducto == 0)
+                if (IDProducto_vista == 0)
                 {
                     if (image == null)
                     {
@@ -179,7 +179,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 }
                 else
                 {
-                    var producto = db.tb_producto.Find(IDProducto);
+                    var producto = db.tb_producto.Find(IDProducto_vista);
                     if (producto != null)
                     {
                         producto.nombre = nombre;
@@ -244,14 +244,14 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             cargar_combox_distribuidor();
 
             // Seleccionar valores si se están editando
-            if (IDCategoriaProducto.HasValue)
+            if (IDCategoriaProducto_vista.HasValue)
             {
-                cmb_categoria.SelectedValue = IDCategoriaProducto.Value;
+                cmb_categoria.SelectedValue = IDCategoriaProducto_vista.Value;
             }
 
-            if (IDDistribuidorProducto.HasValue)
+            if (IDDistribuidorProducto_vista.HasValue)
             {
-                cmb_distruhibidora.SelectedValue = IDDistribuidorProducto.Value;
+                cmb_distruhibidora.SelectedValue = IDDistribuidorProducto_vista.Value;
             }
         }
     }

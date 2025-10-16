@@ -34,6 +34,7 @@ namespace poyecto_catedra_poo_supermecado.Models
         public model_distruhibidores()
         {
             nombreDistribuidora = string.Empty;
+            imagenDistribuidora = null;
         }
 
         public model_distruhibidores(int id, string nombre, Image imagen)
