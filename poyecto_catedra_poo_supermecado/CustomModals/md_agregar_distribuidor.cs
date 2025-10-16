@@ -22,15 +22,15 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
         }
         //Propiedades para editar
-        public int IDDistribuidor { get; set; } = 0;
+        public int ID_Distribuidor_vista { get; set; } = 0;
 
-        public string NombreDistribuidor
+        public string NombreDistribuidor_vista
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public Image ImagenDistribuidor
+        public Image ImagenDistribuidor_vista
         {
             get => pbProducto.Image;
             set => pbProducto.Image = value;
@@ -75,7 +75,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Si es un registro nuevo
-                if (IDDistribuidor == 0)
+                if (ID_Distribuidor_vista == 0)
                 {
                     if (image == null)
                     {
@@ -102,7 +102,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 // Si es una edición
                 else
                 {
-                    var distribuidor = db.tb_distribuidores.Find(IDDistribuidor);
+                    var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_vista);
                     if (distribuidor != null)
                     {
                         distribuidor.nombre = nombre;

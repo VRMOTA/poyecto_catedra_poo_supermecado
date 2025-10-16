@@ -205,6 +205,7 @@
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\model_categoria.cs" />
+    <Compile Include="Models\model_distruhibidores.cs" />
     <Compile Include="Utilities\Carrito.cs" />
     <Compile Include="Utilities\FormHelper.cs" />
     <Compile Include="Forms\frm_carrito_cajero.cs">

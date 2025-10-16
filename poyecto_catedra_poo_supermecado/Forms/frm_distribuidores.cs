@@ -60,9 +60,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 var card = new card_distribuidores
                 {
-                    IDDistribuidor = distribuidor.id_distribuidor,
-                    NombreDistribuidora = distribuidor.nombre,
-                    ImagenDistribuidora = imagenDistribuidor,
+                    ID_Distribuidor_card = distribuidor.id_distribuidor,
+                    NombreDistribuidora_card = distribuidor.nombre,
+                    ImagenDistribuidora_card = imagenDistribuidor,
                     Width = anchoCarta,
                     Height = altoCarta,
                     Margin = new Padding(espacio)
@@ -110,7 +110,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var todasLasCartas = panel_cards.Controls.OfType<card_distribuidores>().ToList();
 
             var cartasFiltradas = todasLasCartas
-                .Where(c => c.NombreDistribuidora.ToLower().Contains(busqueda))
+                .Where(c => c.NombreDistribuidora_card.ToLower().Contains(busqueda))
                 .ToList();
 
             var cartasNoFiltradas = todasLasCartas
