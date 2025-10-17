@@ -207,18 +207,15 @@
     <Compile Include="Forms\frm_clientes.Designer.cs">
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_ventas.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\frm_ventas.cs" />
     <Compile Include="Forms\frm_ventas.Designer.cs">
       <DependentUpon>frm_ventas.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\model_categoria.cs" />
-    <Compile Include="Models\model_detalles_ventas.cs" />
+    <Compile Include="Models\model_detalle_ventas_completo.cs" />
     <Compile Include="Models\model_distruhibidores.cs" />
     <Compile Include="Models\model_productos.cs" />
     <Compile Include="Models\model_promociones.cs" />
-    <Compile Include="Models\model_ventas.cs" />
     <Compile Include="Utilities\Carrito.cs" />
     <Compile Include="Utilities\FormHelper.cs" />
     <Compile Include="Forms\frm_carrito_cajero.cs">

@@ -8,9 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
+    // Clase para mapear los resultados de la consulta SQL
+    public class VentaDetalleResult
+    {
+        public int id_venta { get; set; }
+        public DateTime fecha { get; set; }
+        public string nombre_cliente { get; set; }
+        public string cajero { get; set; }
+        public string producto { get; set; }
+        public string categoria { get; set; }
+        public int cantidad { get; set; }
+        public decimal precio_unitario { get; set; }
+        public decimal descuento_aplicado { get; set; }
+        public decimal subtotal { get; set; }
+        public string estado { get; set; }
+    }
+
     public partial class frm_ventas : Form
     {
         public frm_ventas()
@@ -49,11 +66,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 {
                     var ventas = db.tb_ventas
                         .OrderByDescending(v => v.id_venta)
-                        .Select(v => new { 
-                            v.id_venta, 
+                        .ToList() // 🔹 Ejecutar en memoria antes de aplicar métodos de C#
+                        .Select(v => new {
+                            v.id_venta,
                             Correlativo = "V-" + v.id_venta.ToString().PadLeft(6, '0'),
                             v.fecha,
-                            v.nombre_cliente 
+                            v.nombre_cliente
                         })
                         .ToList();
 
@@ -69,19 +87,45 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
+
         private void CargarDetalleVentas()
         {
             try
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    // Consulta a la vista vw_detalle_ventas_completo
-                    var query = @"SELECT id_venta, fecha, nombre_cliente, cajero, producto, categoria, cantidad, precio_unitario, descuento_aplicado, subtotal, estado FROM vw_detalle_ventas_completo ORDER BY id_venta DESC";
-                    
-                    var detalleVentas = db.Database.SqlQuery<vw_detalle_ventas_completo>(query).ToList();
-                    
-                    dg_ventas.DataSource = detalleVentas;
-                    
+                    // Consulta LINQ a Entity Framework usando la vista
+                    var resultados = db.Database.SqlQuery<VentaDetalleResult>(
+                        @"SELECT id_venta, fecha, nombre_cliente, cajero, producto, categoria, cantidad, precio_unitario, descuento_aplicado, subtotal, estado 
+                          FROM vw_detalle_ventas_completo 
+                          ORDER BY id_venta DESC").ToList();
+
+                    // Convertir los resultados a una lista de modelos
+                    List<model_detalle_ventas_completo> listaDetalleVentas = new List<model_detalle_ventas_completo>();
+
+                    foreach (var item in resultados)
+                    {
+                        model_detalle_ventas_completo detalle = new model_detalle_ventas_completo
+                        {
+                            ID_Venta_model = item.id_venta,
+                            Fecha_model = item.fecha,
+                            NombreCliente_model = item.nombre_cliente ?? "",
+                            Cajero_model = item.cajero ?? "",
+                            Producto_model = item.producto ?? "",
+                            Categoria_model = item.categoria ?? "",
+                            Cantidad_model = item.cantidad,
+                            PrecioUnitario_model = item.precio_unitario,
+                            DescuentoAplicado_model = item.descuento_aplicado,
+                            Subtotal_model = item.subtotal,
+                            Estado_model = item.estado ?? ""
+                        };
+
+                        listaDetalleVentas.Add(detalle);
+                    }
+
+                    // Asignar la lista al DataGridView
+                    dg_ventas.DataSource = listaDetalleVentas;
+
                     // Configurar las columnas del DataGridView
                     ConfigurarDataGridView();
                 }
@@ -96,44 +140,92 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             if (dg_ventas.Columns.Count > 0)
             {
-                // Configurar encabezados de columnas
-                dg_ventas.Columns["id_venta"].HeaderText = "ID Venta";
-                dg_ventas.Columns["fecha"].HeaderText = "Fecha";
-                dg_ventas.Columns["nombre_cliente"].HeaderText = "Cliente";
-                dg_ventas.Columns["cajero"].HeaderText = "Cajero";
-                dg_ventas.Columns["producto"].HeaderText = "Producto";
-                dg_ventas.Columns["categoria"].HeaderText = "Categoría";
-                dg_ventas.Columns["cantidad"].HeaderText = "Cantidad";
-                dg_ventas.Columns["precio_unitario"].HeaderText = "Precio Unitario";
-                dg_ventas.Columns["descuento_aplicado"].HeaderText = "Descuento";
-                dg_ventas.Columns["subtotal"].HeaderText = "Subtotal";
-                dg_ventas.Columns["estado"].HeaderText = "Estado";
+                // Configurar encabezados de columnas usando los nombres de las propiedades del modelo
+                if (dg_ventas.Columns["ID_Venta_model"] != null)
+                    dg_ventas.Columns["ID_Venta_model"].HeaderText = "ID Venta";
+
+                if (dg_ventas.Columns["Fecha_model"] != null)
+                    dg_ventas.Columns["Fecha_model"].HeaderText = "Fecha";
+
+                if (dg_ventas.Columns["NombreCliente_model"] != null)
+                    dg_ventas.Columns["NombreCliente_model"].HeaderText = "Cliente";
+
+                if (dg_ventas.Columns["Cajero_model"] != null)
+                    dg_ventas.Columns["Cajero_model"].HeaderText = "Cajero";
+
+                if (dg_ventas.Columns["Producto_model"] != null)
+                    dg_ventas.Columns["Producto_model"].HeaderText = "Producto";
+
+                if (dg_ventas.Columns["Categoria_model"] != null)
+                    dg_ventas.Columns["Categoria_model"].HeaderText = "Categoría";
+
+                if (dg_ventas.Columns["Cantidad_model"] != null)
+                    dg_ventas.Columns["Cantidad_model"].HeaderText = "Cantidad";
+
+                if (dg_ventas.Columns["PrecioUnitario_model"] != null)
+                    dg_ventas.Columns["PrecioUnitario_model"].HeaderText = "Precio Unitario";
+
+                if (dg_ventas.Columns["DescuentoAplicado_model"] != null)
+                    dg_ventas.Columns["DescuentoAplicado_model"].HeaderText = "Descuento";
+
+                if (dg_ventas.Columns["Subtotal_model"] != null)
+                    dg_ventas.Columns["Subtotal_model"].HeaderText = "Subtotal";
+
+                if (dg_ventas.Columns["Estado_model"] != null)
+                    dg_ventas.Columns["Estado_model"].HeaderText = "Estado";
 
                 // Configurar formato para columnas de dinero
-                dg_ventas.Columns["precio_unitario"].DefaultCellStyle.Format = "C2";
-                dg_ventas.Columns["descuento_aplicado"].DefaultCellStyle.Format = "C2";
-                dg_ventas.Columns["subtotal"].DefaultCellStyle.Format = "C2";
+                if (dg_ventas.Columns["PrecioUnitario_model"] != null)
+                    dg_ventas.Columns["PrecioUnitario_model"].DefaultCellStyle.Format = "C2";
+
+                if (dg_ventas.Columns["DescuentoAplicado_model"] != null)
+                    dg_ventas.Columns["DescuentoAplicado_model"].DefaultCellStyle.Format = "C2";
+
+                if (dg_ventas.Columns["Subtotal_model"] != null)
+                    dg_ventas.Columns["Subtotal_model"].DefaultCellStyle.Format = "C2";
 
                 // Configurar formato para fecha
-                dg_ventas.Columns["fecha"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                if (dg_ventas.Columns["Fecha_model"] != null)
+                    dg_ventas.Columns["Fecha_model"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
 
                 // Configurar ancho de columnas
-                dg_ventas.Columns["id_venta"].Width = 80;
-                dg_ventas.Columns["fecha"].Width = 130;
-                dg_ventas.Columns["nombre_cliente"].Width = 150;
-                dg_ventas.Columns["cajero"].Width = 120;
-                dg_ventas.Columns["producto"].Width = 200;
-                dg_ventas.Columns["categoria"].Width = 120;
-                dg_ventas.Columns["cantidad"].Width = 80;
-                dg_ventas.Columns["precio_unitario"].Width = 100;
-                dg_ventas.Columns["descuento_aplicado"].Width = 100;
-                dg_ventas.Columns["subtotal"].Width = 100;
-                dg_ventas.Columns["estado"].Width = 100;
+                if (dg_ventas.Columns["ID_Venta_model"] != null)
+                    dg_ventas.Columns["ID_Venta_model"].Width = 80;
+
+                if (dg_ventas.Columns["Fecha_model"] != null)
+                    dg_ventas.Columns["Fecha_model"].Width = 130;
+
+                if (dg_ventas.Columns["NombreCliente_model"] != null)
+                    dg_ventas.Columns["NombreCliente_model"].Width = 150;
+
+                if (dg_ventas.Columns["Cajero_model"] != null)
+                    dg_ventas.Columns["Cajero_model"].Width = 120;
+
+                if (dg_ventas.Columns["Producto_model"] != null)
+                    dg_ventas.Columns["Producto_model"].Width = 200;
+
+                if (dg_ventas.Columns["Categoria_model"] != null)
+                    dg_ventas.Columns["Categoria_model"].Width = 120;
+
+                if (dg_ventas.Columns["Cantidad_model"] != null)
+                    dg_ventas.Columns["Cantidad_model"].Width = 80;
+
+                if (dg_ventas.Columns["PrecioUnitario_model"] != null)
+                    dg_ventas.Columns["PrecioUnitario_model"].Width = 100;
+
+                if (dg_ventas.Columns["DescuentoAplicado_model"] != null)
+                    dg_ventas.Columns["DescuentoAplicado_model"].Width = 100;
+
+                if (dg_ventas.Columns["Subtotal_model"] != null)
+                    dg_ventas.Columns["Subtotal_model"].Width = 100;
+
+                if (dg_ventas.Columns["Estado_model"] != null)
+                    dg_ventas.Columns["Estado_model"].Width = 100;
 
                 // Configurar modo de redimensionamiento
                 dg_ventas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 dg_ventas.AllowUserToResizeColumns = true;
-                
+
                 // Solo lectura
                 dg_ventas.ReadOnly = true;
                 dg_ventas.AllowUserToAddRows = false;
