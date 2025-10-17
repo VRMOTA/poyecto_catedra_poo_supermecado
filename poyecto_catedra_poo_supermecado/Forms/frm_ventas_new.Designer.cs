@@ -162,10 +162,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(491, 12);
+            this.textBox1.Location = new System.Drawing.Point(459, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(689, 152);
+            this.textBox1.Size = new System.Drawing.Size(800, 42);
             this.textBox1.TabIndex = 58;
             // 
             // frm_ventas_new

@@ -19,21 +19,25 @@ namespace poyecto_catedra_poo_supermecado.Forms
             InitializeComponent();
         }
 
-        private void CargarCajeros()
+        private void cargarusuarios()
         {
             try
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     var cajeros = db.tb_usuario
-                        .Where(u => u.activo == true)
+                        .Where(u => u.tipo_usuario == "Cajero" && u.activo == true)
                         .Select(u => new { u.id_usuario, u.nombre })
                         .ToList();
 
                     cmb_cajero.DataSource = cajeros;
-                    cmb_cajero.DisplayMember = "nombres";
+                    cmb_cajero.DisplayMember = "nombre";
                     cmb_cajero.ValueMember = "id_usuario";
-                    cmb_cajero.SelectedIndex = -1;
+                    cmb_cajero.SelectedIndex = -1; // No seleccionar nada por defecto
+
+                    // Configurar AutoComplete para búsqueda
+                    cmb_cajero.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cmb_cajero.AutoCompleteSource = AutoCompleteSource.ListItems;
                 }
             }
             catch (Exception ex)
@@ -50,10 +54,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 {
                     var ventas = db.tb_ventas
                         .OrderByDescending(v => v.id_venta)
-                        .ToList() // 🔹 Ejecutar en memoria antes de aplicar métodos de C#
+                        .ToList()
                         .Select(v => new {
                             v.id_venta,
-                            Correlativo = "V-" + v.id_venta.ToString().PadLeft(6, '0'),
                             v.fecha,
                             v.nombre_cliente
                         })
@@ -63,6 +66,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     cmb_ventas.DisplayMember = "Correlativo";
                     cmb_ventas.ValueMember = "id_venta";
                     cmb_ventas.SelectedIndex = -1;
+
+                    // Configurar AutoComplete para búsqueda
+                    cmb_ventas.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cmb_ventas.AutoCompleteSource = AutoCompleteSource.ListItems;
                 }
             }
             catch (Exception ex)
@@ -90,8 +97,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
                             Cajero_model = v.cajero ?? "",
                             Producto_model = v.producto ?? "",
                             Categoria_model = v.categoria ?? "",
-                            Cantidad_model = v.cantidad ?? 0 ,
-                            PrecioUnitario_model = v.precio_unitario ?? 0 ,
+                            Cantidad_model = v.cantidad ?? 0,
+                            PrecioUnitario_model = v.precio_unitario ?? 0,
                             DescuentoAplicado_model = v.descuento_aplicado ?? 0,
                             Subtotal_model = v.subtotal ?? 0,
                             Estado_model = v.estado ?? ""
@@ -210,9 +217,20 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void frm_ventas_new_Load(object sender, EventArgs e)
         {
-            CargarCajeros();
+            cargarusuarios();
             CargarVentas();
             CargarDetalleVentas();
+
+            // Habilitar escritura en los comboboxes para búsqueda
+            if (cmb_cajero != null)
+            {
+                cmb_cajero.EnableTextInput = true;
+            }
+
+            if (cmb_ventas != null)
+            {
+                cmb_ventas.EnableTextInput = true;
+            }
         }
     }
 
