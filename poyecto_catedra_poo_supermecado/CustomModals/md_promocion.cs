@@ -69,14 +69,32 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             // Validar producto seleccionado
             int? idProducto = null;
-            if (cmb_prod.SelectedIndex >= 0 && cmb_prod.SelectedValue != null)
+
+            // Intentar obtener el ID del producto seleccionado
+            if (cmb_prod.SelectedValue != null && cmb_prod.SelectedValue != DBNull.Value)
             {
                 idProducto = Convert.ToInt32(cmb_prod.SelectedValue);
+            }
+            else
+            {
+                // Si no hay selección pero hay texto, buscar por nombre
+                string textoProducto = cmb_prod.Texts.Trim();
+                if (!string.IsNullOrEmpty(textoProducto))
+                {
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                    {
+                        var producto = db.tb_producto.FirstOrDefault(p => p.nombre.ToLower() == textoProducto.ToLower() && p.activo == true);
+                        if (producto != null)
+                        {
+                            idProducto = producto.id_producto;
+                        }
+                    }
+                }
             }
 
             if (idProducto == null || idProducto == 0)
             {
-                MessageBox.Show("Debe seleccionar un producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un producto válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -170,12 +188,19 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 cmb_prod.DisplayMember = "nombre";
                 cmb_prod.ValueMember = "id_producto";
                 cmb_prod.SelectedIndex = -1;
+
+                // Configurar AutoComplete para búsqueda
+                cmb_prod.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmb_prod.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
         }
 
         private void md_promocion_Load(object sender, EventArgs e)
         {
             cargar_productos();
+
+            // Habilitar escritura en el combobox de productos para búsqueda
+            cmb_prod.EnableTextInput = true;
 
             // Seleccionar el producto si se está editando
             if (IDProducto_vista.HasValue && IDProducto_vista.Value > 0)

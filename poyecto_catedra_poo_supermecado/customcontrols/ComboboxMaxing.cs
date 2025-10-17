@@ -38,6 +38,7 @@ namespace poyecto_catedra_poo_supermecado.CustomControls
             cmbList.BackColor = listBackColor;
             cmbList.Font = new Font(this.Font.Name, 10F);
             cmbList.ForeColor = listTextColor;
+            cmbList.DropDownStyle = ComboBoxStyle.DropDownList; // Por defecto no editable
             cmbList.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);//Default event
             cmbList.TextChanged += new EventHandler(ComboBox_TextChanged);//Refresh text
 
@@ -262,6 +263,16 @@ namespace poyecto_catedra_poo_supermecado.CustomControls
             {
                 if (cmbList.DropDownStyle != ComboBoxStyle.Simple)
                     cmbList.DropDownStyle = value;
+            }
+        }
+
+        [Category("RJ Code - Behavior")]
+        public bool EnableTextInput
+        {
+            get { return cmbList.DropDownStyle == ComboBoxStyle.DropDown; }
+            set
+            {
+                cmbList.DropDownStyle = value ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList;
             }
         }
 
