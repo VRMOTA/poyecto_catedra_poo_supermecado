@@ -28,26 +28,26 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             btn_crear.Text = buttonText;
         }
 
-        public int id_Usuario { get; set; } = 0;
+        public int id_Usuario_vista { get; set; } = 0;
 
-        public string nombre_usuario
+        public string nombre_usuario_vista
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public string correo_usuario
+        public string correo_usuario_vista
         {
             get => txt_correo.Texts;
             set => txt_correo.Texts = value;
         }
-        public string tipo_usuario
+        public string tipo_usuario_vista
         {
             get => cmb_rol.SelectedItem?.ToString() ?? "";
             set => cmb_rol.SelectedItem = value;
         }
 
-        public bool activo_usuario
+        public bool activo_usuario_vista
         {
             get => cmb_activo.Texts.ToLower() == "activo";
             set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
@@ -55,7 +55,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         private void btn_crear_Click(object sender, EventArgs e)
         {
-            if (id_Usuario > 0)
+            if (id_Usuario_vista > 0)
             {
                 Actualizar();
             }
@@ -118,7 +118,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var usuario = db.tb_usuario.Find(id_Usuario);
+                var usuario = db.tb_usuario.Find(id_Usuario_vista);
                 if (usuario != null)
                 {
                     usuario.nombre = nombre;

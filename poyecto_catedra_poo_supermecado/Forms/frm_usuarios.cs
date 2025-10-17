@@ -45,10 +45,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 var card = new card_usuarios
                 {
-                    IDUsuario = usuario.id_usuario,
-                    NombreUsuario = usuario.nombre,
-                    CorreoUsuario = usuario.correo,
-                    Activa = (usuario.activo ?? false) ? "Activo" : "Inactivo",
+                    IDUsuario_card = usuario.id_usuario,
+                    NombreUsuario_card = usuario.nombre,
+                    CorreoUsuario_card = usuario.correo,
+                    Activa_card = usuario.activo ?? false, // Asignar bool directamente
                     Margin = new Padding(espacio),
                     Size = cardSize
                 };
@@ -81,9 +81,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
             var todasLasCartas = panel_cards.Controls.OfType<card_usuarios>().ToList();
 
             var cartasFiltradas = todasLasCartas
-                .Where(c => c.NombreUsuario.ToLower().Contains(busqueda) ||
-                           c.CorreoUsuario.ToLower().Contains(busqueda) ||
-                           BuscarEstado(c.Activa.ToLower(), busqueda))
+                .Where(c => c.NombreUsuario_card.ToLower().Contains(busqueda) ||
+                           c.CorreoUsuario_card.ToLower().Contains(busqueda) ||
+                           BuscarEstado(c.Activa_card, busqueda))
                 .ToList();
 
             // Primero ocultar todas las cartas que no coinciden
@@ -108,14 +108,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
             panel_cards.AutoScrollPosition = new Point(0, 0);
         }
 
-        private bool BuscarEstado(string estado, string busqueda)
+        private bool BuscarEstado(bool activo, string busqueda)
         {
-            // Si el estado comienza con la búsqueda, es válido
-            if (estado.StartsWith(busqueda))
-            {
-                return true;
-            }
-            return false;
+            // Convertir el bool a string "activo" o "inactivo"
+            string estadoTexto = activo ? "activo" : "inactivo";
+
+            // Comparar con la búsqueda
+            return estadoTexto.StartsWith(busqueda.ToLower());
         }
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {

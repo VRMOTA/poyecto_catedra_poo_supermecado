@@ -12,14 +12,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using poyecto_catedra_poo_supermecado.Models;
+
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_carrito_cajero : Form
     {
+        private model_usuario model_usuario;
         public frm_carrito_cajero()
         {
             InitializeComponent();
             this.BackColor = Color.FromArgb(235, 235, 235);
+            model_usuario = new model_usuario();
         }
 
         private void frm_carrito_cajero_Load(object sender, EventArgs e)
@@ -273,10 +277,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         totalDescuento += descuentoProducto;
                     }
 
+                        MessageBox.Show($"Total a pagar: {model_usuario.Id_Usuario }", "Confirmar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     tb_ventas nuevaVenta = new tb_ventas
                     {
                         fecha = DateTime.Now,
-                        id_usuario = SesionActual.IdUsuario,
+                        id_usuario = model_usuario.Id_Usuario, // VERIFICAR ESTO 
                         nombre_cliente = txtNombre.Texts.ToString(),
                         total_venta = totalVenta,
                         total_descuento = totalDescuento,
@@ -337,6 +343,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                 return;
                             }
                         }
+                        
                     }
 
                     db.SaveChanges();

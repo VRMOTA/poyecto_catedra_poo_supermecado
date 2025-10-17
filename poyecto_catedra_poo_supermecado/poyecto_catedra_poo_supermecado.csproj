@@ -287,7 +287,7 @@
     <Compile Include="Utilities\Helpers.cs" />
     <Compile Include="Utilities\ProductoSeleccionado.cs" />
     <Compile Include="Utilities\SeguridadHelper.cs" />
-    <Compile Include="Utilities\SesionActual.cs" />
+    <Compile Include="Models\model_usuario.cs" />
     <Compile Include="Utilities\Validaciones.cs" />
     <EmbeddedResource Include="CustomCards\card_categories.resx">
       <DependentUpon>card_categories.cs</DependentUpon>

@@ -1,17 +1,21 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
-using poyecto_catedra_poo_supermecado.Utilities;
+using poyecto_catedra_poo_supermecado.Models;
+using poyecto_catedra_poo_supermecado.Utilities; // Asegúrate de que este espacio de nombres sea correcto
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_login : Form
     {
+        private model_usuario model_usuario;
         public frm_login()
         {
             InitializeComponent();
             FormHelper.DefaultFormValues(this);
+            model_usuario = new model_usuario();
         }
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
@@ -61,9 +65,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     }
 
                     // Login exitoso: abrir interfaz correspondiente
-                    SesionActual.IdUsuario = usuario.id_usuario;
-                    SesionActual.NombreUsuario = usuario.nombre;
-                    SesionActual.TipoUsuario = usuario.tipo_usuario;
+                    model_usuario.Id_Usuario = usuario.id_usuario;
+                    model_usuario.Nombre_Usuario = usuario.nombre;
+                    model_usuario.Tipo_Usuario = usuario.tipo_usuario;
+                    
                     if (usuario.tipo_usuario == "Administrador")
                     {
                         Helpers.LimpiarControles(this);

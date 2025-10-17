@@ -1,5 +1,7 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.CustomModals;
+using poyecto_catedra_poo_supermecado.Models;
+using poyecto_catedra_poo_supermecado.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,31 +16,31 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_usuarios : RoundedControlBase
     {
-        private int idUsuario;
+        private model_usuario model_usuario;
         public event EventHandler<int> BotonActualizarClick;
         public event EventHandler<int> BotonEliminarClick;
         public event EventHandler RecargaRequerida; // Evento para solicitar recarga de datos
 
-        public int IDUsuario
+        public int IDUsuario_card
         {
-            get => idUsuario;
-            set => idUsuario = value;
+            get => model_usuario.Id_Usuario;
+            set => model_usuario.Id_Usuario = value;
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            BotonActualizarClick?.Invoke(this, idUsuario);
+            BotonActualizarClick?.Invoke(this, model_usuario.Id_Usuario);
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            BotonEliminarClick?.Invoke(this, idUsuario);
+            BotonEliminarClick?.Invoke(this, model_usuario.Id_Usuario);
         }
 
         public card_usuarios()
         {
             InitializeComponent();
-
+            model_usuario = new model_usuario();
             if (btnActualizar != null)
             {
                 btnActualizar.Click += BtnActualizar_Click;
@@ -51,24 +53,36 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
         [Category("Usuario"), Description("Nombre del usuario")]
-        public string NombreUsuario
+        public string NombreUsuario_card
         {
-            get => lblNombreUsuario?.Text ?? string.Empty;
-            set { if (lblNombreUsuario != null) lblNombreUsuario.Text = value; }
+            get => model_usuario.Nombre_Usuario;
+            set 
+            { 
+                model_usuario.Nombre_Usuario = value;   
+                if (lblNombreUsuario != null) lblNombreUsuario.Text = value; 
+            }
         }
 
         [Category("Usuario"), Description("Correo electrónico del usuario")]
-        public string CorreoUsuario
+        public string CorreoUsuario_card
         {
-            get => lblCorreoUsuario?.Text ?? string.Empty;
-            set { if (lblCorreoUsuario != null) lblCorreoUsuario.Text = value; }
+            get => model_usuario.Correo;
+            set 
+            { 
+                model_usuario.Correo = value;
+                if (lblCorreoUsuario != null) lblCorreoUsuario.Text = value; 
+            }
         }
 
         [Category("Usuario"), Description("El usuario se encuentra activo")]
-        public string Activa
+        public bool Activa_card
         {
-            get => lb_activo?.Text ?? string.Empty;
-            set { if (lb_activo != null) lb_activo.Text = value; }
+            get => model_usuario.Activo;
+            set 
+            { 
+                model_usuario.Activo = value;
+                if (lb_activo != null) lb_activo.Text = value? "Activo" : "Inactivo"; 
+            }
         }
 
         private void btnActualizar_Click_1(object sender, EventArgs e)
@@ -77,14 +91,14 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var usuario = db.tb_usuario.Find(IDUsuario);
+                var usuario = db.tb_usuario.Find(IDUsuario_card);
                 if (usuario != null)
                 {
-                    modal.id_Usuario = IDUsuario;
-                    modal.nombre_usuario = usuario.nombre;
-                    modal.correo_usuario = usuario.correo;
-                    modal.tipo_usuario = usuario.tipo_usuario;
-                    modal.activo_usuario = usuario.activo ?? false;
+                    modal.id_Usuario_vista = IDUsuario_card;
+                    modal.nombre_usuario_vista = usuario.nombre;
+                    modal.correo_usuario_vista = usuario.correo;
+                    modal.tipo_usuario_vista = usuario.tipo_usuario;
+                    modal.activo_usuario_vista = usuario.activo ?? false;
                 }
             }
 
@@ -106,7 +120,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var usuario = db.tb_usuario.Find(idUsuario);
+                    var usuario = db.tb_usuario.Find(IDUsuario_card);
                     if (usuario != null)
                     {
                         db.tb_usuario.Remove(usuario);
