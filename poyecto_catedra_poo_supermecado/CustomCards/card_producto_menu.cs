@@ -2,14 +2,13 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_producto_menu : RoundedControlBase
     {
-        private decimal precioBase;
-        private int descuento;
-        private int idProducto;
+        private model_productos model_Productos;
 
         // Evento personalizado que se disparará cuando se presione el botón
         public event EventHandler<int> BotonVisualizarClick;
@@ -17,6 +16,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public card_producto_menu()
         {
             InitializeComponent();
+            model_Productos = new model_productos();
             if (lblPrecioDescuento != null) lblPrecioDescuento.Visible = false;
 
             // Suscribir el evento del botón (si existe en el diseñador)
@@ -29,31 +29,39 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         [Category("Producto"), Description("ID único del producto")]
         public int IDProducto
         {
-            get => idProducto;
-            set => idProducto = value;
+            get => model_Productos.ID_Producto_model;
+            set => model_Productos.ID_Producto_model = value;
         }
 
         [Category("Producto"), Description("Nombre del producto")]
         public string Producto
         {
-            get => lblProducto?.Text ?? string.Empty;
-            set { if (lblProducto != null) lblProducto.Text = value; }
+            get => model_Productos.NombreProducto_model;
+            set
+            {
+                model_Productos.NombreProducto_model = value;
+                if (lblProducto != null) lblProducto.Text = value;
+            }
         }
 
         [Category("Precio"), Description("Precio base del producto")]
         public decimal Precio
         {
-            get => precioBase;
-            set { precioBase = value; ActualizarPrecios(); }
+            get => model_Productos.Precio_model;
+            set
+            {
+                model_Productos.Precio_model = value;
+                ActualizarPrecios();
+            }
         }
 
         [Category("Precio"), Description("Descuento en porcentaje (0-100)")]
         public int Descuento
         {
-            get => descuento;
+            get => model_Productos.Descuento_model;
             set
             {
-                descuento = Math.Min(Math.Max(value, 0), 100);
+                model_Productos.Descuento_model = Math.Min(Math.Max(value, 0), 100);
                 ActualizarPrecios();
             }
         }
@@ -61,19 +69,58 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         [Category("Producto"), Description("Imagen del producto")]
         public Image ImagenProducto
         {
-            get => pbProducto?.Image;
-            set { if (pbProducto != null) pbProducto.Image = value; }
+            get => model_Productos.ImagenProducto_model;
+            set
+            {
+                model_Productos.ImagenProducto_model = value;
+                if (pbProducto != null) pbProducto.Image = value;
+            }
+        }
+
+        [Category("Producto"), Description("Stock del producto")]
+        public int Stock
+        {
+            get => model_Productos.Stock;
+            set => model_Productos.Stock = value;
+        }
+
+        [Category("Producto"), Description("Descripción del producto")]
+        public string Descripcion
+        {
+            get => model_Productos.Descripcion_model;
+            set => model_Productos.Descripcion_model = value;
+        }
+
+        [Category("Producto"), Description("Categoría del producto")]
+        public string Categoria
+        {
+            get => model_Productos.Categoria_model;
+            set => model_Productos.Categoria_model = value;
+        }
+
+        [Category("Producto"), Description("Distribuidor del producto")]
+        public string Distribuidor
+        {
+            get => model_Productos.NombreDistribuidor_model;
+            set => model_Productos.NombreDistribuidor_model = value;
+        }
+
+        [Category("Producto"), Description("Estado activo del producto")]
+        public bool Activo
+        {
+            get => model_Productos.Activo_model;
+            set => model_Productos.Activo_model = value;
         }
 
         private void ActualizarPrecios()
         {
             if (lblPrecio == null || lblPrecioDescuento == null) return;
 
-            lblPrecio.Text = precioBase.ToString("C2");
+            lblPrecio.Text = model_Productos.Precio_model.ToString("C2");
 
-            if (descuento > 0)
+            if (model_Productos.Descuento_model > 0)
             {
-                decimal precioConDescuento = precioBase * (1 - (descuento / 100m));
+                decimal precioConDescuento = model_Productos.Precio_model * (1 - (model_Productos.Descuento_model / 100m));
                 lblPrecioDescuento.Text = precioConDescuento.ToString("C2");
                 lblPrecioDescuento.Visible = true;
                 SetStrikeout(lblPrecio, true);
@@ -99,7 +146,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private void BtnVisualizar_Click(object sender, EventArgs e)
         {
             // Disparar el evento pasando el ID del producto
-            BotonVisualizarClick?.Invoke(this, idProducto);
+            BotonVisualizarClick?.Invoke(this, model_Productos.ID_Producto_model);
         }
     }
 }

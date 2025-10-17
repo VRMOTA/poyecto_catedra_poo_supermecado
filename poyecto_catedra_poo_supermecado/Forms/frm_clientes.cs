@@ -5,16 +5,13 @@ using System.Linq;
 using System.Windows.Forms;
 using poyecto_catedra_poo_supermecado.Conexion;
 using poyecto_catedra_poo_supermecado.Utilities;
+using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_clientes : Form
     {
-        private List<Producto> productos = new List<Producto>();
-        private List<CustomCards.card_producto_menu> productosCards = new List<CustomCards.card_producto_menu>();
-
         // Constantes para layout
-        // Cambio para arreglar cosos
         private const int Columnas = 4;
         private const int AnchoCarta = 241;
         private const int AltoCarta = 266;
@@ -37,97 +34,128 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void frm_clientes_Load(object sender, EventArgs e)
         {
-            CargarProductosDesdeBD();
-            MostrarProductosEnUI();
+            CargarProductos();
         }
 
-        private void CargarProductosDesdeBD()
+        private void CargarProductos()
         {
+            List<dynamic> lista_productos;
+
             try
             {
-                using (var db = new db_supermercadoEntities1())
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    
-                    productos = (from p in db.tb_producto
-                                 join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
-                                 from c in catJoin.DefaultIfEmpty()
-                                 select new Producto
-                                 {
-                                     Id = p.id_producto,
-                                     Nombre = p.nombre,
-                                     Precio = p.precio ?? 0m,
-                                     Stock = p.stock ?? 0,
-                                     Descripcion = p.descripcion,
-                                     Categoria = c != null ? c.nombre : ""
-                                 }).ToList();
+                    lista_productos = (from p in db.tb_producto
+                                       join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
+                                       from c in catJoin.DefaultIfEmpty()
+                                       select new
+                                       {
+                                           p.id_producto,
+                                           p.nombre,
+                                           p.precio,
+                                           p.stock,
+                                           p.descripcion,
+                                           categoria = c != null ? c.nombre : "",
+                                           p.imagen
+                                       }).ToList<dynamic>();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar productos desde la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                productos = new List<Producto>();
+                return;
             }
-        }
 
-        private void MostrarProductosEnUI()
-        {
             pln_cards.Controls.Clear();
-            productosCards.Clear();
             pln_cards.AutoScroll = true;
 
-            for (int i = 0; i < productos.Count; i++)
+            int indice = 0;
+            foreach (var producto in lista_productos)
             {
-                var p = productos[i];
+                // Convertir byte[] a Image si existe
+                Image imagenProducto = null;
+                if (producto.imagen != null)
+                {
+                    imagenProducto = ImagenDesdeBytes(producto.imagen);
+                }
+
                 var card = new CustomCards.card_producto_menu
                 {
-                    IDProducto = p.Id,
-                    Producto = p.Nombre,
-                    Precio = p.Precio,
-                    Descuento = p.Descuento,
-                    ImagenProducto = p.Imagen,
+                    IDProducto = producto.id_producto,
+                    Producto = producto.nombre ?? "",
+                    Precio = producto.precio ?? 0m,
+                    Descuento = 0, // Asumiendo que no hay descuento por defecto
+                    ImagenProducto = imagenProducto,
                     Width = AnchoCarta,
-                    Height = AltoCarta,
-                    Left = (i % Columnas) * (AnchoCarta + Espacio),
-                    Top = (i / Columnas) * (AltoCarta + Espacio)
+                    Height = AltoCarta
                 };
 
                 card.BotonVisualizarClick += Card_BotonVisualizarClick;
 
+                int fila = indice / Columnas;
+                int columna = indice % Columnas;
+
+                card.Left = columna * (AnchoCarta + Espacio);
+                card.Top = fila * (AltoCarta + Espacio);
+
                 pln_cards.Controls.Add(card);
-                productosCards.Add(card);
+                indice++;
             }
 
-            int filas = (int)Math.Ceiling((double)productos.Count / Columnas);
+            int filasNecesarias = (int)Math.Ceiling((double)lista_productos.Count / Columnas);
             pln_cards.AutoScrollMinSize = new Size(
                 Columnas * (AnchoCarta + Espacio),
-                filas * (AltoCarta + Espacio)
+                filasNecesarias * (AltoCarta + Espacio)
             );
         }
 
         private void Card_BotonVisualizarClick(object sender, int idProducto)
         {
-            var producto = productos.FirstOrDefault(p => p.Id == idProducto);
-            if (producto == null)
+            try
             {
-                MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                {
+                    var producto = (from p in db.tb_producto
+                                    join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
+                                    from c in catJoin.DefaultIfEmpty()
+                                    where p.id_producto == idProducto
+                                    select new
+                                    {
+                                        p.nombre,
+                                        p.precio,
+                                        p.stock,
+                                        p.descripcion,
+                                        p.imagen,
+                                        categoria = c != null ? c.nombre : ""
+                                    }).FirstOrDefault();
 
-            lblProducto.Text = producto.Nombre;
-            lblPrecio.Text = producto.Precio.ToString("C2");
-            lbstock.Text = producto.Stock.ToString();
-            lbdescriccion.Text = producto.Descripcion;
-            pbProducto.Image = producto.Imagen;
+                    if (producto == null)
+                    {
+                        MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-            if (producto.Descuento > 0)
-            {
-                decimal precioDescuento = producto.Precio * (1 - (producto.Descuento / 100m));
-                lblPrecioDescuento.Text = precioDescuento.ToString("C2");
-                lblPrecioDescuento.Visible = true;
+                    lblProducto.Text = producto.nombre ?? "";
+                    lblPrecio.Text = (producto.precio ?? 0m).ToString("C2");
+                    lbstock.Text = (producto.stock ?? 0).ToString();
+                    lbdescriccion.Text = producto.descripcion ?? "";
+
+                    if (producto.imagen != null)
+                    {
+                        pbProducto.Image = ImagenDesdeBytes(producto.imagen);
+                    }
+                    else
+                    {
+                        pbProducto.Image = null;
+                    }
+
+                    // Por ahora ocultamos el precio de descuento ya que no tenemos esa información
+                    lblPrecioDescuento.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblPrecioDescuento.Visible = false;
+                MessageBox.Show("Error al cargar detalles del producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -176,49 +204,38 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
+
         private void Buscar()
         {
             string busqueda = txt_buscar.Texts.ToLower();
 
-            // Obtener todas las cartas con sus productos asociados
-            var cartasConProductos = pln_cards.Controls.OfType<CustomCards.card_producto_menu>()
-                .Select(c => new
-                {
-                    Card = c,
-                    Producto = productos.FirstOrDefault(p => p.Id == c.IDProducto)
-                })
-                .Where(x => x.Producto != null)
+            var todasLasCartas = pln_cards.Controls.OfType<CustomCards.card_producto_menu>().ToList();
+
+            // Buscar por nombre de producto Y por categoría
+            var cartasFiltradas = todasLasCartas
+                .Where(c => c.Producto.ToLower().Contains(busqueda) ||
+                           (!string.IsNullOrEmpty(c.Categoria) &&
+                            c.Categoria.ToLower().Contains(busqueda)))
                 .ToList();
 
-            // Separar en filtradas y no filtradas
-            var cartasFiltradas = cartasConProductos
-                .Where(x => x.Producto.Nombre.ToLower().Contains(busqueda) ||
-                           (!string.IsNullOrEmpty(x.Producto.Categoria) && 
-                            x.Producto.Categoria.ToLower().Contains(busqueda)))
-                .Select(x => x.Card)
-                .ToList();
-
-            var cartasNoFiltradas = cartasConProductos
-                .Select(x => x.Card)
+            var cartasNoFiltradas = todasLasCartas
                 .Where(c => !cartasFiltradas.Contains(c))
                 .ToList();
 
-            // Reposicionar: primero las filtradas, luego las no filtradas
             var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
 
-            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            int indice = 0;
+            foreach (var card in cartasOrdenadas)
             {
-                var card = cartasOrdenadas[i];
-
-                int fila = i / Columnas;
-                int columna = i % Columnas;
+                int fila = indice / Columnas;
+                int columna = indice % Columnas;
 
                 card.Left = columna * (AnchoCarta + Espacio);
                 card.Top = fila * (AltoCarta + Espacio);
                 card.Visible = cartasFiltradas.Contains(card);
+                indice++;
             }
 
-            // Scroll al inicio cuando se busca
             pln_cards.AutoScrollPosition = new Point(0, 0);
         }
 
@@ -228,15 +245,5 @@ namespace poyecto_catedra_poo_supermecado.Forms
         }
     }
 
-    public class Producto
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public decimal Precio { get; set; }
-        public int Stock { get; set; }
-        public int Descuento { get; set; }
-        public string Descripcion { get; set; }
-        public Image Imagen { get; set; }
-        public string Categoria { get; set; }
-    }
+
 }
