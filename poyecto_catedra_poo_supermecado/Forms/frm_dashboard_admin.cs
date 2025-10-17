@@ -78,5 +78,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             abrir_panel(new frm_promociones());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            abrir_panel(new frm_ventas());
+        }
     }
 }

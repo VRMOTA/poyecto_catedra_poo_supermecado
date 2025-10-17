@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dashboard_admin));
             this.navegador = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel_control = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_control = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnPropiedades = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -63,16 +64,9 @@
             this.navegador.Size = new System.Drawing.Size(289, 911);
             this.navegador.TabIndex = 1;
             // 
-            // panel_control
-            // 
-            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_control.Location = new System.Drawing.Point(288, 0);
-            this.panel_control.Name = "panel_control";
-            this.panel_control.Size = new System.Drawing.Size(1278, 911);
-            this.panel_control.TabIndex = 2;
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btnPropiedades);
             this.panel1.Controls.Add(this.btnProductos);
             this.panel1.Controls.Add(this.btnSalir);
@@ -84,6 +78,37 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(286, 908);
             this.panel1.TabIndex = 12;
+            // 
+            // panel_control
+            // 
+            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_control.Location = new System.Drawing.Point(288, 0);
+            this.panel_control.Name = "panel_control";
+            this.panel_control.Size = new System.Drawing.Size(1278, 911);
+            this.panel_control.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkRed;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(0, 548);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 30);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(286, 60);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "   Ventas";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnPropiedades
             // 
@@ -336,5 +361,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnPropiedades;
+        private System.Windows.Forms.Button button2;
     }
 }
