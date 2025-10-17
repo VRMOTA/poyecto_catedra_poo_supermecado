@@ -12,25 +12,8 @@ using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
-    // Clase para mapear los resultados de la consulta SQL
-  
-
     public partial class frm_ventas_new : Form
     {
-        public class VentaDetalleResult
-        {
-            public int id_venta { get; set; }
-            public DateTime fecha { get; set; }
-            public string nombre_cliente { get; set; }
-            public string cajero { get; set; }
-            public string producto { get; set; }
-            public string categoria { get; set; }
-            public int cantidad { get; set; }
-            public decimal precio_unitario { get; set; }
-            public decimal descuento_aplicado { get; set; }
-            public decimal subtotal { get; set; }
-            public string estado { get; set; }
-        }
         public frm_ventas_new()
         {
             InitializeComponent();
@@ -95,34 +78,25 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    // Consulta LINQ a Entity Framework usando la vista
-                    var resultados = db.Database.SqlQuery<VentaDetalleResult>(
-                        @"SELECT id_venta, fecha, nombre_cliente, cajero, producto, categoria, cantidad, precio_unitario, descuento_aplicado, subtotal, estado 
-                          FROM vw_detalle_ventas_completo 
-                          ORDER BY id_venta DESC").ToList();
-
-                    // Convertir los resultados a una lista de modelos
-                    List<model_detalle_ventas_completo> listaDetalleVentas = new List<model_detalle_ventas_completo>();
-
-                    foreach (var item in resultados)
-                    {
-                        model_detalle_ventas_completo detalle = new model_detalle_ventas_completo
+                    // Usar LINQ directamente con la vista
+                    var listaDetalleVentas = db.vw_detalle_ventas_completo
+                        .OrderByDescending(v => v.id_venta)
+                        .ToList()
+                        .Select(v => new model_detalle_ventas_completo
                         {
-                            ID_Venta_model = item.id_venta,
-                            Fecha_model = item.fecha,
-                            NombreCliente_model = item.nombre_cliente ?? "",
-                            Cajero_model = item.cajero ?? "",
-                            Producto_model = item.producto ?? "",
-                            Categoria_model = item.categoria ?? "",
-                            Cantidad_model = item.cantidad,
-                            PrecioUnitario_model = item.precio_unitario,
-                            DescuentoAplicado_model = item.descuento_aplicado,
-                            Subtotal_model = item.subtotal,
-                            Estado_model = item.estado ?? ""
-                        };
-
-                        listaDetalleVentas.Add(detalle);
-                    }
+                            ID_Venta_model = v.id_venta,
+                            Fecha_model = v.fecha ?? DateTime.MinValue,
+                            NombreCliente_model = v.nombre_cliente ?? "",
+                            Cajero_model = v.cajero ?? "",
+                            Producto_model = v.producto ?? "",
+                            Categoria_model = v.categoria ?? "",
+                            Cantidad_model = v.cantidad ?? 0 ,
+                            PrecioUnitario_model = v.precio_unitario ?? 0 ,
+                            DescuentoAplicado_model = v.descuento_aplicado ?? 0,
+                            Subtotal_model = v.subtotal ?? 0,
+                            Estado_model = v.estado ?? ""
+                        })
+                        .ToList();
 
                     // Asignar la lista al DataGridView
                     dg_ventas.DataSource = listaDetalleVentas;
@@ -234,7 +208,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
-        private void frm_ventas_Load(object sender, EventArgs e)
+        private void frm_ventas_new_Load(object sender, EventArgs e)
         {
             CargarCajeros();
             CargarVentas();
