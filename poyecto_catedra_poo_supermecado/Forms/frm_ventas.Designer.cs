@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.cmb_cajero = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_nombre = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dg_ventas = new System.Windows.Forms.DataGridView();
+            this.cmb_ventas = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
             this.btn_limpiar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.btnBuscar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.cmb_cajero = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_ventas)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -49,28 +49,6 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "Ventas";
             // 
-            // cmb_cajero
-            // 
-            this.cmb_cajero.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cmb_cajero.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmb_cajero.BorderSize = 2;
-            this.cmb_cajero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cmb_cajero.EnableTextInput = true;
-            this.cmb_cajero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cmb_cajero.ForeColor = System.Drawing.Color.DimGray;
-            this.cmb_cajero.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmb_cajero.Items.AddRange(new object[] {
-            "1"});
-            this.cmb_cajero.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cmb_cajero.ListTextColor = System.Drawing.Color.DimGray;
-            this.cmb_cajero.Location = new System.Drawing.Point(27, 136);
-            this.cmb_cajero.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cmb_cajero.Name = "cmb_cajero";
-            this.cmb_cajero.Padding = new System.Windows.Forms.Padding(2);
-            this.cmb_cajero.Size = new System.Drawing.Size(390, 36);
-            this.cmb_cajero.TabIndex = 50;
-            this.cmb_cajero.Texts = "";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -80,27 +58,6 @@
             this.label2.Size = new System.Drawing.Size(98, 29);
             this.label2.TabIndex = 51;
             this.label2.Text = "Cajero ";
-            // 
-            // txt_nombre
-            // 
-            this.txt_nombre.BackColor = System.Drawing.Color.White;
-            this.txt_nombre.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txt_nombre.BorderFocusColor = System.Drawing.Color.Plum;
-            this.txt_nombre.BorderSize = 7;
-            this.txt_nombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nombre.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_nombre.Location = new System.Drawing.Point(459, 137);
-            this.txt_nombre.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_nombre.Multiline = false;
-            this.txt_nombre.Name = "txt_nombre";
-            this.txt_nombre.Padding = new System.Windows.Forms.Padding(7);
-            this.txt_nombre.PasswordChar = false;
-            this.txt_nombre.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txt_nombre.PlaceholderText = "";
-            this.txt_nombre.Size = new System.Drawing.Size(389, 35);
-            this.txt_nombre.TabIndex = 52;
-            this.txt_nombre.Texts = "";
-            this.txt_nombre.UnderlinedStyle = true;
             // 
             // label3
             // 
@@ -112,13 +69,35 @@
             this.label3.TabIndex = 53;
             this.label3.Text = "Correlativo de la Venta ";
             // 
-            // dataGridView1
+            // dg_ventas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(27, 252);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 647);
-            this.dataGridView1.TabIndex = 54;
+            this.dg_ventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_ventas.Location = new System.Drawing.Point(27, 252);
+            this.dg_ventas.Name = "dg_ventas";
+            this.dg_ventas.Size = new System.Drawing.Size(1196, 647);
+            this.dg_ventas.TabIndex = 54;
+            // 
+            // cmb_ventas
+            // 
+            this.cmb_ventas.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmb_ventas.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_ventas.BorderSize = 2;
+            this.cmb_ventas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_ventas.EnableTextInput = true;
+            this.cmb_ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cmb_ventas.ForeColor = System.Drawing.Color.DimGray;
+            this.cmb_ventas.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_ventas.Items.AddRange(new object[] {
+            "1"});
+            this.cmb_ventas.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cmb_ventas.ListTextColor = System.Drawing.Color.DimGray;
+            this.cmb_ventas.Location = new System.Drawing.Point(459, 136);
+            this.cmb_ventas.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cmb_ventas.Name = "cmb_ventas";
+            this.cmb_ventas.Padding = new System.Windows.Forms.Padding(2);
+            this.cmb_ventas.Size = new System.Drawing.Size(390, 36);
+            this.cmb_ventas.TabIndex = 57;
+            this.cmb_ventas.Texts = "";
             // 
             // btn_limpiar
             // 
@@ -158,23 +137,46 @@
             this.btnBuscar.TextColor = System.Drawing.Color.White;
             this.btnBuscar.UseVisualStyleBackColor = false;
             // 
+            // cmb_cajero
+            // 
+            this.cmb_cajero.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmb_cajero.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_cajero.BorderSize = 2;
+            this.cmb_cajero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_cajero.EnableTextInput = true;
+            this.cmb_cajero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cmb_cajero.ForeColor = System.Drawing.Color.DimGray;
+            this.cmb_cajero.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmb_cajero.Items.AddRange(new object[] {
+            "1"});
+            this.cmb_cajero.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cmb_cajero.ListTextColor = System.Drawing.Color.DimGray;
+            this.cmb_cajero.Location = new System.Drawing.Point(27, 136);
+            this.cmb_cajero.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cmb_cajero.Name = "cmb_cajero";
+            this.cmb_cajero.Padding = new System.Windows.Forms.Padding(2);
+            this.cmb_cajero.Size = new System.Drawing.Size(390, 36);
+            this.cmb_cajero.TabIndex = 50;
+            this.cmb_cajero.Texts = "";
+            // 
             // frm_ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 911);
+            this.Controls.Add(this.cmb_ventas);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dg_ventas);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_nombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_cajero);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_ventas";
             this.Text = "frm_ventas";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.frm_ventas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dg_ventas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,10 +187,10 @@
         private System.Windows.Forms.Label label1;
         private CustomControls.RJComboBox cmb_cajero;
         private System.Windows.Forms.Label label2;
-        private CustomControls.TextboxMaxing txt_nombre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dg_ventas;
         private CustomControls.ButtonMaxing btn_limpiar;
         private CustomControls.ButtonMaxing btnBuscar;
+        private CustomControls.RJComboBox cmb_ventas;
     }
 }
