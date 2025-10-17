@@ -18,6 +18,7 @@
         <AssociationConnector Association="db_supermercadoModel.FK_distribuidor" />
         <AssociationConnector Association="db_supermercadoModel.FK_producto_promo" />
         <AssociationConnector Association="db_supermercadoModel.FK_usuario_venta" />
+        <EntityTypeShape EntityType="db_supermercadoModel.vw_detalle_ventas_completo" Width="1.5" PointX="9.875" PointY="3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

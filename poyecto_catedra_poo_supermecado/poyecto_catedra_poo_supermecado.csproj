@@ -96,6 +96,9 @@
     <Compile Include="Conexion\tb_ventas.cs">
       <DependentUpon>Conexio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Conexion\vw_detalle_ventas_completo.cs">
+      <DependentUpon>Conexio.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomCards\card_categories.cs">
       <SubType>UserControl</SubType>
     </Compile>

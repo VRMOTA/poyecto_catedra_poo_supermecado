@@ -82,6 +82,26 @@
           <Property Name="total_descuento" Type="money" />
           <Property Name="estado" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'db_supermercado.dbo.vw_detalle_ventas_completo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_detalle_ventas_completo">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="nombre_cliente" Type="nvarchar" MaxLength="75" />
+          <Property Name="id_cajero" Type="int" />
+          <Property Name="cajero" Type="nvarchar" MaxLength="75" />
+          <Property Name="producto" Type="nvarchar" MaxLength="50" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="50" />
+          <Property Name="distribuidor" Type="nvarchar" MaxLength="75" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="precio_unitario" Type="money" />
+          <Property Name="descuento_aplicado" Type="money" />
+          <Property Name="subtotal" Type="money" />
+          <Property Name="estado" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <Association Name="FK_categoria">
           <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
           <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="*" />
@@ -162,6 +182,23 @@
           <EntitySet Name="tb_promociones" EntityType="Self.tb_promociones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_ventas" EntityType="Self.tb_ventas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_detalle_ventas_completo" EntityType="Self.vw_detalle_ventas_completo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_detalle_ventas_completo].[id_venta] AS [id_venta], 
+    [vw_detalle_ventas_completo].[fecha] AS [fecha], 
+    [vw_detalle_ventas_completo].[nombre_cliente] AS [nombre_cliente], 
+    [vw_detalle_ventas_completo].[id_cajero] AS [id_cajero], 
+    [vw_detalle_ventas_completo].[cajero] AS [cajero], 
+    [vw_detalle_ventas_completo].[producto] AS [producto], 
+    [vw_detalle_ventas_completo].[categoria] AS [categoria], 
+    [vw_detalle_ventas_completo].[distribuidor] AS [distribuidor], 
+    [vw_detalle_ventas_completo].[cantidad] AS [cantidad], 
+    [vw_detalle_ventas_completo].[precio_unitario] AS [precio_unitario], 
+    [vw_detalle_ventas_completo].[descuento_aplicado] AS [descuento_aplicado], 
+    [vw_detalle_ventas_completo].[subtotal] AS [subtotal], 
+    [vw_detalle_ventas_completo].[estado] AS [estado]
+    FROM [dbo].[vw_detalle_ventas_completo] AS [vw_detalle_ventas_completo]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_categoria" Association="Self.FK_categoria">
             <End Role="tb_categorias" EntitySet="tb_categorias" />
             <End Role="tb_producto" EntitySet="tb_producto" />
@@ -223,6 +260,7 @@
             <End Role="tb_usuario" EntitySet="tb_usuario" />
             <End Role="tb_ventas" EntitySet="tb_ventas" />
           </AssociationSet>
+          <EntitySet Name="vw_detalle_ventas_completo" EntityType="db_supermercadoModel.vw_detalle_ventas_completo" />
         </EntityContainer>
         <EntityType Name="tb_categorias">
           <Key>
@@ -385,6 +423,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vw_detalle_ventas_completo">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="id_cajero" Type="Int32" />
+          <Property Name="cajero" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="producto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="distribuidor" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="precio_unitario" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="descuento_aplicado" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="subtotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -470,6 +526,25 @@
                 <ScalarProperty Name="total_venta" ColumnName="total_venta" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_detalle_ventas_completo">
+            <EntityTypeMapping TypeName="db_supermercadoModel.vw_detalle_ventas_completo">
+              <MappingFragment StoreEntitySet="vw_detalle_ventas_completo">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="descuento_aplicado" ColumnName="descuento_aplicado" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="distribuidor" ColumnName="distribuidor" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="cajero" ColumnName="cajero" />
+                <ScalarProperty Name="id_cajero" ColumnName="id_cajero" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="id_venta" ColumnName="id_venta" />
               </MappingFragment>
