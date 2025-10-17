@@ -13,24 +13,25 @@ using poyecto_catedra_poo_supermecado.Models;
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     // Clase para mapear los resultados de la consulta SQL
-    public class VentaDetalleResult
-    {
-        public int id_venta { get; set; }
-        public DateTime fecha { get; set; }
-        public string nombre_cliente { get; set; }
-        public string cajero { get; set; }
-        public string producto { get; set; }
-        public string categoria { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio_unitario { get; set; }
-        public decimal descuento_aplicado { get; set; }
-        public decimal subtotal { get; set; }
-        public string estado { get; set; }
-    }
+  
 
-    public partial class frm_ventas : Form
+    public partial class frm_ventas_new : Form
     {
-        public frm_ventas()
+        public class VentaDetalleResult
+        {
+            public int id_venta { get; set; }
+            public DateTime fecha { get; set; }
+            public string nombre_cliente { get; set; }
+            public string cajero { get; set; }
+            public string producto { get; set; }
+            public string categoria { get; set; }
+            public int cantidad { get; set; }
+            public decimal precio_unitario { get; set; }
+            public decimal descuento_aplicado { get; set; }
+            public decimal subtotal { get; set; }
+            public string estado { get; set; }
+        }
+        public frm_ventas_new()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace poyecto_catedra_poo_supermecado.Forms
 {
-    partial class frm_ventas
+    partial class frm_ventas_new
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,6 @@
             this.btn_limpiar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.btnBuscar = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.cmb_cajero = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dg_ventas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,20 +159,11 @@
             this.cmb_cajero.TabIndex = 50;
             this.cmb_cajero.Texts = "";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(210, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1026, 218);
-            this.textBox1.TabIndex = 58;
-            // 
-            // frm_ventas
+            // frm_ventas_new
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 911);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cmb_ventas);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btnBuscar);
@@ -183,9 +173,8 @@
             this.Controls.Add(this.cmb_cajero);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frm_ventas";
+            this.Name = "frm_ventas_new";
             this.Text = "frm_ventas";
-            this.Load += new System.EventHandler(this.frm_ventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg_ventas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,6 +191,5 @@
         private CustomControls.ButtonMaxing btn_limpiar;
         private CustomControls.ButtonMaxing btnBuscar;
         private CustomControls.RJComboBox cmb_ventas;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
