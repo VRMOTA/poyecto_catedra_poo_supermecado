@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using poyecto_catedra_poo_supermecado.Utilities;
+using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_dashboard_cajero : Form
     {
+        private model_usuario model_usuario;
+
         public frm_dashboard_cajero()
         {
             InitializeComponent();
@@ -23,13 +26,27 @@ namespace poyecto_catedra_poo_supermecado.Forms
             btn_categoria.BackColor = Color.FromArgb(204, 0, 0);
             btn_menu.FlatAppearance.BorderColor = Color.FromArgb(204, 0, 0);
             btn_salir.BackColor = Color.FromArgb(204, 0, 0);
+            model_usuario = new model_usuario();
+        }
+
+        public frm_dashboard_cajero(model_usuario usuario)
+        {
+            InitializeComponent();
+            FormHelper.DefaultFormValues(this);
+            navegador.BackColor = Color.FromArgb(204, 0, 0);
+            btn_menu.BackColor = Color.FromArgb(204, 0, 0);
+            btn_carrito.BackColor = Color.FromArgb(204, 0, 0);
+            btn_categoria.BackColor = Color.FromArgb(204, 0, 0);
+            btn_menu.FlatAppearance.BorderColor = Color.FromArgb(204, 0, 0);
+            btn_salir.BackColor = Color.FromArgb(204, 0, 0);
+            model_usuario = usuario;
         }
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
-            frm_login login = new frm_login();  
+            frm_login login = new frm_login();
             this.Hide();
-            login.Show(); 
+            login.Show();
         }
 
         private void btn_menu_Click(object sender, EventArgs e)
@@ -45,7 +62,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void btn_carrito_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_carrito_cajero());
+            abrir_panel(new frm_carrito_cajero(model_usuario));
         }
 
         private void btn_categoria_Click(object sender, EventArgs e)

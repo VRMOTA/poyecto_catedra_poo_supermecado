@@ -19,6 +19,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
     public partial class frm_carrito_cajero : Form
     {
         private model_usuario model_usuario;
+
         public frm_carrito_cajero()
         {
             InitializeComponent();
@@ -26,9 +27,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
             model_usuario = new model_usuario();
         }
 
+        public frm_carrito_cajero(model_usuario usuario)
+        {
+            InitializeComponent();
+            this.BackColor = Color.FromArgb(235, 235, 235);
+            model_usuario = usuario;
+        }
+
         private void frm_carrito_cajero_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void roundedControlBase1_Load(object sender, EventArgs e)
@@ -38,7 +46,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void frm_carrito_cajero_Load_1(object sender, EventArgs e)
         {
-            CargarCarrito();;
+            CargarCarrito(); ;
         }
 
         private void EliminarProducto(int idProducto)
@@ -211,7 +219,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         Top = i * (altoCarta + espacio)
 
                     };
-                    
+
                     card.EliminarClick += (s, ev) => EliminarProducto(producto.Id);
                     card.CantidadActualizada += (s, nuevaCantidad) => ActualizarProducto(producto.Id, nuevaCantidad);
 
@@ -277,8 +285,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         totalDescuento += descuentoProducto;
                     }
 
-                        MessageBox.Show($"Total a pagar: {model_usuario.Id_Usuario }", "Confirmar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     tb_ventas nuevaVenta = new tb_ventas
                     {
                         fecha = DateTime.Now,
@@ -343,7 +349,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                 return;
                             }
                         }
-                        
+
                     }
 
                     db.SaveChanges();

@@ -68,7 +68,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     model_usuario.Id_Usuario = usuario.id_usuario;
                     model_usuario.Nombre_Usuario = usuario.nombre;
                     model_usuario.Tipo_Usuario = usuario.tipo_usuario;
-                    
+
                     if (usuario.tipo_usuario == "Administrador")
                     {
                         Helpers.LimpiarControles(this);
@@ -80,7 +80,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     {
                         Helpers.LimpiarControles(this);
                         this.Hide();
-                        new frm_dashboard_cajero().ShowDialog();
+                        new frm_dashboard_cajero(model_usuario).ShowDialog();
                         this.Show();
                     }
                     else
