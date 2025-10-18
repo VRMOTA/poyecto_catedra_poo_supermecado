@@ -19,23 +19,23 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_prom : UserControl
     {
-        private model_promociones model_Promociones;
+        private model_promociones model_Promociones; // Instancia del modelo
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_prom()
         {
             InitializeComponent();
-            model_Promociones = new model_promociones();
+            model_Promociones = new model_promociones(); // Inicializar el modelo
         }
 
-        public int ID_Promocion_card
+        public int ID_Promocion_card // Propiedad para el ID de la promocion
         {
             get => model_Promociones.ID_Promocion_model;
             set => model_Promociones.ID_Promocion_model = value;
         }
 
-        [Category("Promocion"), Description("Nombre del Producto")]
-        public string Nombre_Producto_card
+        [Category("Promocion"), Description("Nombre del Producto")] // Propiedad para el nombre del producto
+        public string Nombre_Producto_card // Propiedad para el nombre del producto
         {
             get => model_Promociones.Nombre_Producto_model;
             set
@@ -45,8 +45,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Promocion"), Description("Cantidad minima de la promocion")]
-        public int Cantidad_Minima_card
+        [Category("Promocion"), Description("Cantidad minima de la promocion")] // Propiedad para la cantidad minima de la promocion
+        public int Cantidad_Minima_card // Propiedad para la cantidad minima de la promocion
         {
             get => model_Promociones.Cantidad_Minima_model;
             set
@@ -57,8 +57,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
 
-        [Category("Promocion"), Description("Precio de la promocion")]
-        public decimal Precio_Promocion_card
+        [Category("Promocion"), Description("Precio de la promocion")]// Propiedad para el precio de la promocion
+        public decimal Precio_Promocion_card // Propiedad para el precio de la promocion
         {
             get => model_Promociones.Precio_Promocion_model;
             set
@@ -69,10 +69,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
 
-        [Category("Promocion"), Description("Descripcion de la promocion")]
-        public string Descripcion_Promocion_card
+        [Category("Promocion"), Description("Descripcion de la promocion")] // Propiedad para la descripcion de la promocion
+        public string Descripcion_Promocion_card // Propiedad para la descripcion de la promocion
         {
-            get => model_Promociones.Descripcion_model;
+            get => model_Promociones.Descripcion_model; // Propiedad para la descripcion de la promocion
             set
             {
                 model_Promociones.Descripcion_model = value;
@@ -80,8 +80,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Promocion"), Description("Fecha de inicio de la promocion")]
-        public DateTime Fecha_Inicio_card
+        [Category("Promocion"), Description("Fecha de inicio de la promocion")] // Propiedad para la fecha de inicio de la promocion
+        public DateTime Fecha_Inicio_card //    Propiedad para la fecha de inicio de la promocion
         {
             get => model_Promociones.Fecha_Inicio_model;
             set
@@ -91,8 +91,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Promocion"), Description("Fecha de finalizacion de la promocion")]
-        public DateTime Fecha_Fin_card
+        [Category("Promocion"), Description("Fecha de finalizacion de la promocion")] // Propiedad para la fecha de finalizacion de la promocion
+        public DateTime Fecha_Fin_card// Propiedad para la fecha de finalizacion de la promocion
         {
             get => model_Promociones.Fecha_Fin_model;
             set
@@ -102,8 +102,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Promocion"), Description("Estado de la promocion")]
-        public bool Activa_card
+        [Category("Promocion"), Description("Estado de la promocion")] // Propiedad para el estado de la promocion
+        public bool Activa_card // Propiedad para el estado de la promocion
         {
             get => model_Promociones.Activa_model;
             set
@@ -117,13 +117,13 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             try
             {
-                var modal = new md_promocion("Actualizar promoción", "Actualizar");
+                var modal = new md_promocion("Actualizar promoción", "Actualizar"); // Crear instancia del modal de edición
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var promocion = db.tb_promociones.Find(ID_Promocion_card);
+                    var promocion = db.tb_promociones.Find(ID_Promocion_card); // Buscar la promoción por ID
                     if (promocion != null)
-                    {
+                    {   // Pasar los datos de la promoción al modal
                         modal.ID_Promocion_vista = ID_Promocion_card;
                         modal.IDProducto_vista = promocion.id_producto;
                         modal.Cantidad_minima_vista = promocion.cantidad_minima ?? 0;
@@ -137,7 +137,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
                 if (modal.ShowDialog() == DialogResult.OK)
                 {
-                    RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                    RecargaRequerida?.Invoke(this, EventArgs.Empty); // Disparar el evento para recargar los datos
+                    // En el formulario se encuentra el metodo recargar y lo usa parapara disparar el evento junto al metodo
                 }
             }
             catch (Exception ex)
@@ -152,18 +153,18 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 "Confirmar eliminación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
-            );
+            ); // Preguntar confirmación al usuario
 
             if (resultado == DialogResult.Yes)
             {
                 try
                 {
-                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1()) // Conectar a la base de datos
                     {
-                        var promocion = db.tb_promociones.Find(ID_Promocion_card);
+                        var promocion = db.tb_promociones.Find(ID_Promocion_card); // Buscar la promoción por ID
                         if (promocion != null)
                         {
-                            db.tb_promociones.Remove(promocion);
+                            db.tb_promociones.Remove(promocion); // Eliminar la promoción
                             db.SaveChanges();
                             MessageBox.Show("Promoción eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             RecargaRequerida?.Invoke(this, EventArgs.Empty);

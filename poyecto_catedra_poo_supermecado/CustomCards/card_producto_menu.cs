@@ -8,7 +8,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_producto_menu : RoundedControlBase
     {
-        private model_productos model_Productos;
+        private model_productos model_Productos; // Instancia del modelo
 
         // Evento personalizado que se disparará cuando se presione el botón
         public event EventHandler<int> BotonVisualizarClick;
@@ -16,7 +16,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public card_producto_menu()
         {
             InitializeComponent();
-            model_Productos = new model_productos();
+            model_Productos = new model_productos(); // Inicializar el modelo
             if (lblPrecioDescuento != null) lblPrecioDescuento.Visible = false;
 
             // Suscribir el evento del botón (si existe en el diseñador)
@@ -26,15 +26,15 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("ID único del producto")]
-        public int IDProducto
+        [Category("Producto"), Description("ID único del producto")] // Propiedad para el ID del producto
+        public int IDProducto // Propiedad para el ID del producto
         {
             get => model_Productos.ID_Producto_model;
             set => model_Productos.ID_Producto_model = value;
         }
 
-        [Category("Producto"), Description("Nombre del producto")]
-        public string Producto
+        [Category("Producto"), Description("Nombre del producto")] // Propiedad para el nombre del producto
+        public string Producto // Propiedad para el nombre del producto
         {
             get => model_Productos.NombreProducto_model;
             set
@@ -44,8 +44,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Precio"), Description("Precio base del producto")]
-        public decimal Precio
+        [Category("Precio"), Description("Precio base del producto")] //    Propiedad para el precio base del producto
+        public decimal Precio // Propiedad para el precio base del producto
         {
             get => model_Productos.Precio_model;
             set
@@ -55,8 +55,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Precio"), Description("Descuento en porcentaje (0-100)")]
-        public int Descuento
+        [Category("Precio"), Description("Descuento en porcentaje (0-100)")] // Propiedad para el descuento en porcentaje
+        public int Descuento // Propiedad para el descuento en porcentaje
         {
             get => model_Productos.Descuento_model;
             set
@@ -66,8 +66,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("Imagen del producto")]
-        public Image ImagenProducto
+        [Category("Producto"), Description("Imagen del producto")] // Propiedad para la imagen del producto
+        public Image ImagenProducto // Propiedad para la imagen del producto
         {
             get => model_Productos.ImagenProducto_model;
             set
@@ -84,36 +84,36 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("Stock del producto")]
-        public int Stock
+        [Category("Producto"), Description("Stock del producto")] // Propiedad para el stock del producto
+        public int Stock // Propiedad para el stock del producto
         {
             get => model_Productos.Stock;
             set => model_Productos.Stock = value;
         }
 
-        [Category("Producto"), Description("Descripción del producto")]
-        public string Descripcion
+        [Category("Producto"), Description("Descripción del producto")] // Propiedad para la descripción del producto
+        public string Descripcion // Propiedad para la descripción del producto
         {
             get => model_Productos.Descripcion_model;
             set => model_Productos.Descripcion_model = value;
         }
 
-        [Category("Producto"), Description("Categoría del producto")]
-        public string Categoria
+        [Category("Producto"), Description("Categoría del producto")] //    Propiedad para la categoría del producto
+        public string Categoria // Propiedad para la categoría del producto
         {
             get => model_Productos.Categoria_model;
             set => model_Productos.Categoria_model = value;
         }
 
-        [Category("Producto"), Description("Distribuidor del producto")]
-        public string Distribuidor
+        [Category("Producto"), Description("Distribuidor del producto")] // Propiedad para el distribuidor del producto
+        public string Distribuidor //   Propiedad para el distribuidor del producto
         {
             get => model_Productos.NombreDistribuidor_model;
             set => model_Productos.NombreDistribuidor_model = value;
         }
 
-        [Category("Producto"), Description("Estado activo del producto")]
-        public bool Activo
+        [Category("Producto"), Description("Estado activo del producto")] // Propiedad para el estado activo del producto
+        public bool Activo //   Propiedad para el estado activo del producto
         {
             get => model_Productos.Activo_model;
             set => model_Productos.Activo_model = value;
@@ -122,15 +122,16 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private void ActualizarPrecios()
         {
             try
-            {
+            {   // Asegurarse de que las etiquetas no sean nulas
                 if (lblPrecio == null || lblPrecioDescuento == null) return;
 
-                lblPrecio.Text = model_Productos.Precio_model.ToString("C2");
+                lblPrecio.Text = model_Productos.Precio_model.ToString("C2"); // Formatear como moneda
 
-                if (model_Productos.Descuento_model > 0)
+                if (model_Productos.Descuento_model > 0) // Aplicar descuento si es mayor a 0
                 {
+                    // Calcular el precio con descuento
                     decimal precioConDescuento = model_Productos.Precio_model * (1 - (model_Productos.Descuento_model / 100m));
-                    lblPrecioDescuento.Text = precioConDescuento.ToString("C2");
+                    lblPrecioDescuento.Text = precioConDescuento.ToString("C2"); // Formatear como moneda
                     lblPrecioDescuento.Visible = true;
                     SetStrikeout(lblPrecio, true);
                 }
@@ -149,7 +150,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private void SetStrikeout(Label lbl, bool strike)
         {
             try
-            {
+            {   // Asegurarse de que la etiqueta no sea nula
                 if (lbl == null) return;
                 var family = lbl.Font.FontFamily;
                 var size = lbl.Font.Size;

@@ -12,7 +12,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         private int cantidad;
 
         private decimal totalProducto;
-        public decimal TotalProducto
+        public decimal TotalProducto // Propiedad para el total del producto
         {
             get => totalProducto;
             set
@@ -23,7 +23,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
         private decimal ahorroProducto;
-        public decimal AhorroProducto
+        public decimal AhorroProducto // Propiedad para el ahorro del producto
         {
             get => ahorroProducto;
             set
@@ -41,11 +41,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("Stock disponible del producto")]
+        [Category("Producto"), Description("Stock disponible del producto")] // Propiedad para el stock disponible del producto
         public int StockDisponible { get; set; }
-        [Category("Acciones"), Description("Evento cuando se actualiza la cantidad")]
+        [Category("Acciones"), Description("Evento cuando se actualiza la cantidad")] // Evento cuando se actualiza la cantidad
         public event EventHandler<int> CantidadActualizada;
-        [Category("Producto"), Description("ID del producto")]
+        [Category("Producto"), Description("ID del producto")] // Propiedad para el ID del producto
         public int IDProducto { get; set; }
         public card_producto_carrito()
         {
@@ -54,22 +54,22 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             if (lblPrecioDescuento != null) lblPrecioDescuento.Visible = false;
         }
 
-        [Category("Producto"), Description("Nombre del producto")]
-        public string NombreProducto
+        [Category("Producto"), Description("Nombre del producto")] // Propiedad para el nombre del producto
+        public string NombreProducto // Propiedad para el nombre del producto 
         {
             get => lblNombreProducto?.Text ?? string.Empty;
             set { if (lblNombreProducto != null) lblNombreProducto.Text = value; }
         }
 
-        [Category("Precio"), Description("Precio base del producto")]
-        public decimal Precio
+        [Category("Precio"), Description("Precio base del producto")] // Propiedad para el precio base del producto
+        public decimal Precio // Propiedad para el precio base del producto 
         {
             get => precioBase;
             set { precioBase = value; ActualizarPrecios(); }
         }
 
-        [Category("Precio"), Description("Descuento en porcentaje (0-100)")]
-        public int Descuento
+        [Category("Precio"), Description("Descuento en porcentaje (0-100)")] // Propiedad para el descuento en porcentaje
+        public int Descuento // Propiedad para el descuento en porcentaje
         {
             get => descuento;
             set
@@ -80,8 +80,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         }
 
 
-        [Category("Cantidad"), Description("Cantidad del producto")]
-        public int Cantidad
+        [Category("Cantidad"), Description("Cantidad del producto")] // Propiedad para la cantidad del producto
+        public int Cantidad // Propiedad para la cantidad del producto
         {
             get => cantidad;
             set
@@ -91,22 +91,22 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             }
         }
 
-        [Category("Producto"), Description("Imagen del producto")]
-        public Image ImagenProducto
+        [Category("Producto"), Description("Imagen del producto")] // Propiedad para la imagen del producto
+        public Image ImagenProducto // Propiedad para la imagen del producto
         {
             get => pbProducto?.Image;
             set { if (pbProducto != null) pbProducto.Image = value; }
         }
 
-        [Category("Acciones"), Description("Evento al hacer clic en Eliminar")]
-        public event EventHandler EliminarClick
+        [Category("Acciones"), Description("Evento al hacer clic en Eliminar")] // Evento al hacer clic en Eliminar
+        public event EventHandler EliminarClick // Evento al hacer clic en Eliminar
         {
             add { btnEliminar.Click += value; }
             remove { btnEliminar.Click -= value; }
         }
 
-        [Category("Acciones"), Description("Evento al hacer clic en Actualizar")]
-        public event EventHandler ActualizarClick
+        [Category("Acciones"), Description("Evento al hacer clic en Actualizar")] // Evento al hacer clic en Actualizar
+        public event EventHandler ActualizarClick // Evento al hacer clic en Actualizar
         {
             add { btnActualizar.Click += value; }
             remove { btnActualizar.Click -= value; }
@@ -124,16 +124,6 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             lblPrecioTotal.Text = totalProducto.ToString("C2");
         }
 
-        private void SetStrikeout(Label lbl, bool strike)
-        {
-            if (lbl == null) return;
-            var family = lbl.Font.FontFamily;
-            var size = lbl.Font.Size;
-            var style = lbl.Font.Style;
-            style = strike ? (style | FontStyle.Strikeout) : (style & ~FontStyle.Strikeout);
-            lbl.Font = new Font(family, size, style);
-        }
-
         private void card_producto_carrito_Load(object sender, EventArgs e)
         {
 
@@ -143,11 +133,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         {
             try
             {
-                using (var modal = new CustomModals.md_actualizar_carrito(this.Cantidad, this.StockDisponible))
+                using (var modal = new CustomModals.md_actualizar_carrito(this.Cantidad, this.StockDisponible)) // Crear instancia del modal de actualización
                 {
-                    if (modal.ShowDialog() == DialogResult.OK)
+                    if (modal.ShowDialog() == DialogResult.OK) // Si se actualizó la cantidad
                     {
-                        int nuevaCantidad = modal.NuevaCantidad;
+                        int nuevaCantidad = modal.NuevaCantidad; // Obtener la nueva cantidad del modal
                         this.Cantidad = nuevaCantidad;
                         //MessageBox.Show(nuevaCantidad.ToString());
                         CantidadActualizada?.Invoke(this, nuevaCantidad);
