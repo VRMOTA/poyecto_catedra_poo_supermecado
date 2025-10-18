@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dashboard_admin));
             this.navegador = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel_control = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.btnPropiedades = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
@@ -40,6 +39,7 @@
             this.btnConsultas = new System.Windows.Forms.Button();
             this.btnDistribuidores = new System.Windows.Forms.Button();
             this.btnEmpleados = new System.Windows.Forms.Button();
+            this.panel_control = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -78,14 +78,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(286, 908);
             this.panel1.TabIndex = 12;
-            // 
-            // panel_control
-            // 
-            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_control.Location = new System.Drawing.Point(288, 0);
-            this.panel_control.Name = "panel_control";
-            this.panel_control.Size = new System.Drawing.Size(1278, 911);
-            this.panel_control.TabIndex = 2;
             // 
             // button2
             // 
@@ -272,6 +264,14 @@
             this.btnEmpleados.UseVisualStyleBackColor = false;
             this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
             // 
+            // panel_control
+            // 
+            this.panel_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_control.Location = new System.Drawing.Point(288, 0);
+            this.panel_control.Name = "panel_control";
+            this.panel_control.Size = new System.Drawing.Size(1278, 911);
+            this.panel_control.TabIndex = 2;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
@@ -324,8 +324,7 @@
             // 
             // frm_dashboard_admin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1564, 911);
             this.Controls.Add(this.panel_control);
             this.Controls.Add(this.navegador);

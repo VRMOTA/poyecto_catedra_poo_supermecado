@@ -121,7 +121,7 @@
   <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKYSURBVFhHtZdN
+        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKYSURBVFhHtZdN
         iE5hFMdnfIWFnWSGfMWGoTRTNJKEkpSibGws7NigrIgJNYmVjQWJJlFKKSuKzEopG0mRIUK+vxny03k7
         93bu3733ve+87/xW7z3P+f/P/Xie8zxvW1sLADqAW8AfqjMMHFevhgFmA4/UvSLD6tcQwALgmboW8BvY
         DWwBHidB9awM0AW8ytYoZSBo7SZqZF0rAnQDb7P+dbkNtLt+bxJU77oAK4BPWe/KDAIX/HPUUP9SgFXA
@@ -139,7 +139,7 @@
   <data name="btnPropiedades.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIgSURBVFhHzZdN
+        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIgSURBVFhHzZdN
         S1ZBGIY1CiuDNlJI/0CSpPwD2aooXKS2b28IRUEgQrRpFeo6CFpJf6CyTR8rC0EQgr5BJYiypULkFbfO
         ien2zHmP5z32dsG7mefjnjMz7zPztLVVANgPTAPLwBIwBXS4364AtAMP2Y7G2t2/MsA+YAS4BVwCusL4
         hCtHTASfrhCj2GFgr+cvBDgAvLTkv8JyN0I+8o15oW1znSTADUtQB9dcJwkw49E1MOM6SYDHHl0Dj1wn
@@ -186,7 +186,7 @@
   <data name="btnConsultas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAExSURBVFhH7ZXB
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAExSURBVFhH7ZXB
         SgNBDIZb8X3UIlK0toj4MlKEqiAFhR77fm1BfQ6FUg+fBPYwk8xOJRH0sB/sKf+fZGc3mV6v478BDIBH
         4KnlkdjJb/kymiRf7GcHHEd9BmCuHRXmUZ8BWGh1hUXUZ/Am8voM3kRen8GbyOszeBN5fQZvIq/P4B0n
         r88gm6pZFvsQzVHUV0Q2FfACLFue51ISr6/DEL3VgAPgCpgC98ANcKh1RaK3GjAENloMvAMjrTdExgk4

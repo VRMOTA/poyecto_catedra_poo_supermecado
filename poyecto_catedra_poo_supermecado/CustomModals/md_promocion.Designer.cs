@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(md_promocion));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmb_prod = new poyecto_catedra_poo_supermecado.CustomControls.RJComboBox();
@@ -73,6 +74,7 @@
             this.cmb_prod.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_prod.BorderSize = 2;
             this.cmb_prod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_prod.EnableTextInput = true;
             this.cmb_prod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_prod.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_prod.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -83,7 +85,7 @@
             this.cmb_prod.Location = new System.Drawing.Point(15, 84);
             this.cmb_prod.MinimumSize = new System.Drawing.Size(200, 30);
             this.cmb_prod.Name = "cmb_prod";
-            this.cmb_prod.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_prod.Padding = new System.Windows.Forms.Padding(2);
             this.cmb_prod.Size = new System.Drawing.Size(244, 36);
             this.cmb_prod.TabIndex = 50;
             this.cmb_prod.Texts = "";
@@ -107,10 +109,10 @@
             this.txt_cantidad_min.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cantidad_min.ForeColor = System.Drawing.Color.DimGray;
             this.txt_cantidad_min.Location = new System.Drawing.Point(15, 150);
-            this.txt_cantidad_min.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_cantidad_min.Margin = new System.Windows.Forms.Padding(4);
             this.txt_cantidad_min.Multiline = false;
             this.txt_cantidad_min.Name = "txt_cantidad_min";
-            this.txt_cantidad_min.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_cantidad_min.Padding = new System.Windows.Forms.Padding(7);
             this.txt_cantidad_min.PasswordChar = false;
             this.txt_cantidad_min.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_cantidad_min.PlaceholderText = "";
@@ -138,10 +140,10 @@
             this.txt_precio_prom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_precio_prom.ForeColor = System.Drawing.Color.DimGray;
             this.txt_precio_prom.Location = new System.Drawing.Point(15, 221);
-            this.txt_precio_prom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_precio_prom.Margin = new System.Windows.Forms.Padding(4);
             this.txt_precio_prom.Multiline = false;
             this.txt_precio_prom.Name = "txt_precio_prom";
-            this.txt_precio_prom.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_precio_prom.Padding = new System.Windows.Forms.Padding(7);
             this.txt_precio_prom.PasswordChar = false;
             this.txt_precio_prom.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_precio_prom.PlaceholderText = "";
@@ -170,10 +172,10 @@
             this.txt_descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_descripcion.ForeColor = System.Drawing.Color.DimGray;
             this.txt_descripcion.Location = new System.Drawing.Point(15, 296);
-            this.txt_descripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_descripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txt_descripcion.Multiline = true;
             this.txt_descripcion.Name = "txt_descripcion";
-            this.txt_descripcion.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.txt_descripcion.Padding = new System.Windows.Forms.Padding(7);
             this.txt_descripcion.PasswordChar = false;
             this.txt_descripcion.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_descripcion.PlaceholderText = "";
@@ -196,7 +198,7 @@
             // dtp_fecha_inicio
             // 
             this.dtp_fecha_inicio.Location = new System.Drawing.Point(331, 84);
-            this.dtp_fecha_inicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtp_fecha_inicio.Margin = new System.Windows.Forms.Padding(2);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(218, 20);
             this.dtp_fecha_inicio.TabIndex = 59;
@@ -215,7 +217,7 @@
             // dtp_fecha_final
             // 
             this.dtp_fecha_final.Location = new System.Drawing.Point(331, 150);
-            this.dtp_fecha_final.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtp_fecha_final.Margin = new System.Windows.Forms.Padding(2);
             this.dtp_fecha_final.Name = "dtp_fecha_final";
             this.dtp_fecha_final.Size = new System.Drawing.Size(218, 20);
             this.dtp_fecha_final.TabIndex = 61;
@@ -276,6 +278,7 @@
             this.cmb_activo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_activo.BorderSize = 2;
             this.cmb_activo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_activo.EnableTextInput = true;
             this.cmb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_activo.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_activo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -287,15 +290,14 @@
             this.cmb_activo.Location = new System.Drawing.Point(331, 217);
             this.cmb_activo.MinimumSize = new System.Drawing.Size(200, 30);
             this.cmb_activo.Name = "cmb_activo";
-            this.cmb_activo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_activo.Padding = new System.Windows.Forms.Padding(2);
             this.cmb_activo.Size = new System.Drawing.Size(218, 36);
             this.cmb_activo.TabIndex = 65;
             this.cmb_activo.Texts = "";
             // 
             // md_promocion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(665, 469);
             this.Controls.Add(this.cmb_activo);
             this.Controls.Add(this.label8);
@@ -314,9 +316,12 @@
             this.Controls.Add(this.cmb_prod);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "md_promocion";
-            this.Text = "md_promocion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Promocion";
             this.Load += new System.EventHandler(this.md_promocion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
