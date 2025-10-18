@@ -70,74 +70,88 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void ActualizarProducto(int idProducto, int nuevaCantidad)
         {
-            //se busca el codigo pepe
-            var producto = Utilities.Carrito.Productos.FirstOrDefault(p => p.Id == idProducto);
-            if (producto == null) return;
-
-            // actualiza cantidad en la lista global, prueba
-            producto.Cantidad = nuevaCantidad;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                DateTime hoy = DateTime.Now;
+                //se busca el codigo pepe
+                var producto = Utilities.Carrito.Productos.FirstOrDefault(p => p.Id == idProducto);
+                if (producto == null) return;
 
-                // Buscar promoción activa
-                var promo = db.tb_promociones.FirstOrDefault(p =>
-                    p.id_producto == producto.Id &&
-                    p.activa == true &&
-                    p.fecha_inicio <= hoy &&
-                    p.fecha_fin >= hoy &&
-                    nuevaCantidad >= p.cantidad_minima);
+                // actualiza cantidad en la lista global, prueba
+                producto.Cantidad = nuevaCantidad;
 
-                decimal totalProducto = 0m;
-
-                if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    int cantidadPromo = promo.cantidad_minima.Value;
-                    decimal precioPromo = promo.precio_promocional.Value;
+                    DateTime hoy = DateTime.Now;
 
-                    int bloquesCompletos = nuevaCantidad / cantidadPromo;
-                    int resto = nuevaCantidad % cantidadPromo;
+                    // Buscar promoción activa
+                    var promo = db.tb_promociones.FirstOrDefault(p =>
+                        p.id_producto == producto.Id &&
+                        p.activa == true &&
+                        p.fecha_inicio <= hoy &&
+                        p.fecha_fin >= hoy &&
+                        nuevaCantidad >= p.cantidad_minima);
 
-                    totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
-                }
-                else
-                {
-                    totalProducto = nuevaCantidad * producto.Precio;
-                }
+                    decimal totalProducto = 0m;
 
-                decimal ahorro = producto.Cantidad * producto.Precio - totalProducto;
-                // Buscar la card correspondiente y actualizar su total
-                foreach (Control ctrl in panel1.Controls)
-                {
-                    if (ctrl is CustomCards.card_producto_carrito card && card.IDProducto == idProducto)
+                    if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
                     {
-                        card.TotalProducto = totalProducto;
-                        card.AhorroProducto = ahorro;
-                        break;
+                        int cantidadPromo = promo.cantidad_minima.Value;
+                        decimal precioPromo = promo.precio_promocional.Value;
+
+                        int bloquesCompletos = nuevaCantidad / cantidadPromo;
+                        int resto = nuevaCantidad % cantidadPromo;
+
+                        totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
+                    }
+                    else
+                    {
+                        totalProducto = nuevaCantidad * producto.Precio;
+                    }
+
+                    decimal ahorro = producto.Cantidad * producto.Precio - totalProducto;
+                    // Buscar la card correspondiente y actualizar su total
+                    foreach (Control ctrl in panel1.Controls)
+                    {
+                        if (ctrl is CustomCards.card_producto_carrito card && card.IDProducto == idProducto)
+                        {
+                            card.TotalProducto = totalProducto;
+                            card.AhorroProducto = ahorro;
+                            break;
+                        }
                     }
                 }
-            }
 
-            // actualiza totales del carrito
-            ActualizarTotales();
+                // actualiza totales del carrito
+                ActualizarTotales();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar el producto en el carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void ActualizarTotales()
         {
-            decimal totalPagar = 0m;
-            int totalCantidad = 0;
-
-            foreach (Control ctrl in panel1.Controls)
+            try
             {
-                if (ctrl is CustomCards.card_producto_carrito card)
-                {
-                    totalCantidad += card.Cantidad;
-                    totalPagar += card.TotalProducto;
-                }
-            }
+                decimal totalPagar = 0m;
+                int totalCantidad = 0;
 
-            label2.Text = totalCantidad.ToString();
-            label4.Text = totalPagar.ToString("C2");
+                foreach (Control ctrl in panel1.Controls)
+                {
+                    if (ctrl is CustomCards.card_producto_carrito card)
+                    {
+                        totalCantidad += card.Cantidad;
+                        totalPagar += card.TotalProducto;
+                    }
+                }
+
+                label2.Text = totalCantidad.ToString();
+                label4.Text = totalPagar.ToString("C2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar los totales del carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void RecargarCarrito()
@@ -148,91 +162,98 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void CargarCarrito()
         {
-            int anchoCarta = 775;
-            int altoCarta = 204;
-            int espacio = 10;
-
-            panel1.Controls.Clear();
-            panel1.AutoScroll = true;
-
-            var productosCarrito = Utilities.Carrito.Productos;
-
-            decimal totalPagar = 0m;
-            int totalCantidad = 0;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                DateTime hoy = DateTime.Now;
+                int anchoCarta = 775;
+                int altoCarta = 204;
+                int espacio = 10;
 
-                for (int i = 0; i < productosCarrito.Count; i++)
+                panel1.Controls.Clear();
+                panel1.AutoScroll = true;
+
+                var productosCarrito = Utilities.Carrito.Productos;
+
+                decimal totalPagar = 0m;
+                int totalCantidad = 0;
+
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    var producto = productosCarrito[i];
+                    DateTime hoy = DateTime.Now;
 
-                    // Buscar promoción activa
-                    var promo = db.tb_promociones.FirstOrDefault(p =>
-                        p.id_producto == producto.Id &&
-                        p.activa == true &&
-                        p.fecha_inicio <= hoy &&
-                        p.fecha_fin >= hoy &&
-                        producto.Cantidad >= p.cantidad_minima);
-
-                    decimal totalProducto = 0m;
-                    int descuentoPorcentaje = 0;
-                    decimal ahorro = 0m;
-
-                    if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                    for (int i = 0; i < productosCarrito.Count; i++)
                     {
-                        int cantidadPromo = promo.cantidad_minima.Value;
-                        decimal precioPromo = promo.precio_promocional.Value;
+                        var producto = productosCarrito[i];
 
-                        int bloquesCompletos = producto.Cantidad / cantidadPromo;
-                        int resto = producto.Cantidad % cantidadPromo;
+                        // Buscar promoción activa
+                        var promo = db.tb_promociones.FirstOrDefault(p =>
+                            p.id_producto == producto.Id &&
+                            p.activa == true &&
+                            p.fecha_inicio <= hoy &&
+                            p.fecha_fin >= hoy &&
+                            producto.Cantidad >= p.cantidad_minima);
 
-                        totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
-                        ahorro = producto.Cantidad * producto.Precio - totalProducto;
-                        descuentoPorcentaje = (int)Math.Round((1 - ((decimal)(bloquesCompletos * precioPromo + resto * producto.Precio) / (producto.Precio * producto.Cantidad))) * 100);
+                        decimal totalProducto = 0m;
+                        int descuentoPorcentaje = 0;
+                        decimal ahorro = 0m;
 
-                        // Ajuste para mostrar solo promo en nombre si aplica
-                        if (bloquesCompletos > 0)
-                            producto.Nombre += " (Promo)";
+                        if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                        {
+                            int cantidadPromo = promo.cantidad_minima.Value;
+                            decimal precioPromo = promo.precio_promocional.Value;
+
+                            int bloquesCompletos = producto.Cantidad / cantidadPromo;
+                            int resto = producto.Cantidad % cantidadPromo;
+
+                            totalProducto = bloquesCompletos * precioPromo + resto * producto.Precio;
+                            ahorro = producto.Cantidad * producto.Precio - totalProducto;
+                            descuentoPorcentaje = (int)Math.Round((1 - ((decimal)(bloquesCompletos * precioPromo + resto * producto.Precio) / (producto.Precio * producto.Cantidad))) * 100);
+
+                            // Ajuste para mostrar solo promo en nombre si aplica
+                            if (bloquesCompletos > 0)
+                                producto.Nombre += " (Promo)";
+                        }
+                        else
+                        {
+                            totalProducto = producto.Cantidad * producto.Precio;
+                            ahorro = 0;
+                        }
+
+                        var card = new CustomCards.card_producto_carrito
+                        {
+                            IDProducto = producto.Id,
+                            NombreProducto = producto.Nombre + (promo != null ? " (Promo)" : ""),
+                            Precio = producto.Precio,
+                            Descuento = descuentoPorcentaje,
+                            Cantidad = producto.Cantidad,
+                            ImagenProducto = producto.Imagen,
+                            StockDisponible = producto.Stock,
+                            TotalProducto = totalProducto,
+                            AhorroProducto = ahorro,
+                            Width = anchoCarta,
+                            Height = altoCarta,
+                            Left = 0,
+                            Top = i * (altoCarta + espacio)
+
+                        };
+
+                        card.EliminarClick += (s, ev) => EliminarProducto(producto.Id);
+                        card.CantidadActualizada += (s, nuevaCantidad) => ActualizarProducto(producto.Id, nuevaCantidad);
+
+                        panel1.Controls.Add(card);
+
+                        // Total con descuento aplicado
+                        totalPagar += totalProducto;
+                        totalCantidad += producto.Cantidad;
                     }
-                    else
-                    {
-                        totalProducto = producto.Cantidad * producto.Precio;
-                        ahorro = 0;
-                    }
-
-                    var card = new CustomCards.card_producto_carrito
-                    {
-                        IDProducto = producto.Id,
-                        NombreProducto = producto.Nombre + (promo != null ? " (Promo)" : ""),
-                        Precio = producto.Precio,
-                        Descuento = descuentoPorcentaje,
-                        Cantidad = producto.Cantidad,
-                        ImagenProducto = producto.Imagen,
-                        StockDisponible = producto.Stock,
-                        TotalProducto = totalProducto,
-                        AhorroProducto = ahorro,
-                        Width = anchoCarta,
-                        Height = altoCarta,
-                        Left = 0,
-                        Top = i * (altoCarta + espacio)
-
-                    };
-
-                    card.EliminarClick += (s, ev) => EliminarProducto(producto.Id);
-                    card.CantidadActualizada += (s, nuevaCantidad) => ActualizarProducto(producto.Id, nuevaCantidad);
-
-                    panel1.Controls.Add(card);
-
-                    // Total con descuento aplicado
-                    totalPagar += totalProducto;
-                    totalCantidad += producto.Cantidad;
                 }
-            }
 
-            label2.Text = totalCantidad.ToString();
-            label4.Text = totalPagar.ToString("C2");
+                label2.Text = totalCantidad.ToString();
+                label4.Text = totalPagar.ToString("C2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar el carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

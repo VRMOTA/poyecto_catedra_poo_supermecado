@@ -57,28 +57,56 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void btn_consultas_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_categories());
+            try
+            {
+                abrir_panel(new frm_categories());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el módulo de categorías: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_carrito_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_carrito_cajero(model_usuario));
+            try
+            {
+                abrir_panel(new frm_carrito_cajero(model_usuario));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_categoria_Click(object sender, EventArgs e)
         {
-            abrir_panel(new frm_catalogo_cajero());
+            try
+            {
+                abrir_panel(new frm_catalogo_cajero());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el catálogo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void abrir_panel(object formularioHijo) // Metodo para abrir formularios dentro del panel
         {
-            if (this.panel_control.Controls.Count > 0)
-                this.panel_control.Controls.RemoveAt(0); // Pregunta si hay un formulario abierto y lo cierra
-            Form fh = formularioHijo as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panel_control.Controls.Add(fh);
-            this.panel_control.Tag = fh;
-            fh.Show();
+            try
+            {
+                if (this.panel_control.Controls.Count > 0)
+                    this.panel_control.Controls.RemoveAt(0); // Pregunta si hay un formulario abierto y lo cierra
+                Form fh = formularioHijo as Form;
+                fh.TopLevel = false;
+                fh.Dock = DockStyle.Fill;
+                this.panel_control.Controls.Add(fh);
+                this.panel_control.Tag = fh;
+                fh.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frm_dashboard_cajero_FormClosed(object sender, FormClosedEventArgs e)

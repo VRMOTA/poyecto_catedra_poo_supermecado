@@ -38,243 +38,271 @@ namespace poyecto_catedra_poo_supermecado.Forms
         // Este método se ejecutará cuando se presione cualquier botón btnVisualizar
         private void Card_BotonVisualizarClick(object sender, int idProducto)
         {
-            idSeleccionado = idProducto;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                var producto = db.tb_producto
-                                .Where(p => p.id_producto == idProducto)
-                                .Select(p => new
-                                {
-                                    p.id_producto,
-                                    p.nombre,
-                                    p.precio,
-                                    p.stock,
-                                    p.descripcion,
-                                    p.imagen
-                                })
-                                .FirstOrDefault();
+                idSeleccionado = idProducto;
 
-                if (producto != null)
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    lblProducto.Text = producto.nombre;
-                    lblPrecio.Text = (producto.precio ?? 0m).ToString("C2");
-                    lbstock.Text = (producto.stock ?? 0).ToString();
-                    lbdescriccion.Text = producto.descripcion ?? "";
+                    var producto = db.tb_producto
+                                    .Where(p => p.id_producto == idProducto)
+                                    .Select(p => new
+                                    {
+                                        p.id_producto,
+                                        p.nombre,
+                                        p.precio,
+                                        p.stock,
+                                        p.descripcion,
+                                        p.imagen
+                                    })
+                                    .FirstOrDefault();
 
-                    // pa la promo
-                    var promo = db.tb_promociones
-                        .Where(pr => pr.id_producto == idProducto
-                                     && pr.activa == true
-                                     && pr.fecha_inicio <= DateTime.Now
-                                     && pr.fecha_fin >= DateTime.Now)
-                        .FirstOrDefault();
-
-                    if (promo != null)
+                    if (producto != null)
                     {
-                        lbPromo.Text = $"Promoción: {promo.descripcion}\nPrecio Promo: {promo.precio_promocional:C2}";
-                        lbPromo.ForeColor = Color.DarkGreen;
-                    }
-                    else
-                    {
-                        lbPromo.Text = "Sin promoción activa.";
-                        lbPromo.ForeColor = Color.Gray;
-                    }
+                        lblProducto.Text = producto.nombre;
+                        lblPrecio.Text = (producto.precio ?? 0m).ToString("C2");
+                        lbstock.Text = (producto.stock ?? 0).ToString();
+                        lbdescriccion.Text = producto.descripcion ?? "";
 
+                        // pa la promo
+                        var promo = db.tb_promociones
+                            .Where(pr => pr.id_producto == idProducto
+                                         && pr.activa == true
+                                         && pr.fecha_inicio <= DateTime.Now
+                                         && pr.fecha_fin >= DateTime.Now)
+                            .FirstOrDefault();
 
-                    if (producto.imagen != null)
-                    {
-                        using (MemoryStream ms = new MemoryStream(producto.imagen))
+                        if (promo != null)
                         {
-                            pbProducto.Image = Image.FromStream(ms);
+                            lbPromo.Text = $"Promoción: {promo.descripcion}\nPrecio Promo: {promo.precio_promocional:C2}";
+                            lbPromo.ForeColor = Color.DarkGreen;
+                        }
+                        else
+                        {
+                            lbPromo.Text = "Sin promoción activa.";
+                            lbPromo.ForeColor = Color.Gray;
+                        }
+
+
+                        if (producto.imagen != null)
+                        {
+                            using (MemoryStream ms = new MemoryStream(producto.imagen))
+                            {
+                                pbProducto.Image = Image.FromStream(ms);
+                            }
+                        }
+                        else
+                        {
+                            pbProducto.Image = null;
                         }
                     }
                     else
                     {
-                        pbProducto.Image = null;
+                        MessageBox.Show("Producto no encontrado.");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Producto no encontrado.");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar información del producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CargarProductos()
         {
-            int columnas = 4;
-            int anchoCarta = 238; // Ajusta según el tamaño real de card_producto_menu
-            int altoCarta = 266;  // Ajusta según el tamaño real de card_producto_menu
-            int espacio = 10;     // Espacio entre cartas
-
-            List<dynamic> listaProductos;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                // Traer los campos necesarios de tb_producto (sin descuentos ni promociones)
-                listaProductos = db.tb_producto
-                    .Where(p => p.activo == true) // solo activos, opcional
-                    .Select(p => new
-                    {
-                        p.id_producto,
-                        p.nombre,
-                        p.precio,
-                        p.stock,
-                        p.descripcion,
-                        p.imagen
-                    })
-                    .ToList<dynamic>();
-            }
+                int columnas = 4;
+                int anchoCarta = 238; // Ajusta según el tamaño real de card_producto_menu
+                int altoCarta = 266;  // Ajusta según el tamaño real de card_producto_menu
+                int espacio = 10;     // Espacio entre cartas
 
-            panel1.Controls.Clear();
-            productosCards.Clear();
-            panel1.AutoScroll = true;
+                List<dynamic> listaProductos;
 
-            for (int i = 0; i < listaProductos.Count; i++)
-            {
-                var prod = listaProductos[i];
-
-                // Convertir byte[] a Image si existe
-                Image imgProd = null;
-                if (prod.imagen != null)
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    try
-                    {
-                        using (MemoryStream ms = new MemoryStream(prod.imagen))
+                    // Traer los campos necesarios de tb_producto (sin descuentos ni promociones)
+                    listaProductos = db.tb_producto
+                        .Where(p => p.activo == true) // solo activos, opcional
+                        .Select(p => new
                         {
-                            imgProd = Image.FromStream(ms);
-                        }
-                    }
-                    catch
-                    {
-                        imgProd = null; // Manejar error de imagen si fuera necesario
-                    }
+                            p.id_producto,
+                            p.nombre,
+                            p.precio,
+                            p.stock,
+                            p.descripcion,
+                            p.imagen
+                        })
+                        .ToList<dynamic>();
                 }
 
-                var card = new card_producto_menu
+                panel1.Controls.Clear();
+                productosCards.Clear();
+                panel1.AutoScroll = true;
+
+                for (int i = 0; i < listaProductos.Count; i++)
                 {
-                    IDProducto = prod.id_producto,
-                    Producto = prod.nombre,
-                    Precio = prod.precio ?? 0m,
-                    ImagenProducto = imgProd,
-                    Descuento = 0,
-                    Width = anchoCarta,
-                    Height = altoCarta,
-                    Margin = new Padding(espacio)
-                };
+                    var prod = listaProductos[i];
 
-                // Suscribirse al evento personalizado
-                card.BotonVisualizarClick += Card_BotonVisualizarClick;
+                    // Convertir byte[] a Image si existe
+                    Image imgProd = null;
+                    if (prod.imagen != null)
+                    {
+                        try
+                        {
+                            using (MemoryStream ms = new MemoryStream(prod.imagen))
+                            {
+                                imgProd = Image.FromStream(ms);
+                            }
+                        }
+                        catch
+                        {
+                            imgProd = null; // Manejar error de imagen si fuera necesario
+                        }
+                    }
 
-                int fila = i / columnas;
-                int columna = i % columnas;
+                    var card = new card_producto_menu
+                    {
+                        IDProducto = prod.id_producto,
+                        Producto = prod.nombre,
+                        Precio = prod.precio ?? 0m,
+                        ImagenProducto = imgProd,
+                        Descuento = 0,
+                        Width = anchoCarta,
+                        Height = altoCarta,
+                        Margin = new Padding(espacio)
+                    };
 
-                card.Width = anchoCarta;
-                card.Height = altoCarta;
-                card.Left = columna * (anchoCarta + espacio);
-                card.Top = fila * (altoCarta + espacio);
+                    // Suscribirse al evento personalizado
+                    card.BotonVisualizarClick += Card_BotonVisualizarClick;
 
-                panel1.Controls.Add(card);
-                productosCards.Add(card);
+                    int fila = i / columnas;
+                    int columna = i % columnas;
+
+                    card.Width = anchoCarta;
+                    card.Height = altoCarta;
+                    card.Left = columna * (anchoCarta + espacio);
+                    card.Top = fila * (altoCarta + espacio);
+
+                    panel1.Controls.Add(card);
+                    productosCards.Add(card);
+                }
+
+                int filasNecesarias = (int)Math.Ceiling((double)listaProductos.Count / columnas);
+                panel1.AutoScrollMinSize = new Size(
+                    columnas * (anchoCarta + espacio),
+                    filasNecesarias * (altoCarta + espacio)
+                );
             }
-
-            int filasNecesarias = (int)Math.Ceiling((double)listaProductos.Count / columnas);
-            panel1.AutoScrollMinSize = new Size(
-                columnas * (anchoCarta + espacio),
-                filasNecesarias * (altoCarta + espacio)
-            );
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los productos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonMaxing2_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == 0)
+            try
             {
-                MessageBox.Show("Seleccione un producto primero.");
-                return;
-            }
-
-            int cantidad = 1;
-            if (!int.TryParse(textboxMaxing2.Texts, out cantidad) || cantidad <= 0)
-            {
-                MessageBox.Show("Ingrese una cantidad válida.");
-                return;
-            }
-
-            using (var db = new db_supermercadoEntities1())
-            {
-                var prod = db.tb_producto.FirstOrDefault(p => p.id_producto == idSeleccionado);
-                if (prod != null)
+                if (idSeleccionado == 0)
                 {
-                    int stockDisponible = prod.stock ?? 0;
-
-                    if (cantidad > stockDisponible)
-                    {
-                        MessageBox.Show($"La cantidad ingresada ({cantidad}) supera el stock disponible ({stockDisponible}).");
-                        return;
-                    }
-                    Image imagen = null;
-                    if (prod.imagen != null)
-                    {
-                        using (var ms = new MemoryStream(prod.imagen))
-                        {
-                            imagen = Image.FromStream(ms);
-                        }
-                    }
-
-                    var seleccionado = new Utilities.ProductoSeleccionado
-                    {
-                        Id = prod.id_producto,
-                        Nombre = prod.nombre,
-                        Precio = prod.precio ?? 0m,
-                        Cantidad = cantidad,
-                        Imagen = imagen,
-                        Stock = prod.stock ?? 0
-                    };
-
-                    Utilities.Carrito.AgregarProducto(seleccionado);
-                    MessageBox.Show($" {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
+                    MessageBox.Show("Seleccione un producto primero.");
+                    return;
                 }
+
+                int cantidad = 1;
+                if (!int.TryParse(textboxMaxing2.Texts, out cantidad) || cantidad <= 0)
+                {
+                    MessageBox.Show("Ingrese una cantidad válida.");
+                    return;
+                }
+
+                using (var db = new db_supermercadoEntities1())
+                {
+                    var prod = db.tb_producto.FirstOrDefault(p => p.id_producto == idSeleccionado);
+                    if (prod != null)
+                    {
+                        int stockDisponible = prod.stock ?? 0;
+
+                        if (cantidad > stockDisponible)
+                        {
+                            MessageBox.Show($"La cantidad ingresada ({cantidad}) supera el stock disponible ({stockDisponible}).");
+                            return;
+                        }
+                        Image imagen = null;
+                        if (prod.imagen != null)
+                        {
+                            using (var ms = new MemoryStream(prod.imagen))
+                            {
+                                imagen = Image.FromStream(ms);
+                            }
+                        }
+
+                        var seleccionado = new Utilities.ProductoSeleccionado
+                        {
+                            Id = prod.id_producto,
+                            Nombre = prod.nombre,
+                            Precio = prod.precio ?? 0m,
+                            Cantidad = cantidad,
+                            Imagen = imagen,
+                            Stock = prod.stock ?? 0
+                        };
+
+                        Utilities.Carrito.AgregarProducto(seleccionado);
+                        MessageBox.Show($" {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al agregar el producto al carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Buscador()
         {
-            string busqueda = txt_buscar.Texts.ToLower();
-            int columnas = 4;
-            int anchoCarta = 238;
-            int altoCarta = 266;
-            int espacio = 10;
-
-            // Obtener todas las cartas
-            var todasLasCartas = panel1.Controls.OfType<card_producto_menu>().ToList();
-
-            // Separar en filtradas y no filtradas
-            var cartasFiltradas = todasLasCartas
-                .Where(c => c.Producto.ToLower().Contains(busqueda))
-                .ToList();
-
-            var cartasNoFiltradas = todasLasCartas
-                .Where(c => !cartasFiltradas.Contains(c))
-                .ToList();
-
-            // Reposicionar: primero las filtradas, luego las no filtradas
-            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
-
-            for (int i = 0; i < cartasOrdenadas.Count; i++)
+            try
             {
-                var card = cartasOrdenadas[i];
+                string busqueda = txt_buscar.Texts.ToLower();
+                int columnas = 4;
+                int anchoCarta = 238;
+                int altoCarta = 266;
+                int espacio = 10;
 
-                int fila = i / columnas;
-                int columna = i % columnas;
+                // Obtener todas las cartas
+                var todasLasCartas = panel1.Controls.OfType<card_producto_menu>().ToList();
 
-                card.Left = columna * (anchoCarta + espacio);
-                card.Top = fila * (altoCarta + espacio);
-                card.Visible = cartasFiltradas.Contains(card);
+                // Separar en filtradas y no filtradas
+                var cartasFiltradas = todasLasCartas
+                    .Where(c => c.Producto.ToLower().Contains(busqueda))
+                    .ToList();
+
+                var cartasNoFiltradas = todasLasCartas
+                    .Where(c => !cartasFiltradas.Contains(c))
+                    .ToList();
+
+                // Reposicionar: primero las filtradas, luego las no filtradas
+                var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+
+                for (int i = 0; i < cartasOrdenadas.Count; i++)
+                {
+                    var card = cartasOrdenadas[i];
+
+                    int fila = i / columnas;
+                    int columna = i % columnas;
+
+                    card.Left = columna * (anchoCarta + espacio);
+                    card.Top = fila * (altoCarta + espacio);
+                    card.Visible = cartasFiltradas.Contains(card);
+                }
+
+                // Scroll al inicio cuando se busca
+                panel1.AutoScrollPosition = new Point(0, 0);
             }
-
-            // Scroll al inicio cuando se busca
-            panel1.AutoScrollPosition = new Point(0, 0);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en la búsqueda: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
