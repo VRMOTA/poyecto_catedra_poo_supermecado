@@ -30,7 +30,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             if (int.TryParse(txtCantidad.Texts, out int cantidad) && cantidad > 0)
             {
-                if (cantidad > StockDisponible)   // ✅ Validación de stock
+                if (cantidad > StockDisponible)   
                 {
                     MessageBox.Show($"La cantidad ingresada ({cantidad}) supera el stock disponible ({StockDisponible}).",
                                     "Stock insuficiente",

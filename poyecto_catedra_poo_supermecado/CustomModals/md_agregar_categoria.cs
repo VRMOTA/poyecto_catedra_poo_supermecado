@@ -37,6 +37,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string nombre = txt_nombre.Texts.Trim();
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Categoria")) return;
 
             if (string.IsNullOrEmpty(nombre))
             {
@@ -49,14 +50,14 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 // Si es un registro nuevo
                 if (ID_Categories_vista == 0)
                 {
-                        tb_categorias nuevo = new tb_categorias
-                        {
-                            nombre = nombre
-                        };
+                    tb_categorias nuevo = new tb_categorias
+                    {
+                        nombre = nombre
+                    };
 
-                        db.tb_categorias.Add(nuevo);
-                        db.SaveChanges();
-                        MessageBox.Show("Categoria agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    db.tb_categorias.Add(nuevo);
+                    db.SaveChanges();
+                    MessageBox.Show("Categoria agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 // Si es una edición
                 else
@@ -78,6 +79,32 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                //condicion para solo números
+                if (char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //para backspace
+                else if (char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //para que admita tecla de espacio
+                else if (char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //si no cumple nada de lo anterior que no lo deje pasar
+                else
+                {
+                    e.Handled = true;
+                    MessageBox.Show("Solo se admiten letras", "validación de texto",
+                   MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
         }
     }
 }
