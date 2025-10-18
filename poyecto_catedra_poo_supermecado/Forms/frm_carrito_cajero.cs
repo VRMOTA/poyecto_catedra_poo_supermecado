@@ -388,5 +388,32 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 MessageBox.Show("Error al procesar la venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para que admita tecla de espacio
+            else if (char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //si no cumple nada de lo anterior que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten letras", "validación de texto",
+               MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+        }
+    } 
 }

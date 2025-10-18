@@ -52,6 +52,11 @@
             // 
             // card_producto_carrito1
             // 
+            this.card_producto_carrito1.AhorroProducto = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.card_producto_carrito1.BackColor = System.Drawing.Color.Transparent;
             this.card_producto_carrito1.BorderColor = System.Drawing.Color.Gray;
             this.card_producto_carrito1.BorderThickness = 1;
@@ -72,6 +77,11 @@
             this.card_producto_carrito1.Size = new System.Drawing.Size(775, 204);
             this.card_producto_carrito1.StockDisponible = 0;
             this.card_producto_carrito1.TabIndex = 0;
+            this.card_producto_carrito1.TotalProducto = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // roundedControlBase1
             // 
@@ -167,6 +177,7 @@
             this.txtNombre.TabIndex = 8;
             this.txtNombre.Texts = "";
             this.txtNombre.UnderlinedStyle = true;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // buttonMaxing1
             // 

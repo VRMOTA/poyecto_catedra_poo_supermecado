@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace poyecto_catedra_poo_supermecado.Forms
 {
@@ -121,8 +122,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    // Traer los campos necesarios de tb_producto (sin descuentos ni promociones)
+                    // Traer los campos necesarios de tb_producto incluyendo la categoría
                     listaProductos = db.tb_producto
+                        .Include("tb_categorias")
                         .Where(p => p.activo == true) // solo activos, opcional
                         .Select(p => new
                         {
@@ -131,7 +133,8 @@ namespace poyecto_catedra_poo_supermecado.Forms
                             p.precio,
                             p.stock,
                             p.descripcion,
-                            p.imagen
+                            p.imagen,
+                            categoria = p.tb_categorias.nombre ?? ""
                         })
                         .ToList<dynamic>();
                 }
@@ -167,6 +170,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         Producto = prod.nombre,
                         Precio = prod.precio ?? 0m,
                         ImagenProducto = imgProd,
+                        Categoria = prod.categoria ?? "",
                         Descuento = 0,
                         Width = anchoCarta,
                         Height = altoCarta,
@@ -264,12 +268,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 MessageBox.Show($"Error al agregar el producto al carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
+
+        /// <summary>
+        /// Método para buscar productos por nombre o categoría
+        /// Utiliza la información ya cargada en las cartas para mayor eficiencia
+        /// </summary>
         private void Buscador()
         {
             try
             {
-                string busqueda = txt_buscar.Texts.ToLower();
+                string busqueda = txt_buscar.Texts.ToLower().Trim();
                 int columnas = 3;
                 int anchoCarta = 238;
                 int altoCarta = 266;
@@ -277,11 +285,38 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 // Obtener todas las cartas
                 var todasLasCartas = panel1.Controls.OfType<card_producto_menu>().ToList();
+                List<card_producto_menu> cartasFiltradas = new List<card_producto_menu>();
 
-                // Separar en filtradas y no filtradas
-                var cartasFiltradas = todasLasCartas
-                    .Where(c => c.Producto.ToLower().Contains(busqueda))
-                    .ToList();
+                if (string.IsNullOrEmpty(busqueda))
+                {
+                    // Si no hay búsqueda, mostrar todos los productos
+                    cartasFiltradas = todasLasCartas;
+                }
+                else
+                {
+                    // Filtrar las cartas usando la información ya disponible en ellas
+                    foreach (var card in todasLasCartas)
+                    {
+                        bool encontrado = false;
+
+                        // Buscar por nombre del producto
+                        if (card.Producto.ToLower().Contains(busqueda))
+                        {
+                            encontrado = true;
+                        }
+                        // Buscar por categoría usando la propiedad Categoria de la carta
+                        else if (!string.IsNullOrEmpty(card.Categoria) &&
+                                 card.Categoria.ToLower().Contains(busqueda))
+                        {
+                            encontrado = true;
+                        }
+
+                        if (encontrado)
+                        {
+                            cartasFiltradas.Add(card);
+                        }
+                    }
+                }
 
                 var cartasNoFiltradas = todasLasCartas
                     .Where(c => !cartasFiltradas.Contains(c))
@@ -352,7 +387,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
