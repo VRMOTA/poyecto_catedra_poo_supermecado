@@ -12,7 +12,11 @@ using poyecto_catedra_poo_supermecado.Utilities;
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_dashboard_admin : Form
-    {
+    {    //Fernando José Gomez Martínez GM251673
+         //Jeanfranco Andre Campos López CL250978
+         //Darlyn Marisol Romero Argueta RA250216
+         //José Alejandro Sánchez Henríquez SH250142
+         //Stalin Jafet Dubón Lemus DL251728
         public frm_dashboard_admin()
         {
             InitializeComponent();

@@ -11,7 +11,11 @@ using System.Data.Entity;
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_catalogo_cajero : Form
-    {
+    {    //Fernando José Gomez Martínez GM251673
+         //Jeanfranco Andre Campos López CL250978
+         //Darlyn Marisol Romero Argueta RA250216
+         //José Alejandro Sánchez Henríquez SH250142
+         //Stalin Jafet Dubón Lemus DL251728
         private List<card_producto_menu> productosCards = new List<card_producto_menu>();
         private int idSeleccionado = 0; // guarda el id seleccionado para usarlo luego
 

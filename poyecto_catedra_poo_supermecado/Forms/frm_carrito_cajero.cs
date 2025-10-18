@@ -15,7 +15,11 @@ using System.Windows.Forms;
 using poyecto_catedra_poo_supermecado.Models;
 
 namespace poyecto_catedra_poo_supermecado.Forms
-{
+{    //Fernando José Gomez Martínez GM251673
+    //Jeanfranco Andre Campos López CL250978
+    //Darlyn Marisol Romero Argueta RA250216
+    //José Alejandro Sánchez Henríquez SH250142
+    //Stalin Jafet Dubón Lemus DL251728
     public partial class frm_carrito_cajero : Form
     {
         private model_usuario model_usuario; // Campo para el usuario actual

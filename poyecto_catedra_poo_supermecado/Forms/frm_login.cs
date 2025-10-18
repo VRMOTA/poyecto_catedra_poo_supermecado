@@ -9,7 +9,11 @@ using System.Windows.Forms;
 namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_login : Form
-    {
+    {    //Fernando José Gomez Martínez GM251673
+         //Jeanfranco Andre Campos López CL250978
+         //Darlyn Marisol Romero Argueta RA250216
+         //José Alejandro Sánchez Henríquez SH250142
+         //Stalin Jafet Dubón Lemus DL251728
         private model_usuario model_usuario; // Objeto para guardar los datos del usuario logueado
 
         public frm_login()
