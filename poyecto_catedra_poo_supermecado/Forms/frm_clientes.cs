@@ -57,6 +57,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                                   promo.fecha_inicio <= fechaActual &&
                                                   (promo.fecha_fin == null || promo.fecha_fin >= fechaActual))
                                            .DefaultIfEmpty()
+                                       where p.activo == true
                                        select new
                                        {
                                            p.id_producto,
@@ -114,6 +115,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     Precio = producto.precio ?? 0m,
                     Descuento = (int)Math.Round(descuento),
                     ImagenProducto = imagenProducto,
+                    Categoria = producto.categoria ?? "",
                     Width = AnchoCarta,
                     Height = AltoCarta
                 };
@@ -155,7 +157,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                                promo.fecha_inicio <= fechaActual &&
                                                (promo.fecha_fin == null || promo.fecha_fin >= fechaActual))
                                         .DefaultIfEmpty()
-                                    where p.id_producto == idProducto
+                                    where p.id_producto == idProducto && p.activo == true
                                     select new
                                     {
                                         p.nombre,
@@ -259,22 +261,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
-        private void buttonMaxing1_Click(object sender, EventArgs e)
-        {
-            // Prueba de conexión a BD
-            try
-            {
-                using (var db = new db_supermercadoEntities1())
-                {
-                    int total = db.tb_producto.Count();
-                    MessageBox.Show("Conexión exitosa. Total de productos: " + total, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error de conexión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+    
 
         private void Buscar()
         {

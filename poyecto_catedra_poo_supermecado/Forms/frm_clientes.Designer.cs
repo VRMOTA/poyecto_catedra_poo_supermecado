@@ -33,7 +33,6 @@
             this.card = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
             this.rd_fondo = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
             this.txt_buscar = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.panelRedondeado1 = new poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado();
             this.lbdescriccion = new System.Windows.Forms.Label();
@@ -104,7 +103,7 @@
             this.txt_buscar.BorderSize = 7;
             this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_buscar.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_buscar.Location = new System.Drawing.Point(28, 30);
+            this.txt_buscar.Location = new System.Drawing.Point(31, 30);
             this.txt_buscar.Margin = new System.Windows.Forms.Padding(4);
             this.txt_buscar.Multiline = false;
             this.txt_buscar.Name = "txt_buscar";
@@ -112,30 +111,11 @@
             this.txt_buscar.PasswordChar = false;
             this.txt_buscar.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_buscar.PlaceholderText = "Buscar";
-            this.txt_buscar.Size = new System.Drawing.Size(1079, 35);
+            this.txt_buscar.Size = new System.Drawing.Size(1249, 35);
             this.txt_buscar.TabIndex = 13;
             this.txt_buscar.Texts = "";
             this.txt_buscar.UnderlinedStyle = true;
             this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
-            // 
-            // buttonMaxing1
-            // 
-            this.buttonMaxing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing1.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing1.BorderRadius = 15;
-            this.buttonMaxing1.BorderSize = 0;
-            this.buttonMaxing1.FlatAppearance.BorderSize = 0;
-            this.buttonMaxing1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMaxing1.ForeColor = System.Drawing.Color.White;
-            this.buttonMaxing1.Image = ((System.Drawing.Image)(resources.GetObject("buttonMaxing1.Image")));
-            this.buttonMaxing1.Location = new System.Drawing.Point(1114, 29);
-            this.buttonMaxing1.Name = "buttonMaxing1";
-            this.buttonMaxing1.Size = new System.Drawing.Size(167, 36);
-            this.buttonMaxing1.TabIndex = 12;
-            this.buttonMaxing1.TextColor = System.Drawing.Color.White;
-            this.buttonMaxing1.UseVisualStyleBackColor = false;
-            this.buttonMaxing1.Click += new System.EventHandler(this.buttonMaxing1_Click);
             // 
             // buttonMaxing2
             // 
@@ -275,7 +255,6 @@
             this.ClientSize = new System.Drawing.Size(1564, 911);
             this.Controls.Add(this.buttonMaxing2);
             this.Controls.Add(this.txt_buscar);
-            this.Controls.Add(this.buttonMaxing1);
             this.Controls.Add(this.pln_cards);
             this.Controls.Add(this.panelRedondeado1);
             this.Controls.Add(this.rd_fondo);
@@ -297,7 +276,6 @@
         private System.Windows.Forms.Panel pln_cards;
         private CustomCards.RoundedControlBase rd_fondo;
         private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_buscar;
-        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private CustomCards.card_producto_menu card;
         private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing2;
         private poyecto_catedra_poo_supermecado.CustomControls.PanelRedondeado panelRedondeado1;
