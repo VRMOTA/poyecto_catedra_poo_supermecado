@@ -83,11 +83,14 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
+                // Encriptar la contraseña antes de guardarla
+                string claveEncriptada = SeguridadHelper.HashPassword(clave);
+
                 tb_usuario usuario = new tb_usuario
                 {
                     nombre = nombre,
                     correo = correo,
-                    clave = clave,
+                    clave = claveEncriptada,
                     tipo_usuario = rol,
                     activo = (nivel == 1),
                 };
@@ -125,7 +128,8 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     usuario.correo = correo;
                     if (!string.IsNullOrEmpty(clave))
                     {
-                        usuario.clave = clave;
+                        // Encriptar la nueva contraseña antes de guardarla
+                        usuario.clave = SeguridadHelper.HashPassword(clave);
                     }
                     usuario.tipo_usuario = rol;
                     usuario.activo = (nivel == 1);

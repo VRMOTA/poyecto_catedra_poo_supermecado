@@ -9,10 +9,9 @@ namespace poyecto_catedra_poo_supermecado.Utilities
         private const int HashSize = 32; // bytes de hash
         private const int Iterations = 150000; // puedes ajustar según rendimiento
 
-        /// <summary>
         /// Genera un hash seguro de la contraseña con sal aleatoria.
         /// Formato: iteraciones.salt.hash
-        /// </summary>
+
         public static string HashPassword(string password)
         {
             if (password == null) throw new ArgumentNullException(nameof(password));
@@ -35,9 +34,8 @@ namespace poyecto_catedra_poo_supermecado.Utilities
             return $"{Iterations}.{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}";
         }
 
-        /// <summary>
+
         /// Verifica si la contraseña ingresada coincide con el hash almacenado.
-        /// </summary>
         public static bool VerifyPassword(string password, string storedHash)
         {
             if (password == null) throw new ArgumentNullException(nameof(password));
@@ -60,9 +58,9 @@ namespace poyecto_catedra_poo_supermecado.Utilities
             return FixedTimeEquals(computedHash, hash);
         }
 
-        /// <summary>
+  
         /// Comparación segura de dos arrays en tiempo constante para evitar timing attacks
-        /// </summary>
+
         private static bool FixedTimeEquals(byte[] a, byte[] b)
         {
             if (a.Length != b.Length) return false;
