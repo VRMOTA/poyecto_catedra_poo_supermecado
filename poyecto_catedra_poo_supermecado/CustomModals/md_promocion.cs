@@ -19,48 +19,48 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             InitializeComponent();
         }
 
-        public md_promocion(string labelText, string buttonText) : this()
+        public md_promocion(string labelText, string buttonText) : this() // Llama al constructor predeterminado
         {
             label1.Text = labelText;
             btnActualizar.Text = buttonText;
         }
 
-        public int ID_Promocion_vista { get; set; } = 0;
+        public int ID_Promocion_vista { get; set; } = 0; // Nueva propiedad para manejar el ID de la promoción
 
         // Nueva propiedad para manejar el ID del producto
         public int? IDProducto_vista { get; set; }
 
-        public int Cantidad_minima_vista
+        public int Cantidad_minima_vista // Propiedad para manejar la cantidad mínima
         {
             get => int.TryParse(txt_cantidad_min.Texts, out int result) ? result : 0;
             set => txt_cantidad_min.Texts = value.ToString();
         }
 
-        public string Precio_promocional_vista
+        public string Precio_promocional_vista // Propiedad para manejar el precio promocional
         {
             get => txt_precio_prom.Texts;
             set => txt_precio_prom.Texts = value;
         }
 
-        public string Descripcion_vista
+        public string Descripcion_vista // Propiedad para manejar la descripción
         {
             get => txt_descripcion.Texts;
             set => txt_descripcion.Texts = value;
         }
 
-        public DateTime Fecha_inicio_vista
+        public DateTime Fecha_inicio_vista // Propiedad para manejar la fecha de inicio
         {
             get => dtp_fecha_inicio.Value;
             set => dtp_fecha_inicio.Value = value;
         }
 
-        public DateTime Fecha_final_vista
+        public DateTime Fecha_final_vista // Propiedad para manejar la fecha final
         {
             get => dtp_fecha_final.Value;
             set => dtp_fecha_final.Value = value;
         }
 
-        public bool Activa_vista
+        public bool Activa_vista // Propiedad para manejar si la promoción está activa
         {
             get => cmb_activo.Texts.ToLower() == "activo";
             set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
@@ -84,7 +84,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 {
                     using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        var producto = db.tb_producto.FirstOrDefault(p => p.nombre.ToLower() == textoProducto.ToLower() && p.activo == true);
+                        var producto = db.tb_producto.FirstOrDefault(p => p.nombre.ToLower() == textoProducto.ToLower() && p.activo == true); // Buscar producto por nombre
                         if (producto != null)
                         {
                             idProducto = producto.id_producto;
@@ -93,7 +93,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 }
             }
 
-            if (idProducto == null || idProducto == 0)
+            if (idProducto == null || idProducto == 0) // No se seleccionó un producto válido
             {
                 MessageBox.Show("Debe seleccionar un producto válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -127,18 +127,19 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 MessageBox.Show("La fecha final debe ser mayor o igual a la fecha de inicio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts)) // Validar estado seleccionado
             {
                 MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                if (ID_Promocion_vista == 0)
+                if (ID_Promocion_vista == 0) // Agregar nueva promoción
                 {
                     // Crear nueva promoción
                     tb_promociones nuevo = new tb_promociones
                     {
+                        // Dar valores a las propiedades
                         id_producto = idProducto,
                         cantidad_minima = cantidad_min,
                         precio_promocional = precio_prom,
@@ -156,7 +157,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     // Editar promoción existente
                     var promociones = db.tb_promociones.Find(ID_Promocion_vista);
                     if (promociones != null)
-                    {
+                    {   // Actualizar propiedades
                         promociones.id_producto = idProducto;
                         promociones.cantidad_minima = cantidad_min;
                         promociones.precio_promocional = precio_prom;
@@ -188,11 +189,11 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var productos = db.tb_producto.Where(p => p.activo == true).ToList();
-                cmb_prod.DataSource = productos;
-                cmb_prod.DisplayMember = "nombre";
-                cmb_prod.ValueMember = "id_producto";
-                cmb_prod.SelectedIndex = -1;
+                var productos = db.tb_producto.Where(p => p.activo == true).ToList(); // Solo productos activos
+                cmb_prod.DataSource = productos; // Asignar lista de productos como fuente de datos
+                cmb_prod.DisplayMember = "nombre"; // Mostrar el nombre del producto
+                cmb_prod.ValueMember = "id_producto";// Asignar el ID del producto como valor
+                cmb_prod.SelectedIndex = -1;// No seleccionar ningún producto por defecto
 
                 // Configurar AutoComplete para búsqueda
                 cmb_prod.AutoCompleteMode = AutoCompleteMode.SuggestAppend;

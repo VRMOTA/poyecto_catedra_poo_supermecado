@@ -28,16 +28,16 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            string cantidadTexto = txtCantidad.Texts.Trim();
-            if (!Validaciones.ValidarTextoNoVacio(cantidadTexto, "Cantidad")) return;
-            if (int.TryParse(txtCantidad.Texts, out int cantidad) && cantidad > 0)
+            string cantidadTexto = txtCantidad.Texts.Trim(); 
+            if (!Validaciones.ValidarTextoNoVacio(cantidadTexto, "Cantidad")) return; // Validar que no esté vacío
+            if (int.TryParse(txtCantidad.Texts, out int cantidad) && cantidad > 0) // Validar que sea un entero positivo
             {
-                if (cantidad > StockDisponible)   
+                if (cantidad > StockDisponible)  // Validar que no supere el stock disponible  
                 {
                     MessageBox.Show($"La cantidad ingresada ({cantidad}) supera el stock disponible ({StockDisponible}).",
                                     "Stock insuficiente",
                                     MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
+                                    MessageBoxIcon.Warning); 
                     return;
                 }
                 NuevaCantidad = cantidad;

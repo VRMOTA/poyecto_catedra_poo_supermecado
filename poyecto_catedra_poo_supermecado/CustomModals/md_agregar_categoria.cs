@@ -23,13 +23,13 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         //Propiedades para editar
         public int ID_Categories_vista { get; set; } = 0;
 
-        public string NombreCategoria_vista
+        public string NombreCategoria_vista // Propiedad para el nombre de la categoria
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public md_agregar_categoria(string labelText, string buttonText) : this()
+        public md_agregar_categoria(string labelText, string buttonText) : this() // Sobrecarga del constructor para personalizar textos
         {
             label1.Text = labelText;
             btnActualizar.Text = buttonText;
@@ -37,13 +37,8 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string nombre = txt_nombre.Texts.Trim();
-            if (!Validaciones.ValidarTextoNoVacio(nombre, "Categoria")) return;
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Categoria")) return; // Validar que el nombre no esté vacío
 
-            if (string.IsNullOrEmpty(nombre))
-            {
-                MessageBox.Show("Debe ingresar el nombre de la categoria.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
@@ -55,14 +50,14 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                         nombre = nombre
                     };
 
-                    db.tb_categorias.Add(nuevo);
+                    db.tb_categorias.Add(nuevo); // Agregar nueva categoria
                     db.SaveChanges();
                     MessageBox.Show("Categoria agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 // Si es una edición
                 else
                 {
-                    var categorias = db.tb_categorias.Find(ID_Categories_vista);
+                    var categorias = db.tb_categorias.Find(ID_Categories_vista);// Buscar categoria por ID
                     if (categorias != null)
                     {
                         categorias.nombre = nombre;

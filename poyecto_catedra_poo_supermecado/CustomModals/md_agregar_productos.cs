@@ -22,27 +22,27 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             buttonMaxing1.BackColor = Color.FromArgb(105, 105, 105);
         }
         // Propiedades para editar 
-        public int IDProducto_vista { get; set; } = 0;
+        public int IDProducto_vista { get; set; } = 0; // Valor predeterminado 0 para nuevo producto
 
-        public string NombreProducto_vista
+        public string NombreProducto_vista // Nombre del producto
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public Image ImagenProducto_vista
+        public Image ImagenProducto_vista // Imagen del producto
         {
             get => pbProducto.Image;
             set => pbProducto.Image = value;
         }
 
-        public double PrecioProducto_vista 
+        public double PrecioProducto_vista  //  Precio del producto
         {
             get => double.TryParse(txt_precio.Texts, out double precio) ? precio : 0.0;
             set => txt_precio.Texts = value.ToString();
         }
 
-        public int StockProducto_vista 
+        public int StockProducto_vista  // Stock del producto
         {
             get => int.TryParse(txt_stock.Texts, out int stock) ? stock : 0;
             set => txt_stock.Texts = value.ToString();
@@ -52,31 +52,19 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         public int? IDCategoriaProducto_vista { get; set; }
         public int? IDDistribuidorProducto_vista { get; set; }
 
-        public string CategoriaProducto_vista
-        {
-            get => cmb_categoria.Texts;
-            set => cmb_categoria.Texts = value;
-        }
-
-        public string DistribuidorProducto_vista
-        {
-            get => cmb_distruhibidora.Texts;
-            set => cmb_distruhibidora.Texts = value;
-        }
-
-        public string DescripcionProducto_vista
+        public string DescripcionProducto_vista // Descripción del producto
         {
             get => txt_descripcion.Texts;
             set => txt_descripcion.Texts = value;
         }
 
-        public bool ActivoProducto_vista
+        public bool ActivoProducto_vista // Estado activo/inactivo del producto
         {
             get => cmb_activo.Texts == "Activo";
             set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
         }
 
-        public md_agregar_productos(string labelText, string buttonText) : this()
+        public md_agregar_productos(string labelText, string buttonText) : this() // Constructor adicional
         {
             label1.Text = labelText;
             btnActualizar.Text = buttonText;
@@ -84,7 +72,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()) // Abrir cuadro de diálogo para seleccionar imagen
             {
                 openFileDialog.Title = "Seleccionar imagen";
                 openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
@@ -118,15 +106,17 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            // Obtener los IDs seleccionados en los ComboBoxes para validar
             if (cmb_distruhibidora.SelectedIndex >= 0 && cmb_distruhibidora.SelectedValue != null)
             {
                 idDistribuidor = Convert.ToInt32(cmb_distruhibidora.SelectedValue);
             }
+            // Obtener el ID de la categoría seleccionada para validar
             if (cmb_categoria.SelectedIndex >= 0 && cmb_categoria.SelectedValue != null)
             {
                 idCategoria = Convert.ToInt32(cmb_categoria.SelectedValue);
             }
+            // Validar que se haya seleccionado una categoría y un distribuidor
             if (idCategoria == null || idCategoria == 0)
             {
                 MessageBox.Show("Debe seleccionar una categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -141,7 +131,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
 
             string activoText = cmb_activo.Texts.Trim();
-            byte nivel = (activoText == "Activo") ? (byte)1 : (byte)0;
+            byte nivel = (activoText == "Activo") ? (byte)1 : (byte)0; // Convertir a byte según selección
             string descripcion = txt_descripcion.Texts.Trim();
             Image image = pbProducto.Image;
 
@@ -150,13 +140,13 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             if (!Validaciones.ValidarTextoNoVacio(stockText, "Stock")) return;
             if (!Validaciones.ValidarTextoNoVacio(descripcion, "Descripcion")) return;
 
-            if (idCategoria == null || idCategoria == 0)
+            if (idCategoria == null || idCategoria == 0) // Validar que se haya seleccionado una categoría y un distribuidor
             {
                 MessageBox.Show("Debe seleccionar una categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (idDistribuidor == null || idDistribuidor == 0)
+            if (idDistribuidor == null || idDistribuidor == 0)// Validar que se haya seleccionado una categoría y un distribuidor
             {
                 MessageBox.Show("Debe seleccionar un distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -164,7 +154,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                if (IDProducto_vista == 0)
+                if (IDProducto_vista == 0) // Nuevo producto
                 {
                     if (image == null)
                     {
@@ -172,19 +162,20 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                         return;
                     }
 
-                    using (MemoryStream ms = new MemoryStream())
+                    using (MemoryStream ms = new MemoryStream()) // Guardar imagen en memoria
                     {
                         image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                        byte[] imagenBytes = ms.ToArray();
+                        byte[] imagenBytes = ms.ToArray(); // Convertir imagen a byte array
 
-                        tb_producto nuevo = new tb_producto
+                        tb_producto nuevo = new tb_producto 
                         {
+                            // datos del producto
                             nombre = nombre,
-                            precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null,
-                            stock = int.TryParse(stockText, out int stock) ? stock : (int?)null,
+                            precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null, // Manejo de conversión segura
+                            stock = int.TryParse(stockText, out int stock) ? stock : (int?)null,// Manejo de conversión segura
                             id_categoria = idCategoria,
                             id_distribuidor = idDistribuidor,
-                            activo = (nivel == 1),
+                            activo = (nivel == 1),// Convertir byte a bool
                             descripcion = descripcion,
                             imagen = imagenBytes
                         };
@@ -196,12 +187,13 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 }
                 else
                 {
-                    var producto = db.tb_producto.Find(IDProducto_vista);
+                    var producto = db.tb_producto.Find(IDProducto_vista); // Buscar producto existente
                     if (producto != null)
                     {
+                        // Actualizar datos del producto existente
                         producto.nombre = nombre;
-                        producto.precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null; // Manejo de conversión segura
-                        producto.stock = int.TryParse(stockText, out int stock) ? stock : (int?)null;
+                        producto.precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null; // Manejo de conversión segura ? = puede ser null 
+                        producto.stock = int.TryParse(stockText, out int stock) ? stock : (int?)null; // Manejo de conversión segura ? = puede ser null
                         producto.id_categoria = idCategoria;
                         producto.id_distribuidor = idDistribuidor;
                         producto.activo = (nivel == 1);
@@ -209,7 +201,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
                         if (image != null)
                         {
-                            using (MemoryStream ms = new MemoryStream())
+                            using (MemoryStream ms = new MemoryStream()) // Actualizar imagen si se seleccionó una nueva
                             {
                                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                                 producto.imagen = ms.ToArray();
@@ -235,10 +227,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var categorias = db.tb_categorias.ToList();
-                cmb_categoria.DataSource = categorias;
-                cmb_categoria.DisplayMember = "nombre";
-                cmb_categoria.ValueMember = "id_categoria";
+                var categorias = db.tb_categorias.ToList(); // Obtener todas las categorías
+                cmb_categoria.DataSource = categorias;// Asignar lista al DataSource
+                cmb_categoria.DisplayMember = "nombre"; // Mostrar nombre de la categoría
+                cmb_categoria.ValueMember = "id_categoria";// Asignar ID como valor
                 cmb_categoria.SelectedIndex = -1; // No seleccionar nada por defecto
             }
         }
@@ -247,25 +239,25 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         {
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var distribuidores = db.tb_distribuidores.ToList();
-                cmb_distruhibidora.DataSource = distribuidores;
-                cmb_distruhibidora.DisplayMember = "nombre";
-                cmb_distruhibidora.ValueMember = "id_distribuidor";
+                var distribuidores = db.tb_distribuidores.ToList();// Obtener todas los distribuidores
+                cmb_distruhibidora.DataSource = distribuidores;// Asignar lista al DataSource
+                cmb_distruhibidora.DisplayMember = "nombre";// Mostrar nombre del distribuidor
+                cmb_distruhibidora.ValueMember = "id_distribuidor";//   Asignar ID como valor
                 cmb_distruhibidora.SelectedIndex = -1; // No seleccionar nada por defecto
             }
         }
 
         private void md_agregar_productos_Load(object sender, EventArgs e)
         {
-            cargar_combox_categoria();
-            cargar_combox_distribuidor();
+            cargar_combox_categoria();// Cargar categorías en el ComboBox
+            cargar_combox_distribuidor();// Cargar distribuidores en el ComboBox
 
             // Seleccionar valores si se están editando
             if (IDCategoriaProducto_vista.HasValue)
             {
                 cmb_categoria.SelectedValue = IDCategoriaProducto_vista.Value;
             }
-
+            // Seleccionar valores si se están editando
             if (IDDistribuidorProducto_vista.HasValue)
             {
                 cmb_distruhibidora.SelectedValue = IDDistribuidorProducto_vista.Value;

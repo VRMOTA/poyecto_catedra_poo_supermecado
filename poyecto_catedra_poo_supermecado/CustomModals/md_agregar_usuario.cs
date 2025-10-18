@@ -22,32 +22,32 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             FormHelper.DefaultFormValues(this);
         }
 
-        public md_agregar_usuario(string labelText, string buttonText) : this()
+        public md_agregar_usuario(string labelText, string buttonText) : this() // Llama al constructor predeterminado
         {
             label1.Text = labelText;
             btn_crear.Text = buttonText;
         }
 
-        public int id_Usuario_vista { get; set; } = 0;
+        public int id_Usuario_vista { get; set; } = 0;// Valor predeterminado 0 para nuevo usuario
 
-        public string nombre_usuario_vista
+        public string nombre_usuario_vista // propiedad para obtener el nombre del usuario
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public string correo_usuario_vista
+        public string correo_usuario_vista// propiedad para obtener el correo del usuario
         {
             get => txt_correo.Texts;
             set => txt_correo.Texts = value;
         }
-        public string tipo_usuario_vista
+        public string tipo_usuario_vista // propiedad para obtener el tipo de usuario
         {
             get => cmb_rol.SelectedItem?.ToString() ?? "";
             set => cmb_rol.SelectedItem = value;
         }
 
-        public bool activo_usuario_vista
+        public bool activo_usuario_vista // propiedad para obtener el estado del usuario
         {
             get => cmb_activo.Texts.ToLower() == "activo";
             set => cmb_activo.Texts = value ? "Activo" : "Inactivo";
@@ -67,6 +67,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         void Agregar()
         {
+            // Obtener los valores de los campos
             string nombre = txt_nombre.Texts.Trim();
             string correo = txt_correo.Texts.Trim();
             string clave = txt_clave.Texts.Trim();
@@ -76,20 +77,20 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string confirmaClave = txt_confirma_clave.Texts.Trim();
 
 
-            if (!Validaciones.ValidarTextoNoVacio(nombre, "Nombre")) return;
-            if (!Validaciones.ValidarTextoNoVacio(correo, "Correo")) return;
-            if (!Validaciones.ValidarTextoNoVacio(clave, "Clave")) return;
-            if (string.IsNullOrWhiteSpace(cmb_rol.Texts))
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Nombre")) return; // Validar nombre no vacío
+            if (!Validaciones.ValidarTextoNoVacio(correo, "Correo")) return;// Validar correo no vacío
+            if (!Validaciones.ValidarTextoNoVacio(clave, "Clave")) return;// Validar clave no vacío
+            if (string.IsNullOrWhiteSpace(cmb_rol.Texts)) // Validar selección de rol
             {
                 MessageBox.Show("Debe seleccionar un Rol (Administrador o Cajero).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))// Validar selección de estado
             {
                 MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (clave != confirmaClave)
+            if (clave != confirmaClave)// Validar que las contraseñas coincidan
             {
                 MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -102,6 +103,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
                 tb_usuario usuario = new tb_usuario
                 {
+                    // Asignar los valores a las propiedades del nuevo usuario
                     nombre = nombre,
                     correo = correo,
                     clave = claveEncriptada,
@@ -119,6 +121,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         void Actualizar()
         {
+            // Obtener los valores de los campos
             string nombre = txt_nombre.Texts.Trim();
             string correo = txt_correo.Texts.Trim();
             string clave = txt_clave.Texts.Trim();
@@ -127,7 +130,21 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             byte nivel = (nivelTexto == "Activo") ? (byte)1 : (byte)0;
             string confirmaClave = txt_confirma_clave.Texts.Trim();
 
-            if (!string.IsNullOrEmpty(clave) && clave != confirmaClave)
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Nombre")) return; // Validar nombre no vacío
+            if (!Validaciones.ValidarTextoNoVacio(correo, "Correo")) return;// Validar correo no vacío
+            if (!Validaciones.ValidarTextoNoVacio(clave, "Clave")) return;// Validar clave no vacío
+            if (string.IsNullOrWhiteSpace(cmb_rol.Texts)) // Validar selección de rol
+            {
+                MessageBox.Show("Debe seleccionar un Rol (Administrador o Cajero).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))// Validar selección de estado
+            {
+                MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(clave) && clave != confirmaClave) //  Validar que las contraseñas coincidan si se proporciona una nueva contraseña
             {
                 MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -135,9 +152,10 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
-                var usuario = db.tb_usuario.Find(id_Usuario_vista);
+                var usuario = db.tb_usuario.Find(id_Usuario_vista); // Buscar el usuario por ID
                 if (usuario != null)
                 {
+                    // Actualizar los valores del usuario
                     usuario.nombre = nombre;
                     usuario.correo = correo;
                     if (!string.IsNullOrEmpty(clave))

@@ -24,18 +24,18 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         //Propiedades para editar
         public int ID_Distribuidor_vista { get; set; } = 0;
 
-        public string NombreDistribuidor_vista
+        public string NombreDistribuidor_vista // Propiedad para el nombre del distribuidor
         {
             get => txt_nombre.Texts;
             set => txt_nombre.Texts = value;
         }
 
-        public Image ImagenDistribuidor_vista
+        public Image ImagenDistribuidor_vista // Propiedad para la imagen del distribuidor
         {
             get => pbProducto.Image;
             set => pbProducto.Image = value;
         }
-        public md_agregar_distribuidor(string labelText, string buttonText) : this()
+        public md_agregar_distribuidor(string labelText, string buttonText) : this() // Sobrecarga del constructor
         {
             label1.Text = labelText;
             btnActualizar.Text = buttonText;
@@ -43,7 +43,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()) // Abrir cuadro de diálogo para seleccionar imagen
             {
                 openFileDialog.Title = "Seleccionar imagen";
                 openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
@@ -66,19 +66,19 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string nombre = txt_nombre.Texts.Trim();
             Image image = pbProducto.Image;
 
-            if (!Validaciones.ValidarTextoNoVacio(nombre, "Distribuhidor")) return;
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Distribuhidor")) return; // Validar que el nombre no esté vacío
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Si es un registro nuevo
                 if (ID_Distribuidor_vista == 0)
                 {
-                    if (image == null)
+                    if (image == null) // Validar que se haya seleccionado una imagen
                     {
                         MessageBox.Show("Debe seleccionar una imagen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    using (MemoryStream ms = new MemoryStream())
+                    using (MemoryStream ms = new MemoryStream()) // Convertir la imagen a byte array
                     {
                         image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                         byte[] imagenBytes = ms.ToArray();
@@ -89,7 +89,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                             logo = imagenBytes // Asignar la imagen como byte array 
                         };
 
-                        db.tb_distribuidores.Add(nuevo);
+                        db.tb_distribuidores.Add(nuevo); // Agregar el nuevo distribuidor a la base de datos
                         db.SaveChanges();
                         MessageBox.Show("Distribuidor agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -97,14 +97,14 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 // Si es una edición
                 else
                 {
-                    var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_vista);
+                    var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_vista);  // Buscar el distribuidor por ID
                     if (distribuidor != null)
                     {
-                        distribuidor.nombre = nombre;
+                        distribuidor.nombre = nombre; // Actualizar el nombre
 
                         if (image != null)
                         {
-                            using (MemoryStream ms = new MemoryStream())
+                            using (MemoryStream ms = new MemoryStream()) // Convertir la imagen a byte array
                             {
                                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                                 distribuidor.logo = ms.ToArray();
