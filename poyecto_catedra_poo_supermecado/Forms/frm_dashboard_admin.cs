@@ -117,13 +117,28 @@ namespace poyecto_catedra_poo_supermecado.Forms
         }
 
         private void btnPropiedades_Click(object sender, EventArgs e)
-        {
-            abrir_panel(new frm_promociones());
+        { // prm
+            try
+            {
+                abrir_panel(new frm_promociones());
+            }
+            catch
+            {
+                MessageBox.Show("Error al abrir el módulo de promociones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            abrir_panel(new frm_ventas_new());
+        { // ventas
+            try
+            {
+                abrir_panel(new frm_ventas_new());
+            }
+            catch
+            {
+                MessageBox.Show("Error al abrir el módulo de ventas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
