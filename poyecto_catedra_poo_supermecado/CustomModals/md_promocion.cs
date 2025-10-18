@@ -1,4 +1,5 @@
 ﻿using poyecto_catedra_poo_supermecado.Conexion;
+using poyecto_catedra_poo_supermecado.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -119,14 +120,18 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string descripcion = txt_descripcion.Texts.Trim();
             DateTime fecha_inicio = dtp_fecha_inicio.Value;
             DateTime fecha_fin = dtp_fecha_final.Value;
-
+            if (!Validaciones.ValidarTextoNoVacio(descripcion, "Descripcion")) return;
             // Validar fechas
             if (fecha_fin < fecha_inicio)
             {
                 MessageBox.Show("La fecha final debe ser mayor o igual a la fecha de inicio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))
+            {
+                MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 if (ID_Promocion_vista == 0)
@@ -207,6 +212,54 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             {
                 cmb_prod.SelectedValue = IDProducto_vista.Value;
             }
+        }
+
+        private void txt_cantidad_min_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para tecla backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //si no se cumple nada de lo anterior entonces que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void txt_precio_prom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para tecla backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            /*verifica que pueda ingresar punto y también que solo pueda
+           ingresar un punto*/
+            else if ((e.KeyChar == '.') && (!txt_precio_prom.Text.Contains(".")))
+            {
+                e.Handled = false;
+            }
+            //si no se cumple nada de lo anterior entonces que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
     }
 }

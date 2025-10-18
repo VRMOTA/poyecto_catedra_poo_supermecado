@@ -105,6 +105,7 @@
             this.txtCantidad.TabIndex = 1;
             this.txtCantidad.Texts = "";
             this.txtCantidad.UnderlinedStyle = true;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // md_actualizar_carrito
             // 

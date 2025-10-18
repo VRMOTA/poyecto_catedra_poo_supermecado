@@ -76,6 +76,7 @@
             this.txt_nombre.TabIndex = 46;
             this.txt_nombre.Texts = "";
             this.txt_nombre.UnderlinedStyle = true;
+            this.txt_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nombre_KeyPress);
             // 
             // label2
             // 
@@ -235,6 +236,7 @@
             this.cmb_rol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_rol.BorderSize = 2;
             this.cmb_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_rol.EnableTextInput = true;
             this.cmb_rol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_rol.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_rol.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -267,6 +269,7 @@
             this.cmb_activo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_activo.BorderSize = 2;
             this.cmb_activo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_activo.EnableTextInput = true;
             this.cmb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_activo.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_activo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -285,8 +288,7 @@
             // 
             // md_agregar_usuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(716, 506);
             this.Controls.Add(this.cmb_activo);
             this.Controls.Add(this.label7);

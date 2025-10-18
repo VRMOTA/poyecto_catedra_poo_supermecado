@@ -120,6 +120,7 @@
             this.txt_cantidad_min.TabIndex = 52;
             this.txt_cantidad_min.Texts = "";
             this.txt_cantidad_min.UnderlinedStyle = true;
+            this.txt_cantidad_min.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cantidad_min_KeyPress);
             // 
             // label4
             // 
@@ -151,6 +152,7 @@
             this.txt_precio_prom.TabIndex = 54;
             this.txt_precio_prom.Texts = "";
             this.txt_precio_prom.UnderlinedStyle = true;
+            this.txt_precio_prom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precio_prom_KeyPress);
             // 
             // label6
             // 

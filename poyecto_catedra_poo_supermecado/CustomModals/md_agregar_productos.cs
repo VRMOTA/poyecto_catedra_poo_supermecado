@@ -112,26 +112,43 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             int? idCategoria = null;
             int? idDistribuidor = null;
 
-            if (cmb_categoria.SelectedIndex >= 0 && cmb_categoria.SelectedValue != null)
+            // Validar que cmb_activo no esté vacío o sin seleccionar
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))
             {
-                idCategoria = Convert.ToInt32(cmb_categoria.SelectedValue);
+                MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (cmb_distruhibidora.SelectedIndex >= 0 && cmb_distruhibidora.SelectedValue != null)
             {
                 idDistribuidor = Convert.ToInt32(cmb_distruhibidora.SelectedValue);
             }
+            if (cmb_categoria.SelectedIndex >= 0 && cmb_categoria.SelectedValue != null)
+            {
+                idCategoria = Convert.ToInt32(cmb_categoria.SelectedValue);
+            }
+            if (idCategoria == null || idCategoria == 0)
+            {
+                MessageBox.Show("Debe seleccionar una categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (idDistribuidor == null || idDistribuidor == 0)
+            {
+                MessageBox.Show("Debe seleccionar un distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
 
             string activoText = cmb_activo.Texts.Trim();
             byte nivel = (activoText == "Activo") ? (byte)1 : (byte)0;
             string descripcion = txt_descripcion.Texts.Trim();
             Image image = pbProducto.Image;
 
-            if (string.IsNullOrEmpty(nombre))
-            {
-                MessageBox.Show("Debe ingresar el nombre del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Nombre Producto")) return;
+            if (!Validaciones.ValidarTextoNoVacio(precioText, "Precio")) return;
+            if (!Validaciones.ValidarTextoNoVacio(stockText, "Stock")) return;
+            if (!Validaciones.ValidarTextoNoVacio(descripcion, "Descripcion")) return;
 
             if (idCategoria == null || idCategoria == 0)
             {
@@ -183,7 +200,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                     if (producto != null)
                     {
                         producto.nombre = nombre;
-                        producto.precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null;
+                        producto.precio = decimal.TryParse(precioText, out decimal precio) ? precio : (decimal?)null; // Manejo de conversión segura
                         producto.stock = int.TryParse(stockText, out int stock) ? stock : (int?)null;
                         producto.id_categoria = idCategoria;
                         producto.id_distribuidor = idDistribuidor;
@@ -253,6 +270,82 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             {
                 cmb_distruhibidora.SelectedValue = IDDistribuidorProducto_vista.Value;
             }
+        }
+
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para que admita tecla de espacio
+            else if (char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //si no cumple nada de lo anterior que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten letras", "validación de texto",
+               MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void txt_precio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para tecla backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            /*verifica que pueda ingresar punto y también que solo pueda
+           ingresar un punto*/
+            else if ((e.KeyChar == '.') && (!txt_precio.Text.Contains(".")))
+            {
+                e.Handled = false;
+            }
+            //si no se cumple nada de lo anterior entonces que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void txt_stock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para tecla backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+
+            //si no se cumple nada de lo anterior entonces que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
     }
 }

@@ -120,6 +120,7 @@
             this.txt_nombre.TabIndex = 44;
             this.txt_nombre.Texts = "";
             this.txt_nombre.UnderlinedStyle = true;
+            this.txt_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nombre_KeyPress);
             // 
             // label2
             // 
@@ -167,7 +168,7 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
+            this.pbProducto.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.pbProducto.Location = new System.Drawing.Point(484, 95);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(352, 300);
@@ -181,6 +182,7 @@
             this.cmb_distruhibidora.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_distruhibidora.BorderSize = 2;
             this.cmb_distruhibidora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_distruhibidora.EnableTextInput = true;
             this.cmb_distruhibidora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_distruhibidora.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_distruhibidora.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -227,6 +229,7 @@
             this.txt_precio.TabIndex = 51;
             this.txt_precio.Texts = "";
             this.txt_precio.UnderlinedStyle = true;
+            this.txt_precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_precio_KeyPress);
             // 
             // label7
             // 
@@ -259,6 +262,7 @@
             this.txt_stock.TabIndex = 57;
             this.txt_stock.Texts = "";
             this.txt_stock.UnderlinedStyle = true;
+            this.txt_stock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_stock_KeyPress);
             // 
             // label5
             // 
@@ -308,6 +312,7 @@
             this.cmb_categoria.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_categoria.BorderSize = 2;
             this.cmb_categoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_categoria.EnableTextInput = true;
             this.cmb_categoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_categoria.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_categoria.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -342,6 +347,7 @@
             this.cmb_activo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmb_activo.BorderSize = 2;
             this.cmb_activo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_activo.EnableTextInput = true;
             this.cmb_activo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmb_activo.ForeColor = System.Drawing.Color.DimGray;
             this.cmb_activo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));

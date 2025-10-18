@@ -66,13 +66,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             string nombre = txt_nombre.Texts.Trim();
             Image image = pbProducto.Image;
 
-            if (string.IsNullOrEmpty(nombre))
-            {
-                MessageBox.Show("Debe ingresar el nombre del distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            
-
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Distribuhidor")) return;
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
                 // Si es un registro nuevo

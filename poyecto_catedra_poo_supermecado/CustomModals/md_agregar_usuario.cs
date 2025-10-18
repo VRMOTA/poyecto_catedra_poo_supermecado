@@ -75,6 +75,20 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
             byte nivel = (nivelTexto == "Activo") ? (byte)1 : (byte)0;
             string confirmaClave = txt_confirma_clave.Texts.Trim();
 
+
+            if (!Validaciones.ValidarTextoNoVacio(nombre, "Nombre")) return;
+            if (!Validaciones.ValidarTextoNoVacio(correo, "Correo")) return;
+            if (!Validaciones.ValidarTextoNoVacio(clave, "Clave")) return;
+            if (string.IsNullOrWhiteSpace(cmb_rol.Texts))
+            {
+                MessageBox.Show("Debe seleccionar un Rol (Administrador o Cajero).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmb_activo.Texts))
+            {
+                MessageBox.Show("Debe seleccionar un estado (Activo o Inactivo).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (clave != confirmaClave)
             {
                 MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -143,6 +157,32 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 {
                     MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para que admita tecla de espacio
+            else if (char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //si no cumple nada de lo anterior que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten letras", "validación de texto",
+               MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

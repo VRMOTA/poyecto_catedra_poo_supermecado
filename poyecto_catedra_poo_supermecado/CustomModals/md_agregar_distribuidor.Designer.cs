@@ -61,7 +61,7 @@
             // 
             // pbProducto
             // 
-            this.pbProducto.Image = global::poyecto_catedra_poo_supermecado.Properties.Resources.ImageDef;
+            this.pbProducto.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pbProducto.Location = new System.Drawing.Point(30, 77);
             this.pbProducto.Name = "pbProducto";
             this.pbProducto.Size = new System.Drawing.Size(352, 240);
