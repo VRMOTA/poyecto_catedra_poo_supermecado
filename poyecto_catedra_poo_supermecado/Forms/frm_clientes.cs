@@ -45,9 +45,18 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
+                    var fechaActual = DateTime.Now;
+
                     lista_productos = (from p in db.tb_producto
                                        join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
                                        from c in catJoin.DefaultIfEmpty()
+                                           // LEFT JOIN con promociones activas
+                                       join pr in db.tb_promociones on p.id_producto equals pr.id_producto into promoJoin
+                                       from pr in promoJoin
+                                           .Where(promo => promo.activa == true &&
+                                                  promo.fecha_inicio <= fechaActual &&
+                                                  (promo.fecha_fin == null || promo.fecha_fin >= fechaActual))
+                                           .DefaultIfEmpty()
                                        select new
                                        {
                                            p.id_producto,
@@ -56,7 +65,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                            p.stock,
                                            p.descripcion,
                                            categoria = c != null ? c.nombre : "",
-                                           p.imagen
+                                           p.imagen,
+                                           // Datos de promoción
+                                           id_promocion = pr != null ? (int?)pr.id_promocion : null,
+                                           cantidad_minima = pr != null ? (int?)pr.cantidad_minima : null,
+                                           precio_promocional = pr != null ? (decimal?)pr.precio_promocional : null,
+                                           descripcion_promo = pr != null ? pr.descripcion : null
                                        }).ToList<dynamic>();
                 }
             }
@@ -79,12 +93,26 @@ namespace poyecto_catedra_poo_supermecado.Forms
                     imagenProducto = ImagenDesdeBytes(producto.imagen);
                 }
 
+                // Calcular descuento si hay promoción
+                decimal descuento = 0;
+                if (producto.id_promocion != null && producto.precio_promocional != null)
+                {
+                    // Calcular el porcentaje de descuento
+                    decimal precioOriginal = producto.precio ?? 0m;
+                    decimal precioPromo = producto.precio_promocional ?? 0m;
+
+                    if (precioOriginal > 0)
+                    {
+                        descuento = ((precioOriginal - precioPromo) / precioOriginal) * 100;
+                    }
+                }
+
                 var card = new CustomCards.card_producto_menu
                 {
                     IDProducto = producto.id_producto,
                     Producto = producto.nombre ?? "",
                     Precio = producto.precio ?? 0m,
-                    Descuento = 0, // Asumiendo que no hay descuento por defecto
+                    Descuento = (int)Math.Round(descuento),
                     ImagenProducto = imagenProducto,
                     Width = AnchoCarta,
                     Height = AltoCarta
@@ -115,9 +143,18 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
+                    var fechaActual = DateTime.Now;
+
                     var producto = (from p in db.tb_producto
                                     join c in db.tb_categorias on p.id_categoria equals c.id_categoria into catJoin
                                     from c in catJoin.DefaultIfEmpty()
+                                        // LEFT JOIN con promociones activas
+                                    join pr in db.tb_promociones on p.id_producto equals pr.id_producto into promoJoin
+                                    from pr in promoJoin
+                                        .Where(promo => promo.activa == true &&
+                                               promo.fecha_inicio <= fechaActual &&
+                                               (promo.fecha_fin == null || promo.fecha_fin >= fechaActual))
+                                        .DefaultIfEmpty()
                                     where p.id_producto == idProducto
                                     select new
                                     {
@@ -126,7 +163,12 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                         p.stock,
                                         p.descripcion,
                                         p.imagen,
-                                        categoria = c != null ? c.nombre : ""
+                                        categoria = c != null ? c.nombre : "",
+                                        // Datos de promoción
+                                        id_promocion = pr != null ? (int?)pr.id_promocion : null,
+                                        cantidad_minima = pr != null ? (int?)pr.cantidad_minima : null,
+                                        precio_promocional = pr != null ? (decimal?)pr.precio_promocional : null,
+                                        descripcion_promo = pr != null ? pr.descripcion : null
                                     }).FirstOrDefault();
 
                     if (producto == null)
@@ -149,8 +191,24 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         pbProducto.Image = null;
                     }
 
-                    // Por ahora ocultamos el precio de descuento ya que no tenemos esa información
-                    lblPrecioDescuento.Visible = false;
+                    // Mostrar precio de descuento si hay promoción
+                    if (producto.id_promocion != null && producto.precio_promocional != null)
+                    {
+                        lblPrecioDescuento.Visible = true;
+                        lblPrecioDescuento.Text = producto.precio_promocional.Value.ToString("C2");
+
+                        // Opcional: Agregar descripción de la promoción si existe un label para ello
+                        if (producto.descripcion_promo != null)
+                        {
+                            // Si tienes un label para la descripción de la promo, puedes usarlo así:
+                            // lblDescripcionPromo.Text = producto.descripcion_promo;
+                            // lblDescripcionPromo.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        lblPrecioDescuento.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -204,7 +262,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
-
         private void Buscar()
         {
             string busqueda = txt_buscar.Texts.ToLower();
@@ -243,7 +300,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             Buscar();
         }
+
+        private void card_Load(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
 }

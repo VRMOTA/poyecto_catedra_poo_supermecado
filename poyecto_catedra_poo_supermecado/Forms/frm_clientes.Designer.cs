@@ -59,11 +59,15 @@
             // 
             // card
             // 
+            this.card.Activo = true;
             this.card.BackColor = System.Drawing.Color.Transparent;
             this.card.BorderColor = System.Drawing.Color.Gray;
             this.card.BorderThickness = 1;
+            this.card.Categoria = "";
             this.card.CornerRadius = 12;
+            this.card.Descripcion = "";
             this.card.Descuento = 0;
+            this.card.Distribuidor = "";
             this.card.FillColor = System.Drawing.Color.White;
             this.card.IDProducto = 0;
             this.card.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card.ImagenProducto")));
@@ -76,7 +80,9 @@
             0});
             this.card.Producto = "Nombre Producto";
             this.card.Size = new System.Drawing.Size(241, 266);
+            this.card.Stock = 0;
             this.card.TabIndex = 0;
+            this.card.Load += new System.EventHandler(this.card_Load);
             // 
             // rd_fondo
             // 
