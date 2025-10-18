@@ -128,6 +128,7 @@
             this.txt_nombre.TabIndex = 35;
             this.txt_nombre.Texts = "";
             this.txt_nombre.UnderlinedStyle = true;
+            this.txt_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nombre_KeyPress);
             // 
             // buttonMaxing1
             // 

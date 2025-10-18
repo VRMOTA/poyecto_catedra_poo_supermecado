@@ -71,6 +71,7 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
                 MessageBox.Show("Debe ingresar el nombre del distribuidor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            
 
             using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
             {
@@ -134,6 +135,32 @@ namespace poyecto_catedra_poo_supermecado.CustomModals
         private void md_agregar_distribuidor_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                //condicion para solo números
+                if (char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //para backspace
+                else if (char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //para que admita tecla de espacio
+                else if (char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                //si no cumple nada de lo anterior que no lo deje pasar
+                else
+                {
+                    e.Handled = true;
+                    MessageBox.Show("Solo se admiten letras", "validación de texto",
+                   MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
         }
     }
 }
