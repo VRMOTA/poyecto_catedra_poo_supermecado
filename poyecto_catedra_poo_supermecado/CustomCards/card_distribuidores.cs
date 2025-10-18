@@ -19,7 +19,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public card_distribuidores()
         {
             InitializeComponent();
-            model_distruhibidores = new model_distruhibidores(); 
+            model_distruhibidores = new model_distruhibidores();
         }
 
         public int ID_Distribuidor_card
@@ -44,10 +44,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string NombreDistribuidora_card
         {
             get => model_distruhibidores.NombreDistribuidora_model;
-            set 
+            set
             {
                 model_distruhibidores.NombreDistribuidora_model = value;
-                if (lblDistribuidora != null) lblDistribuidora.Text = value; 
+                if (lblDistribuidora != null) lblDistribuidora.Text = value;
             }
         }
 
@@ -76,20 +76,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                try
                 {
-                    var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_card);
-                    if (distribuidor != null)
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        db.tb_distribuidores.Remove(distribuidor);
-                        db.SaveChanges();
-                        MessageBox.Show("Distribuidor eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        var distribuidor = db.tb_distribuidores.Find(ID_Distribuidor_card);
+                        if (distribuidor != null)
+                        {
+                            db.tb_distribuidores.Remove(distribuidor);
+                            db.SaveChanges();
+                            MessageBox.Show("Distribuidor eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Distribuidor no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Distribuidor no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar el distribuidor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

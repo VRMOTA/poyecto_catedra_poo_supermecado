@@ -227,9 +227,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void buttonMaxing2_Click(object sender, EventArgs e)
         {
-            var frmLogin = new frm_login();
-            this.Hide();
-            frmLogin.Show();
+            try
+            {
+                var frmLogin = new frm_login();
+                this.Hide();
+                frmLogin.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el formulario de login: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frm_clientes_FormClosed(object sender, FormClosedEventArgs e)
@@ -239,9 +246,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void buttonMaxing3_Click(object sender, EventArgs e)
         {
-            using (var modal = new CustomModals.md_consulta())
+            try
             {
-                modal.ShowDialog();
+                using (var modal = new CustomModals.md_consulta())
+                {
+                    modal.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el modal de consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

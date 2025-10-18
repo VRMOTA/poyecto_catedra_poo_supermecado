@@ -19,7 +19,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 {
     public partial class card_prom : UserControl
     {
-        private model_promociones model_Promociones; 
+        private model_promociones model_Promociones;
         public event EventHandler RecargaRequerida; // Nuevo evento para recargar
 
         public card_prom()
@@ -47,7 +47,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         [Category("Promocion"), Description("Cantidad minima de la promocion")]
         public int Cantidad_Minima_card
-        {   get => model_Promociones.Cantidad_Minima_model;
+        {
+            get => model_Promociones.Cantidad_Minima_model;
             set
             {
                 model_Promociones.Cantidad_Minima_model = value;
@@ -58,7 +59,7 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         [Category("Promocion"), Description("Precio de la promocion")]
         public decimal Precio_Promocion_card
-        {             
+        {
             get => model_Promociones.Precio_Promocion_model;
             set
             {
@@ -88,11 +89,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
                 model_Promociones.Fecha_Inicio_model = value;
                 if (lb_fecha_inicio != null) lb_fecha_inicio.Text = value.ToString("dd-MM-yyyy");
             }
-        }      
- 
+        }
+
         [Category("Promocion"), Description("Fecha de finalizacion de la promocion")]
         public DateTime Fecha_Fin_card
-        {             
+        {
             get => model_Promociones.Fecha_Fin_model;
             set
             {
@@ -114,27 +115,34 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            var modal = new md_promocion("Actualizar promoción", "Actualizar");
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                var promocion = db.tb_promociones.Find(ID_Promocion_card);
-                if (promocion != null)
+                var modal = new md_promocion("Actualizar promoción", "Actualizar");
+
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    modal.ID_Promocion_vista = ID_Promocion_card;
-                    modal.IDProducto_vista = promocion.id_producto;
-                    modal.Cantidad_minima_vista = promocion.cantidad_minima ?? 0;
-                    modal.Precio_promocional_vista = promocion.precio_promocional?.ToString("F2");
-                    modal.Descripcion_vista = promocion.descripcion;
-                    modal.Fecha_inicio_vista = promocion.fecha_inicio ?? DateTime.Now;
-                    modal.Fecha_final_vista = promocion.fecha_fin ?? DateTime.Now;
-                    modal.Activa_vista = promocion.activa ?? false;
+                    var promocion = db.tb_promociones.Find(ID_Promocion_card);
+                    if (promocion != null)
+                    {
+                        modal.ID_Promocion_vista = ID_Promocion_card;
+                        modal.IDProducto_vista = promocion.id_producto;
+                        modal.Cantidad_minima_vista = promocion.cantidad_minima ?? 0;
+                        modal.Precio_promocional_vista = promocion.precio_promocional?.ToString("F2");
+                        modal.Descripcion_vista = promocion.descripcion;
+                        modal.Fecha_inicio_vista = promocion.fecha_inicio ?? DateTime.Now;
+                        modal.Fecha_final_vista = promocion.fecha_fin ?? DateTime.Now;
+                        modal.Activa_vista = promocion.activa ?? false;
+                    }
+                }
+
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    RecargaRequerida?.Invoke(this, EventArgs.Empty);
                 }
             }
-
-            if (modal.ShowDialog() == DialogResult.OK)
+            catch (Exception ex)
             {
-                RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show($"Error al actualizar la promoción: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -148,20 +156,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                try
                 {
-                    var promocion = db.tb_promociones.Find(ID_Promocion_card);
-                    if (promocion != null)
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        db.tb_promociones.Remove(promocion);
-                        db.SaveChanges();
-                        MessageBox.Show("Promoción eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        var promocion = db.tb_promociones.Find(ID_Promocion_card);
+                        if (promocion != null)
+                        {
+                            db.tb_promociones.Remove(promocion);
+                            db.SaveChanges();
+                            MessageBox.Show("Promoción eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Promoción no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Promoción no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar la promoción: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

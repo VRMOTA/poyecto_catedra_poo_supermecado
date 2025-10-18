@@ -36,10 +36,10 @@
             this.btn_categoria = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_carrito = new System.Windows.Forms.Button();
+            this.pnl_consultas = new System.Windows.Forms.Panel();
             this.pnl_salir = new System.Windows.Forms.Panel();
             this.btn_salir = new System.Windows.Forms.Button();
             this.panel_control = new System.Windows.Forms.Panel();
-            this.pnl_consultas = new System.Windows.Forms.Panel();
             this.navegador.SuspendLayout();
             this.pnl_menu.SuspendLayout();
             this.pnl_catalogo.SuspendLayout();
@@ -141,6 +141,14 @@
             this.btn_carrito.UseVisualStyleBackColor = false;
             this.btn_carrito.Click += new System.EventHandler(this.btn_carrito_Click);
             // 
+            // pnl_consultas
+            // 
+            this.pnl_consultas.Location = new System.Drawing.Point(3, 309);
+            this.pnl_consultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.pnl_consultas.Name = "pnl_consultas";
+            this.pnl_consultas.Size = new System.Drawing.Size(286, 60);
+            this.pnl_consultas.TabIndex = 1;
+            // 
             // pnl_salir
             // 
             this.pnl_salir.Controls.Add(this.btn_salir);
@@ -175,14 +183,6 @@
             this.panel_control.Name = "panel_control";
             this.panel_control.Size = new System.Drawing.Size(1278, 911);
             this.panel_control.TabIndex = 2;
-            // 
-            // pnl_consultas
-            // 
-            this.pnl_consultas.Location = new System.Drawing.Point(3, 309);
-            this.pnl_consultas.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.pnl_consultas.Name = "pnl_consultas";
-            this.pnl_consultas.Size = new System.Drawing.Size(286, 60);
-            this.pnl_consultas.TabIndex = 1;
             // 
             // frm_dashboard_cajero
             // 

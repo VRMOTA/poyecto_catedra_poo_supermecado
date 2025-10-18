@@ -19,93 +19,107 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void CargarUsuarios()
         {
-            int columnas = 2;
-            int espacio = 10;
-
-            List<dynamic> listaUsuarios;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                listaUsuarios = db.tb_usuario
-                    .Select(u => new
-                    {
-                        u.id_usuario,
-                        u.nombre,
-                        u.correo,
-                        u.activo
-                    }).ToList<dynamic>();
-            }
+                int columnas = 2;
+                int espacio = 10;
 
-            panel_cards.Controls.Clear();
-            panel_cards.AutoScroll = true;
-            Size cardSize = new Size(495, 107);
+                List<dynamic> listaUsuarios;
 
-            int indice = 0;
-            foreach (var usuario in listaUsuarios)
-            {
-                var card = new card_usuarios
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    IDUsuario_card = usuario.id_usuario,
-                    NombreUsuario_card = usuario.nombre,
-                    CorreoUsuario_card = usuario.correo,
-                    Activa_card = usuario.activo ?? false, // Asignar bool directamente
-                    Margin = new Padding(espacio),
-                    Size = cardSize
-                };
+                    listaUsuarios = db.tb_usuario
+                        .Select(u => new
+                        {
+                            u.id_usuario,
+                            u.nombre,
+                            u.correo,
+                            u.activo
+                        }).ToList<dynamic>();
+                }
 
-                card.RecargaRequerida += (s, e) => CargarUsuarios(); // Recargar la lista al actualizar o eliminar
+                panel_cards.Controls.Clear();
+                panel_cards.AutoScroll = true;
+                Size cardSize = new Size(495, 107);
 
-                int fila = indice / columnas;
-                int columna = indice % columnas;
+                int indice = 0;
+                foreach (var usuario in listaUsuarios)
+                {
+                    var card = new card_usuarios
+                    {
+                        IDUsuario_card = usuario.id_usuario,
+                        NombreUsuario_card = usuario.nombre,
+                        CorreoUsuario_card = usuario.correo,
+                        Activa_card = usuario.activo ?? false, // Asignar bool directamente
+                        Margin = new Padding(espacio),
+                        Size = cardSize
+                    };
 
-                card.Left = columna * (card.Width + espacio);
-                card.Top = fila * (card.Height + espacio);
+                    card.RecargaRequerida += (s, e) => CargarUsuarios(); // Recargar la lista al actualizar o eliminar
 
-                panel_cards.Controls.Add(card);
-                indice++;
+                    int fila = indice / columnas;
+                    int columna = indice % columnas;
+
+                    card.Left = columna * (card.Width + espacio);
+                    card.Top = fila * (card.Height + espacio);
+
+                    panel_cards.Controls.Add(card);
+                    indice++;
+                }
+
+                int filasNecesarias = (int)Math.Ceiling((double)listaUsuarios.Count / columnas);
+                panel_cards.AutoScrollMinSize = new Size(
+                    columnas * (cardSize.Width + espacio),
+                    filasNecesarias * (cardSize.Height + espacio)
+                );
             }
-
-            int filasNecesarias = (int)Math.Ceiling((double)listaUsuarios.Count / columnas);
-            panel_cards.AutoScrollMinSize = new Size(
-                columnas * (cardSize.Width + espacio),
-                filasNecesarias * (cardSize.Height + espacio)
-            );
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los usuarios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Buscador()
         {
-            string busqueda = txt_buscar.Texts.ToLower().Trim();
-            int columnas = 2;
-            int espacio = 10;
-
-            var todasLasCartas = panel_cards.Controls.OfType<card_usuarios>().ToList();
-
-            var cartasFiltradas = todasLasCartas
-                .Where(c => c.NombreUsuario_card.ToLower().Contains(busqueda) ||
-                           c.CorreoUsuario_card.ToLower().Contains(busqueda) ||
-                           BuscarEstado(c.Activa_card, busqueda))
-                .ToList();
-
-            // Primero ocultar todas las cartas que no coinciden
-            foreach (var card in todasLasCartas)
+            try
             {
-                card.Visible = cartasFiltradas.Contains(card);
-            }
+                string busqueda = txt_buscar.Texts.ToLower().Trim();
+                int columnas = 2;
+                int espacio = 10;
 
-            // Luego posicionar SOLO las cartas visibles
-            int indice = 0;
-            foreach (var card in cartasFiltradas)
+                var todasLasCartas = panel_cards.Controls.OfType<card_usuarios>().ToList();
+
+                var cartasFiltradas = todasLasCartas
+                    .Where(c => c.NombreUsuario_card.ToLower().Contains(busqueda) ||
+                               c.CorreoUsuario_card.ToLower().Contains(busqueda) ||
+                               BuscarEstado(c.Activa_card, busqueda))
+                    .ToList();
+
+                // Primero ocultar todas las cartas que no coinciden
+                foreach (var card in todasLasCartas)
+                {
+                    card.Visible = cartasFiltradas.Contains(card);
+                }
+
+                // Luego posicionar SOLO las cartas visibles
+                int indice = 0;
+                foreach (var card in cartasFiltradas)
+                {
+                    int fila = indice / columnas;
+                    int columna = indice % columnas;
+
+                    card.Left = columna * (card.Width + espacio);
+                    card.Top = fila * (card.Height + espacio);
+
+                    indice++;
+                }
+
+                panel_cards.AutoScrollPosition = new Point(0, 0);
+            }
+            catch (Exception ex)
             {
-                int fila = indice / columnas;
-                int columna = indice % columnas;
-
-                card.Left = columna * (card.Width + espacio);
-                card.Top = fila * (card.Height + espacio);
-
-                indice++;
+                MessageBox.Show($"Error en la búsqueda de usuarios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            panel_cards.AutoScrollPosition = new Point(0, 0);
         }
 
         private bool BuscarEstado(bool activo, string busqueda)
@@ -118,12 +132,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
         }
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            using (var modal = new md_agregar_usuario())
+            try
             {
-                if (modal.ShowDialog() == DialogResult.OK)
+                using (var modal = new md_agregar_usuario())
                 {
-                    CargarUsuarios();
+                    if (modal.ShowDialog() == DialogResult.OK)
+                    {
+                        CargarUsuarios();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el formulario de agregar usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

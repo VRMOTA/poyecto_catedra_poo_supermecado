@@ -23,71 +23,85 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
-            using (var modal = new md_promocion("Agregar nueva promoción", "Agregar"))
+            try
             {
-                if (modal.ShowDialog() == DialogResult.OK)
+                using (var modal = new md_promocion("Agregar nueva promoción", "Agregar"))
                 {
-                    CargarProm();
+                    if (modal.ShowDialog() == DialogResult.OK)
+                    {
+                        CargarProm();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el formulario de promociones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CargarProm()
         {
-            int espacio = 10;
-            List<dynamic> lista_promociones;
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                lista_promociones = (from pr in db.tb_promociones
-                                     join p in db.tb_producto on pr.id_producto equals p.id_producto
-                                     select new
-                                     {
-                                         pr.id_promocion,
-                                         nombre_producto = p.nombre,
-                                         pr.cantidad_minima,
-                                         pr.precio_promocional,
-                                         pr.descripcion,
-                                         pr.fecha_inicio,
-                                         pr.fecha_fin,
-                                         pr.activa
-                                     }).ToList<dynamic>();
-            }
+                int espacio = 10;
+                List<dynamic> lista_promociones;
 
-            panel_cards.Controls.Clear();
-            panel_cards.AutoScroll = true;
-            int posicionY = 0;
-
-            foreach (var promocion in lista_promociones)
-            {
-                bool activaValor = promocion.activa != null ? (bool)promocion.activa : false;
-
-                var card = new card_prom
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    ID_Promocion_card = (int)promocion.id_promocion,
-                    Nombre_Producto_card = promocion.nombre_producto?.ToString() ?? "",
-                    Cantidad_Minima_card = promocion.cantidad_minima ?? 0,
-                    Precio_Promocion_card = promocion.precio_promocional ?? 0m,
-                    Descripcion_Promocion_card = promocion.descripcion?.ToString() ?? "",
-                    Fecha_Inicio_card = promocion.fecha_inicio ?? DateTime.Now,
-                    Fecha_Fin_card = promocion.fecha_fin ?? DateTime.Now,
-                    Activa_card = activaValor,
-                    Margin = new Padding(espacio)
-                };
+                    lista_promociones = (from pr in db.tb_promociones
+                                         join p in db.tb_producto on pr.id_producto equals p.id_producto
+                                         select new
+                                         {
+                                             pr.id_promocion,
+                                             nombre_producto = p.nombre,
+                                             pr.cantidad_minima,
+                                             pr.precio_promocional,
+                                             pr.descripcion,
+                                             pr.fecha_inicio,
+                                             pr.fecha_fin,
+                                             pr.activa
+                                         }).ToList<dynamic>();
+                }
 
-                // Suscribirse al evento de recarga
-                card.RecargaRequerida += (s, e) => CargarProm();
+                panel_cards.Controls.Clear();
+                panel_cards.AutoScroll = true;
+                int posicionY = 0;
 
-                card.Left = 0;
-                card.Top = posicionY;
-                panel_cards.Controls.Add(card);
-                posicionY += card.Height + espacio;
+                foreach (var promocion in lista_promociones)
+                {
+                    bool activaValor = promocion.activa != null ? (bool)promocion.activa : false;
+
+                    var card = new card_prom
+                    {
+                        ID_Promocion_card = (int)promocion.id_promocion,
+                        Nombre_Producto_card = promocion.nombre_producto?.ToString() ?? "",
+                        Cantidad_Minima_card = promocion.cantidad_minima ?? 0,
+                        Precio_Promocion_card = promocion.precio_promocional ?? 0m,
+                        Descripcion_Promocion_card = promocion.descripcion?.ToString() ?? "",
+                        Fecha_Inicio_card = promocion.fecha_inicio ?? DateTime.Now,
+                        Fecha_Fin_card = promocion.fecha_fin ?? DateTime.Now,
+                        Activa_card = activaValor,
+                        Margin = new Padding(espacio)
+                    };
+
+                    // Suscribirse al evento de recarga
+                    card.RecargaRequerida += (s, e) => CargarProm();
+
+                    card.Left = 0;
+                    card.Top = posicionY;
+                    panel_cards.Controls.Add(card);
+                    posicionY += card.Height + espacio;
+                }
+
+                panel_cards.AutoScrollMinSize = new Size(
+                    panel_cards.Width,
+                    posicionY
+                );
             }
-
-            panel_cards.AutoScrollMinSize = new Size(
-                panel_cards.Width,
-                posicionY
-            );
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar las promociones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frm_promociones_Load(object sender, EventArgs e)
@@ -97,36 +111,43 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void Buscador()
         {
-            string busqueda = txt_buscar.Texts.ToLower();
-            int espacio = 10;
-
-            var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
-
-            var cartasFiltradas = todasLasCartas
-                .Where(c => c.Nombre_Producto_card.ToLower().Contains(busqueda) ||
-                           c.Descripcion_Promocion_card.ToLower().Contains(busqueda))
-                .ToList();
-
-            var cartasNoFiltradas = todasLasCartas
-                .Where(c => !cartasFiltradas.Contains(c))
-                .ToList();
-
-            var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
-            int posicionY = 0;
-
-            foreach (var card in cartasOrdenadas)
+            try
             {
-                card.Left = 0;
-                card.Top = posicionY;
-                card.Visible = cartasFiltradas.Contains(card);
+                string busqueda = txt_buscar.Texts.ToLower();
+                int espacio = 10;
 
-                if (card.Visible)
+                var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
+
+                var cartasFiltradas = todasLasCartas
+                    .Where(c => c.Nombre_Producto_card.ToLower().Contains(busqueda) ||
+                               c.Descripcion_Promocion_card.ToLower().Contains(busqueda))
+                    .ToList();
+
+                var cartasNoFiltradas = todasLasCartas
+                    .Where(c => !cartasFiltradas.Contains(c))
+                    .ToList();
+
+                var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+                int posicionY = 0;
+
+                foreach (var card in cartasOrdenadas)
                 {
-                    posicionY += card.Height + espacio;
-                }
-            }
+                    card.Left = 0;
+                    card.Top = posicionY;
+                    card.Visible = cartasFiltradas.Contains(card);
 
-            panel_cards.AutoScrollPosition = new Point(0, 0);
+                    if (card.Visible)
+                    {
+                        posicionY += card.Height + espacio;
+                    }
+                }
+
+                panel_cards.AutoScrollPosition = new Point(0, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en la búsqueda de promociones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void textboxMaxing2_KeyPress(object sender, KeyPressEventArgs e)

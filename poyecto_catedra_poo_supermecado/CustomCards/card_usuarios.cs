@@ -56,10 +56,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string NombreUsuario_card
         {
             get => model_usuario.Nombre_Usuario;
-            set 
-            { 
-                model_usuario.Nombre_Usuario = value;   
-                if (lblNombreUsuario != null) lblNombreUsuario.Text = value; 
+            set
+            {
+                model_usuario.Nombre_Usuario = value;
+                if (lblNombreUsuario != null) lblNombreUsuario.Text = value;
             }
         }
 
@@ -67,10 +67,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string CorreoUsuario_card
         {
             get => model_usuario.Correo;
-            set 
-            { 
+            set
+            {
                 model_usuario.Correo = value;
-                if (lblCorreoUsuario != null) lblCorreoUsuario.Text = value; 
+                if (lblCorreoUsuario != null) lblCorreoUsuario.Text = value;
             }
         }
 
@@ -78,33 +78,40 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public bool Activa_card
         {
             get => model_usuario.Activo;
-            set 
-            { 
+            set
+            {
                 model_usuario.Activo = value;
-                if (lb_activo != null) lb_activo.Text = value? "Activo" : "Inactivo"; 
+                if (lb_activo != null) lb_activo.Text = value ? "Activo" : "Inactivo";
             }
         }
 
         private void btnActualizar_Click_1(object sender, EventArgs e)
         {
-            var modal = new md_agregar_usuario("Actualizar usuario", "Actualizar");
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                var usuario = db.tb_usuario.Find(IDUsuario_card);
-                if (usuario != null)
+                var modal = new md_agregar_usuario("Actualizar usuario", "Actualizar");
+
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    modal.id_Usuario_vista = IDUsuario_card;
-                    modal.nombre_usuario_vista = usuario.nombre;
-                    modal.correo_usuario_vista = usuario.correo;
-                    modal.tipo_usuario_vista = usuario.tipo_usuario;
-                    modal.activo_usuario_vista = usuario.activo ?? false;
+                    var usuario = db.tb_usuario.Find(IDUsuario_card);
+                    if (usuario != null)
+                    {
+                        modal.id_Usuario_vista = IDUsuario_card;
+                        modal.nombre_usuario_vista = usuario.nombre;
+                        modal.correo_usuario_vista = usuario.correo;
+                        modal.tipo_usuario_vista = usuario.tipo_usuario;
+                        modal.activo_usuario_vista = usuario.activo ?? false;
+                    }
+                }
+
+                if (modal.ShowDialog() == DialogResult.OK)
+                {
+                    RecargaRequerida?.Invoke(this, EventArgs.Empty); // Disparar el evento para recargar
                 }
             }
-
-            if (modal.ShowDialog() == DialogResult.OK)
+            catch (Exception ex)
             {
-                RecargaRequerida?.Invoke(this, EventArgs.Empty); // Disparar el evento para recargar
+                MessageBox.Show($"Error al actualizar el usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -118,20 +125,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                try
                 {
-                    var usuario = db.tb_usuario.Find(IDUsuario_card);
-                    if (usuario != null)
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        db.tb_usuario.Remove(usuario);
-                        db.SaveChanges();
-                        MessageBox.Show("Usuario eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        var usuario = db.tb_usuario.Find(IDUsuario_card);
+                        if (usuario != null)
+                        {
+                            db.tb_usuario.Remove(usuario);
+                            db.SaveChanges();
+                            MessageBox.Show("Usuario eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar el usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
