@@ -72,8 +72,15 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
             get => model_Productos.ImagenProducto_model;
             set
             {
-                model_Productos.ImagenProducto_model = value;
-                if (pbProducto != null) pbProducto.Image = value;
+                try
+                {
+                    model_Productos.ImagenProducto_model = value;
+                    if (pbProducto != null) pbProducto.Image = value;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al asignar la imagen del producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -114,39 +121,60 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void ActualizarPrecios()
         {
-            if (lblPrecio == null || lblPrecioDescuento == null) return;
-
-            lblPrecio.Text = model_Productos.Precio_model.ToString("C2");
-
-            if (model_Productos.Descuento_model > 0)
+            try
             {
-                decimal precioConDescuento = model_Productos.Precio_model * (1 - (model_Productos.Descuento_model / 100m));
-                lblPrecioDescuento.Text = precioConDescuento.ToString("C2");
-                lblPrecioDescuento.Visible = true;
-                SetStrikeout(lblPrecio, true);
+                if (lblPrecio == null || lblPrecioDescuento == null) return;
+
+                lblPrecio.Text = model_Productos.Precio_model.ToString("C2");
+
+                if (model_Productos.Descuento_model > 0)
+                {
+                    decimal precioConDescuento = model_Productos.Precio_model * (1 - (model_Productos.Descuento_model / 100m));
+                    lblPrecioDescuento.Text = precioConDescuento.ToString("C2");
+                    lblPrecioDescuento.Visible = true;
+                    SetStrikeout(lblPrecio, true);
+                }
+                else
+                {
+                    lblPrecioDescuento.Visible = false;
+                    SetStrikeout(lblPrecio, false);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblPrecioDescuento.Visible = false;
-                SetStrikeout(lblPrecio, false);
+                MessageBox.Show($"Error al actualizar los precios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void SetStrikeout(Label lbl, bool strike)
         {
-            if (lbl == null) return;
-            var family = lbl.Font.FontFamily;
-            var size = lbl.Font.Size;
-            var style = lbl.Font.Style;
-            style = strike ? (style | FontStyle.Strikeout) : (style & ~FontStyle.Strikeout);
-            lbl.Font = new Font(family, size, style);
+            try
+            {
+                if (lbl == null) return;
+                var family = lbl.Font.FontFamily;
+                var size = lbl.Font.Size;
+                var style = lbl.Font.Style;
+                style = strike ? (style | FontStyle.Strikeout) : (style & ~FontStyle.Strikeout);
+                lbl.Font = new Font(family, size, style);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al modificar el estilo de fuente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Método que se ejecuta cuando se presiona el botón
         private void BtnVisualizar_Click(object sender, EventArgs e)
         {
-            // Disparar el evento pasando el ID del producto
-            BotonVisualizarClick?.Invoke(this, model_Productos.ID_Producto_model);
+            try
+            {
+                // Disparar el evento pasando el ID del producto
+                BotonVisualizarClick?.Invoke(this, model_Productos.ID_Producto_model);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al procesar la visualización del producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

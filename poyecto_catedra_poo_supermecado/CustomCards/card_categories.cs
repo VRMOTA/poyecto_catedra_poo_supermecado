@@ -37,8 +37,8 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string NombreCategoria_Card
         {
             get => categoria_modelo.NombreCategoria_Modelo;
-            set 
-            { 
+            set
+            {
                 categoria_modelo.NombreCategoria_Modelo = value;
                 if (lblNombre_categoria != null) lblNombre_categoria.Text = value;
             }
@@ -68,33 +68,47 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                try
                 {
-                    var categoria = db.tb_categorias.Find(ID_Categoria_Card);
-                    if (categoria != null)
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        db.tb_categorias.Remove(categoria);
-                        db.SaveChanges();
-                        MessageBox.Show("Categoría eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        var categoria = db.tb_categorias.Find(ID_Categoria_Card);
+                        if (categoria != null)
+                        {
+                            db.tb_categorias.Remove(categoria);
+                            db.SaveChanges();
+                            MessageBox.Show("Categoría eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Categoría no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Categoría no encontrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar la categoría: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         public void CargarDatosCategoria()
         {
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                var categoria = db.tb_categorias.Find(ID_Categoria_Card);
-                if (categoria != null)
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
-                    NombreCategoria_Card = categoria.nombre;
+                    var categoria = db.tb_categorias.Find(ID_Categoria_Card);
+                    if (categoria != null)
+                    {
+                        NombreCategoria_Card = categoria.nombre;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos de la categoría: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

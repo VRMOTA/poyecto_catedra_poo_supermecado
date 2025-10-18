@@ -141,15 +141,22 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            using (var modal = new CustomModals.md_actualizar_carrito(this.Cantidad, this.StockDisponible))
+            try
             {
-                if (modal.ShowDialog() == DialogResult.OK)
+                using (var modal = new CustomModals.md_actualizar_carrito(this.Cantidad, this.StockDisponible))
                 {
-                    int nuevaCantidad = modal.NuevaCantidad;
-                    this.Cantidad = nuevaCantidad;
-                    //MessageBox.Show(nuevaCantidad.ToString());
-                    CantidadActualizada?.Invoke(this, nuevaCantidad);
+                    if (modal.ShowDialog() == DialogResult.OK)
+                    {
+                        int nuevaCantidad = modal.NuevaCantidad;
+                        this.Cantidad = nuevaCantidad;
+                        //MessageBox.Show(nuevaCantidad.ToString());
+                        CantidadActualizada?.Invoke(this, nuevaCantidad);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar la cantidad: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

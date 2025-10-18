@@ -29,11 +29,11 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         [Category("Producto"), Description("Imagen del producto")]
         public Image ImagenProducto_card
         {
-            get => model_productos.ImagenProducto_model?? pbProducto.Image;
-            set 
+            get => model_productos.ImagenProducto_model ?? pbProducto.Image;
+            set
             {
                 model_productos.ImagenProducto_model = value;
-                if (pbProducto != null) pbProducto.Image = value; 
+                if (pbProducto != null) pbProducto.Image = value;
             }
         }
 
@@ -41,10 +41,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string NombreProducto_card
         {
             get => model_productos.NombreProducto_model;
-            set 
+            set
             {
                 model_productos.NombreProducto_model = value;
-                if (lblProducto != null) lblProducto.Text = value; 
+                if (lblProducto != null) lblProducto.Text = value;
             }
         }
 
@@ -52,10 +52,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string NombreDistribuidor_card
         {
             get => model_productos.NombreDistribuidor_model;
-            set 
+            set
             {
                 model_productos.NombreDistribuidor_model = value;
-                if (lblDistribuidor != null) lblDistribuidor.Text = value; 
+                if (lblDistribuidor != null) lblDistribuidor.Text = value;
             }
         }
 
@@ -63,10 +63,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string Descripcion_card
         {
             get => model_productos.Descripcion_model;
-            set 
-            { 
+            set
+            {
                 model_productos.Descripcion_model = value;
-                if (lblDescripcion != null) lblDescripcion.Text = value; 
+                if (lblDescripcion != null) lblDescripcion.Text = value;
             }
         }
 
@@ -74,10 +74,10 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public string Cateogoria_card
         {
             get => model_productos.Categoria_model;
-            set 
-            { 
+            set
+            {
                 model_productos.Categoria_model = value;
-                if (lbl_categoria != null) lbl_categoria.Text = value; 
+                if (lbl_categoria != null) lbl_categoria.Text = value;
             }
         }
 
@@ -85,21 +85,21 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
         public int Stock_card
         {
             get => model_productos.Stock;
-            set 
-            { 
+            set
+            {
                 model_productos.Stock = value;
                 if (lb_stock != null) lb_stock.Text = value.ToString(); // Conversión de int a string
             }
         }
 
         [Category("Producto"), Description("Precio del producto")]
-        public decimal Precio_card 
+        public decimal Precio_card
         {
             get => model_productos.Precio_model;
-            set 
+            set
             {
                 model_productos.Precio_model = value;
-                if (lblPrecio != null) lblPrecio.Text = value.ToString("F2"); 
+                if (lblPrecio != null) lblPrecio.Text = value.ToString("F2");
             }
         }
 
@@ -116,40 +116,47 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            var modal = new md_agregar_productos("Actualizar producto", "Actualizar");
-
-            using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+            try
             {
-                var producto = db.tb_producto.Find(ID_Producto_card);
-                if (producto != null)
-                {
-                    modal.IDProducto_vista = producto.id_producto;
-                    modal.NombreProducto_vista = producto.nombre;
-                    modal.PrecioProducto_vista = (double)(producto.precio ?? 0m);
-                    modal.StockProducto_vista = producto.stock ?? 0;
-                    modal.IDCategoriaProducto_vista = producto.id_categoria;
-                    modal.IDDistribuidorProducto_vista = producto.id_distribuidor;
-                    modal.DescripcionProducto_vista = producto.descripcion;
-                    modal.ActivoProducto_vista = producto.activo == true;
+                var modal = new md_agregar_productos("Actualizar producto", "Actualizar");
 
-                    if (producto.imagen != null)
+                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                {
+                    var producto = db.tb_producto.Find(ID_Producto_card);
+                    if (producto != null)
                     {
-                        using (MemoryStream ms = new MemoryStream(producto.imagen))
+                        modal.IDProducto_vista = producto.id_producto;
+                        modal.NombreProducto_vista = producto.nombre;
+                        modal.PrecioProducto_vista = (double)(producto.precio ?? 0m);
+                        modal.StockProducto_vista = producto.stock ?? 0;
+                        modal.IDCategoriaProducto_vista = producto.id_categoria;
+                        modal.IDDistribuidorProducto_vista = producto.id_distribuidor;
+                        modal.DescripcionProducto_vista = producto.descripcion;
+                        modal.ActivoProducto_vista = producto.activo == true;
+
+                        if (producto.imagen != null)
                         {
-                            modal.ImagenProducto_vista = Image.FromStream(ms);
+                            using (MemoryStream ms = new MemoryStream(producto.imagen))
+                            {
+                                modal.ImagenProducto_vista = Image.FromStream(ms);
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                else
+
+                if (modal.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    RecargaRequerida?.Invoke(this, EventArgs.Empty);
                 }
             }
-
-            if (modal.ShowDialog() == DialogResult.OK)
+            catch (Exception ex)
             {
-                RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show($"Error al actualizar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -165,20 +172,27 @@ namespace poyecto_catedra_poo_supermecado.CustomCards
 
             if (resultado == DialogResult.Yes)
             {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
+                try
                 {
-                    var producto = db.tb_producto.Find(ID_Producto_card);
-                    if (producto != null)
+                    using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                     {
-                        db.tb_producto.Remove(producto);
-                        db.SaveChanges();
-                        MessageBox.Show("Producto eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        var producto = db.tb_producto.Find(ID_Producto_card);
+                        if (producto != null)
+                        {
+                            db.tb_producto.Remove(producto);
+                            db.SaveChanges();
+                            MessageBox.Show("Producto eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RecargaRequerida?.Invoke(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
