@@ -22,9 +22,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frm_login login = new frm_login();
-            this.Hide();
-            login.Show();
+            this.Close();
         }
 
         private void abrir_panel(object formularioHijo) // Metodo para abrir formularios dentro del panel
@@ -113,7 +111,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void frm_dashboard_admin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            
         }
 
         private void btnPropiedades_Click(object sender, EventArgs e)
@@ -126,7 +124,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 MessageBox.Show("Error al abrir el módulo de promociones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -44,9 +44,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
-            frm_login login = new frm_login();
-            this.Hide();
-            login.Show();
+            this.Close();
         }
 
         private void btn_menu_Click(object sender, EventArgs e)
@@ -111,7 +109,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void frm_dashboard_cajero_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit(); // Cierra toda la aplicacion al cerrar el formulario
+           
         }
     }
 }
