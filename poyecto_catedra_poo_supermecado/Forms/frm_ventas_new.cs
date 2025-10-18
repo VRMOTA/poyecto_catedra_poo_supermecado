@@ -46,39 +46,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
-        private void CargarVentas()
-        {
-            try
-            {
-                using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-                {
-                    var ventas = db.tb_ventas
-                        .OrderByDescending(v => v.id_venta)
-                        .ToList()
-                        .Select(v => new {
-                            v.id_venta,
-                            Correlativo = "V-" + v.id_venta.ToString().PadLeft(6, '0'),
-                            v.fecha,
-                            v.nombre_cliente
-                        })
-                        .ToList();
-
-                    cmb_ventas.DataSource = ventas;
-                    cmb_ventas.DisplayMember = "Correlativo";
-                    cmb_ventas.ValueMember = "id_venta";
-                    cmb_ventas.SelectedIndex = -1;
-
-                    // Configurar AutoComplete para búsqueda
-                    cmb_ventas.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cmb_ventas.AutoCompleteSource = AutoCompleteSource.ListItems;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar ventas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+     
         private void CargarVentasPorCajero(int idCajero)
         {
             try

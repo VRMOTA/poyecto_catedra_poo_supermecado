@@ -45,6 +45,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
+                    // Traer los campos necesarios de tb_producto
                     var producto = db.tb_producto
                                     .Where(p => p.id_producto == idProducto)
                                     .Select(p => new
@@ -58,8 +59,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                     })
                                     .FirstOrDefault();
 
-                    if (producto != null)
+                    if (producto != null) 
                     {
+                        // Actualizar los controles con la información del producto
                         lblProducto.Text = producto.nombre;
                         lblPrecio.Text = (producto.precio ?? 0m).ToString("C2");
                         lbstock.Text = (producto.stock ?? 0).ToString();
@@ -166,6 +168,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                     var card = new card_producto_menu
                     {
+                        // Dar valores a las propiedades necesarias
                         IDProducto = prod.id_producto,
                         Producto = prod.nombre,
                         Precio = prod.precio ?? 0m,
@@ -269,10 +272,6 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
         }
 
-        /// <summary>
-        /// Método para buscar productos por nombre o categoría
-        /// Utiliza la información ya cargada en las cartas para mayor eficiencia
-        /// </summary>
         private void Buscador()
         {
             try

@@ -18,13 +18,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
 {
     public partial class frm_carrito_cajero : Form
     {
-        private model_usuario model_usuario;
+        private model_usuario model_usuario; // Campo para el usuario actual
 
         public frm_carrito_cajero()
         {
             InitializeComponent();
             this.BackColor = Color.FromArgb(235, 235, 235);
-            model_usuario = new model_usuario();
+            model_usuario = new model_usuario(); // Crear un usuario vacío si no se proporciona uno
         }
 
         public frm_carrito_cajero(model_usuario usuario)
@@ -51,9 +51,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void EliminarProducto(int idProducto)
         {
-            var producto = Utilities.Carrito.Productos.FirstOrDefault(p => p.Id == idProducto);
+            var producto = Utilities.Carrito.Productos.FirstOrDefault(p => p.Id == idProducto); //busca el producto por id
             if (producto != null)
-            {
+            {//mensaje de confirmacion
                 var confirmar = MessageBox.Show(
                     $"¿Desea eliminar '{producto.Nombre}' del carrito?",
                     "Confirmar eliminación",
@@ -91,10 +91,10 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         p.fecha_fin >= hoy &&
                         nuevaCantidad >= p.cantidad_minima);
 
-                    decimal totalProducto = 0m;
+                    decimal totalProducto = 0m;//total del producto
 
-                    if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
-                    {
+                    if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)// si hay promo activa
+                    {//calcula el total con promo
                         int cantidadPromo = promo.cantidad_minima.Value;
                         decimal precioPromo = promo.precio_promocional.Value;
 
@@ -132,13 +132,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
         private void ActualizarTotales()
         {
             try
-            {
+            {   // recalcula totales del carrito
                 decimal totalPagar = 0m;
                 int totalCantidad = 0;
 
-                foreach (Control ctrl in panel1.Controls)
+                foreach (Control ctrl in panel1.Controls) // recorre controles en el panel
                 {
-                    if (ctrl is CustomCards.card_producto_carrito card)
+                    if (ctrl is CustomCards.card_producto_carrito card) //si es una card de producto
                     {
                         totalCantidad += card.Cantidad;
                         totalPagar += card.TotalProducto;
@@ -156,14 +156,14 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void RecargarCarrito()
         {
-            panel1.Controls.Clear();
-            CargarCarrito();
+            panel1.Controls.Clear(); // Limpia controles existentes
+            CargarCarrito(); // Vuelve a cargar el carrito
         }
 
         private void CargarCarrito()
         {
             try
-            {
+            {   //dimensiones y espacio entre cartas
                 int anchoCarta = 775;
                 int altoCarta = 204;
                 int espacio = 10;
@@ -171,16 +171,17 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 panel1.Controls.Clear();
                 panel1.AutoScroll = true;
 
-                var productosCarrito = Utilities.Carrito.Productos;
+                var productosCarrito = Utilities.Carrito.Productos; // obtiene productos del carrito
 
                 decimal totalPagar = 0m;
                 int totalCantidad = 0;
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
+                    //fecha actual
                     DateTime hoy = DateTime.Now;
 
-                    for (int i = 0; i < productosCarrito.Count; i++)
+                    for (int i = 0; i < productosCarrito.Count; i++) //recorre productos
                     {
                         var producto = productosCarrito[i];
 
@@ -196,7 +197,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         int descuentoPorcentaje = 0;
                         decimal ahorro = 0m;
 
-                        if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue)
+                        if (promo != null && promo.precio_promocional.HasValue && promo.cantidad_minima.HasValue) // si hay promo activa
                         {
                             int cantidadPromo = promo.cantidad_minima.Value;
                             decimal precioPromo = promo.precio_promocional.Value;
@@ -220,8 +221,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                         var card = new CustomCards.card_producto_carrito
                         {
+                            // propiedades de la card
                             IDProducto = producto.Id,
-                            NombreProducto = producto.Nombre + (promo != null ? " (Promo)" : ""),
+                            NombreProducto = producto.Nombre + (promo != null ? " (Promo)" : ""), // Ajuste para mostrar solo promo en nombre si aplica
                             Precio = producto.Precio,
                             Descuento = descuentoPorcentaje,
                             Cantidad = producto.Cantidad,
@@ -266,16 +268,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             try
             {
-                var productosCarrito = Utilities.Carrito.Productos;
+                var productosCarrito = Utilities.Carrito.Productos; // obtiene productos del carrito
 
-                if (productosCarrito == null || productosCarrito.Count == 0)
+                if (productosCarrito == null || productosCarrito.Count == 0) // verifica si el carrito está vacío
                 {
                     MessageBox.Show("No hay productos en el carrito.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
-                {
+                {   
                     DateTime hoy = DateTime.Now;
                     decimal totalVenta = 0m;
                     decimal totalDescuento = 0m;
@@ -308,8 +310,9 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                     tb_ventas nuevaVenta = new tb_ventas
                     {
+                        // Datos de la venta
                         fecha = DateTime.Now,
-                        id_usuario = model_usuario.Id_Usuario, // VERIFICAR ESTO 
+                        id_usuario = model_usuario.Id_Usuario,  
                         nombre_cliente = txtNombre.Texts.ToString(),
                         total_venta = totalVenta,
                         total_descuento = totalDescuento,
@@ -323,6 +326,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                     foreach (var producto in productosCarrito)
                     {
+                        // Buscar promoción activa
                         var promo = db.tb_promociones.FirstOrDefault(p =>
                             p.id_producto == producto.Id &&
                             p.activa == true &&
@@ -346,6 +350,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
                         tb_detalle_venta detalle = new tb_detalle_venta
                         {
+                            // Datos del detalle de venta
                             id_venta = idVentaGenerada,
                             id_producto = producto.Id,
                             cantidad = producto.Cantidad,

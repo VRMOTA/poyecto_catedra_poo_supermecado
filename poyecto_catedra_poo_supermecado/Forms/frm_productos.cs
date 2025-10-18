@@ -1,5 +1,5 @@
-﻿using poyecto_catedra_poo_supermecado.Conexion;
-using poyecto_catedra_poo_supermecado.CustomCards;
+﻿using poyecto_catedra_poo_supermecado.Conexion;  
+using poyecto_catedra_poo_supermecado.CustomCards; 
 using poyecto_catedra_poo_supermecado.CustomModals;
 using System;
 using System.Collections.Generic;
@@ -14,17 +14,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
     {
         public frm_productos()
         {
-            InitializeComponent();
-            CargarProductosAdmin();
+            InitializeComponent();       
+            CargarProductosAdmin();      // Carga la lista de productos al abrir el formulario
         }
 
+        // Método que carga los productos en formato de tarjetas para el administrador
         private void CargarProductosAdmin()
         {
             try
             {
-                int espacio = 10;
+                int espacio = 10; // Espacio entre tarjetas
                 List<dynamic> lista_productos;
 
+                // Obtiene los productos desde la base de datos con sus relaciones
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     lista_productos = (from p in db.tb_producto
@@ -44,13 +46,15 @@ namespace poyecto_catedra_poo_supermecado.Forms
                                        }).ToList<dynamic>();
                 }
 
+                // Limpia el panel antes de volver a cargar los productos
                 panel_cards.Controls.Clear();
                 panel_cards.AutoScroll = true;
-                int posicionY = 0;
+                int posicionY = 0; // Control de posición vertical
 
+                // Recorre cada producto y crea una tarjeta personalizada
                 foreach (var producto in lista_productos)
                 {
-                    // Convertir byte[] a Image
+                    // Convierte la imagen de byte[] a Image
                     Image imageProducto = null;
                     if (producto.imagen != null)
                     {
@@ -63,10 +67,11 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         }
                         catch
                         {
-                            imageProducto = null; // Manejo silencioso si la imagen está corrupta
+                            imageProducto = null; // Si la imagen está dañada
                         }
                     }
 
+                    // Crea una tarjeta personalizada con la información del producto
                     var card = new card_producto_admin
                     {
                         ID_Producto_card = producto.id_producto,
@@ -81,15 +86,17 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         Margin = new Padding(espacio)
                     };
 
-                    // Suscribirse al evento de recarga
+                    // Se suscribe al evento para recargar los productos si se modifica algo
                     card.RecargaRequerida += (s, e) => CargarProductosAdmin();
 
+                    // Posiciona la tarjeta una debajo de otra
                     card.Left = 0;
                     card.Top = posicionY;
                     panel_cards.Controls.Add(card);
                     posicionY += card.Height + espacio;
                 }
 
+                // Configura el tamaño de desplazamiento del panel según el total de tarjetas
                 panel_cards.AutoScrollMinSize = new Size(
                     panel_cards.Width,
                     posicionY
@@ -97,16 +104,19 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
             catch (Exception ex)
             {
+                // Muestra un mensaje si ocurre un error al cargar los productos
                 MessageBox.Show($"Error al cargar los productos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Evento que abre la ventana para agregar un nuevo producto
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
             try
             {
                 using (var modal = new md_agregar_productos())
                 {
+                    // Si el modal se confirma, recarga la lista de productos
                     if (modal.ShowDialog() == DialogResult.OK)
                     {
                         CargarProductosAdmin();
@@ -115,6 +125,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
             }
             catch (Exception ex)
             {
+                // Muestra un mensaje si ocurre un error al abrir el formulario
                 MessageBox.Show($"Error al abrir el formulario de agregar producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

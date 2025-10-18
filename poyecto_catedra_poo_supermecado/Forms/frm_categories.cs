@@ -1,6 +1,6 @@
-﻿using poyecto_catedra_poo_supermecado.Conexion;
-using poyecto_catedra_poo_supermecado.CustomCards;
-using poyecto_catedra_poo_supermecado.CustomModals;
+﻿using poyecto_catedra_poo_supermecado.Conexion;   
+using poyecto_catedra_poo_supermecado.CustomCards; 
+using poyecto_catedra_poo_supermecado.CustomModals; 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,33 +14,32 @@ namespace poyecto_catedra_poo_supermecado.Forms
         public frm_categories()
         {
             InitializeComponent();
-            this.BackColor = Color.FromArgb(235, 235, 235);
+            this.BackColor = Color.FromArgb(235, 235, 235); // Fondo gris claro
         }
 
+        // Al cargar el formulario se muestran las categorías
         private void frm_consultas_cajero_Load_1(object sender, EventArgs e)
         {
             CargarCategorias();
         }
 
+        // Carga las categorías desde la base de datos y las muestra como tarjetas
         private void CargarCategorias()
         {
             try
             {
-                int columnas = 2;
-                int espacio = 10;
-
+                int columnas = 2, espacio = 10; // Configura el diseño
                 List<dynamic> listaCat;
 
+                // Obtiene las categorías desde la BD
                 using (db_supermercadoEntities1 db = new db_supermercadoEntities1())
                 {
                     listaCat = db.tb_categorias
-                        .Select(u => new
-                        {
-                            u.id_categoria,
-                            u.nombre,
-                        }).ToList<dynamic>();
+                        .Select(u => new { u.id_categoria, u.nombre })
+                        .ToList<dynamic>();
                 }
 
+                // Limpia el panel y configura el scroll
                 panel_cards.Controls.Clear();
                 panel_cards.AutoScroll = true;
                 Size cardSize = new Size(495, 107);
@@ -48,6 +47,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 int indice = 0;
                 foreach (var cat in listaCat)
                 {
+                    // Crea una tarjeta por cada categoría
                     var card = new card_categories
                     {
                         ID_Categoria_Card = cat.id_categoria,
@@ -56,71 +56,48 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         Size = cardSize
                     };
 
-                    // Suscribirse al evento de recarga
+                    // Actualiza el panel si se modifica algo
                     card.RecargaRequerida += (s, e) => CargarCategorias();
 
+                    // Posiciona las tarjetas en forma de cuadrícula
                     int fila = indice / columnas;
                     int columna = indice % columnas;
-
                     card.Left = columna * (card.Width + espacio);
                     card.Top = fila * (card.Height + espacio);
 
                     panel_cards.Controls.Add(card);
                     indice++;
                 }
-
-                int filasNecesarias = (int)Math.Ceiling((double)listaCat.Count / columnas);
-                panel_cards.AutoScrollMinSize = new Size(
-                    columnas * (cardSize.Width + espacio),
-                    filasNecesarias * (cardSize.Height + espacio)
-                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar las categorías: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al cargar categorías: {ex.Message}");
             }
         }
 
+        // Filtra las categorías según el texto ingresado
         private void Buscador()
         {
             try
             {
                 string busqueda = txt_buscar.Texts.ToLower();
-                int columnas = 2;
-                int espacio = 10;
 
-                var todasLasCartas = panel_cards.Controls.OfType<card_categories>().ToList();
+                var todas = panel_cards.Controls.OfType<card_categories>().ToList();
+                var filtradas = todas.Where(c => c.NombreCategoria_Card.ToLower().Contains(busqueda)).ToList();
 
-                var cartasFiltradas = todasLasCartas
-                    .Where(c => c.NombreCategoria_Card.ToLower().Contains(busqueda))
-                    .ToList();
-
-                var cartasNoFiltradas = todasLasCartas
-                    .Where(c => !cartasFiltradas.Contains(c))
-                    .ToList();
-
-                var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
-
-                int indice = 0;
-                foreach (var card in cartasOrdenadas)
-                {
-                    int fila = indice / columnas;
-                    int columna = indice % columnas;
-
-                    card.Left = columna * (card.Width + espacio);
-                    card.Top = fila * (card.Height + espacio);
-                    card.Visible = cartasFiltradas.Contains(card);
-                    indice++;
-                }
+                // Solo muestra las que coinciden
+                foreach (var card in todas)
+                    card.Visible = filtradas.Contains(card);
 
                 panel_cards.AutoScrollPosition = new Point(0, 0);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error en la búsqueda de categorías: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error en búsqueda: {ex.Message}");
             }
         }
 
+        // Abre el modal para agregar una nueva categoría
         private void buttonMaxing1_Click(object sender, EventArgs e)
         {
             try
@@ -128,17 +105,16 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 using (var modal = new md_agregar_categoria())
                 {
                     if (modal.ShowDialog() == DialogResult.OK)
-                    {
-                        CargarCategorias();
-                    }
+                        CargarCategorias(); // Recarga la lista
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al abrir el formulario de agregar categoría: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al agregar categoría: {ex.Message}");
             }
         }
 
+        // Busca mientras el usuario escribe
         private void txt_buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Buscador();
