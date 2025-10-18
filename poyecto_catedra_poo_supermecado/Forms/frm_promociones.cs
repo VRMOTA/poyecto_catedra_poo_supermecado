@@ -113,33 +113,29 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             try
             {
-                string busqueda = txt_buscar.Texts.ToLower();
+                string busqueda = txt_buscar.Texts.ToLower().Trim();
                 int espacio = 10;
 
                 var todasLasCartas = panel_cards.Controls.OfType<card_prom>().ToList();
 
                 var cartasFiltradas = todasLasCartas
                     .Where(c => c.Nombre_Producto_card.ToLower().Contains(busqueda) ||
-                               c.Descripcion_Promocion_card.ToLower().Contains(busqueda))
+                               BuscarEstado(c.Activa_card, busqueda))
                     .ToList();
 
-                var cartasNoFiltradas = todasLasCartas
-                    .Where(c => !cartasFiltradas.Contains(c))
-                    .ToList();
+                // Primero ocultar todas las cartas que no coinciden
+                foreach (var card in todasLasCartas)
+                {
+                    card.Visible = cartasFiltradas.Contains(card);
+                }
 
-                var cartasOrdenadas = cartasFiltradas.Concat(cartasNoFiltradas).ToList();
+                // Luego posicionar SOLO las cartas visibles
                 int posicionY = 0;
-
-                foreach (var card in cartasOrdenadas)
+                foreach (var card in cartasFiltradas)
                 {
                     card.Left = 0;
                     card.Top = posicionY;
-                    card.Visible = cartasFiltradas.Contains(card);
-
-                    if (card.Visible)
-                    {
-                        posicionY += card.Height + espacio;
-                    }
+                    posicionY += card.Height + espacio;
                 }
 
                 panel_cards.AutoScrollPosition = new Point(0, 0);
@@ -148,6 +144,15 @@ namespace poyecto_catedra_poo_supermecado.Forms
             {
                 MessageBox.Show($"Error en la búsqueda de promociones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool BuscarEstado(bool activa, string busqueda)
+        {
+            // Convertir el bool a string "activa" o "inactiva"
+            string estadoTexto = activa ? "activa" : "inactiva";
+
+            // Comparar con la búsqueda
+            return estadoTexto.StartsWith(busqueda.ToLower());
         }
 
         private void textboxMaxing2_KeyPress(object sender, KeyPressEventArgs e)

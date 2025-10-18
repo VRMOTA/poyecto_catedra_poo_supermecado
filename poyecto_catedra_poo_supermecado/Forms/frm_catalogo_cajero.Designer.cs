@@ -30,19 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_catalogo_cajero));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.card_producto_menu1 = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
-            this.roundedControlBase1 = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
-            this.txt_buscar = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
-            this.buttonMaxing1 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
             this.pbProducto = new System.Windows.Forms.PictureBox();
             this.lblProducto = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbstock = new System.Windows.Forms.Label();
             this.lbdescriccion = new System.Windows.Forms.Label();
-            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
-            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.lbPromo = new System.Windows.Forms.Label();
+            this.textboxMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
+            this.buttonMaxing2 = new poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing();
+            this.card_producto_menu1 = new poyecto_catedra_poo_supermecado.CustomCards.card_producto_menu();
+            this.roundedControlBase1 = new poyecto_catedra_poo_supermecado.CustomCards.RoundedControlBase();
+            this.txt_buscar = new poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProducto)).BeginInit();
             this.SuspendLayout();
@@ -54,80 +53,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(981, 844);
             this.panel1.TabIndex = 4;
-            // 
-            // card_producto_menu1
-            // 
-            this.card_producto_menu1.BackColor = System.Drawing.Color.Transparent;
-            this.card_producto_menu1.BorderColor = System.Drawing.Color.Gray;
-            this.card_producto_menu1.BorderThickness = 1;
-            this.card_producto_menu1.CornerRadius = 12;
-            this.card_producto_menu1.Descuento = 0;
-            this.card_producto_menu1.FillColor = System.Drawing.Color.White;
-            this.card_producto_menu1.IDProducto = 0;
-            this.card_producto_menu1.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card_producto_menu1.ImagenProducto")));
-            this.card_producto_menu1.Location = new System.Drawing.Point(3, 3);
-            this.card_producto_menu1.Name = "card_producto_menu1";
-            this.card_producto_menu1.Precio = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.card_producto_menu1.Producto = "Nombre Producto";
-            this.card_producto_menu1.Size = new System.Drawing.Size(241, 266);
-            this.card_producto_menu1.TabIndex = 0;
-            // 
-            // roundedControlBase1
-            // 
-            this.roundedControlBase1.BackColor = System.Drawing.Color.Transparent;
-            this.roundedControlBase1.BorderColor = System.Drawing.Color.White;
-            this.roundedControlBase1.BorderThickness = 1;
-            this.roundedControlBase1.CornerRadius = 12;
-            this.roundedControlBase1.FillColor = System.Drawing.Color.White;
-            this.roundedControlBase1.Location = new System.Drawing.Point(1000, 55);
-            this.roundedControlBase1.Name = "roundedControlBase1";
-            this.roundedControlBase1.Size = new System.Drawing.Size(266, 844);
-            this.roundedControlBase1.TabIndex = 3;
-            this.roundedControlBase1.Load += new System.EventHandler(this.roundedControlBase1_Load);
-            // 
-            // txt_buscar
-            // 
-            this.txt_buscar.BackColor = System.Drawing.Color.White;
-            this.txt_buscar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txt_buscar.BorderFocusColor = System.Drawing.Color.Plum;
-            this.txt_buscar.BorderSize = 7;
-            this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_buscar.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_buscar.Location = new System.Drawing.Point(13, 13);
-            this.txt_buscar.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_buscar.Multiline = false;
-            this.txt_buscar.Name = "txt_buscar";
-            this.txt_buscar.Padding = new System.Windows.Forms.Padding(7);
-            this.txt_buscar.PasswordChar = false;
-            this.txt_buscar.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txt_buscar.PlaceholderText = "Buscar";
-            this.txt_buscar.Size = new System.Drawing.Size(1079, 35);
-            this.txt_buscar.TabIndex = 2;
-            this.txt_buscar.Texts = "";
-            this.txt_buscar.UnderlinedStyle = true;
-            this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
-            // 
-            // buttonMaxing1
-            // 
-            this.buttonMaxing1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing1.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing1.BorderRadius = 15;
-            this.buttonMaxing1.BorderSize = 0;
-            this.buttonMaxing1.FlatAppearance.BorderSize = 0;
-            this.buttonMaxing1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMaxing1.ForeColor = System.Drawing.Color.White;
-            this.buttonMaxing1.Image = ((System.Drawing.Image)(resources.GetObject("buttonMaxing1.Image")));
-            this.buttonMaxing1.Location = new System.Drawing.Point(1099, 12);
-            this.buttonMaxing1.Name = "buttonMaxing1";
-            this.buttonMaxing1.Size = new System.Drawing.Size(167, 36);
-            this.buttonMaxing1.TabIndex = 1;
-            this.buttonMaxing1.TextColor = System.Drawing.Color.White;
-            this.buttonMaxing1.UseVisualStyleBackColor = false;
             // 
             // pbProducto
             // 
@@ -196,25 +121,17 @@
             this.lbdescriccion.TabIndex = 12;
             this.lbdescriccion.Text = "Descripcion";
             // 
-            // buttonMaxing2
+            // lbPromo
             // 
-            this.buttonMaxing2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonMaxing2.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonMaxing2.BorderRadius = 8;
-            this.buttonMaxing2.BorderSize = 0;
-            this.buttonMaxing2.FlatAppearance.BorderSize = 0;
-            this.buttonMaxing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMaxing2.ForeColor = System.Drawing.Color.White;
-            this.buttonMaxing2.Location = new System.Drawing.Point(1012, 857);
-            this.buttonMaxing2.Name = "buttonMaxing2";
-            this.buttonMaxing2.Size = new System.Drawing.Size(242, 31);
-            this.buttonMaxing2.TabIndex = 13;
-            this.buttonMaxing2.Text = "Agregar";
-            this.buttonMaxing2.TextColor = System.Drawing.Color.White;
-            this.buttonMaxing2.UseVisualStyleBackColor = false;
-            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
+            this.lbPromo.AutoSize = true;
+            this.lbPromo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbPromo.Location = new System.Drawing.Point(1021, 681);
+            this.lbPromo.MaximumSize = new System.Drawing.Size(250, 250);
+            this.lbPromo.Name = "lbPromo";
+            this.lbPromo.Size = new System.Drawing.Size(13, 13);
+            this.lbPromo.TabIndex = 15;
+            this.lbPromo.Text = "--";
+            this.lbPromo.Click += new System.EventHandler(this.lbPromo_Click);
             // 
             // textboxMaxing2
             // 
@@ -236,18 +153,88 @@
             this.textboxMaxing2.TabIndex = 14;
             this.textboxMaxing2.Texts = "";
             this.textboxMaxing2.UnderlinedStyle = true;
+            this.textboxMaxing2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxMaxing2_KeyPress);
             // 
-            // lbPromo
+            // buttonMaxing2
             // 
-            this.lbPromo.AutoSize = true;
-            this.lbPromo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbPromo.Location = new System.Drawing.Point(1021, 681);
-            this.lbPromo.MaximumSize = new System.Drawing.Size(250, 250);
-            this.lbPromo.Name = "lbPromo";
-            this.lbPromo.Size = new System.Drawing.Size(13, 13);
-            this.lbPromo.TabIndex = 15;
-            this.lbPromo.Text = "--";
-            this.lbPromo.Click += new System.EventHandler(this.lbPromo_Click);
+            this.buttonMaxing2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonMaxing2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonMaxing2.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonMaxing2.BorderRadius = 8;
+            this.buttonMaxing2.BorderSize = 0;
+            this.buttonMaxing2.FlatAppearance.BorderSize = 0;
+            this.buttonMaxing2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMaxing2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMaxing2.ForeColor = System.Drawing.Color.White;
+            this.buttonMaxing2.Location = new System.Drawing.Point(1012, 857);
+            this.buttonMaxing2.Name = "buttonMaxing2";
+            this.buttonMaxing2.Size = new System.Drawing.Size(242, 31);
+            this.buttonMaxing2.TabIndex = 13;
+            this.buttonMaxing2.Text = "Agregar";
+            this.buttonMaxing2.TextColor = System.Drawing.Color.White;
+            this.buttonMaxing2.UseVisualStyleBackColor = false;
+            this.buttonMaxing2.Click += new System.EventHandler(this.buttonMaxing2_Click);
+            // 
+            // card_producto_menu1
+            // 
+            this.card_producto_menu1.Activo = true;
+            this.card_producto_menu1.BackColor = System.Drawing.Color.Transparent;
+            this.card_producto_menu1.BorderColor = System.Drawing.Color.Gray;
+            this.card_producto_menu1.BorderThickness = 1;
+            this.card_producto_menu1.Categoria = "";
+            this.card_producto_menu1.CornerRadius = 12;
+            this.card_producto_menu1.Descripcion = "";
+            this.card_producto_menu1.Descuento = 0;
+            this.card_producto_menu1.Distribuidor = "";
+            this.card_producto_menu1.FillColor = System.Drawing.Color.White;
+            this.card_producto_menu1.IDProducto = 0;
+            this.card_producto_menu1.ImagenProducto = ((System.Drawing.Image)(resources.GetObject("card_producto_menu1.ImagenProducto")));
+            this.card_producto_menu1.Location = new System.Drawing.Point(3, 3);
+            this.card_producto_menu1.Name = "card_producto_menu1";
+            this.card_producto_menu1.Precio = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.card_producto_menu1.Producto = "Nombre Producto";
+            this.card_producto_menu1.Size = new System.Drawing.Size(241, 266);
+            this.card_producto_menu1.Stock = 0;
+            this.card_producto_menu1.TabIndex = 0;
+            // 
+            // roundedControlBase1
+            // 
+            this.roundedControlBase1.BackColor = System.Drawing.Color.Transparent;
+            this.roundedControlBase1.BorderColor = System.Drawing.Color.White;
+            this.roundedControlBase1.BorderThickness = 1;
+            this.roundedControlBase1.CornerRadius = 12;
+            this.roundedControlBase1.FillColor = System.Drawing.Color.White;
+            this.roundedControlBase1.Location = new System.Drawing.Point(1000, 55);
+            this.roundedControlBase1.Name = "roundedControlBase1";
+            this.roundedControlBase1.Size = new System.Drawing.Size(266, 844);
+            this.roundedControlBase1.TabIndex = 3;
+            this.roundedControlBase1.Load += new System.EventHandler(this.roundedControlBase1_Load);
+            // 
+            // txt_buscar
+            // 
+            this.txt_buscar.BackColor = System.Drawing.Color.White;
+            this.txt_buscar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txt_buscar.BorderFocusColor = System.Drawing.Color.Plum;
+            this.txt_buscar.BorderSize = 7;
+            this.txt_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_buscar.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_buscar.Location = new System.Drawing.Point(13, 13);
+            this.txt_buscar.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_buscar.Multiline = false;
+            this.txt_buscar.Name = "txt_buscar";
+            this.txt_buscar.Padding = new System.Windows.Forms.Padding(7);
+            this.txt_buscar.PasswordChar = false;
+            this.txt_buscar.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txt_buscar.PlaceholderText = "Buscar";
+            this.txt_buscar.Size = new System.Drawing.Size(1079, 35);
+            this.txt_buscar.TabIndex = 2;
+            this.txt_buscar.Texts = "";
+            this.txt_buscar.UnderlinedStyle = true;
+            this.txt_buscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_buscar_KeyPress);
             // 
             // frm_catalogo_cajero
             // 
@@ -267,7 +254,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.roundedControlBase1);
             this.Controls.Add(this.txt_buscar);
-            this.Controls.Add(this.buttonMaxing1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_catalogo_cajero";
             this.Text = "frm_catalogo_cajero";
@@ -280,7 +266,6 @@
         }
 
         #endregion
-        private poyecto_catedra_poo_supermecado.CustomControls.ButtonMaxing buttonMaxing1;
         private poyecto_catedra_poo_supermecado.CustomControls.TextboxMaxing txt_buscar;
         private CustomCards.RoundedControlBase roundedControlBase1;
         private System.Windows.Forms.Panel panel1;

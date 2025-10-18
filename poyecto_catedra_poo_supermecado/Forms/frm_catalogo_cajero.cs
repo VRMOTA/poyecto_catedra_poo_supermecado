@@ -112,7 +112,7 @@ namespace poyecto_catedra_poo_supermecado.Forms
         {
             try
             {
-                int columnas = 4;
+                int columnas = 3;
                 int anchoCarta = 238; // Ajusta según el tamaño real de card_producto_menu
                 int altoCarta = 266;  // Ajusta según el tamaño real de card_producto_menu
                 int espacio = 10;     // Espacio entre cartas
@@ -249,7 +249,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
                         };
 
                         Utilities.Carrito.AgregarProducto(seleccionado);
-                        MessageBox.Show($" {prod.nombre} agregado al carrito ({cantidad} unidad(es)).");
+                        MessageBox.Show(
+                        $"{prod.nombre} agregado al carrito ({cantidad} unidad(es)).",
+                        "Producto agregado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                        textboxMaxing2.Texts = ""; // Resetear a 1 después de agregar
                     }
                 }
             }
@@ -258,13 +264,13 @@ namespace poyecto_catedra_poo_supermecado.Forms
                 MessageBox.Show($"Error al agregar el producto al carrito: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+    
         private void Buscador()
         {
             try
             {
                 string busqueda = txt_buscar.Texts.ToLower();
-                int columnas = 4;
+                int columnas = 3;
                 int anchoCarta = 238;
                 int altoCarta = 266;
                 int espacio = 10;
@@ -327,6 +333,27 @@ namespace poyecto_catedra_poo_supermecado.Forms
 
         private void label2_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void textboxMaxing2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //condicion para solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //para tecla backspace
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            //si no se cumple nada de lo anterior entonces que no lo deje pasar
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
         }
     }
